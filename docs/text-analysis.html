@@ -1,0 +1,183 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T16:12:08.93136764"><title>An&aacute;lise de Texto 📊 | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"an-lise-b-sica","level":0,"title":"Análise Básica","anchor":"#an-lise-b-sica"},{"id":"an-lise-de-logs","level":0,"title":"Análise de Logs","anchor":"#an-lise-de-logs"},{"id":"an-lise-de-dados","level":0,"title":"Análise de Dados","anchor":"#an-lise-de-dados"},{"id":"ferramentas-de-an-lise","level":0,"title":"Ferramentas de Análise","anchor":"#ferramentas-de-an-lise"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="An&aacute;lise de Texto 📊 | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/text-analysis.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="An&aacute;lise de Texto 📊 | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/text-analysis.html#webpage",
+    "url": "writerside-documentation/text-analysis.html",
+    "name": "An&aacute;lise de Texto 📊 | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="text-analysis" data-main-title="Análise de Texto 📊" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="essential-commands.md|Comandos Essenciais: Dominando as Ferramentas 🛠️///text-processing.md|Processamento de Texto no Bash 📝"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="text-analysis" id="text-analysis.md">Análise de Texto 📊</h1><aside class="prompt" data-type="note" data-title="" id="d1agzu_3"><p id="d1agzu_10">Aprenda t&eacute;cnicas avan&ccedil;adas para analisar e extrair insights de dados textuais.</p></aside><section class="chapter"><h2 id="an-lise-b-sica" data-toc="an-lise-b-sica">An&aacute;lise B&aacute;sica</h2><section class="chapter"><h3 id="estat-sticas-de-texto" data-toc="estat-sticas-de-texto">📊 Estat&iacute;sticas de Texto</h3><div class="code-block" data-lang="bash">
+# Contagens básicas
+wc -l arquivo.txt           # Total de linhas
+wc -w texto.txt            # Total de palavras
+wc -c dados.txt            # Total de caracteres
+
+# Análise de vocabulário
+cat texto.txt | \
+    tr -cs '[:alpha:]' '\n' | \
+    sort | uniq -c | \
+    sort -nr | head -10     # Top 10 palavras
+</div></section><section class="chapter"><h3 id="an-lise-num-rica" data-toc="an-lise-num-rica">📈 An&aacute;lise Num&eacute;rica</h3><div class="code-block" data-lang="bash">
+# Estatísticas numéricas
+cat números.txt | \
+    sort -n | \
+    awk '
+        BEGIN { print &quot;=== Análise Numérica ===&quot; }
+        { 
+            sum += $1
+            values[NR] = $1 
+        }
+        END {
+            print &quot;Mínimo:&quot;, values[1]
+            print &quot;Máximo:&quot;, values[NR]
+            print &quot;Total:&quot;, sum
+            print &quot;Média:&quot;, sum/NR
+            print &quot;Registros:&quot;, NR
+        }'
+</div></section></section><section class="chapter"><h2 id="an-lise-de-logs" data-toc="an-lise-de-logs">An&aacute;lise de Logs</h2><section class="chapter"><h3 id="padr-es-de-acesso" data-toc="padr-es-de-acesso">🔍 Padr&otilde;es de Acesso</h3><div class="code-block" data-lang="bash">
+# Análise de logs de acesso
+cat access.log | \
+    awk '{print $1}' | \
+    sort | uniq -c | \
+    sort -nr | head -10     # Top 10 IPs
+
+# Códigos de status HTTP
+cat access.log | \
+    awk '{print $9}' | \
+    sort | uniq -c | \
+    sort -nr                # Distribuição de status
+</div></section><section class="chapter"><h3 id="an-lise-de-erros" data-toc="an-lise-de-erros">⚠️ An&aacute;lise de Erros</h3><div class="code-block" data-lang="bash">
+# Detecção de erros
+grep -i &quot;error&quot; error.log | \
+    awk -F'[][]' '{print $2}' | \
+    sort | uniq -c | \
+    sort -nr                # Tipos de erro
+
+# Timeline de erros
+grep -i &quot;error&quot; error.log | \
+    awk '{print $1, $2}' | \
+    sort -k1,2              # Ordenado por timestamp
+</div></section></section><section class="chapter"><h2 id="an-lise-de-dados" data-toc="an-lise-de-dados">An&aacute;lise de Dados</h2><section class="chapter"><h3 id="an-lise-de-csv" data-toc="an-lise-de-csv">📊 An&aacute;lise de CSV</h3><div class="code-block" data-lang="bash">
+# Estatísticas por coluna
+awk -F',' '
+    NR &gt; 1 {               # Pula cabeçalho
+        sum[$1] += $2      # Soma por categoria
+        count[$1]++        # Conta ocorrências
+    }
+    END {
+        for (cat in sum)
+            print cat, sum[cat]/count[cat]
+    }' dados.csv | sort -k2nr
+
+# Filtragem e agregação
+awk -F',' '$3 &gt; 1000 {     # Filtra valores
+    sum += $4              # Soma coluna 4
+    count++                # Conta registros
+} END {
+    print &quot;Média:&quot;, sum/count
+}' dados.csv
+</div></section><section class="chapter"><h3 id="s-ries-temporais" data-toc="s-ries-temporais">📈 S&eacute;ries Temporais</h3><div class="code-block" data-lang="bash">
+# Análise por período
+awk '
+    {
+        hora = substr($4, 14, 2)    # Extrai hora
+        count[hora]++               # Conta por hora
+    }
+    END {
+        for (h in count)
+            print h, count[h]
+    }' access.log | sort -n
+
+# Tendências
+cat métricas.log | \
+    awk '{print $1, $2}' | \
+    sort -k1,1 | \
+    awk '
+        {
+            sum += $2
+            values[NR] = $2
+        }
+        END {
+            print &quot;Tendência:&quot;, 
+            values[NR] &gt; values[1] ? &quot;↑&quot; : &quot;↓&quot;
+        }'
+</div></section></section><section class="chapter"><h2 id="ferramentas-de-an-lise" data-toc="ferramentas-de-an-lise">Ferramentas de An&aacute;lise</h2><section class="chapter"><h3 id="scripts-teis" data-toc="scripts-teis">🔧 Scripts &Uacute;teis</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Análise completa de texto
+analyze_text() {
+    local file=$1
+    echo &quot;=== Análise de $file ===&quot;
+    echo &quot;Linhas: $(wc -l &lt; &quot;$file&quot;)&quot;
+    echo &quot;Palavras: $(wc -w &lt; &quot;$file&quot;)&quot;
+    echo &quot;Caracteres: $(wc -c &lt; &quot;$file&quot;)&quot;
+    echo &quot;Top 5 palavras:&quot;
+    tr -cs '[:alpha:]' '\n' &lt; &quot;$file&quot; | \
+        sort | uniq -c | sort -nr | head -5
+}
+
+# Análise de performance
+analyze_perf() {
+    local log=$1
+    echo &quot;=== Performance ===&quot;
+    awk '
+        $9 &gt;= 500 { erros++ }
+        { tempo += $10 }
+        END {
+            print &quot;Erros:&quot;, erros
+            print &quot;Tempo médio:&quot;, tempo/NR
+        }' &quot;$log&quot;
+}
+</div></section><section class="chapter"><h3 id="visualiza-o-b-sica" data-toc="visualiza-o-b-sica">📊 Visualiza&ccedil;&atilde;o B&aacute;sica</h3><div class="code-block" data-lang="bash">
+# Histograma ASCII
+cat dados.txt | \
+    sort -n | uniq -c | \
+    awk '{ printf &quot;%3d: %s\n&quot;, $2, 
+          repeat(&quot;█&quot;, int($1/5)) }
+    function repeat(s,n) {
+        return n &lt;= 0 ? &quot;&quot; : s repeat(s,n-1)
+    }'
+
+# Gráfico de barras
+cat stats.txt | \
+    awk '{ printf &quot;%-10s |%s\n&quot;, $1,
+          repeat(&quot;=&quot;, int($2/100)) }
+    function repeat(s,n) {
+        return n &lt;= 0 ? &quot;&quot; : s repeat(s,n-1)
+    }'
+</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><section class="chapter"><h3 id="miss-o-1-an-lise-de-logs" data-toc="miss-o-1-an-lise-de-logs">🎯 Miss&atilde;o 1: An&aacute;lise de Logs</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Objetivos:
+# 1. Identificar padrões de acesso
+# 2. Detectar anomalias
+# 3. Gerar relatório de performance
+# 4. Visualizar tendências
+
+analyze_logs() {
+    local log=$1
+    # Sua implementação aqui
+}
+</div></section><section class="chapter"><h3 id="miss-o-2-an-lise-de-dados" data-toc="miss-o-2-an-lise-de-dados">🎯 Miss&atilde;o 2: An&aacute;lise de Dados</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Objetivos:
+# 1. Calcular estatísticas
+# 2. Identificar outliers
+# 3. Gerar visualizações
+# 4. Exportar relatório
+
+analyze_data() {
+    local data=$1
+    # Sua implementação aqui
+}
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="d1agzu_31" type="1"><li class="list__item" id="d1agzu_35"><p id="d1agzu_38"><a href="text-processing-automation.html" id="d1agzu_39" data-tooltip="Aprenda a automatizar tarefas repetitivas de processamento de texto com scripts e ferramentas eficientes.">Automa&ccedil;&atilde;o de An&aacute;lise</a></p></li><li class="list__item" id="d1agzu_36"><p id="d1agzu_40"><span id="d1agzu_41">Visualiza&ccedil;&atilde;o Avan&ccedil;ada</span></p></li><li class="list__item" id="d1agzu_37"><p id="d1agzu_42"><span id="d1agzu_43">Machine Learning B&aacute;sico</span></p></li></ol><aside class="prompt" data-type="tip" data-title="" id="d1agzu_33"><p id="d1agzu_44">&quot;Dados s&atilde;o apenas dados at&eacute; serem analisados. Depois, tornam-se conhecimento.&quot;</p></aside><div class="code-block" data-lang="none">
+    TEXT ANALYSIS
+    [📊📊📊📊📊] 100%
+    STATUS: ANALISTA DE DADOS
+    PRÓXIMO: AUTOMAÇÃO AVANÇADA
+</div></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="text-manipulation.html" class="navigation-links__prev">Manipula&ccedil;&atilde;o de Texto 📝</a><a href="text-processing-automation.html" class="navigation-links__next">Automa&ccedil;&atilde;o de Processamento de Texto 🤖</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

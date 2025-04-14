@@ -1,0 +1,116 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T16:12:08.928296868"><title>Fundamentos de Scripts: Primeiros Passos 📝 | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"estrutura-b-sica","level":0,"title":"Estrutura Básica","anchor":"#estrutura-b-sica"},{"id":"permiss-es-e-execu-o","level":0,"title":"Permissões e Execução","anchor":"#permiss-es-e-execu-o"},{"id":"debug-e-troubleshooting","level":0,"title":"Debug e Troubleshooting","anchor":"#debug-e-troubleshooting"},{"id":"boas-pr-ticas","level":0,"title":"Boas Práticas","anchor":"#boas-pr-ticas"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Fundamentos de Scripts: Primeiros Passos 📝 | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/script-basics.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Fundamentos de Scripts: Primeiros Passos 📝 | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/script-basics.html#webpage",
+    "url": "writerside-documentation/script-basics.html",
+    "name": "Fundamentos de Scripts: Primeiros Passos 📝 | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="script-basics" data-main-title="Fundamentos de Scripts: Primeiros Passos 📝" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="scripting.md|Scripts e Automação: Dominando o Poder do Shell 🚀"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="script-basics" id="script-basics.md">Fundamentos de Scripts: Primeiros Passos 📝</h1><section class="chapter"><h2 id="estrutura-b-sica" data-toc="estrutura-b-sica">Estrutura B&aacute;sica</h2><section class="chapter"><h3 id="primeiro-script" data-toc="primeiro-script">🚀 Primeiro Script</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Meu primeiro script
+
+echo &quot;Hello, World!&quot;
+</div></section><section class="chapter"><h3 id="anatomia-de-um-script" data-toc="anatomia-de-um-script">📋 Anatomia de um Script</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Autor: Seu Nome
+# Data: YYYY-MM-DD
+# Descrição: Descrição do script
+
+# Variáveis
+VERSAO=&quot;1.0&quot;
+CONFIG_FILE=&quot;/etc/config.conf&quot;
+
+# Funções
+verificar_ambiente() {
+    # código aqui
+    return 0
+}
+
+# Código principal
+main() {
+    echo &quot;Iniciando script...&quot;
+    verificar_ambiente
+}
+
+# Execução
+main &quot;$@&quot;
+</div></section></section><section class="chapter"><h2 id="permiss-es-e-execu-o" data-toc="permiss-es-e-execu-o">Permiss&otilde;es e Execu&ccedil;&atilde;o</h2><section class="chapter"><h3 id="configurando-permiss-es" data-toc="configurando-permiss-es">🔒 Configurando Permiss&otilde;es</h3><div class="code-block" data-lang="bash">
+# Tornar script executável
+chmod +x script.sh
+
+# Permissões específicas
+chmod 755 script.sh  # rwxr-xr-x
+</div></section><section class="chapter"><h3 id="modos-de-execu-o" data-toc="modos-de-execu-o">🎯 Modos de Execu&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+# Diferentes formas de executar
+./script.sh         # Executável
+bash script.sh      # Interpretador explícito
+source script.sh    # Carregar no shell atual
+. script.sh         # Forma curta do source
+</div></section></section><section class="chapter"><h2 id="debug-e-troubleshooting" data-toc="debug-e-troubleshooting">Debug e Troubleshooting</h2><section class="chapter"><h3 id="modo-debug" data-toc="modo-debug">🐛 Modo Debug</h3><div class="code-block" data-lang="bash">
+#!/bin/bash -x    # Debug completo
+set -x            # Iniciar debug
+set +x            # Parar debug
+
+# Debug seletivo
+set -x
+comando_complexo
+set +x
+</div></section><section class="chapter"><h3 id="tratamento-de-erros" data-toc="tratamento-de-erros">⚠️ Tratamento de Erros</h3><div class="code-block" data-lang="bash">
+# Strict mode
+set -euo pipefail
+
+# Tratamento de erros
+if ! comando; then
+    echo &quot;Erro ao executar comando&quot; &gt;&amp;2
+    exit 1
+fi
+</div></section></section><section class="chapter"><h2 id="boas-pr-ticas" data-toc="boas-pr-ticas">Boas Pr&aacute;ticas</h2><section class="chapter"><h3 id="documenta-o" data-toc="documenta-o">📚 Documenta&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# 
+# Nome: MeuScript
+# Descrição: Faz algo incrível
+# Uso: ./meu_script.sh [opções]
+# Opções:
+#   -h  Mostra ajuda
+#   -v  Modo verbose
+</div></section><section class="chapter"><h3 id="valida-o-de-input" data-toc="valida-o-de-input">🎯 Valida&ccedil;&atilde;o de Input</h3><div class="code-block" data-lang="bash">
+# Verificar argumentos
+if [[ $# -lt 1 ]]; then
+    echo &quot;Erro: Argumentos insuficientes&quot; &gt;&amp;2
+    echo &quot;Uso: $0 arquivo&quot; &gt;&amp;2
+    exit 1
+fi
+
+# Verificar arquivo
+if [[ ! -f &quot;$1&quot; ]]; then
+    echo &quot;Erro: Arquivo não encontrado: $1&quot; &gt;&amp;2
+    exit 1
+fi
+</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><section class="chapter"><h3 id="miss-o-1-script-b-sico" data-toc="miss-o-1-script-b-sico">🎯 Miss&atilde;o 1: Script B&aacute;sico</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Criar um script que:
+# 1. Aceite um argumento
+# 2. Valide o input
+# 3. Execute uma ação
+# 4. Trate erros
+</div></section><section class="chapter"><h3 id="miss-o-2-debug" data-toc="miss-o-2-debug">🎯 Miss&atilde;o 2: Debug</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Objetivos:
+# 1. Adicionar modo debug
+# 2. Implementar logs
+# 3. Tratar erros
+# 4. Testar diferentes cenários
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="-6std7l_29" type="1"><li class="list__item" id="-6std7l_33"><p id="-6std7l_36"><a href="variables-and-types.html" id="-6std7l_37" data-tooltip="Use nomes descritivos">Vari&aacute;veis e Tipos</a></p></li><li class="list__item" id="-6std7l_34"><p id="-6std7l_38"><a href="control-structures.html" id="-6std7l_39" data-tooltip="Use condições claras">Estruturas de Controle</a></p></li><li class="list__item" id="-6std7l_35"><p id="-6std7l_40"><a href="functions.html" id="-6std7l_41" data-tooltip="Funções: Modularizando seu Código 🧩 # Função simples hello() { echo &quot;Hello, World!&quot; } # Função com parâmetros saudacao() { echo &quot;Olá, $1!&quot; } # Função com retorno soma() { local resultado=$(($1 + $2)) echo &quot;$resultado&quot; } # Parâmetros posicionais…">Fun&ccedil;&otilde;es</a></p></li></ol><aside class="prompt" data-type="tip" data-title="" id="-6std7l_31"><p id="-6std7l_42">&quot;Todo script poderoso come&ccedil;a com um bom shebang.&quot;</p></aside><div class="code-block" data-lang="none">
+    FUNDAMENTOS CARREGADOS
+    [██████████░░░░] 60%
+    STATUS: APRENDENDO
+    PRÓXIMO: VARIÁVEIS
+</div></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="scripting.html" class="navigation-links__prev">Scripts e Automa&ccedil;&atilde;o: Dominando o Poder do Shell 🚀</a><a href="variables-and-types.html" class="navigation-links__next">Vari&aacute;veis e Tipos: Dominando os Dados 📊</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

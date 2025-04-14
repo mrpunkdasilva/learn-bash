@@ -1,0 +1,137 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T16:12:08.965654404"><title>Permiss&otilde;es de Arquivos 🔒 | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"permiss-es-b-sicas","level":0,"title":"Permissões Básicas","anchor":"#permiss-es-b-sicas"},{"id":"permiss-es-especiais","level":0,"title":"Permissões Especiais","anchor":"#permiss-es-especiais"},{"id":"acls-avan-adas","level":0,"title":"ACLs Avançadas","anchor":"#acls-avan-adas"},{"id":"atributos-estendidos","level":0,"title":"Atributos Estendidos","anchor":"#atributos-estendidos"},{"id":"propriedade-e-grupos","level":0,"title":"Propriedade e Grupos","anchor":"#propriedade-e-grupos"},{"id":"scripts-de-seguran-a","level":0,"title":"Scripts de Segurança","anchor":"#scripts-de-seguran-a"},{"id":"exerc-cios-avan-ados","level":0,"title":"Exercícios Avançados","anchor":"#exerc-cios-avan-ados"},{"id":"troubleshooting","level":0,"title":"Troubleshooting","anchor":"#troubleshooting"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Permiss&otilde;es de Arquivos 🔒 | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/file-permissions.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Permiss&otilde;es de Arquivos 🔒 | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/file-permissions.html#webpage",
+    "url": "writerside-documentation/file-permissions.html",
+    "name": "Permiss&otilde;es de Arquivos 🔒 | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="file-permissions" data-main-title="Permissões de Arquivos 🔒" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="essential-commands.md|Comandos Essenciais: Dominando as Ferramentas 🛠️///file-operations.md|Operações com Arquivos 📂"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="file-permissions" id="file-permissions.md">Permissões de Arquivos 🔒</h1><aside class="prompt" data-type="warning" data-title="" id="jxunkh_3"><p id="jxunkh_14">Gerenciamento avan&ccedil;ado de permiss&otilde;es e controle de acesso.</p></aside><div class="code-block" data-lang="none">
+    CONTROLE DE ACESSO
+    =================
+    STATUS: CRÍTICO
+    NÍVEL: AVANÇADO
+    SEGURANÇA: MÁXIMA
+</div><section class="chapter"><h2 id="permiss-es-b-sicas" data-toc="permiss-es-b-sicas">Permiss&otilde;es B&aacute;sicas</h2><section class="chapter"><h3 id="estrutura-de-permiss-es" data-toc="estrutura-de-permiss-es">Estrutura de Permiss&otilde;es</h3><div class="code-block" data-lang="bash">
+# Formato: [tipo][user][group][others]
+ls -l arquivo.txt
+# -rw-r--r-- 1 user group 0 Jan 1 12:00 arquivo.txt
+#  ^ ^^^ ^^^ ^^^
+#  | |   |   |
+#  | |   |   +-&gt; outros (r--)
+#  | |   +-&gt; grupo (r--)
+#  | +-&gt; usuário (rw-)
+#  +-&gt; tipo (-)
+</div></section><section class="chapter"><h3 id="modificando-permiss-es" data-toc="modificando-permiss-es">Modificando Permiss&otilde;es</h3><div class="code-block" data-lang="bash">
+# Modo Octal
+chmod 644 arquivo.txt    # rw-r--r--
+chmod 755 script.sh      # rwxr-xr-x
+chmod 600 id_rsa        # rw-------
+
+# Modo Simbólico
+chmod u+x script.sh      # Adiciona execução para usuário
+chmod g-w arquivo.txt    # Remove escrita do grupo
+chmod o= arquivo.txt     # Remove todas permissões de outros
+</div></section></section><section class="chapter"><h2 id="permiss-es-especiais" data-toc="permiss-es-especiais">Permiss&otilde;es Especiais</h2><section class="chapter"><h3 id="suid-sgid-e-sticky-bit" data-toc="suid-sgid-e-sticky-bit">SUID, SGID e Sticky Bit</h3><div class="code-block" data-lang="bash">
+# SUID - Executa como proprietário
+chmod 4755 programa     # -rwsr-xr-x
+chmod u+s programa      # Modo simbólico
+
+# SGID - Executa como grupo
+chmod 2755 diretorio    # -rwxr-sr-x
+chmod g+s diretorio     # Modo simbólico
+
+# Sticky Bit - Proteção de deleção
+chmod 1777 /tmp         # -rwxrwxrwt
+chmod +t diretorio      # Modo simbólico
+</div></section></section><section class="chapter"><h2 id="acls-avan-adas" data-toc="acls-avan-adas">ACLs Avan&ccedil;adas</h2><section class="chapter"><h3 id="gerenciamento-de-acls" data-toc="gerenciamento-de-acls">Gerenciamento de ACLs</h3><div class="code-block" data-lang="bash">
+# Listando ACLs
+getfacl arquivo.txt
+
+# Configurando ACLs
+setfacl -m u:usuario:rw arquivo.txt    # Permissão para usuário
+setfacl -m g:grupo:rx arquivo.txt      # Permissão para grupo
+setfacl -x u:usuario arquivo.txt       # Remove ACL específica
+setfacl -b arquivo.txt                 # Remove todas ACLs
+</div></section><section class="chapter"><h3 id="acls-padr-o" data-toc="acls-padr-o">ACLs Padr&atilde;o</h3><div class="code-block" data-lang="bash">
+# ACLs para novos arquivos
+setfacl -d -m u:usuario:rx diretorio/
+setfacl -d -m g:grupo:rwx diretorio/
+</div></section></section><section class="chapter"><h2 id="atributos-estendidos" data-toc="atributos-estendidos">Atributos Estendidos</h2><section class="chapter"><h3 id="gerenciamento-de-atributos" data-toc="gerenciamento-de-atributos">Gerenciamento de Atributos</h3><div class="code-block" data-lang="bash">
+# Listando atributos
+lsattr arquivo.txt
+
+# Configurando atributos
+chattr +i arquivo.txt    # Imutável
+chattr +a log.txt       # Append-only
+chattr +s arquivo.txt   # Deleção segura
+</div></section></section><section class="chapter"><h2 id="propriedade-e-grupos" data-toc="propriedade-e-grupos">Propriedade e Grupos</h2><section class="chapter"><h3 id="mudan-a-de-propriet-rio" data-toc="mudan-a-de-propriet-rio">Mudan&ccedil;a de Propriet&aacute;rio</h3><div class="code-block" data-lang="bash">
+# Mudando proprietário
+chown usuario:grupo arquivo.txt
+chown -R usuario:grupo diretorio/
+
+# Mudando apenas grupo
+chgrp grupo arquivo.txt
+chgrp -R grupo diretorio/
+</div></section></section><section class="chapter"><h2 id="scripts-de-seguran-a" data-toc="scripts-de-seguran-a">Scripts de Seguran&ccedil;a</h2><section class="chapter"><h3 id="auditoria-de-permiss-es" data-toc="auditoria-de-permiss-es">Auditoria de Permiss&otilde;es</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# audit_permissions.sh
+
+check_permissions() {
+    find &quot;$1&quot; -type f -perm /4000 -print | while read file; do
+        echo &quot;SUID encontrado: $file&quot;
+        ls -l &quot;$file&quot;
+    done
+}
+
+check_world_writable() {
+    find &quot;$1&quot; -type f -perm -002 -print | while read file; do
+        echo &quot;Arquivo gravável globalmente: $file&quot;
+        ls -l &quot;$file&quot;
+    done
+}
+
+# Uso
+check_permissions /usr/bin
+check_world_writable /home
+</div></section><section class="chapter"><h3 id="corre-o-autom-tica" data-toc="corre-o-autom-tica">Corre&ccedil;&atilde;o Autom&aacute;tica</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# fix_permissions.sh
+
+fix_permissions() {
+    # Arquivos sensíveis
+    chmod 600 ~/.ssh/id_rsa
+    chmod 644 ~/.ssh/id_rsa.pub
+    
+    # Diretórios de configuração
+    chmod 700 ~/.ssh
+    chmod 750 ~/scripts
+    
+    # Scripts executáveis
+    find ~/scripts -type f -name &quot;*.sh&quot; -exec chmod u+x {} \;
+}
+</div></section></section><section class="chapter"><h2 id="exerc-cios-avan-ados" data-toc="exerc-cios-avan-ados">Exerc&iacute;cios Avan&ccedil;ados</h2><section class="chapter"><h3 id="miss-o-1-hardening-de-permiss-es" data-toc="miss-o-1-hardening-de-permiss-es">🎯 Miss&atilde;o 1: Hardening de Permiss&otilde;es</h3><div class="code-block" data-lang="bash">
+# Implemente um sistema que:
+# 1. Identifique permissões inseguras
+# 2. Corrija automaticamente
+# 3. Gere relatório de mudanças
+# 4. Mantenha log de auditoria
+</div></section><section class="chapter"><h3 id="miss-o-2-acls-complexas" data-toc="miss-o-2-acls-complexas">🎯 Miss&atilde;o 2: ACLs Complexas</h3><div class="code-block" data-lang="bash">
+# Crie uma estrutura que:
+# 1. Use ACLs para controle fino
+# 2. Implemente herança de permissões
+# 3. Gerencie múltiplos grupos
+# 4. Mantenha backup das ACLs
+</div></section></section><section class="chapter"><h2 id="troubleshooting" data-toc="troubleshooting">Troubleshooting</h2><section class="chapter"><h3 id="problemas-comuns" data-toc="problemas-comuns">Problemas Comuns</h3><ul class="list _bullet" id="jxunkh_39"><li class="list__item" id="jxunkh_40"><p id="jxunkh_43"><span class="control" id="jxunkh_44">Permiss&atilde;o negada</span>: Verifique com <code class="code" id="jxunkh_45">ls -la</code> e <code class="code" id="jxunkh_46">getfacl</code></p></li><li class="list__item" id="jxunkh_41"><p id="jxunkh_47"><span class="control" id="jxunkh_48">SUID n&atilde;o funciona</span>: Verifique sistema de arquivos (noexec)</p></li><li class="list__item" id="jxunkh_42"><p id="jxunkh_49"><span class="control" id="jxunkh_50">ACLs n&atilde;o aplicam</span>: Verifique suporte do sistema de arquivos</p></li></ul></section><section class="chapter"><h3 id="diagn-stico" data-toc="diagn-stico">Diagn&oacute;stico</h3><div class="code-block" data-lang="bash">
+# Verificação de problemas
+namei -l /path/to/file    # Mostra permissões do caminho
+strace -e trace=access comando  # Debug de acesso
+ausearch -f /path/to/file # Busca em logs de auditoria
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="jxunkh_52" type="1"><li class="list__item" id="jxunkh_55"><p id="jxunkh_58"><span id="jxunkh_59">SELinux e AppArmor</span></p></li><li class="list__item" id="jxunkh_56"><p id="jxunkh_60"><span id="jxunkh_61">Criptografia de Arquivos</span></p></li><li class="list__item" id="jxunkh_57"><p id="jxunkh_62"><span id="jxunkh_63">Auditoria de Sistema</span></p></li></ol><aside class="prompt" data-type="tip" data-title="" id="jxunkh_54"><p id="jxunkh_64">&quot;Seguran&ccedil;a n&atilde;o &eacute; um produto, &eacute; um processo. Mantenha suas permiss&otilde;es sempre atualizadas.&quot;</p></aside></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="advanced-file-ops.html" class="navigation-links__prev">Opera&ccedil;&otilde;es Avan&ccedil;adas com Arquivos 🚀</a><a href="archive-compression.html" class="navigation-links__next">Compacta&ccedil;&atilde;o e Arquivamento 📦</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

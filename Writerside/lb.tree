@@ -38,7 +38,16 @@
             <toc-element topic="batch-operations.md"/>
             <toc-element topic="file-ops-troubleshooting.md"/>
         </toc-element>
-        <toc-element topic="text-processing.md"/>
+        <toc-element topic="text-processing.md">
+            <toc-element topic="grep-basics.md"/>
+            <toc-element topic="sed-basics.md"/>
+            <toc-element topic="awk-basics.md"/>
+            <toc-element topic="text-filters.md"/>
+            <toc-element topic="regular-expressions.md"/>
+            <toc-element topic="text-manipulation.md"/>
+            <toc-element topic="text-analysis.md"/>
+            <toc-element topic="text-processing-automation.md"/>
+        </toc-element>
         <toc-element topic="system-info.md"/>
     </toc-element>
 

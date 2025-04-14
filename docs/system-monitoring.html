@@ -1,0 +1,159 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T16:12:08.957840938"><title>Monitoramento de Sistema: Vigil&acirc;ncia Cont&iacute;nua 🔍 | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"ferramentas-essenciais","level":0,"title":"Ferramentas Essenciais","anchor":"#ferramentas-essenciais"},{"id":"scripts-de-monitoramento","level":0,"title":"Scripts de Monitoramento","anchor":"#scripts-de-monitoramento"},{"id":"logging-e-an-lise","level":0,"title":"Logging e Análise","anchor":"#logging-e-an-lise"},{"id":"visualiza-o-de-dados","level":0,"title":"Visualização de Dados","anchor":"#visualiza-o-de-dados"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Monitoramento de Sistema: Vigil&acirc;ncia Cont&iacute;nua 🔍 | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/system-monitoring.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Monitoramento de Sistema: Vigil&acirc;ncia Cont&iacute;nua 🔍 | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/system-monitoring.html#webpage",
+    "url": "writerside-documentation/system-monitoring.html",
+    "name": "Monitoramento de Sistema: Vigil&acirc;ncia Cont&iacute;nua 🔍 | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="system-monitoring" data-main-title="Monitoramento de Sistema: Vigilância Contínua 🔍" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="system-admin.md|Administração do Sistema Linux 🖥️"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="system-monitoring" id="system-monitoring.md">Monitoramento de Sistema: Vigilância Contínua 🔍</h1><section class="chapter"><h2 id="ferramentas-essenciais" data-toc="ferramentas-essenciais">Ferramentas Essenciais</h2><section class="chapter"><h3 id="monitoramento-em-tempo-real" data-toc="monitoramento-em-tempo-real">📊 Monitoramento em Tempo Real</h3><div class="code-block" data-lang="bash">
+# Monitoramento básico
+top         # Visão geral do sistema
+htop        # Interface interativa
+atop        # Histórico de processos
+iotop       # Monitoramento de I/O
+</div></section><section class="chapter"><h3 id="an-lise-de-recursos" data-toc="an-lise-de-recursos">📈 An&aacute;lise de Recursos</h3><div class="code-block" data-lang="bash">
+# CPU e Memória
+vmstat 1    # Estatísticas de VM
+free -h     # Uso de memória
+mpstat -P ALL  # Estatísticas por CPU
+sar -u 1 5    # Utilização de CPU
+</div></section></section><section class="chapter"><h2 id="scripts-de-monitoramento" data-toc="scripts-de-monitoramento">Scripts de Monitoramento</h2><section class="chapter"><h3 id="monitor-de-recursos" data-toc="monitor-de-recursos">🔄 Monitor de Recursos</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# resource_monitor.sh
+
+monitor_resources() {
+    while true; do
+        printf &quot;\n=== %s ===\n&quot; &quot;$(date)&quot;
+        
+        echo &quot;CPU Usage:&quot;
+        top -bn1 | head -n 3
+        
+        echo -e &quot;\nMemory Usage:&quot;
+        free -h
+        
+        echo -e &quot;\nDisk Usage:&quot;
+        df -h
+        
+        sleep 60
+    done
+}
+</div></section><section class="chapter"><h3 id="sistema-de-alertas" data-toc="sistema-de-alertas">🚨 Sistema de Alertas</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# alert_system.sh
+
+check_threshold() {
+    local metric=&quot;$1&quot;
+    local threshold=&quot;$2&quot;
+    local current=&quot;$3&quot;
+    
+    if (( $(echo &quot;$current &gt; $threshold&quot; | bc -l) )); then
+        send_alert &quot;$metric&quot; &quot;$current&quot; &quot;$threshold&quot;
+    fi
+}
+
+monitor_with_alerts() {
+    # CPU threshold (80%)
+    cpu_usage=$(top -bn1 | grep &quot;Cpu(s)&quot; | awk '{print $2}')
+    check_threshold &quot;CPU&quot; 80 &quot;$cpu_usage&quot;
+    
+    # Memory threshold (90%)
+    mem_usage=$(free | grep Mem | awk '{print $3/$2 * 100.0}')
+    check_threshold &quot;Memory&quot; 90 &quot;$mem_usage&quot;
+    
+    # Disk threshold (85%)
+    disk_usage=$(df -h / | tail -1 | awk '{print $5}' | tr -d '%')
+    check_threshold &quot;Disk&quot; 85 &quot;$disk_usage&quot;
+}
+</div></section></section><section class="chapter"><h2 id="logging-e-an-lise" data-toc="logging-e-an-lise">Logging e An&aacute;lise</h2><section class="chapter"><h3 id="sistema-de-logs" data-toc="sistema-de-logs">📝 Sistema de Logs</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# system_logger.sh
+
+log_system_stats() {
+    local log_file=&quot;/var/log/system_stats.log&quot;
+    local date_format=&quot;+%Y-%m-%d %H:%M:%S&quot;
+    
+    while true; do
+        {
+            echo &quot;=== $(date &quot;$date_format&quot;) ===&quot;
+            echo &quot;Load Average: $(uptime | awk -F'load average:' '{print $2}')&quot;
+            echo &quot;CPU Usage: $(top -bn1 | grep &quot;Cpu(s)&quot; | awk '{print $2}')&quot;
+            echo &quot;Memory Free: $(free -h | grep Mem | awk '{print $4}')&quot;
+            echo &quot;Disk Usage: $(df -h / | tail -1 | awk '{print $5}')&quot;
+            echo &quot;---&quot;
+        } &gt;&gt; &quot;$log_file&quot;
+        
+        sleep 300
+    done
+}
+</div></section><section class="chapter"><h3 id="an-lise-de-logs" data-toc="an-lise-de-logs">📊 An&aacute;lise de Logs</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# log_analyzer.sh
+
+analyze_logs() {
+    local log_file=&quot;$1&quot;
+    local start_date=&quot;$2&quot;
+    local end_date=&quot;$3&quot;
+    
+    echo &quot;=== Análise de Logs ===&quot;
+    echo &quot;Período: $start_date até $end_date&quot;
+    
+    # CPU médio
+    echo -n &quot;CPU Médio: &quot;
+    awk '/CPU Usage:/ {sum+=$3; count++} 
+         END {print sum/count &quot;%&quot;}' &quot;$log_file&quot;
+    
+    # Picos de memória
+    echo &quot;Picos de Memória:&quot;
+    grep &quot;Memory Free:&quot; &quot;$log_file&quot; | sort -k4 -h | head -5
+    
+    # Tendência de disco
+    echo &quot;Tendência de Uso de Disco:&quot;
+    grep &quot;Disk Usage:&quot; &quot;$log_file&quot; | 
+        awk '{print $3}' | 
+        sort -n | 
+        uniq -c
+}
+</div></section></section><section class="chapter"><h2 id="visualiza-o-de-dados" data-toc="visualiza-o-de-dados">Visualiza&ccedil;&atilde;o de Dados</h2><section class="chapter"><h3 id="gera-o-de-gr-ficos" data-toc="gera-o-de-gr-ficos">📈 Gera&ccedil;&atilde;o de Gr&aacute;ficos</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# graph_generator.sh
+
+generate_graphs() {
+    local data_file=&quot;$1&quot;
+    local output_dir=&quot;$2&quot;
+    
+    # Requer gnuplot
+    gnuplot &lt;&lt;EOF
+    set terminal png
+    set output &quot;$output_dir/cpu_usage.png&quot;
+    set title &quot;CPU Usage Over Time&quot;
+    set xlabel &quot;Time&quot;
+    set ylabel &quot;Usage %&quot;
+    plot &quot;$data_file&quot; using 1:2 with lines
+EOF
+}
+</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><section class="chapter"><h3 id="miss-o-1-monitor-completo" data-toc="miss-o-1-monitor-completo">🎯 Miss&atilde;o 1: Monitor Completo</h3><div class="code-block" data-lang="bash">
+# Desenvolva um sistema que:
+# 1. Monitore todos recursos críticos
+# 2. Gere alertas configuráveis
+# 3. Mantenha histórico de métricas
+# 4. Gere relatórios periódicos
+</div></section><section class="chapter"><h3 id="miss-o-2-an-lise-preditiva" data-toc="miss-o-2-an-lise-preditiva">🎯 Miss&atilde;o 2: An&aacute;lise Preditiva</h3><div class="code-block" data-lang="bash">
+# Crie um sistema que:
+# 1. Identifique padrões de uso
+# 2. Preveja possíveis problemas
+# 3. Sugira otimizações
+# 4. Gere relatórios de tendências
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="-ngmb8g_27" type="1"><li class="list__item" id="-ngmb8g_31"><p id="-ngmb8g_34"><span id="-ngmb8g_35">Performance Tuning</span></p></li><li class="list__item" id="-ngmb8g_32"><p id="-ngmb8g_36"><span id="-ngmb8g_37">Capacity Planning</span></p></li><li class="list__item" id="-ngmb8g_33"><p id="-ngmb8g_38"><span id="-ngmb8g_39">Automation Strategies</span></p></li></ol><aside class="prompt" data-type="tip" data-title="" id="-ngmb8g_29"><p id="-ngmb8g_40">&quot;Monitorar &eacute; prever. Prever &eacute; prevenir.&quot;</p></aside><div class="code-block" data-lang="none">
+    MONITORAMENTO
+    [📊📊📊📊📊] 100%
+    STATUS: ATIVO
+    SISTEMA: MONITORADO
+</div></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="process-control.html" class="navigation-links__prev">Controle de Processos 🔄</a><a href="network-admin.html" class="navigation-links__next">Administra&ccedil;&atilde;o de Rede 🌐</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

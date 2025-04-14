@@ -1,0 +1,76 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T16:12:08.937872034"><title>Opera&ccedil;&otilde;es B&aacute;sicas com Arquivos 📄 | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"cria-o-de-arquivos","level":0,"title":"Criação de Arquivos","anchor":"#cria-o-de-arquivos"},{"id":"c-pia-de-arquivos","level":0,"title":"Cópia de Arquivos","anchor":"#c-pia-de-arquivos"},{"id":"movimenta-o-de-arquivos","level":0,"title":"Movimentação de Arquivos","anchor":"#movimenta-o-de-arquivos"},{"id":"remo-o-de-arquivos","level":0,"title":"Remoção de Arquivos","anchor":"#remo-o-de-arquivos"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"troubleshooting","level":0,"title":"Troubleshooting","anchor":"#troubleshooting"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Opera&ccedil;&otilde;es B&aacute;sicas com Arquivos 📄 | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/basic-file-ops.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Opera&ccedil;&otilde;es B&aacute;sicas com Arquivos 📄 | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/basic-file-ops.html#webpage",
+    "url": "writerside-documentation/basic-file-ops.html",
+    "name": "Opera&ccedil;&otilde;es B&aacute;sicas com Arquivos 📄 | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="basic-file-ops" data-main-title="Operações Básicas com Arquivos 📄" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="essential-commands.md|Comandos Essenciais: Dominando as Ferramentas 🛠️///file-operations.md|Operações com Arquivos 📂"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="basic-file-ops" id="basic-file-ops.md">Operações Básicas com Arquivos 📄</h1><aside class="prompt" data-type="note" data-title="" id="fqwozo_3"><p id="fqwozo_12">Experimente o script interativo em <code class="code" id="fqwozo_13">code/module2/file-ops/basic_ops.sh</code> para praticar estas opera&ccedil;&otilde;es.</p></aside><div class="code-block" data-lang="none">
+    INICIANDO OPERAÇÕES BÁSICAS...
+    =============================
+    STATUS: PRONTO
+    NÍVEL: FUNDAMENTAL
+    OPERAÇÕES: CRIAR, COPIAR, MOVER, REMOVER
+</div><section class="chapter"><h2 id="cria-o-de-arquivos" data-toc="cria-o-de-arquivos">Cria&ccedil;&atilde;o de Arquivos</h2><section class="chapter"><h3 id="touch-criando-arquivos-vazios" data-toc="touch-criando-arquivos-vazios">Touch - Criando Arquivos Vazios</h3><div class="code-block" data-lang="bash">
+touch arquivo.txt           # Cria arquivo vazio
+touch -t 202312251200 arq  # Define data/hora específica
+touch {1..5}.txt          # Cria múltiplos arquivos
+</div></section><section class="chapter"><h3 id="redirecionamento-criando-com-conte-do" data-toc="redirecionamento-criando-com-conte-do">Redirecionamento - Criando com Conte&uacute;do</h3><div class="code-block" data-lang="bash">
+echo &quot;conteúdo&quot; &gt; arquivo.txt    # Cria/sobrescreve
+echo &quot;mais texto&quot; &gt;&gt; arquivo.txt # Adiciona ao final
+cat &gt; arquivo.txt &lt;&lt; EOF         # Múltiplas linhas
+linha 1
+linha 2
+EOF
+</div></section></section><section class="chapter"><h2 id="c-pia-de-arquivos" data-toc="c-pia-de-arquivos">C&oacute;pia de Arquivos</h2><section class="chapter"><h3 id="cp-comando-de-c-pia" data-toc="cp-comando-de-c-pia">CP - Comando de C&oacute;pia</h3><div class="code-block" data-lang="bash">
+cp origem.txt destino.txt        # Cópia básica
+cp -i arquivo.txt backup/        # Modo interativo
+cp -r diretorio/ backup/        # Cópia recursiva
+cp -p arquivo.txt destino.txt   # Preserva atributos
+</div></section><section class="chapter"><h3 id="op-es-teis-do-cp" data-toc="op-es-teis-do-cp">Op&ccedil;&otilde;es &Uacute;teis do CP</h3><ul class="list _bullet" id="fqwozo_21"><li class="list__item" id="fqwozo_22"><p id="fqwozo_26"><code class="code" id="fqwozo_27">-v</code>: Modo verboso</p></li><li class="list__item" id="fqwozo_23"><p id="fqwozo_28"><code class="code" id="fqwozo_29">-u</code>: Atualiza apenas se origem for mais nova</p></li><li class="list__item" id="fqwozo_24"><p id="fqwozo_30"><code class="code" id="fqwozo_31">-l</code>: Cria hard links em vez de copiar</p></li><li class="list__item" id="fqwozo_25"><p id="fqwozo_32"><code class="code" id="fqwozo_33">-s</code>: Cria symbolic links em vez de copiar</p></li></ul></section></section><section class="chapter"><h2 id="movimenta-o-de-arquivos" data-toc="movimenta-o-de-arquivos">Movimenta&ccedil;&atilde;o de Arquivos</h2><section class="chapter"><h3 id="mv-movendo-e-renomeando" data-toc="mv-movendo-e-renomeando">MV - Movendo e Renomeando</h3><div class="code-block" data-lang="bash">
+mv arquivo.txt novo.txt          # Renomeia
+mv arquivo.txt /tmp/            # Move
+mv -i *.txt destino/           # Move múltiplos
+mv -n origem destino           # Não sobrescreve
+</div></section><section class="chapter"><h3 id="boas-pr-ticas" data-toc="boas-pr-ticas">Boas Pr&aacute;ticas</h3><div class="code-block" data-lang="bash">
+mv -b arquivo.txt destino/     # Cria backup
+mv -- -arquivo.txt destino/    # Move arquivo com '-'
+</div></section></section><section class="chapter"><h2 id="remo-o-de-arquivos" data-toc="remo-o-de-arquivos">Remo&ccedil;&atilde;o de Arquivos</h2><section class="chapter"><h3 id="rm-removendo-arquivos" data-toc="rm-removendo-arquivos">RM - Removendo Arquivos</h3><div class="code-block" data-lang="bash">
+rm arquivo.txt                  # Remove arquivo
+rm -i arquivo.txt              # Modo interativo
+rm -r diretorio/              # Remove recursivamente
+rm -f arquivo.txt             # Força remoção
+</div></section><section class="chapter"><h3 id="dicas-de-seguran-a" data-toc="dicas-de-seguran-a">Dicas de Seguran&ccedil;a</h3><div class="code-block" data-lang="bash">
+# Alias seguro para rm
+alias rm='rm -i'
+
+# Função de lixeira
+trash() {
+    local dest=&quot;$HOME/.trash&quot;
+    mkdir -p &quot;$dest&quot;
+    mv &quot;$@&quot; &quot;$dest/&quot;
+}
+</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><section class="chapter"><h3 id="miss-o-1-gerenciamento-b-sico" data-toc="miss-o-1-gerenciamento-b-sico">🎯 Miss&atilde;o 1: Gerenciamento B&aacute;sico</h3><div class="code-block" data-lang="bash">
+# Crie uma estrutura de trabalho
+mkdir -p projeto/{src,docs,tests}
+touch projeto/src/{main,util}.sh
+cp projeto/src/main.sh projeto/docs/
+mv projeto/src/util.sh projeto/tests/
+</div></section><section class="chapter"><h3 id="miss-o-2-backup-seguro" data-toc="miss-o-2-backup-seguro">🎯 Miss&atilde;o 2: Backup Seguro</h3><div class="code-block" data-lang="bash">
+# Crie um sistema de backup
+timestamp=$(date +%Y%m%d_%H%M%S)
+cp -r projeto/ backup_${timestamp}/
+</div></section></section><section class="chapter"><h2 id="troubleshooting" data-toc="troubleshooting">Troubleshooting</h2><section class="chapter"><h3 id="problemas-comuns" data-toc="problemas-comuns">Problemas Comuns</h3><ul class="list _bullet" id="fqwozo_48"><li class="list__item" id="fqwozo_49"><p id="fqwozo_52"><span class="control" id="fqwozo_53">Permiss&atilde;o negada</span>: Verifique permiss&otilde;es com <code class="code" id="fqwozo_54">ls -l</code></p></li><li class="list__item" id="fqwozo_50"><p id="fqwozo_55"><span class="control" id="fqwozo_56">Arquivo n&atilde;o encontrado</span>: Confirme o caminho com <code class="code" id="fqwozo_57">pwd</code> e <code class="code" id="fqwozo_58">ls</code></p></li><li class="list__item" id="fqwozo_51"><p id="fqwozo_59"><span class="control" id="fqwozo_60">Disco cheio</span>: Verifique espa&ccedil;o com <code class="code" id="fqwozo_61">df -h</code></p></li></ul></section><section class="chapter"><h3 id="verifica-es-de-seguran-a" data-toc="verifica-es-de-seguran-a">Verifica&ccedil;&otilde;es de Seguran&ccedil;a</h3><div class="code-block" data-lang="bash">
+# Antes de operações destrutivas
+ls -l arquivo.txt          # Verificar existência
+du -sh diretorio/         # Verificar tamanho
+file arquivo.txt          # Verificar tipo
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><p id="fqwozo_63">Agora que voc&ecirc; domina as opera&ccedil;&otilde;es b&aacute;sicas:</p><ol class="list _decimal" id="fqwozo_64" type="1"><li class="list__item" id="fqwozo_67"><p id="fqwozo_70"><a href="advanced-file-ops.html" id="fqwozo_71" data-tooltip="Este módulo requer conhecimento das operações básicas com arquivos.">Opera&ccedil;&otilde;es Avan&ccedil;adas</a></p></li><li class="list__item" id="fqwozo_68"><p id="fqwozo_72"><a href="file-permissions.html" id="fqwozo_73" data-tooltip="Gerenciamento avançado de permissões e controle de acesso.">Permiss&otilde;es de Arquivos</a></p></li><li class="list__item" id="fqwozo_69"><p id="fqwozo_74"><a href="archive-compression.html" id="fqwozo_75" data-tooltip="Este módulo aborda técnicas e ferramentas para compactação e arquivamento de arquivos no Linux.">Compacta&ccedil;&atilde;o e Arquivamento</a></p></li></ol><aside class="prompt" data-type="tip" data-title="" id="fqwozo_66"><p id="fqwozo_76">&quot;A habilidade de manipular arquivos com precis&atilde;o &eacute; o fundamento de todo administrador de sistemas.&quot;</p></aside></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="file-operations.html" class="navigation-links__prev">Opera&ccedil;&otilde;es com Arquivos 📂</a><a href="advanced-file-ops.html" class="navigation-links__next">Opera&ccedil;&otilde;es Avan&ccedil;adas com Arquivos 🚀</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T16:12:08.960198417"><title>Melhores Pr&aacute;ticas 🎯 | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"princ-pios-fundamentais","level":0,"title":"Princípios Fundamentais","anchor":"#princ-pios-fundamentais"},{"id":"estrutura-de-scripts","level":0,"title":"Estrutura de Scripts","anchor":"#estrutura-de-scripts"},{"id":"padr-es-de-codifica-o","level":0,"title":"Padrões de Codificação","anchor":"#padr-es-de-codifica-o"},{"id":"tratamento-de-erros","level":0,"title":"Tratamento de Erros","anchor":"#tratamento-de-erros"},{"id":"otimiza-o-e-performance","level":0,"title":"Otimização e Performance","anchor":"#otimiza-o-e-performance"},{"id":"seguran-a-avan-ada","level":0,"title":"Segurança Avançada","anchor":"#seguran-a-avan-ada"},{"id":"documenta-o","level":0,"title":"Documentação","anchor":"#documenta-o"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Melhores Pr&aacute;ticas 🎯 | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/best-practices.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Melhores Pr&aacute;ticas 🎯 | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/best-practices.html#webpage",
+    "url": "writerside-documentation/best-practices.html",
+    "name": "Melhores Pr&aacute;ticas 🎯 | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="best-practices" data-main-title="Melhores Práticas 🎯" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="references.md|Referências e Recursos 📚"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="best-practices" id="best-practices.md">Melhores Práticas 🎯</h1><section class="chapter"><h2 id="princ-pios-fundamentais" data-toc="princ-pios-fundamentais">Princ&iacute;pios Fundamentais</h2><section class="chapter"><h3 id="1-seguran-a" data-toc="1-seguran-a">1. Seguran&ccedil;a</h3><div class="code-block" data-lang="bash">
+# ✅ Correto: Validar entradas
+input=&quot;${1:-}&quot;
+if [[ ! &quot;$input&quot; =~ ^[0-9]+$ ]]; then
+    echo &quot;Erro: Digite apenas números&quot;
+    exit 1
+fi
+
+# ❌ Incorreto: Entrada sem validação
+rm -rf &quot;$1&quot;
+</div></section><section class="chapter"><h3 id="2-legibilidade" data-toc="2-legibilidade">2. Legibilidade</h3><div class="code-block" data-lang="bash">
+# ✅ Correto: Código legível e documentado
+get_user_age() {
+    local name=&quot;$1&quot;
+    local birth_year=&quot;$2&quot;
+    local current_year=$(date +%Y)
+    
+    echo $((current_year - birth_year))
+}
+
+# ❌ Incorreto: Código confuso
+a() { echo $(($(date +%Y)-$2)); }
+</div></section><section class="chapter"><h3 id="3-manutenibilidade" data-toc="3-manutenibilidade">3. Manutenibilidade</h3><div class="code-block" data-lang="bash">
+# ✅ Correto: Configurações centralizadas
+readonly CONFIG_FILE=&quot;/etc/app/config.conf&quot;
+readonly LOG_DIR=&quot;/var/log/app&quot;
+readonly MAX_RETRIES=3
+
+# ❌ Incorreto: Valores hardcoded
+if [ $count -gt 3 ]; then
+    echo &quot;error&quot; &gt; /var/log/app/temp.log
+fi
+</div></section></section><section class="chapter"><h2 id="estrutura-de-scripts" data-toc="estrutura-de-scripts">Estrutura de Scripts</h2><section class="chapter"><h3 id="1-cabe-alho-padr-o" data-toc="1-cabe-alho-padr-o">1. Cabe&ccedil;alho Padr&atilde;o</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+#
+# Nome: script.sh
+# Descrição: Breve descrição do script
+# Autor: Seu Nome
+# Data: YYYY-MM-DD
+# Versão: 1.0
+#
+# Uso: ./script.sh [opções]
+</div></section><section class="chapter"><h3 id="2-organiza-o-do-c-digo" data-toc="2-organiza-o-do-c-digo">2. Organiza&ccedil;&atilde;o do C&oacute;digo</h3><div class="code-block" data-lang="bash">
+# Configurações
+set -euo pipefail
+IFS=$'\n\t'
+
+# Variáveis globais
+readonly VERSION=&quot;1.0.0&quot;
+readonly CONFIG_FILE=&quot;/etc/app/config.conf&quot;
+
+# Funções
+function log_error() {
+    local message=&quot;$1&quot;
+    echo &quot;[ERROR] $(date '+%Y-%m-%d %H:%M:%S') - $message&quot; &gt;&amp;2
+}
+
+# Código principal
+function main() {
+    # Lógica principal aqui
+}
+
+# Execução
+main &quot;$@&quot;
+</div></section></section><section class="chapter"><h2 id="padr-es-de-codifica-o" data-toc="padr-es-de-codifica-o">Padr&otilde;es de Codifica&ccedil;&atilde;o</h2><section class="chapter"><h3 id="1-nomenclatura" data-toc="1-nomenclatura">1. Nomenclatura</h3><div class="code-block" data-lang="bash">
+# ✅ Correto: Nomes descritivos
+function validate_user_input() {
+    local user_name=&quot;$1&quot;
+    local user_age=&quot;$2&quot;
+}
+
+# ❌ Incorreto: Nomes obscuros
+function val() {
+    local n=&quot;$1&quot;
+    local a=&quot;$2&quot;
+}
+</div></section><section class="chapter"><h3 id="2-indenta-o-e-formata-o" data-toc="2-indenta-o-e-formata-o">2. Indenta&ccedil;&atilde;o e Formata&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+# ✅ Correto: Indentação consistente
+if [ &quot;$condition&quot; = true ]; then
+    for item in &quot;${items[@]}&quot;; do
+        process_item &quot;$item&quot;
+    done
+fi
+
+# ❌ Incorreto: Indentação inconsistente
+if [ &quot;$condition&quot; = true ]; then
+for item in &quot;${items[@]}&quot;
+do
+process_item &quot;$item&quot;
+done
+fi
+</div></section></section><section class="chapter"><h2 id="tratamento-de-erros" data-toc="tratamento-de-erros">Tratamento de Erros</h2><section class="chapter"><h3 id="1-valida-o-de-entrada" data-toc="1-valida-o-de-entrada">1. Valida&ccedil;&atilde;o de Entrada</h3><div class="code-block" data-lang="bash">
+# ✅ Correto: Validação completa
+function process_file() {
+    local file=&quot;$1&quot;
+    
+    if [ -z &quot;$file&quot; ]; then
+        log_error &quot;Nome do arquivo não fornecido&quot;
+        return 1
+    fi
+    
+    if [ ! -f &quot;$file&quot; ]; then
+        log_error &quot;Arquivo não existe: $file&quot;
+        return 1
+    fi
+    
+    if [ ! -r &quot;$file&quot; ]; then
+        log_error &quot;Arquivo sem permissão de leitura: $file&quot;
+        return 1
+    fi
+}
+</div></section><section class="chapter"><h3 id="2-tratamento-de-exce-es" data-toc="2-tratamento-de-exce-es">2. Tratamento de Exce&ccedil;&otilde;es</h3><div class="code-block" data-lang="bash">
+# ✅ Correto: Tratamento de erros
+set -e
+trap 'echo &quot;Erro na linha $LINENO&quot;' ERR
+
+function cleanup() {
+    # Limpeza de recursos
+    rm -f &quot;$TEMP_FILE&quot;
+}
+
+trap cleanup EXIT
+</div></section></section><section class="chapter"><h2 id="otimiza-o-e-performance" data-toc="otimiza-o-e-performance">Otimiza&ccedil;&atilde;o e Performance</h2><section class="chapter"><h3 id="1-uso-de-recursos" data-toc="1-uso-de-recursos">1. Uso de Recursos</h3><div class="code-block" data-lang="bash">
+# ✅ Correto: Uso eficiente
+while IFS= read -r line; do
+    process_line &quot;$line&quot;
+done &lt; &quot;$file&quot;
+
+# ❌ Incorreto: Desperdício de recursos
+cat &quot;$file&quot; | while read line; do
+    process_line &quot;$line&quot;
+done
+</div></section><section class="chapter"><h3 id="2-opera-es-em-lote" data-toc="2-opera-es-em-lote">2. Opera&ccedil;&otilde;es em Lote</h3><div class="code-block" data-lang="bash">
+# ✅ Correto: Operações em lote
+find . -type f -name &quot;*.log&quot; -exec rm {} +
+
+# ❌ Incorreto: Operações individuais
+for file in *.log; do
+    rm &quot;$file&quot;
+done
+</div></section></section><section class="chapter"><h2 id="seguran-a-avan-ada" data-toc="seguran-a-avan-ada">Seguran&ccedil;a Avan&ccedil;ada</h2><section class="chapter"><h3 id="1-permiss-es" data-toc="1-permiss-es">1. Permiss&otilde;es</h3><div class="code-block" data-lang="bash">
+# ✅ Correto: Gestão de permissões
+umask 077
+touch &quot;$SENSITIVE_FILE&quot;
+chmod 600 &quot;$SENSITIVE_FILE&quot;
+
+# ❌ Incorreto: Permissões inseguras
+touch &quot;$SENSITIVE_FILE&quot;
+chmod 777 &quot;$SENSITIVE_FILE&quot;
+</div></section><section class="chapter"><h3 id="2-dados-sens-veis" data-toc="2-dados-sens-veis">2. Dados Sens&iacute;veis</h3><div class="code-block" data-lang="bash">
+# ✅ Correto: Proteção de dados sensíveis
+read -s -p &quot;Password: &quot; password
+echo
+
+# ❌ Incorreto: Exposição de dados
+echo &quot;Password: $password&quot;
+</div></section></section><section class="chapter"><h2 id="documenta-o" data-toc="documenta-o">Documenta&ccedil;&atilde;o</h2><section class="chapter"><h3 id="1-coment-rios" data-toc="1-coment-rios">1. Coment&aacute;rios</h3><div class="code-block" data-lang="bash">
+# ✅ Correto: Comentários úteis
+# Valida o formato do CPF (XXX.XXX.XXX-XX)
+function validate_cpf() {
+   </div></section></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="script-templates.html" class="navigation-links__prev">Templates de Scripts 📝</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T16:12:08.961920056"><title>Informa&ccedil;&otilde;es do Sistema: Conhecendo seu Ambiente 🖥️ | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"informa-es-b-sicas-do-sistema","level":0,"title":"Informações Básicas do Sistema","anchor":"#informa-es-b-sicas-do-sistema"},{"id":"monitoramento-de-recursos","level":0,"title":"Monitoramento de Recursos","anchor":"#monitoramento-de-recursos"},{"id":"rede-e-conectividade","level":0,"title":"Rede e Conectividade","anchor":"#rede-e-conectividade"},{"id":"scripts-de-an-lise","level":0,"title":"Scripts de Análise","anchor":"#scripts-de-an-lise"},{"id":"ferramentas-avan-adas","level":0,"title":"Ferramentas Avançadas","anchor":"#ferramentas-avan-adas"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"dicas-e-boas-pr-ticas","level":0,"title":"Dicas e Boas Práticas","anchor":"#dicas-e-boas-pr-ticas"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Informa&ccedil;&otilde;es do Sistema: Conhecendo seu Ambiente 🖥️ | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/system-info.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Informa&ccedil;&otilde;es do Sistema: Conhecendo seu Ambiente 🖥️ | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/system-info.html#webpage",
+    "url": "writerside-documentation/system-info.html",
+    "name": "Informa&ccedil;&otilde;es do Sistema: Conhecendo seu Ambiente 🖥️ | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="system-info" data-main-title="Informações do Sistema: Conhecendo seu Ambiente 🖥️" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="essential-commands.md|Comandos Essenciais: Dominando as Ferramentas 🛠️"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="system-info" id="system-info.md">Informações do Sistema: Conhecendo seu Ambiente 🖥️</h1><aside class="prompt" data-type="note" data-title="" id="z5oyjzu_3"><p id="z5oyjzu_12">Aprenda a coletar, analisar e monitorar informa&ccedil;&otilde;es do seu sistema Linux.</p></aside><section class="chapter"><h2 id="informa-es-b-sicas-do-sistema" data-toc="informa-es-b-sicas-do-sistema">Informa&ccedil;&otilde;es B&aacute;sicas do Sistema</h2><section class="chapter"><h3 id="identifica-o-do-sistema" data-toc="identifica-o-do-sistema">🔍 Identifica&ccedil;&atilde;o do Sistema</h3><div class="code-block" data-lang="bash">
+# Informações do sistema operacional
+uname -a                # Todas as informações do sistema
+hostnamectl            # Informações detalhadas do host
+lsb_release -a         # Informações da distribuição
+cat /etc/os-release    # Detalhes da versão do SO
+
+# Hardware
+lscpu                  # Informações da CPU
+lsmem                  # Informações da memória
+lspci                  # Dispositivos PCI
+lsusb                  # Dispositivos USB
+</div></section><section class="chapter"><h3 id="recursos-do-sistema" data-toc="recursos-do-sistema">📊 Recursos do Sistema</h3><div class="code-block" data-lang="bash">
+# CPU e Memória
+top                    # Visão geral interativa
+htop                   # Interface melhorada
+free -h                # Uso de memória
+vmstat 1               # Estatísticas virtuais
+uptime                 # Tempo de atividade e carga
+
+# Disco
+df -h                  # Uso do sistema de arquivos
+du -sh /*              # Uso de disco por diretório
+iostat                 # Estatísticas de I/O
+lsblk                  # Informações de blocos
+</div></section></section><section class="chapter"><h2 id="monitoramento-de-recursos" data-toc="monitoramento-de-recursos">Monitoramento de Recursos</h2><section class="chapter"><h3 id="cpu-e-processamento" data-toc="cpu-e-processamento">💻 CPU e Processamento</h3><div class="code-block" data-lang="bash">
+# Monitoramento de CPU
+mpstat -P ALL 1        # Estatísticas por CPU
+sar -u 1 5            # Uso de CPU (5 amostras)
+pidstat                # Estatísticas por processo
+
+# Carga do sistema
+w                      # Quem está logado e o que está fazendo
+ps aux                 # Lista de processos
+pstree                # Árvore de processos
+</div></section><section class="chapter"><h3 id="mem-ria-e-swap" data-toc="mem-ria-e-swap">🧠 Mem&oacute;ria e Swap</h3><div class="code-block" data-lang="bash">
+# Análise de memória
+free -h                # Visão geral da memória
+vmstat -s              # Estatísticas detalhadas
+swapon --show         # Informações de swap
+smem                  # Uso de memória por processo
+</div></section></section><section class="chapter"><h2 id="rede-e-conectividade" data-toc="rede-e-conectividade">Rede e Conectividade</h2><section class="chapter"><h3 id="informa-es-de-rede" data-toc="informa-es-de-rede">🌐 Informa&ccedil;&otilde;es de Rede</h3><div class="code-block" data-lang="bash">
+# Configuração de rede
+ip addr                # Endereços IP
+ip route              # Tabela de roteamento
+netstat -tuln         # Portas abertas
+ss -tuln              # Sockets ativos (alternativa moderna)
+
+# Diagnóstico
+ping -c 4 8.8.8.8     # Teste de conectividade
+traceroute google.com # Rota até o destino
+dig google.com        # Consulta DNS
+mtr google.com        # Combinação ping + traceroute
+</div></section></section><section class="chapter"><h2 id="scripts-de-an-lise" data-toc="scripts-de-an-lise">Scripts de An&aacute;lise</h2><section class="chapter"><h3 id="monitor-de-sistema" data-toc="monitor-de-sistema">📈 Monitor de Sistema</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# system_monitor.sh
+
+system_overview() {
+    echo &quot;=== Sistema ===&quot;
+    uname -a
+    
+    echo -e &quot;\n=== CPU ===&quot;
+    top -bn1 | head -n 3
+    
+    echo -e &quot;\n=== Memória ===&quot;
+    free -h
+    
+    echo -e &quot;\n=== Disco ===&quot;
+    df -h
+    
+    echo -e &quot;\n=== Rede ===&quot;
+    netstat -tuln
+}
+
+# Uso: system_overview
+</div></section><section class="chapter"><h3 id="relat-rio-de-recursos" data-toc="relat-rio-de-recursos">📊 Relat&oacute;rio de Recursos</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# resource_report.sh
+
+generate_report() {
+    local output=&quot;system_report_$(date +%Y%m%d).txt&quot;
+    
+    {
+        echo &quot;Relatório do Sistema - $(date)&quot;
+        echo &quot;==========================&quot;
+        
+        echo -e &quot;\n1. Informações do Sistema&quot;
+        hostnamectl
+        
+        echo -e &quot;\n2. CPU&quot;
+        lscpu | grep -E &quot;^CPU\(s\)|^Model name&quot;
+        
+        echo -e &quot;\n3. Memória&quot;
+        free -h
+        
+        echo -e &quot;\n4. Disco&quot;
+        df -h
+        
+        echo -e &quot;\n5. Processos Top 5 (CPU)&quot;
+        ps aux --sort=-%cpu | head -n 6
+        
+        echo -e &quot;\n6. Processos Top 5 (Memória)&quot;
+        ps aux --sort=-%mem | head -n 6
+        
+    } &gt; &quot;$output&quot;
+    
+    echo &quot;Relatório gerado: $output&quot;
+}
+</div></section></section><section class="chapter"><h2 id="ferramentas-avan-adas" data-toc="ferramentas-avan-adas">Ferramentas Avan&ccedil;adas</h2><section class="chapter"><h3 id="diagn-stico-avan-ado" data-toc="diagn-stico-avan-ado">🔧 Diagn&oacute;stico Avan&ccedil;ado</h3><div class="code-block" data-lang="bash">
+# Análise de Performance
+perf stat program     # Estatísticas de performance
+strace command       # Trace de chamadas do sistema
+ltrace program       # Trace de chamadas de biblioteca
+</div></section><section class="chapter"><h3 id="an-lise-de-logs" data-toc="an-lise-de-logs">🔍 An&aacute;lise de Logs</h3><div class="code-block" data-lang="bash">
+# Visualização de Logs
+journalctl           # Logs do sistema (systemd)
+tail -f /var/log/syslog  # Logs em tempo real
+grep -r &quot;error&quot; /var/log/* # Busca por erros
+</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><section class="chapter"><h3 id="miss-o-1-monitor-completo" data-toc="miss-o-1-monitor-completo">🎯 Miss&atilde;o 1: Monitor Completo</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Objetivos:
+# 1. Monitorar CPU, memória e disco
+# 2. Gerar alertas para limites
+# 3. Manter histórico
+# 4. Gerar relatórios
+
+# Implementação básica
+monitor_all() {
+    while true; do
+        check_cpu
+        check_memory
+        check_disk
+        sleep 60
+    done
+}
+</div></section><section class="chapter"><h3 id="miss-o-2-an-lise-de-performance" data-toc="miss-o-2-an-lise-de-performance">🎯 Miss&atilde;o 2: An&aacute;lise de Performance</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Objetivos:
+# 1. Coletar métricas de performance
+# 2. Identificar gargalos
+# 3. Gerar recomendações
+# 4. Documentar resultados
+</div></section></section><section class="chapter"><h2 id="dicas-e-boas-pr-ticas" data-toc="dicas-e-boas-pr-ticas">Dicas e Boas Pr&aacute;ticas</h2><section class="chapter"><h3 id="recomenda-es" data-toc="recomenda-es">💡 Recomenda&ccedil;&otilde;es</h3><ol class="list _decimal" id="z5oyjzu_37" type="1"><li class="list__item" id="z5oyjzu_38"><p id="z5oyjzu_43">Monitore regularmente</p></li><li class="list__item" id="z5oyjzu_39"><p id="z5oyjzu_44">Mantenha hist&oacute;rico</p></li><li class="list__item" id="z5oyjzu_40"><p id="z5oyjzu_45">Configure alertas</p></li><li class="list__item" id="z5oyjzu_41"><p id="z5oyjzu_46">Documente mudan&ccedil;as</p></li><li class="list__item" id="z5oyjzu_42"><p id="z5oyjzu_47">Automatize verifica&ccedil;&otilde;es</p></li></ol></section><section class="chapter"><h3 id="pontos-de-aten-o" data-toc="pontos-de-aten-o">⚠️ Pontos de Aten&ccedil;&atilde;o</h3><ol class="list _decimal" id="z5oyjzu_48" type="1"><li class="list__item" id="z5oyjzu_49"><p id="z5oyjzu_54">Impacto do monitoramento</p></li><li class="list__item" id="z5oyjzu_50"><p id="z5oyjzu_55">Seguran&ccedil;a dos dados</p></li><li class="list__item" id="z5oyjzu_51"><p id="z5oyjzu_56">Reten&ccedil;&atilde;o de logs</p></li><li class="list__item" id="z5oyjzu_52"><p id="z5oyjzu_57">Uso de recursos</p></li><li class="list__item" id="z5oyjzu_53"><p id="z5oyjzu_58">Privacidade</p></li></ol></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="z5oyjzu_59" type="1"><li class="list__item" id="z5oyjzu_63"><p id="z5oyjzu_66"><span id="z5oyjzu_67">Performance Tuning</span></p></li><li class="list__item" id="z5oyjzu_64"><p id="z5oyjzu_68"><a href="system-monitoring.html" id="z5oyjzu_69" data-tooltip="Performance Tuning">System Monitoring</a></p></li><li class="list__item" id="z5oyjzu_65"><p id="z5oyjzu_70"><span id="z5oyjzu_71">Troubleshooting</span></p></li></ol><aside class="prompt" data-type="tip" data-title="" id="z5oyjzu_61"><p id="z5oyjzu_72">&quot;Conhecer seu sistema &eacute; o primeiro passo para otimiz&aacute;-lo.&quot;</p></aside><div class="code-block" data-lang="none">
+    SYSTEM MASTER
+    [🖥️🖥️🖥️🖥️🖥️] 100%
+    STATUS: SISTEMA DOMINADO
+    PRÓXIMO: PERFORMANCE TUNING
+</div></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="text-processing-automation.html" class="navigation-links__prev">Automa&ccedil;&atilde;o de Processamento de Texto 🤖</a><a href="scripting.html" class="navigation-links__next">Scripts e Automa&ccedil;&atilde;o: Dominando o Poder do Shell 🚀</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T16:12:08.920775219"><title>Manipula&ccedil;&atilde;o de Texto 📝 | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"transforma-es-b-sicas","level":0,"title":"Transformações Básicas","anchor":"#transforma-es-b-sicas"},{"id":"transforma-es-avan-adas","level":0,"title":"Transformações Avançadas","anchor":"#transforma-es-avan-adas"},{"id":"casos-de-uso-comuns","level":0,"title":"Casos de Uso Comuns","anchor":"#casos-de-uso-comuns"},{"id":"automa-o-de-tarefas","level":0,"title":"Automação de Tarefas","anchor":"#automa-o-de-tarefas"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"dicas-e-truques","level":0,"title":"Dicas e Truques","anchor":"#dicas-e-truques"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Manipula&ccedil;&atilde;o de Texto 📝 | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/text-manipulation.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Manipula&ccedil;&atilde;o de Texto 📝 | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/text-manipulation.html#webpage",
+    "url": "writerside-documentation/text-manipulation.html",
+    "name": "Manipula&ccedil;&atilde;o de Texto 📝 | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="text-manipulation" data-main-title="Manipulação de Texto 📝" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="essential-commands.md|Comandos Essenciais: Dominando as Ferramentas 🛠️///text-processing.md|Processamento de Texto no Bash 📝"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="text-manipulation" id="text-manipulation.md">Manipulação de Texto 📝</h1><aside class="prompt" data-type="note" data-title="" id="omgl2h_3"><p id="omgl2h_11">Aprenda t&eacute;cnicas avan&ccedil;adas para transformar e manipular texto no terminal.</p></aside><section class="chapter"><h2 id="transforma-es-b-sicas" data-toc="transforma-es-b-sicas">Transforma&ccedil;&otilde;es B&aacute;sicas</h2><section class="chapter"><h3 id="substitui-o-de-texto" data-toc="substitui-o-de-texto">🔄 Substitui&ccedil;&atilde;o de Texto</h3><div class="code-block" data-lang="bash">
+# Substituições simples
+tr 'a-z' 'A-Z' &lt; texto.txt     # Converte para maiúsculas
+tr -d '\r' &lt; arquivo.dos       # Remove retornos de carro
+tr -s '[:space:]' ' '          # Comprime espaços
+
+# Substituições com sed
+sed 's/antigo/novo/g'          # Substitui todas ocorrências
+sed 's/^/    /'               # Indenta linhas
+sed 's/[[:space:]]*$//'       # Remove espaços no fim
+</div></section><section class="chapter"><h3 id="recorte-e-jun-o" data-toc="recorte-e-jun-o">✂️ Recorte e Jun&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+# Manipulação de linhas
+cut -d',' -f1-3 dados.csv     # Seleciona campos
+paste arq1 arq2               # Combina arquivos
+join -t',' arq1 arq2          # Join em campo comum
+split -l 1000 arquivo.txt     # Divide em arquivos menores
+</div></section></section><section class="chapter"><h2 id="transforma-es-avan-adas" data-toc="transforma-es-avan-adas">Transforma&ccedil;&otilde;es Avan&ccedil;adas</h2><section class="chapter"><h3 id="formata-o-de-dados" data-toc="formata-o-de-dados">📊 Formata&ccedil;&atilde;o de Dados</h3><div class="code-block" data-lang="bash">
+# Conversão de formatos
+# CSV para TSV
+sed 's/,/\t/g' dados.csv
+
+# JSON para linha única
+tr -d '\n' &lt; dados.json | \
+    sed 's/} /}\n/g'
+
+# Tabela para CSV
+column -t -s'|' dados.txt | \
+    sed 's/  */,/g'
+</div></section><section class="chapter"><h3 id="manipula-o-de-strings" data-toc="manipula-o-de-strings">🔠 Manipula&ccedil;&atilde;o de Strings</h3><div class="code-block" data-lang="bash">
+# Operações com strings
+# Extrai substring
+cut -c1-10 arquivo.txt
+
+# Inverte string
+rev texto.txt
+
+# Capitaliza primeira letra
+sed 's/\b\(.\)/\u\1/g'
+
+# Remove caracteres especiais
+tr -cd '[:alnum:][:space:]'
+</div></section></section><section class="chapter"><h2 id="casos-de-uso-comuns" data-toc="casos-de-uso-comuns">Casos de Uso Comuns</h2><section class="chapter"><h3 id="limpeza-de-dados" data-toc="limpeza-de-dados">📝 Limpeza de Dados</h3><div class="code-block" data-lang="bash">
+# Pipeline de limpeza
+cat dados.txt | \
+    tr -d '\r' | \                  # Remove CR
+    tr -s '[:space:]' ' ' | \       # Normaliza espaços
+    sed 's/^ *//;s/ *$//' | \       # Remove espaços
+    grep -v '^$' | \                # Remove linhas vazias
+    tr '[:upper:]' '[:lower:]'      # Converte case
+</div></section><section class="chapter"><h3 id="extra-o-de-informa-es" data-toc="extra-o-de-informa-es">🔍 Extra&ccedil;&atilde;o de Informa&ccedil;&otilde;es</h3><div class="code-block" data-lang="bash">
+# Extrai emails
+grep -Eo '[[:alnum:].]+@[[:alnum:].]+\.[[:alpha:]]{2,}'
+
+# Extrai URLs
+grep -Eo 'https?://[^[:space:]]+'
+
+# Extrai números de telefone
+grep -Eo '[0-9]{2}[ -]?[0-9]{4,5}[-]?[0-9]{4}'
+</div></section></section><section class="chapter"><h2 id="automa-o-de-tarefas" data-toc="automa-o-de-tarefas">Automa&ccedil;&atilde;o de Tarefas</h2><section class="chapter"><h3 id="templates-e-substitui-o" data-toc="templates-e-substitui-o">📋 Templates e Substitui&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+# Template com variáveis
+cat template.txt | \
+    sed &quot;s/{{nome}}/$NOME/g&quot; | \
+    sed &quot;s/{{data}}/$DATA/g&quot; | \
+    sed &quot;s/{{versao}}/$VERSAO/g&quot;
+
+# Geração de código
+cat &lt;&lt; EOF &gt; config.json
+{
+    &quot;app&quot;: &quot;$APP_NAME&quot;,
+    &quot;version&quot;: &quot;$VERSION&quot;,
+    &quot;env&quot;: &quot;$ENV&quot;
+}
+EOF
+</div></section><section class="chapter"><h3 id="processamento-em-lote" data-toc="processamento-em-lote">🔄 Processamento em Lote</h3><div class="code-block" data-lang="bash">
+# Renomeia arquivos em lote
+for f in *.txt; do
+    mv &quot;$f&quot; &quot;${f%.txt}.md&quot;
+done
+
+# Processa múltiplos arquivos
+find . -name &quot;*.log&quot; -type f | \
+    while read file; do
+        sed -i 's/ERROR/ERRO/g' &quot;$file&quot;
+    done
+</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><section class="chapter"><h3 id="miss-o-1-formata-o-de-dados" data-toc="miss-o-1-formata-o-de-dados">🎯 Miss&atilde;o 1: Formata&ccedil;&atilde;o de Dados</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Objetivos:
+# 1. Converter CSV para formato tabular
+# 2. Alinhar colunas
+# 3. Adicionar cabeçalho
+# 4. Numerar linhas
+
+cat dados.csv | \
+    tr ',' '\t' | \
+    column -t | \
+    nl -w3 -s'. ' &gt; tabela.txt
+</div></section><section class="chapter"><h3 id="miss-o-2-transforma-o-de-logs" data-toc="miss-o-2-transforma-o-de-logs">🎯 Miss&atilde;o 2: Transforma&ccedil;&atilde;o de Logs</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Objetivos:
+# 1. Extrair campos específicos
+# 2. Formatar timestamps
+# 3. Categorizar eventos
+# 4. Gerar relatório
+
+cat access.log | \
+    awk '{print $4, $6, $7}' | \
+    sed 's/\[//;s/\]//' | \
+    sort -k1,1 | \
+    uniq -c &gt; report.txt
+</div></section></section><section class="chapter"><h2 id="dicas-e-truques" data-toc="dicas-e-truques">Dicas e Truques</h2><section class="chapter"><h3 id="boas-pr-ticas" data-toc="boas-pr-ticas">💡 Boas Pr&aacute;ticas</h3><ol class="list _decimal" id="omgl2h_34" type="1"><li class="list__item" id="omgl2h_35"><p id="omgl2h_40">Fa&ccedil;a backup antes de transforma&ccedil;&otilde;es</p></li><li class="list__item" id="omgl2h_36"><p id="omgl2h_41">Use express&otilde;es regulares com modera&ccedil;&atilde;o</p></li><li class="list__item" id="omgl2h_37"><p id="omgl2h_42">Teste em amostra pequena primeiro</p></li><li class="list__item" id="omgl2h_38"><p id="omgl2h_43">Documente transforma&ccedil;&otilde;es complexas</p></li><li class="list__item" id="omgl2h_39"><p id="omgl2h_44">Mantenha scripts reutiliz&aacute;veis</p></li></ol></section><section class="chapter"><h3 id="armadilhas-comuns" data-toc="armadilhas-comuns">⚠️ Armadilhas Comuns</h3><ol class="list _decimal" id="omgl2h_45" type="1"><li class="list__item" id="omgl2h_46"><p id="omgl2h_50">Encoding incorreto</p></li><li class="list__item" id="omgl2h_47"><p id="omgl2h_51">Caracteres especiais n&atilde;o tratados</p></li><li class="list__item" id="omgl2h_48"><p id="omgl2h_52">Substitui&ccedil;&otilde;es muito agressivas</p></li><li class="list__item" id="omgl2h_49"><p id="omgl2h_53">Perda de dados n&atilde;o intencional</p></li></ol></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="omgl2h_54" type="1"><li class="list__item" id="omgl2h_58"><p id="omgl2h_61"><a href="text-analysis.html" id="omgl2h_62" data-tooltip="Aprenda técnicas avançadas para analisar e extrair insights de dados textuais.">An&aacute;lise de Texto</a></p></li><li class="list__item" id="omgl2h_59"><p id="omgl2h_63"><a href="text-processing-automation.html" id="omgl2h_64" data-tooltip="Aprenda a automatizar tarefas repetitivas de processamento de texto com scripts e ferramentas eficientes.">Automa&ccedil;&atilde;o de Processamento</a></p></li><li class="list__item" id="omgl2h_60"><p id="omgl2h_65"><span id="omgl2h_66">Express&otilde;es Regulares Avan&ccedil;adas</span></p></li></ol><aside class="prompt" data-type="tip" data-title="" id="omgl2h_56"><p id="omgl2h_67">&quot;A arte da manipula&ccedil;&atilde;o de texto est&aacute; em transformar dados brutos em informa&ccedil;&atilde;o &uacute;til.&quot;</p></aside><div class="code-block" data-lang="none">
+    TEXT MANIPULATION
+    [🔧🔧🔧🔧🔧] 100%
+    STATUS: TRANSFORMADOR DE TEXTO
+    PRÓXIMO: ANÁLISE AVANÇADA
+</div></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="regular-expressions.html" class="navigation-links__prev">Express&otilde;es Regulares 🎯</a><a href="text-analysis.html" class="navigation-links__next">An&aacute;lise de Texto 📊</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

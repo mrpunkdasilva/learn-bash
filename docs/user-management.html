@@ -1,0 +1,82 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T16:12:08.924853569"><title>Gerenciamento de Usu&aacute;rios 👥 | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"comandos-b-sicos","level":0,"title":"Comandos Básicos","anchor":"#comandos-b-sicos"},{"id":"permiss-es-e-seguran-a","level":0,"title":"Permissões e Segurança","anchor":"#permiss-es-e-seguran-a"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"troubleshooting","level":0,"title":"Troubleshooting","anchor":"#troubleshooting"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Gerenciamento de Usu&aacute;rios 👥 | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/user-management.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Gerenciamento de Usu&aacute;rios 👥 | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/user-management.html#webpage",
+    "url": "writerside-documentation/user-management.html",
+    "name": "Gerenciamento de Usu&aacute;rios 👥 | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="user-management" data-main-title="Gerenciamento de Usuários 👥" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="system-admin.md|Administração do Sistema Linux 🖥️"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="user-management" id="user-management.md">Gerenciamento de Usuários 👥</h1><section class="chapter"><h2 id="comandos-b-sicos" data-toc="comandos-b-sicos">Comandos B&aacute;sicos</h2><section class="chapter"><h3 id="usu-rios" data-toc="usu-rios">👤 Usu&aacute;rios</h3><div class="code-block" data-lang="bash">
+# Criar e modificar usuários
+useradd -m -s /bin/bash usuario  # Cria usuário
+usermod -aG grupo usuario        # Adiciona a grupo
+passwd usuario                   # Define senha
+userdel -r usuario              # Remove usuário
+
+# Informações
+id usuario                      # Info do usuário
+who                            # Usuários logados
+w                              # Quem está fazendo o quê
+last                           # Histórico de login
+</div></section><section class="chapter"><h3 id="grupos" data-toc="grupos">👥 Grupos</h3><div class="code-block" data-lang="bash">
+# Gerenciamento de grupos
+groupadd grupo                 # Cria grupo
+groupmod -n novo_nome grupo    # Renomeia
+groupdel grupo                 # Remove grupo
+gpasswd -a usuario grupo      # Adiciona ao grupo
+</div></section></section><section class="chapter"><h2 id="permiss-es-e-seguran-a" data-toc="permiss-es-e-seguran-a">Permiss&otilde;es e Seguran&ccedil;a</h2><section class="chapter"><h3 id="controle-de-acesso" data-toc="controle-de-acesso">🔐 Controle de Acesso</h3><div class="code-block" data-lang="bash">
+# Permissões básicas
+chmod 755 arquivo              # Define permissões
+chown usuario:grupo arquivo    # Muda proprietário
+chgrp grupo arquivo           # Muda grupo
+
+# ACLs
+setfacl -m u:usuario:rw arquivo  # Define ACL
+getfacl arquivo                  # Lista ACLs
+</div></section><section class="chapter"><h3 id="sudo-e-privil-gios" data-toc="sudo-e-privil-gios">🛡️ Sudo e Privil&eacute;gios</h3><div class="code-block" data-lang="bash">
+# Configuração sudo
+visudo                        # Edita sudoers
+sudo -l                       # Lista permissões
+sudo -u usuario comando       # Executa como usuário
+</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><section class="chapter"><h3 id="miss-o-1-gest-o-b-sica" data-toc="miss-o-1-gest-o-b-sica">🎯 Miss&atilde;o 1: Gest&atilde;o B&aacute;sica</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# setup_user.sh
+
+# Cria usuário com ambiente básico
+setup_user() {
+    local usuario=$1
+    local grupo=$2
+
+    # Cria usuário
+    useradd -m -s /bin/bash &quot;$usuario&quot;
+    
+    # Define grupo primário
+    usermod -g &quot;$grupo&quot; &quot;$usuario&quot;
+    
+    # Configura ambiente
+    cp /etc/skel/.* &quot;/home/$usuario/&quot;
+    chown -R &quot;$usuario:$grupo&quot; &quot;/home/$usuario&quot;
+}
+</div></section><section class="chapter"><h3 id="miss-o-2-auditoria" data-toc="miss-o-2-auditoria">🎯 Miss&atilde;o 2: Auditoria</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# audit_users.sh
+
+# Auditoria de usuários
+audit_users() {
+    echo &quot;=== Usuários do Sistema ===&quot;
+    awk -F: '$3 &gt;= 1000 &amp;&amp; $3 != 65534 {print $1}' /etc/passwd
+    
+    echo -e &quot;\n=== Grupos ===&quot;
+    for user in $(awk -F: '$3 &gt;= 1000 &amp;&amp; $3 != 65534 {print $1}' /etc/passwd); do
+        echo -n &quot;$user: &quot;
+        groups &quot;$user&quot;
+    done
+}
+</div></section></section><section class="chapter"><h2 id="troubleshooting" data-toc="troubleshooting">Troubleshooting</h2><section class="chapter"><h3 id="problemas-comuns" data-toc="problemas-comuns">🔧 Problemas Comuns</h3><ul class="list _bullet" id="-smxs9r_20"><li class="list__item" id="-smxs9r_23"><p id="-smxs9r_27"><span class="control" id="-smxs9r_28">Senha esquecida</span>: Use <code class="code" id="-smxs9r_29">passwd</code> como root</p></li><li class="list__item" id="-smxs9r_24"><p id="-smxs9r_30"><span class="control" id="-smxs9r_31">Grupos incorretos</span>: Verifique com <code class="code" id="-smxs9r_32">groups</code> e <code class="code" id="-smxs9r_33">id</code></p></li><li class="list__item" id="-smxs9r_25"><p id="-smxs9r_34"><span class="control" id="-smxs9r_35">Permiss&otilde;es</span>: Use <code class="code" id="-smxs9r_36">ls -l</code> e <code class="code" id="-smxs9r_37">namei -l</code></p></li><li class="list__item" id="-smxs9r_26"><p id="-smxs9r_38"><span class="control" id="-smxs9r_39">Sudo</span>: Verifique <code class="code" id="-smxs9r_40">/var/log/auth.log</code></p></li></ul><aside class="prompt" data-type="tip" data-title="" id="-smxs9r_22"><p id="-smxs9r_41">&quot;Com grandes privil&eacute;gios v&ecirc;m grandes responsabilidades.&quot;</p></aside></section></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="system-admin.html" class="navigation-links__prev">Administra&ccedil;&atilde;o do Sistema Linux 🖥️</a><a href="process-control.html" class="navigation-links__next">Controle de Processos 🔄</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

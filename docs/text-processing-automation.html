@@ -1,0 +1,224 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T16:12:08.946475478"><title>Automa&ccedil;&atilde;o de Processamento de Texto 🤖 | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"scripts-de-processamento","level":0,"title":"Scripts de Processamento","anchor":"#scripts-de-processamento"},{"id":"monitoramento-e-processamento","level":0,"title":"Monitoramento e Processamento","anchor":"#monitoramento-e-processamento"},{"id":"templates-e-geradores","level":0,"title":"Templates e Geradores","anchor":"#templates-e-geradores"},{"id":"automa-o-avan-ada","level":0,"title":"Automação Avançada","anchor":"#automa-o-avan-ada"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"dicas-e-boas-pr-ticas","level":0,"title":"Dicas e Boas Práticas","anchor":"#dicas-e-boas-pr-ticas"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Automa&ccedil;&atilde;o de Processamento de Texto 🤖 | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/text-processing-automation.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Automa&ccedil;&atilde;o de Processamento de Texto 🤖 | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/text-processing-automation.html#webpage",
+    "url": "writerside-documentation/text-processing-automation.html",
+    "name": "Automa&ccedil;&atilde;o de Processamento de Texto 🤖 | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="text-processing-automation" data-main-title="Automação de Processamento de Texto 🤖" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="essential-commands.md|Comandos Essenciais: Dominando as Ferramentas 🛠️///text-processing.md|Processamento de Texto no Bash 📝"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="text-processing-automation" id="text-processing-automation.md">Automação de Processamento de Texto 🤖</h1><aside class="prompt" data-type="note" data-title="" id="xgtmdv_3"><p id="xgtmdv_11">Aprenda a automatizar tarefas repetitivas de processamento de texto com scripts e ferramentas eficientes.</p></aside><section class="chapter"><h2 id="scripts-de-processamento" data-toc="scripts-de-processamento">Scripts de Processamento</h2><section class="chapter"><h3 id="processamento-em-lote" data-toc="processamento-em-lote">🔄 Processamento em Lote</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Processa múltiplos arquivos
+process_files() {
+    local dir=$1
+    local pattern=$2
+    
+    find &quot;$dir&quot; -type f -name &quot;$pattern&quot; | while read -r file; do
+        echo &quot;Processando: $file&quot;
+        # Remove linhas vazias
+        sed -i '/^$/d' &quot;$file&quot;
+        # Converte para minúsculas
+        tr '[:upper:]' '[:lower:]' &lt; &quot;$file&quot; &gt; &quot;${file}.tmp&quot;
+        mv &quot;${file}.tmp&quot; &quot;$file&quot;
+        # Remove espaços extras
+        sed -i 's/[[:space:]]\+/ /g' &quot;$file&quot;
+    done
+}
+
+# Uso: process_files &quot;./logs&quot; &quot;*.log&quot;
+</div></section><section class="chapter"><h3 id="transforma-o-de-dados" data-toc="transforma-o-de-dados">📝 Transforma&ccedil;&atilde;o de Dados</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Converte formatos de dados
+convert_data() {
+    local input=$1
+    local output=$2
+    local format=$3
+
+    case $format in
+        &quot;csv2json&quot;)
+            awk -F',' '
+                BEGIN { print &quot;[&quot; }
+                NR == 1 { 
+                    split($0, headers)
+                    next 
+                }
+                {
+                    printf &quot;  {&quot;
+                    for (i=1; i&lt;=NF; i++)
+                        printf &quot;\&quot;%s\&quot;: \&quot;%s\&quot;%s&quot;, 
+                               headers[i], $i, 
+                               (i==NF ? &quot;&quot; : &quot;,&quot;)
+                    print &quot;}&quot; (NR==NR ? &quot;&quot; : &quot;,&quot;)
+                }
+                END { print &quot;]&quot; }
+            ' &quot;$input&quot; &gt; &quot;$output&quot;
+            ;;
+        &quot;json2csv&quot;)
+            # Implementar conversão JSON para CSV
+            ;;
+    esac
+}
+</div></section></section><section class="chapter"><h2 id="monitoramento-e-processamento" data-toc="monitoramento-e-processamento">Monitoramento e Processamento</h2><section class="chapter"><h3 id="monitoramento-de-arquivos" data-toc="monitoramento-de-arquivos">👀 Monitoramento de Arquivos</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Monitor de mudanças em arquivos
+watch_and_process() {
+    local dir=$1
+    local pattern=$2
+    local cmd=$3
+
+    inotifywait -m -e modify,create &quot;$dir&quot; |
+        while read -r directory events filename; do
+            if [[ &quot;$filename&quot; =~ $pattern ]]; then
+                echo &quot;Mudança detectada em: $filename&quot;
+                eval &quot;$cmd \&quot;$directory/$filename\&quot;&quot;
+            fi
+        done
+}
+
+# Uso: watch_and_process &quot;./logs&quot; &quot;*.log&quot; &quot;process_log&quot;
+</div></section><section class="chapter"><h3 id="processamento-cont-nuo" data-toc="processamento-cont-nuo">🔄 Processamento Cont&iacute;nuo</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Processamento em tempo real
+stream_process() {
+    local input=$1
+    
+    tail -f &quot;$input&quot; | while read -r line; do
+        # Processa cada linha em tempo real
+        echo &quot;$line&quot; | \
+            grep -v '^#' | \
+            awk '{print strftime(&quot;%Y-%m-%d %H:%M:%S&quot;), $0}'
+    done
+}
+</div></section></section><section class="chapter"><h2 id="templates-e-geradores" data-toc="templates-e-geradores">Templates e Geradores</h2><section class="chapter"><h3 id="gera-o-de-relat-rios" data-toc="gera-o-de-relat-rios">📋 Gera&ccedil;&atilde;o de Relat&oacute;rios</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Gerador de relatórios
+generate_report() {
+    local data=$1
+    local template=$2
+    local output=$3
+
+    # Carrega template
+    cat &quot;$template&quot; | while read -r line; do
+        # Substitui variáveis
+        line=${line//\{\{DATA\}\}/$(date +%Y-%m-%d)}
+        line=${line//\{\{STATS\}\}/$(calculate_stats &quot;$data&quot;)}
+        echo &quot;$line&quot; &gt;&gt; &quot;$output&quot;
+    done
+}
+
+# Template exemplo:
+# Relatório de {{DATA}}
+# ===================
+# Estatísticas:
+# {{STATS}}
+</div></section><section class="chapter"><h3 id="processamento-customizado" data-toc="processamento-customizado">🔧 Processamento Customizado</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Framework de processamento
+process_framework() {
+    local input=$1
+    local config=$2
+
+    # Carrega configurações
+    source &quot;$config&quot;
+
+    # Pipeline de processamento
+    cat &quot;$input&quot; | \
+        ${PRE_PROCESS:-cat} | \
+        ${MAIN_PROCESS:-cat} | \
+        ${POST_PROCESS:-cat} &gt; \
+        &quot;${input}.processed&quot;
+}
+
+# Arquivo de configuração exemplo:
+# PRE_PROCESS=&quot;tr -d '\r'&quot;
+# MAIN_PROCESS=&quot;awk -F',' '{print \$1,\$3}'&quot;
+# POST_PROCESS=&quot;sort | uniq&quot;
+</div></section></section><section class="chapter"><h2 id="automa-o-avan-ada" data-toc="automa-o-avan-ada">Automa&ccedil;&atilde;o Avan&ccedil;ada</h2><section class="chapter"><h3 id="paraleliza-o" data-toc="paraleliza-o">🚀 Paraleliza&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Processamento paralelo
+parallel_process() {
+    local dir=$1
+    local workers=${2:-4}
+
+    find &quot;$dir&quot; -type f -name &quot;*.txt&quot; | \
+        parallel --jobs &quot;$workers&quot; \
+        'echo &quot;Processando {}&quot;; process_file &quot;{}&quot;'
+}
+
+# Processamento em lotes
+batch_process() {
+    local input=$1
+    local batch_size=${2:-1000}
+    
+    split -l &quot;$batch_size&quot; &quot;$input&quot; temp_batch_
+    ls temp_batch_* | parallel process_batch
+    rm temp_batch_*
+}
+</div></section><section class="chapter"><h3 id="agrega-o-de-resultados" data-toc="agrega-o-de-resultados">📊 Agrega&ccedil;&atilde;o de Resultados</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Combina resultados
+aggregate_results() {
+    local dir=$1
+    local pattern=$2
+
+    # Cabeçalho
+    echo &quot;Data,Total,Média,Máximo&quot; &gt; resultados.csv
+
+    # Combina e processa resultados
+    find &quot;$dir&quot; -name &quot;$pattern&quot; -type f | \
+        while read -r file; do
+            awk -F',' '
+                NR &gt; 1 {
+                    sum += $2
+                    if ($2 &gt; max) max = $2
+                    count++
+                }
+                END {
+                    printf &quot;%s,%.2f,%.2f,%.2f\n&quot;,
+                        FILENAME, sum, sum/count, max
+                }' &quot;$file&quot; &gt;&gt; resultados.csv
+        done
+}
+</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><section class="chapter"><h3 id="miss-o-1-pipeline-de-logs" data-toc="miss-o-1-pipeline-de-logs">🎯 Miss&atilde;o 1: Pipeline de Logs</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Objetivos:
+# 1. Monitorar diretório de logs
+# 2. Processar novos arquivos
+# 3. Gerar alertas
+# 4. Arquivar processados
+
+# Implementação básica
+monitor_logs() {
+    watch_and_process &quot;./logs&quot; &quot;*.log&quot; \
+        'process_log &quot;{}&quot; &amp;&amp; \
+         generate_alert &quot;{}&quot; &amp;&amp; \
+         archive_log &quot;{}&quot;'
+}
+</div></section><section class="chapter"><h3 id="miss-o-2-etl-automatizado" data-toc="miss-o-2-etl-automatizado">🎯 Miss&atilde;o 2: ETL Automatizado</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Objetivos:
+# 1. Extrair dados de múltiplas fontes
+# 2. Transformar formatos
+# 3. Carregar em destino
+# 4. Validar resultados
+
+# Implementação básica
+etl_pipeline() {
+    extract_data
+    transform_data
+    load_data
+    validate_results
+}
+</div></section></section><section class="chapter"><h2 id="dicas-e-boas-pr-ticas" data-toc="dicas-e-boas-pr-ticas">Dicas e Boas Pr&aacute;ticas</h2><section class="chapter"><h3 id="recomenda-es" data-toc="recomenda-es">💡 Recomenda&ccedil;&otilde;es</h3><ol class="list _decimal" id="xgtmdv_34" type="1"><li class="list__item" id="xgtmdv_35"><p id="xgtmdv_40">Use fun&ccedil;&otilde;es para c&oacute;digo reutiliz&aacute;vel</p></li><li class="list__item" id="xgtmdv_36"><p id="xgtmdv_41">Implemente logging adequado</p></li><li class="list__item" id="xgtmdv_37"><p id="xgtmdv_42">Trate erros apropriadamente</p></li><li class="list__item" id="xgtmdv_38"><p id="xgtmdv_43">Documente configura&ccedil;&otilde;es</p></li><li class="list__item" id="xgtmdv_39"><p id="xgtmdv_44">Fa&ccedil;a backup antes de processamentos</p></li></ol></section><section class="chapter"><h3 id="pontos-de-aten-o" data-toc="pontos-de-aten-o">⚠️ Pontos de Aten&ccedil;&atilde;o</h3><ol class="list _decimal" id="xgtmdv_45" type="1"><li class="list__item" id="xgtmdv_46"><p id="xgtmdv_51">Monitore uso de recursos</p></li><li class="list__item" id="xgtmdv_47"><p id="xgtmdv_52">Implemente timeouts</p></li><li class="list__item" id="xgtmdv_48"><p id="xgtmdv_53">Valide entradas</p></li><li class="list__item" id="xgtmdv_49"><p id="xgtmdv_54">Teste com amostras pequenas</p></li><li class="list__item" id="xgtmdv_50"><p id="xgtmdv_55">Mantenha logs de execu&ccedil;&atilde;o</p></li></ol></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="xgtmdv_56" type="1"><li class="list__item" id="xgtmdv_60"><p id="xgtmdv_63"><span id="xgtmdv_64">Processamento Distribu&iacute;do</span></p></li><li class="list__item" id="xgtmdv_61"><p id="xgtmdv_65"><span id="xgtmdv_66">Integra&ccedil;&atilde;o com APIs</span></p></li><li class="list__item" id="xgtmdv_62"><p id="xgtmdv_67"><span id="xgtmdv_68">Orquestra&ccedil;&atilde;o de Workflows</span></p></li></ol><aside class="prompt" data-type="tip" data-title="" id="xgtmdv_58"><p id="xgtmdv_69">&quot;Automatize o repetitivo, foque no criativo.&quot;</p></aside><div class="code-block" data-lang="none">
+    AUTOMATION MASTER
+    [🤖🤖🤖🤖🤖] 100%
+    STATUS: AUTOMAÇÃO DOMINADA
+    PRÓXIMO: PROCESSAMENTO DISTRIBUÍDO
+</div></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="text-analysis.html" class="navigation-links__prev">An&aacute;lise de Texto 📊</a><a href="system-info.html" class="navigation-links__next">Informa&ccedil;&otilde;es do Sistema: Conhecendo seu Ambiente 🖥️</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

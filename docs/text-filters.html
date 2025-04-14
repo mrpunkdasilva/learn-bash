@@ -1,0 +1,136 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T16:12:08.964618672"><title>Filtros de Texto 🔍 | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"filtros-b-sicos","level":0,"title":"Filtros Básicos","anchor":"#filtros-b-sicos"},{"id":"filtros-de-transforma-o","level":0,"title":"Filtros de Transformação","anchor":"#filtros-de-transforma-o"},{"id":"filtros-avan-ados","level":0,"title":"Filtros Avançados","anchor":"#filtros-avan-ados"},{"id":"combinando-filtros","level":0,"title":"Combinando Filtros","anchor":"#combinando-filtros"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"dicas-e-truques","level":0,"title":"Dicas e Truques","anchor":"#dicas-e-truques"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Filtros de Texto 🔍 | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/text-filters.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Filtros de Texto 🔍 | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/text-filters.html#webpage",
+    "url": "writerside-documentation/text-filters.html",
+    "name": "Filtros de Texto 🔍 | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="text-filters" data-main-title="Filtros de Texto 🔍" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="essential-commands.md|Comandos Essenciais: Dominando as Ferramentas 🛠️///text-processing.md|Processamento de Texto no Bash 📝"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="text-filters" id="text-filters.md">Filtros de Texto 🔍</h1><aside class="prompt" data-type="note" data-title="" id="-e7g0uv_3"><p id="-e7g0uv_11">Domine os filtros essenciais para manipula&ccedil;&atilde;o e transforma&ccedil;&atilde;o de texto no terminal.</p></aside><section class="chapter"><h2 id="filtros-b-sicos" data-toc="filtros-b-sicos">Filtros B&aacute;sicos</h2><section class="chapter"><h3 id="ordena-o" data-toc="ordena-o">🔤 Ordena&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+# sort - ordenação de linhas
+sort arquivo.txt              # Ordem alfabética
+sort -n números.txt          # Ordem numérica
+sort -r lista.txt           # Ordem reversa
+sort -k2 dados.txt          # Ordena pela coluna 2
+sort -u nomes.txt           # Remove duplicatas
+</div></section><section class="chapter"><h3 id="contagem-e-estat-sticas" data-toc="contagem-e-estat-sticas">📊 Contagem e Estat&iacute;sticas</h3><div class="code-block" data-lang="bash">
+# uniq - remove/conta duplicatas
+uniq -c lista.txt           # Conta ocorrências
+uniq -d repetidos.txt       # Mostra só duplicatas
+uniq -u únicos.txt         # Mostra só únicos
+
+# wc - conta linhas/palavras/caracteres
+wc arquivo.txt              # Todas contagens
+wc -l logs/*.log           # Conta linhas
+wc -w texto.txt            # Conta palavras
+wc -c dados.bin            # Conta bytes
+</div></section></section><section class="chapter"><h2 id="filtros-de-transforma-o" data-toc="filtros-de-transforma-o">Filtros de Transforma&ccedil;&atilde;o</h2><section class="chapter"><h3 id="extra-o-de-campos" data-toc="extra-o-de-campos">✂️ Extra&ccedil;&atilde;o de Campos</h3><div class="code-block" data-lang="bash">
+# cut - extrai colunas
+cut -d',' -f1,3 dados.csv   # Campos 1 e 3
+cut -c1-10 arquivo.txt      # Primeiros 10 chars
+cut -d':' -f1 /etc/passwd   # Extrai usernames
+
+# paste - combina arquivos
+paste arq1.txt arq2.txt     # Lado a lado
+paste -d',' *.txt           # Une com vírgula
+paste -s números.txt        # Uma linha
+</div></section><section class="chapter"><h3 id="transforma-o-de-caracteres" data-toc="transforma-o-de-caracteres">🔄 Transforma&ccedil;&atilde;o de Caracteres</h3><div class="code-block" data-lang="bash">
+# tr - traduz/deleta caracteres
+tr 'a-z' 'A-Z' &lt; texto.txt  # Maiúsculas
+tr -d '\r' &lt; dos.txt        # Remove CR
+tr -s '\n' &lt; dados.txt      # Comprime vazios
+tr '[:space:]' ',' &lt; arq    # Espaços para vírgulas
+
+# expand/unexpand - tabs/espaços
+expand arquivo.txt          # Tab para espaços
+unexpand -a texto.txt      # Espaços para tab
+</div></section></section><section class="chapter"><h2 id="filtros-avan-ados" data-toc="filtros-avan-ados">Filtros Avan&ccedil;ados</h2><section class="chapter"><h3 id="sele-o-de-linhas" data-toc="sele-o-de-linhas">🎯 Sele&ccedil;&atilde;o de Linhas</h3><div class="code-block" data-lang="bash">
+# head/tail - início/fim do arquivo
+head -n 5 arquivo.txt       # Primeiras 5 linhas
+tail -f log.txt            # Monitora arquivo
+head -c 1K dados.bin       # Primeiros 1K bytes
+tail -n +10 arquivo.txt    # A partir da linha 10
+
+# sed como filtro
+sed -n '10,20p' arquivo    # Linhas 10-20
+sed '/^$/d' texto.txt      # Remove vazias
+</div></section><section class="chapter"><h3 id="formata-o-de-sa-da" data-toc="formata-o-de-sa-da">📝 Formata&ccedil;&atilde;o de Sa&iacute;da</h3><div class="code-block" data-lang="bash">
+# column - formata em colunas
+column -t dados.txt         # Alinha colunas
+column -s',' -t dados.csv   # CSV em tabela
+column -n arquivo.txt       # Numera linhas
+
+# fmt - formata parágrafos
+fmt -w 60 texto.txt         # Largura 60
+fmt -u arquivo.txt         # Uniforme
+</div></section></section><section class="chapter"><h2 id="combinando-filtros" data-toc="combinando-filtros">Combinando Filtros</h2><section class="chapter"><h3 id="pipelines-comuns" data-toc="pipelines-comuns">🔄 Pipelines Comuns</h3><div class="code-block" data-lang="bash">
+# Análise de logs
+cat access.log | \
+    cut -d' ' -f1 | \
+    sort | uniq -c | \
+    sort -nr | head -10
+
+# Processamento de CSV
+cat dados.csv | \
+    tr -d '\r' | \
+    cut -d',' -f2,4 | \
+    sort -t',' -k1 | \
+    uniq &gt; resultado.csv
+</div></section><section class="chapter"><h3 id="an-lise-de-dados" data-toc="an-lise-de-dados">📊 An&aacute;lise de Dados</h3><div class="code-block" data-lang="bash">
+# Estatísticas básicas
+cat números.txt | \
+    sort -n | \
+    awk '
+        BEGIN {print &quot;Análise Numérica&quot;}
+        {sum += $1; values[NR] = $1}
+        END {
+            print &quot;Min:&quot;, values[1]
+            print &quot;Max:&quot;, values[NR]
+            print &quot;Média:&quot;, sum/NR
+        }'
+
+# Contagem de palavras
+cat texto.txt | \
+    tr -cs '[:alpha:]' '\n' | \
+    tr '[:upper:]' '[:lower:]' | \
+    sort | uniq -c | sort -nr
+</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><section class="chapter"><h3 id="miss-o-1-an-lise-de-logs" data-toc="miss-o-1-an-lise-de-logs">🎯 Miss&atilde;o 1: An&aacute;lise de Logs</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Objetivos:
+# 1. Extrair IPs únicos
+# 2. Contar códigos HTTP
+# 3. Calcular bytes transferidos
+# 4. Identificar User Agents
+
+cat access.log | \
+    awk '{print $1}' | sort -u &gt; ips.txt
+
+cat access.log | \
+    cut -d'&quot;' -f3 | cut -d' ' -f1 | \
+    sort | uniq -c | sort -nr
+</div></section><section class="chapter"><h3 id="miss-o-2-processamento-de-dados" data-toc="miss-o-2-processamento-de-dados">🎯 Miss&atilde;o 2: Processamento de Dados</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Objetivos:
+# 1. Limpar dados CSV
+# 2. Extrair colunas específicas
+# 3. Remover duplicatas
+# 4. Formatar saída
+
+cat dados.csv | \
+    tr -d '\r' | \
+    cut -d',' -f1,3,5 | \
+    sort -t',' -k1 | uniq | \
+    column -s',' -t &gt; limpo.txt
+</div></section></section><section class="chapter"><h2 id="dicas-e-truques" data-toc="dicas-e-truques">Dicas e Truques</h2><section class="chapter"><h3 id="boas-pr-ticas" data-toc="boas-pr-ticas">💡 Boas Pr&aacute;ticas</h3><ol class="list _decimal" id="-e7g0uv_34" type="1"><li class="list__item" id="-e7g0uv_35"><p id="-e7g0uv_40">Use <code class="code" id="-e7g0uv_41">sort | uniq</code> em vez de apenas <code class="code" id="-e7g0uv_42">uniq</code></p></li><li class="list__item" id="-e7g0uv_36"><p id="-e7g0uv_43">Prefira <code class="code" id="-e7g0uv_44">cut</code> a <code class="code" id="-e7g0uv_45">awk</code> para extra&ccedil;&otilde;es simples</p></li><li class="list__item" id="-e7g0uv_37"><p id="-e7g0uv_46">Use <code class="code" id="-e7g0uv_47">column -t</code> para sa&iacute;da leg&iacute;vel</p></li><li class="list__item" id="-e7g0uv_38"><p id="-e7g0uv_48">Monitore logs com <code class="code" id="-e7g0uv_49">tail -f</code></p></li><li class="list__item" id="-e7g0uv_39"><p id="-e7g0uv_50">Combine filtros com pipes</p></li></ol></section><section class="chapter"><h3 id="armadilhas-comuns" data-toc="armadilhas-comuns">⚠️ Armadilhas Comuns</h3><ol class="list _decimal" id="-e7g0uv_51" type="1"><li class="list__item" id="-e7g0uv_52"><p id="-e7g0uv_56">Esquecimento de ordenar antes do <code class="code" id="-e7g0uv_57">uniq</code></p></li><li class="list__item" id="-e7g0uv_53"><p id="-e7g0uv_58">Problemas com delimitadores</p></li><li class="list__item" id="-e7g0uv_54"><p id="-e7g0uv_59">Encoding incorreto</p></li><li class="list__item" id="-e7g0uv_55"><p id="-e7g0uv_60">Consumo excessivo de mem&oacute;ria</p></li></ol></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="-e7g0uv_61" type="1"><li class="list__item" id="-e7g0uv_65"><p id="-e7g0uv_68"><a href="regular-expressions.html" id="-e7g0uv_69" data-tooltip="Expressões Regulares (regex) são padrões de busca poderosos que permitem encontrar e manipular texto de forma precisa.">Express&otilde;es Regulares</a></p></li><li class="list__item" id="-e7g0uv_66"><p id="-e7g0uv_70"><span id="-e7g0uv_71">AWK Avan&ccedil;ado</span></p></li><li class="list__item" id="-e7g0uv_67"><p id="-e7g0uv_72"><span id="-e7g0uv_73">Sed Avan&ccedil;ado</span></p></li></ol><aside class="prompt" data-type="tip" data-title="" id="-e7g0uv_63"><p id="-e7g0uv_74">&quot;Filtros s&atilde;o como LEGO: simples sozinhos, poderosos quando combinados.&quot;</p></aside><div class="code-block" data-lang="none">
+    FILTER MASTERY
+    [⚡⚡⚡⚡⚡] 100%
+    STATUS: FILTROS DOMINADOS
+    PRÓXIMO: REGEX AVANÇADO
+</div></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="awk-basics.html" class="navigation-links__prev">Fundamentos do AWK 📊</a><a href="regular-expressions.html" class="navigation-links__next">Express&otilde;es Regulares 🎯</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

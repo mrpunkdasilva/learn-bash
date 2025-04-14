@@ -1,0 +1,131 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T16:12:08.959099567"><title>Opera&ccedil;&otilde;es em Lote: Poder do Processamento em Massa 🚀 | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"ferramentas-fundamentais","level":0,"title":"Ferramentas Fundamentais","anchor":"#ferramentas-fundamentais"},{"id":"scripts-de-processamento","level":0,"title":"Scripts de Processamento","anchor":"#scripts-de-processamento"},{"id":"transforma-o-de-dados","level":0,"title":"Transformação de Dados","anchor":"#transforma-o-de-dados"},{"id":"otimiza-o-e-performance","level":0,"title":"Otimização e Performance","anchor":"#otimiza-o-e-performance"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"troubleshooting","level":0,"title":"Troubleshooting","anchor":"#troubleshooting"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Opera&ccedil;&otilde;es em Lote: Poder do Processamento em Massa 🚀 | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/batch-operations.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Opera&ccedil;&otilde;es em Lote: Poder do Processamento em Massa 🚀 | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/batch-operations.html#webpage",
+    "url": "writerside-documentation/batch-operations.html",
+    "name": "Opera&ccedil;&otilde;es em Lote: Poder do Processamento em Massa 🚀 | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="batch-operations" data-main-title="Operações em Lote: Poder do Processamento em Massa 🚀" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="essential-commands.md|Comandos Essenciais: Dominando as Ferramentas 🛠️///file-operations.md|Operações com Arquivos 📂"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="batch-operations" id="batch-operations.md">Operações em Lote: Poder do Processamento em Massa 🚀</h1><section class="chapter"><h2 id="ferramentas-fundamentais" data-toc="ferramentas-fundamentais">Ferramentas Fundamentais</h2><section class="chapter"><h3 id="find-e-xargs" data-toc="find-e-xargs">🔍 Find e Xargs</h3><div class="code-block" data-lang="bash">
+# Operações básicas
+find . -type f -name &quot;*.log&quot; -exec rm {} \;    # Remove logs
+find . -mtime +30 | xargs rm -f               # Remove arquivos antigos
+find . -size +100M -exec mv {} /backup/ \;    # Move arquivos grandes
+</div></section><section class="chapter"><h3 id="parallel" data-toc="parallel">📋 Parallel</h3><div class="code-block" data-lang="bash">
+# Processamento paralelo
+find . -type f | parallel gzip     # Compacta em paralelo
+cat lista.txt | parallel wget {}   # Downloads paralelos
+ls *.jpg | parallel convert {} {.}.png  # Conversão em massa
+</div></section></section><section class="chapter"><h2 id="scripts-de-processamento" data-toc="scripts-de-processamento">Scripts de Processamento</h2><section class="chapter"><h3 id="processador-em-lote" data-toc="processador-em-lote">🔄 Processador em Lote</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# batch_processor.sh
+
+process_files() {
+    local dir=&quot;$1&quot;
+    local pattern=&quot;$2&quot;
+    local action=&quot;$3&quot;
+    local max_procs=&quot;${4:-4}&quot;
+    
+    find &quot;$dir&quot; -type f -name &quot;$pattern&quot; | \
+    parallel -j &quot;$max_procs&quot; &quot;$action&quot;
+}
+
+# Exemplo de uso:
+# process_files /data &quot;*.txt&quot; &quot;gzip&quot; 8
+</div></section><section class="chapter"><h3 id="compacta-o-em-massa" data-toc="compacta-o-em-massa">📦 Compacta&ccedil;&atilde;o em Massa</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# mass_compress.sh
+
+compress_directory() {
+    local src=&quot;$1&quot;
+    local dest=&quot;${2:-compressed}&quot;
+    local threads=&quot;${3:-$(nproc)}&quot;
+    
+    mkdir -p &quot;$dest&quot;
+    
+    find &quot;$src&quot; -type f -size +1M | \
+    parallel -j &quot;$threads&quot; \
+        &quot;gzip -c {} &gt; $dest/{/.}.gz&quot;
+}
+</div></section></section><section class="chapter"><h2 id="transforma-o-de-dados" data-toc="transforma-o-de-dados">Transforma&ccedil;&atilde;o de Dados</h2><section class="chapter"><h3 id="processamento-de-texto" data-toc="processamento-de-texto">📊 Processamento de Texto</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# text_processor.sh
+
+process_text_files() {
+    local pattern=&quot;$1&quot;
+    local search=&quot;$2&quot;
+    local replace=&quot;$3&quot;
+    
+    find . -type f -name &quot;$pattern&quot; | \
+    parallel sed -i &quot;s/$search/$replace/g&quot; {}
+}
+</div></section><section class="chapter"><h3 id="processamento-de-imagens" data-toc="processamento-de-imagens">🖼️ Processamento de Imagens</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# image_processor.sh
+
+process_images() {
+    local dir=&quot;$1&quot;
+    local size=&quot;$2&quot;
+    
+    find &quot;$dir&quot; -type f \( -name &quot;*.jpg&quot; -o -name &quot;*.png&quot; \) | \
+    parallel convert {} -resize &quot;$size&quot; {}_resized
+}
+</div></section></section><section class="chapter"><h2 id="otimiza-o-e-performance" data-toc="otimiza-o-e-performance">Otimiza&ccedil;&atilde;o e Performance</h2><section class="chapter"><h3 id="controle-de-recursos" data-toc="controle-de-recursos">⚡ Controle de Recursos</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# resource_control.sh
+
+batch_with_limits() {
+    local cmd=&quot;$1&quot;
+    local max_load=&quot;$2&quot;
+    local max_procs=&quot;$3&quot;
+    
+    parallel --load &quot;$max_load&quot; \
+             --jobs &quot;$max_procs&quot; \
+             &quot;$cmd&quot;
+}
+</div></section><section class="chapter"><h3 id="monitoramento-de-progresso" data-toc="monitoramento-de-progresso">🎯 Monitoramento de Progresso</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# progress_monitor.sh
+
+monitor_progress() {
+    local total=&quot;$1&quot;
+    local current=&quot;$2&quot;
+    local width=50
+    
+    local percent=$((current * 100 / total))
+    local filled=$((width * current / total))
+    
+    printf &quot;\rProgresso: [%-${width}s] %d%%&quot; \
+           &quot;$(printf '#%.0s' $(seq 1 &quot;$filled&quot;))&quot; &quot;$percent&quot;
+}
+</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><section class="chapter"><h3 id="miss-o-1-processamento-de-logs" data-toc="miss-o-1-processamento-de-logs">🎯 Miss&atilde;o 1: Processamento de Logs</h3><div class="code-block" data-lang="bash">
+# Desenvolva um sistema que:
+# 1. Encontre logs antigos
+# 2. Comprima em paralelo
+# 3. Mova para armazenamento
+# 4. Gere relatório
+</div></section><section class="chapter"><h3 id="miss-o-2-transforma-o-de-dados" data-toc="miss-o-2-transforma-o-de-dados">🎯 Miss&atilde;o 2: Transforma&ccedil;&atilde;o de Dados</h3><div class="code-block" data-lang="bash">
+# Crie um pipeline que:
+# 1. Processe múltiplos formatos
+# 2. Aplique transformações
+# 3. Valide resultados
+# 4. Gere backups
+</div></section></section><section class="chapter"><h2 id="troubleshooting" data-toc="troubleshooting">Troubleshooting</h2><section class="chapter"><h3 id="problemas-comuns" data-toc="problemas-comuns">🔧 Problemas Comuns</h3><ul class="list _bullet" id="w2e3z9_32"><li class="list__item" id="w2e3z9_33"><p id="w2e3z9_37"><span class="control" id="w2e3z9_38">Sobrecarga do sistema</span>: Ajuste n&uacute;mero de processos</p></li><li class="list__item" id="w2e3z9_34"><p id="w2e3z9_39"><span class="control" id="w2e3z9_40">Erros de permiss&atilde;o</span>: Verifique acessos</p></li><li class="list__item" id="w2e3z9_35"><p id="w2e3z9_41"><span class="control" id="w2e3z9_42">Mem&oacute;ria insuficiente</span>: Controle tamanho do lote</p></li><li class="list__item" id="w2e3z9_36"><p id="w2e3z9_43"><span class="control" id="w2e3z9_44">Deadlocks</span>: Implemente timeouts</p></li></ul></section><section class="chapter"><h3 id="checklist-de-verifica-o" data-toc="checklist-de-verifica-o">📋 Checklist de Verifica&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+# Verificações do sistema
+uptime                 # Carga do sistema
+free -h               # Memória disponível
+df -h                # Espaço em disco
+ulimit -a           # Limites do sistema
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="w2e3z9_46" type="1"><li class="list__item" id="w2e3z9_50"><p id="w2e3z9_53"><a href="file-ops-troubleshooting.html" id="w2e3z9_54" data-tooltip="System Monitoring">File-Ops Troubleshooting</a></p></li><li class="list__item" id="w2e3z9_51"><p id="w2e3z9_55"><a href="system-monitoring.html" id="w2e3z9_56" data-tooltip="Performance Tuning">System Monitoring</a></p></li><li class="list__item" id="w2e3z9_52"><p id="w2e3z9_57"><span id="w2e3z9_58">Performance Tuning</span></p></li></ol><aside class="prompt" data-type="tip" data-title="" id="w2e3z9_48"><p id="w2e3z9_59">&quot;Automatize o repetitivo, foque no criativo.&quot;</p></aside><div class="code-block" data-lang="none">
+    PROCESSAMENTO EM LOTE
+    [⚡⚡⚡⚡⚡⚡⚡⚡] 100%
+    EFICIÊNCIA: MÁXIMA
+    RECURSOS: OTIMIZADOS
+</div></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="file-monitoring.html" class="navigation-links__prev">Monitoramento de Arquivos: Vigil&acirc;ncia em Tempo Real 👀</a><a href="file-ops-troubleshooting.html" class="navigation-links__next">Troubleshooting de Opera&ccedil;&otilde;es com Arquivos 🔧</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

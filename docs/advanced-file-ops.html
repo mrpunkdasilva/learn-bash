@@ -1,0 +1,114 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T16:12:08.956441008"><title>Opera&ccedil;&otilde;es Avan&ccedil;adas com Arquivos 🚀 | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"sincroniza-o-com-rsync","level":0,"title":"Sincronização com Rsync","anchor":"#sincroniza-o-com-rsync"},{"id":"opera-es-com-dd","level":0,"title":"Operações com DD","anchor":"#opera-es-com-dd"},{"id":"find-avan-ado","level":0,"title":"Find Avançado","anchor":"#find-avan-ado"},{"id":"xargs-power","level":0,"title":"Xargs Power","anchor":"#xargs-power"},{"id":"monitoramento-em-tempo-real","level":0,"title":"Monitoramento em Tempo Real","anchor":"#monitoramento-em-tempo-real"},{"id":"scripts-avan-ados","level":0,"title":"Scripts Avançados","anchor":"#scripts-avan-ados"},{"id":"exerc-cios-avan-ados","level":0,"title":"Exercícios Avançados","anchor":"#exerc-cios-avan-ados"},{"id":"troubleshooting-avan-ado","level":0,"title":"Troubleshooting Avançado","anchor":"#troubleshooting-avan-ado"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Opera&ccedil;&otilde;es Avan&ccedil;adas com Arquivos 🚀 | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/advanced-file-ops.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Opera&ccedil;&otilde;es Avan&ccedil;adas com Arquivos 🚀 | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/advanced-file-ops.html#webpage",
+    "url": "writerside-documentation/advanced-file-ops.html",
+    "name": "Opera&ccedil;&otilde;es Avan&ccedil;adas com Arquivos 🚀 | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="advanced-file-ops" data-main-title="Operações Avançadas com Arquivos 🚀" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="essential-commands.md|Comandos Essenciais: Dominando as Ferramentas 🛠️///file-operations.md|Operações com Arquivos 📂"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="advanced-file-ops" id="advanced-file-ops.md">Operações Avançadas com Arquivos 🚀</h1><aside class="prompt" data-type="warning" data-title="" id="-jeay7a_3"><p id="-jeay7a_14">Este m&oacute;dulo requer conhecimento das opera&ccedil;&otilde;es b&aacute;sicas com arquivos.</p></aside><div class="code-block" data-lang="none">
+    OPERAÇÕES AVANÇADAS
+    ==================
+    STATUS: POWER USER
+    NÍVEL: AVANÇADO
+    PODER: MÁXIMO
+</div><section class="chapter"><h2 id="sincroniza-o-com-rsync" data-toc="sincroniza-o-com-rsync">Sincroniza&ccedil;&atilde;o com Rsync</h2><section class="chapter"><h3 id="sincroniza-o-b-sica" data-toc="sincroniza-o-b-sica">Sincroniza&ccedil;&atilde;o B&aacute;sica</h3><div class="code-block" data-lang="bash">
+# Sincronização local
+rsync -av fonte/ destino/           # Sincroniza diretórios
+rsync -avz --delete fonte/ destino/ # Sincroniza e remove extras
+rsync -avP arquivo.iso backup/      # Mostra progresso
+
+# Sincronização remota
+rsync -ave ssh fonte/ user@host:/destino/
+rsync -avz --exclude '*.tmp' fonte/ destino/
+</div></section></section><section class="chapter"><h2 id="opera-es-com-dd" data-toc="opera-es-com-dd">Opera&ccedil;&otilde;es com DD</h2><section class="chapter"><h3 id="clonagem-e-backup" data-toc="clonagem-e-backup">Clonagem e Backup</h3><div class="code-block" data-lang="bash">
+# Backup de dispositivo
+dd if=/dev/sda of=disk.img bs=4M status=progress
+dd if=/dev/zero of=/dev/sdb bs=4M    # Limpa dispositivo
+
+# Conversão e cópia
+dd if=input.iso of=/dev/usb bs=4M conv=fdatasync
+dd if=/dev/urandom of=arquivo bs=1M count=100
+</div></section></section><section class="chapter"><h2 id="find-avan-ado" data-toc="find-avan-ado">Find Avan&ccedil;ado</h2><section class="chapter"><h3 id="busca-e-execu-o" data-toc="busca-e-execu-o">Busca e Execu&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+# Busca com execução
+find . -type f -name &quot;*.log&quot; -exec grep &quot;ERROR&quot; {} \;
+find . -mtime +30 -delete           # Remove arquivos antigos
+find . -size +100M -exec ls -lh {} \;
+
+# Busca com confirmação
+find . -name &quot;*.tmp&quot; -ok rm {} \;
+</div></section><section class="chapter"><h3 id="express-es-complexas" data-toc="express-es-complexas">Express&otilde;es Complexas</h3><div class="code-block" data-lang="bash">
+# Combinando condições
+find . \( -name &quot;*.jpg&quot; -o -name &quot;*.png&quot; \) -size +1M
+find . -type f -not -name &quot;*.txt&quot;
+find . -perm 644 -user admin
+</div></section></section><section class="chapter"><h2 id="xargs-power" data-toc="xargs-power">Xargs Power</h2><section class="chapter"><h3 id="processamento-em-lote" data-toc="processamento-em-lote">Processamento em Lote</h3><div class="code-block" data-lang="bash">
+# Processamento paralelo
+find . -name &quot;*.jpg&quot; | xargs -P4 -I{} convert {} {}.png
+find . -type f | xargs -P8 md5sum &gt; checksums.txt
+
+# Operações complexas
+find . -name &quot;*.bak&quot; | xargs -I{} bash -c 'mv &quot;{}&quot; &quot;$(dirname &quot;{}&quot;)/$(date +%F)_$(basename &quot;{}&quot;)&quot;'
+</div></section></section><section class="chapter"><h2 id="monitoramento-em-tempo-real" data-toc="monitoramento-em-tempo-real">Monitoramento em Tempo Real</h2><section class="chapter"><h3 id="inotify-watch" data-toc="inotify-watch">Inotify Watch</h3><div class="code-block" data-lang="bash">
+# Monitoramento de diretório
+inotifywait -m -r -e modify,create,delete /path/to/watch
+inotifywait -m /var/log/auth.log | while read line; do
+    echo &quot;[$(date)] $line&quot; &gt;&gt; /var/log/changes.log
+done
+</div></section></section><section class="chapter"><h2 id="scripts-avan-ados" data-toc="scripts-avan-ados">Scripts Avan&ccedil;ados</h2><section class="chapter"><h3 id="script-de-backup-incremental" data-toc="script-de-backup-incremental">Script de Backup Incremental</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# backup_incremental.sh
+
+BACKUP_DIR=&quot;/backup&quot;
+SOURCE_DIR=&quot;/dados&quot;
+DATE=$(date +%Y%m%d)
+
+# Cria backup incremental usando hard links
+rsync -av --link-dest=&quot;../latest&quot; \
+    &quot;$SOURCE_DIR/&quot; &quot;$BACKUP_DIR/$DATE/&quot;
+
+# Atualiza link do último backup
+ln -nsf &quot;$DATE&quot; &quot;$BACKUP_DIR/latest&quot;
+</div></section><section class="chapter"><h3 id="script-de-processamento-em-lote" data-toc="script-de-processamento-em-lote">Script de Processamento em Lote</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# batch_process.sh
+
+process_file() {
+    local file=&quot;$1&quot;
+    local ext=&quot;${file##*.}&quot;
+    local base=&quot;${file%.*}&quot;
+    
+    case &quot;$ext&quot; in
+        jpg|jpeg) convert &quot;$file&quot; -resize 50% &quot;${base}_small.${ext}&quot; ;;
+        txt) gzip &quot;$file&quot; ;;
+        log) bzip2 &quot;$file&quot; ;;
+    esac
+}
+
+export -f process_file
+find . -type f | parallel process_file
+</div></section></section><section class="chapter"><h2 id="exerc-cios-avan-ados" data-toc="exerc-cios-avan-ados">Exerc&iacute;cios Avan&ccedil;ados</h2><section class="chapter"><h3 id="miss-o-1-backup-inteligente" data-toc="miss-o-1-backup-inteligente">🎯 Miss&atilde;o 1: Backup Inteligente</h3><div class="code-block" data-lang="bash">
+# Crie um sistema de backup que:
+# 1. Use rsync para sincronização
+# 2. Mantenha versões incrementais
+# 3. Comprima arquivos antigos
+# 4. Gere relatório de mudanças
+</div></section><section class="chapter"><h3 id="miss-o-2-processamento-massivo" data-toc="miss-o-2-processamento-massivo">🎯 Miss&atilde;o 2: Processamento Massivo</h3><div class="code-block" data-lang="bash">
+# Desenvolva um script que:
+# 1. Encontre arquivos grandes (+100MB)
+# 2. Processe em paralelo
+# 3. Gere checksums
+# 4. Monitore mudanças
+</div></section></section><section class="chapter"><h2 id="troubleshooting-avan-ado" data-toc="troubleshooting-avan-ado">Troubleshooting Avan&ccedil;ado</h2><section class="chapter"><h3 id="diagn-stico" data-toc="diagn-stico">Diagn&oacute;stico</h3><ul class="list _bullet" id="-jeay7a_37"><li class="list__item" id="-jeay7a_38"><p id="-jeay7a_41">Use <code class="code" id="-jeay7a_42">strace</code> para debugar opera&ccedil;&otilde;es de arquivo</p></li><li class="list__item" id="-jeay7a_39"><p id="-jeay7a_43">Monitore I/O com <code class="code" id="-jeay7a_44">iotop</code></p></li><li class="list__item" id="-jeay7a_40"><p id="-jeay7a_45">Verifique limites do sistema com <code class="code" id="-jeay7a_46">ulimit -a</code></p></li></ul></section><section class="chapter"><h3 id="recupera-o" data-toc="recupera-o">Recupera&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+# Recuperação de dados
+dd if=/dev/sda of=backup.img conv=noerror,sync
+testdisk backup.img           # Analisa estrutura
+photorec backup.img          # Recupera arquivos
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="-jeay7a_48" type="1"><li class="list__item" id="-jeay7a_51"><p id="-jeay7a_54"><a href="file-permissions.html" id="-jeay7a_55" data-tooltip="Gerenciamento avançado de permissões e controle de acesso.">Permiss&otilde;es Avan&ccedil;adas</a></p></li><li class="list__item" id="-jeay7a_52"><p id="-jeay7a_56"><span id="-jeay7a_57">Sistemas de Arquivos</span></p></li><li class="list__item" id="-jeay7a_53"><p id="-jeay7a_58"><span id="-jeay7a_59">Otimiza&ccedil;&atilde;o de I/O</span></p></li></ol><aside class="prompt" data-type="tip" data-title="" id="-jeay7a_50"><p id="-jeay7a_60">&quot;Com grande poder vem grande responsabilidade. Use estas ferramentas com sabedoria.&quot;</p></aside></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="basic-file-ops.html" class="navigation-links__prev">Opera&ccedil;&otilde;es B&aacute;sicas com Arquivos 📄</a><a href="file-permissions.html" class="navigation-links__next">Permiss&otilde;es de Arquivos 🔒</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T16:12:08.935405628"><title>Vari&aacute;veis e Tipos: Dominando os Dados 📊 | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"vari-veis-b-sicas","level":0,"title":"Variáveis Básicas","anchor":"#vari-veis-b-sicas"},{"id":"tipos-de-dados","level":0,"title":"Tipos de Dados","anchor":"#tipos-de-dados"},{"id":"manipula-o-de-vari-veis","level":0,"title":"Manipulação de Variáveis","anchor":"#manipula-o-de-vari-veis"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"melhores-pr-ticas","level":0,"title":"Melhores Práticas","anchor":"#melhores-pr-ticas"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Vari&aacute;veis e Tipos: Dominando os Dados 📊 | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/variables-and-types.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Vari&aacute;veis e Tipos: Dominando os Dados 📊 | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/variables-and-types.html#webpage",
+    "url": "writerside-documentation/variables-and-types.html",
+    "name": "Vari&aacute;veis e Tipos: Dominando os Dados 📊 | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="variables-and-types" data-main-title="Variáveis e Tipos: Dominando os Dados 📊" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="scripting.md|Scripts e Automação: Dominando o Poder do Shell 🚀"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="variables-and-types" id="variables-and-types.md">Variáveis e Tipos: Dominando os Dados 📊</h1><section class="chapter"><h2 id="vari-veis-b-sicas" data-toc="vari-veis-b-sicas">Vari&aacute;veis B&aacute;sicas</h2><section class="chapter"><h3 id="declara-o-e-atribui-o" data-toc="declara-o-e-atribui-o">📝 Declara&ccedil;&atilde;o e Atribui&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+# Declaração básica
+nome=&quot;Terminal Master&quot;
+idade=25
+ativo=true
+
+# Declaração explícita
+declare -i numero=42    # Inteiro
+declare -r CONSTANTE=&quot;Valor&quot;  # Readonly
+declare -l minusculo=&quot;TEXTO&quot;  # Lowercase
+declare -u MAIUSCULO=&quot;texto&quot;  # Uppercase
+</div></section><section class="chapter"><h3 id="escopo-de-vari-veis" data-toc="escopo-de-vari-veis">🔄 Escopo de Vari&aacute;veis</h3><div class="code-block" data-lang="bash">
+# Variável local
+local_var=&quot;Local&quot;
+
+# Variável global
+GLOBAL_VAR=&quot;Global&quot;
+
+# Variável de ambiente
+export ENV_VAR=&quot;Environment&quot;
+</div></section></section><section class="chapter"><h2 id="tipos-de-dados" data-toc="tipos-de-dados">Tipos de Dados</h2><section class="chapter"><h3 id="n-meros" data-toc="n-meros">🔢 N&uacute;meros</h3><div class="code-block" data-lang="bash">
+# Inteiros
+declare -i numero=42
+((numero++))
+((resultado = numero * 2))
+
+# Operações aritméticas
+soma=$((5 + 3))
+produto=$((4 * 3))
+divisao=$((10 / 2))
+modulo=$((15 % 4))
+</div></section><section class="chapter"><h3 id="strings" data-toc="strings">📝 Strings</h3><div class="code-block" data-lang="bash">
+# Manipulação de strings
+texto=&quot;Hello World&quot;
+tamanho=${#texto}
+substring=${texto:0:5}
+substituir=${texto/World/Bash}
+
+# Concatenação
+nome=&quot;Terminal&quot;
+sobrenome=&quot;Master&quot;
+completo=&quot;$nome $sobrenome&quot;
+</div></section><section class="chapter"><h3 id="arrays" data-toc="arrays">📚 Arrays</h3><div class="code-block" data-lang="bash">
+# Array simples
+frutas=(&quot;maçã&quot; &quot;banana&quot; &quot;laranja&quot;)
+echo &quot;${frutas[0]}&quot;      # Primeiro elemento
+echo &quot;${frutas[@]}&quot;      # Todos elementos
+echo &quot;${#frutas[@]}&quot;     # Tamanho do array
+
+# Array associativo
+declare -A usuarios
+usuarios[admin]=&quot;root&quot;
+usuarios[user]=&quot;guest&quot;
+</div></section></section><section class="chapter"><h2 id="manipula-o-de-vari-veis" data-toc="manipula-o-de-vari-veis">Manipula&ccedil;&atilde;o de Vari&aacute;veis</h2><section class="chapter"><h3 id="opera-es-com-vari-veis" data-toc="opera-es-com-vari-veis">🔧 Opera&ccedil;&otilde;es com Vari&aacute;veis</h3><div class="code-block" data-lang="bash">
+# Expansão de variáveis
+echo ${var:-default}     # Valor default
+echo ${var:=default}     # Atribuir default
+echo ${var:?erro}        # Erro se não definida
+echo ${var:+valor}       # Valor se definida
+
+# Manipulação de strings
+echo ${var#prefixo}      # Remove prefixo
+echo ${var%sufixo}       # Remove sufixo
+echo ${var/old/new}      # Substitui primeira ocorrência
+echo ${var//old/new}     # Substitui todas ocorrências
+</div></section><section class="chapter"><h3 id="valida-o-e-teste" data-toc="valida-o-e-teste">📊 Valida&ccedil;&atilde;o e Teste</h3><div class="code-block" data-lang="bash">
+# Testes de variáveis
+[[ -z &quot;$var&quot; ]]         # Vazia?
+[[ -n &quot;$var&quot; ]]         # Não vazia?
+[[ &quot;$a&quot; == &quot;$b&quot; ]]      # Iguais?
+[[ &quot;$num&quot; -eq 42 ]]     # Igual (números)?
+</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><section class="chapter"><h3 id="miss-o-1-manipula-o-de-dados" data-toc="miss-o-1-manipula-o-de-dados">🎯 Miss&atilde;o 1: Manipula&ccedil;&atilde;o de Dados</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Objetivos:
+# 1. Criar e manipular arrays
+# 2. Processar strings
+# 3. Realizar operações matemáticas
+# 4. Validar dados
+</div></section><section class="chapter"><h3 id="miss-o-2-processamento-de-dados" data-toc="miss-o-2-processamento-de-dados">🎯 Miss&atilde;o 2: Processamento de Dados</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Objetivos:
+# 1. Ler dados de arquivo
+# 2. Processar informações
+# 3. Armazenar em estruturas
+# 4. Gerar relatório
+</div></section></section><section class="chapter"><h2 id="melhores-pr-ticas" data-toc="melhores-pr-ticas">Melhores Pr&aacute;ticas</h2><section class="chapter"><h3 id="recomenda-es" data-toc="recomenda-es">✅ Recomenda&ccedil;&otilde;es</h3><ol class="list _decimal" id="-w9bbb_29" type="1"><li class="list__item" id="-w9bbb_30"><p id="-w9bbb_35">Use nomes descritivos</p></li><li class="list__item" id="-w9bbb_31"><p id="-w9bbb_36">Declare tipos quando poss&iacute;vel</p></li><li class="list__item" id="-w9bbb_32"><p id="-w9bbb_37">Inicialize vari&aacute;veis</p></li><li class="list__item" id="-w9bbb_33"><p id="-w9bbb_38">Valide dados de entrada</p></li><li class="list__item" id="-w9bbb_34"><p id="-w9bbb_39">Use constantes apropriadamente</p></li></ol></section><section class="chapter"><h3 id="armadilhas-comuns" data-toc="armadilhas-comuns">⚠️ Armadilhas Comuns</h3><ol class="list _decimal" id="-w9bbb_40" type="1"><li class="list__item" id="-w9bbb_41"><p id="-w9bbb_46">Espa&ccedil;os na atribui&ccedil;&atilde;o</p></li><li class="list__item" id="-w9bbb_42"><p id="-w9bbb_47">Vari&aacute;veis n&atilde;o declaradas</p></li><li class="list__item" id="-w9bbb_43"><p id="-w9bbb_48">Escopo incorreto</p></li><li class="list__item" id="-w9bbb_44"><p id="-w9bbb_49">Tipo de dados errado</p></li><li class="list__item" id="-w9bbb_45"><p id="-w9bbb_50">Falta de aspas</p></li></ol></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="-w9bbb_51" type="1"><li class="list__item" id="-w9bbb_55"><p id="-w9bbb_58"><a href="control-structures.html" id="-w9bbb_59" data-tooltip="Use condições claras">Estruturas de Controle</a></p></li><li class="list__item" id="-w9bbb_56"><p id="-w9bbb_60"><a href="functions.html" id="-w9bbb_61" data-tooltip="Funções: Modularizando seu Código 🧩 # Função simples hello() { echo &quot;Hello, World!&quot; } # Função com parâmetros saudacao() { echo &quot;Olá, $1!&quot; } # Função com retorno soma() { local resultado=$(($1 + $2)) echo &quot;$resultado&quot; } # Parâmetros posicionais…">Fun&ccedil;&otilde;es</a></p></li><li class="list__item" id="-w9bbb_57"><p id="-w9bbb_62"><span id="-w9bbb_63">Manipula&ccedil;&atilde;o Avan&ccedil;ada</span></p></li></ol><aside class="prompt" data-type="tip" data-title="" id="-w9bbb_53"><p id="-w9bbb_64">&quot;Vari&aacute;veis s&atilde;o como caixas m&aacute;gicas: o conte&uacute;do importa mais que o r&oacute;tulo.&quot;</p></aside><div class="code-block" data-lang="none">
+    TIPOS DE DADOS CARREGADOS
+    [████████████░░] 80%
+    STATUS: PROCESSANDO
+    PRÓXIMO: CONTROLE DE FLUXO
+</div></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="script-basics.html" class="navigation-links__prev">Fundamentos de Scripts: Primeiros Passos 📝</a><a href="control-structures.html" class="navigation-links__next">Estruturas de Controle: Dominando o Fluxo 🔄</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>
