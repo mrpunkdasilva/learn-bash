@@ -47,6 +47,8 @@
             <toc-element topic="text-manipulation.md"/>
             <toc-element topic="text-analysis.md"/>
             <toc-element topic="text-processing-automation.md"/>
+            <toc-element topic="awk-advanced.md"/>
+            <toc-element topic="sed-advanced.md"/>
         </toc-element>
         <toc-element topic="system-info.md"/>
     </toc-element>
@@ -67,14 +69,12 @@
     <toc-element topic="system-admin.md">
         <toc-element topic="user-management.md"/>
         <toc-element topic="process-control.md"/>
-        <toc-element topic="system-monitoring.md"/>
-        <toc-element topic="network-admin.md"/>
-        <!-- Adicionando nova seção de segurança avançada -->
-        <toc-element topic="advanced-security.md">
-            <toc-element topic="mac-security.md"/>
-            <toc-element topic="file-encryption.md"/>
-            <toc-element topic="system-audit.md"/>
+        <toc-element topic="system-monitoring.md">
+            <toc-element topic="performance-tuning.md"/>
+            <toc-element topic="capacity-planning.md"/>
+            <toc-element topic="automation-strategies.md"/>
         </toc-element>
+        <toc-element topic="network-admin.md"/>
     </toc-element>
 
     <!-- Referências e Recursos -->

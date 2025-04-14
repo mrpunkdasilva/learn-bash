@@ -66,7 +66,7 @@
 
 ## 📅 TIMELINE
 
-```ascii
+```
 HOJE -> [Caos] -> [Mais Caos] -> [Caos Controlado] -> [Dominação do Bash] -> ∞
 ```
 
@@ -80,7 +80,7 @@ Se você é louco o suficiente para contribuir, siga estas regras:
 
 ## ⚠️ AVISOS IMPORTANTES
 
-```ascii
+```
     ⚠️ AVISO ⚠️
     ==========
     Este guia pode causar:

@@ -164,7 +164,7 @@ check_deps() {
 
 > "A automação é a arte de fazer máquinas trabalharem para você."
 
-```ascii
+```
     AUTOMATION MASTER
     [🤖🤖🤖🤖🤖] 100%
     STATUS: AUTOMAÇÃO DOMINADA
