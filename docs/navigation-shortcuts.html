@@ -1,0 +1,115 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T14:36:42.847865748"><title>Atalhos de Navega&ccedil;&atilde;o: Velocidade M&aacute;xima ⚡ | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"atalhos-do-terminal","level":0,"title":"Atalhos do Terminal","anchor":"#atalhos-do-terminal"},{"id":"atalhos-de-diret-rio","level":0,"title":"Atalhos de Diretório","anchor":"#atalhos-de-diret-rio"},{"id":"atalhos-de-comando","level":0,"title":"Atalhos de Comando","anchor":"#atalhos-de-comando"},{"id":"customiza-o-avan-ada","level":0,"title":"Customização Avançada","anchor":"#customiza-o-avan-ada"},{"id":"produtividade-m-xima","level":0,"title":"Produtividade Máxima","anchor":"#produtividade-m-xima"},{"id":"exerc-cios-e-pr-ticas","level":0,"title":"Exercícios e Práticas","anchor":"#exerc-cios-e-pr-ticas"},{"id":"dicas-de-performance","level":0,"title":"Dicas de Performance","anchor":"#dicas-de-performance"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Atalhos de Navega&ccedil;&atilde;o: Velocidade M&aacute;xima ⚡ | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/navigation-shortcuts.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Atalhos de Navega&ccedil;&atilde;o: Velocidade M&aacute;xima ⚡ | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/navigation-shortcuts.html#webpage",
+    "url": "writerside-documentation/navigation-shortcuts.html",
+    "name": "Atalhos de Navega&ccedil;&atilde;o: Velocidade M&aacute;xima ⚡ | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="navigation-shortcuts" data-main-title="Atalhos de Navegação: Velocidade Máxima ⚡" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="essential-commands.md|Comandos Essenciais: Dominando as Ferramentas 🛠️///navigation-commands.md|Comandos de Navegação: Movendo-se como um Ninja 🥷"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="navigation-shortcuts" id="navigation-shortcuts.md">Atalhos de Navegação: Velocidade Máxima ⚡</h1><section class="chapter"><h2 id="atalhos-do-terminal" data-toc="atalhos-do-terminal">Atalhos do Terminal</h2><section class="chapter"><h3 id="movimenta-o-no-comando" data-toc="movimenta-o-no-comando">Movimenta&ccedil;&atilde;o no Comando</h3><div class="code-block" data-lang="bash">
+# Movimentação básica
+CTRL + A              # Início da linha
+CTRL + E              # Fim da linha
+ALT + B               # Palavra anterior
+ALT + F               # Próxima palavra
+CTRL + XX             # Alterna entre início e posição atual
+
+# Edição
+CTRL + W              # Apaga palavra anterior
+CTRL + U              # Apaga do cursor até início
+CTRL + K              # Apaga do cursor até fim
+CTRL + Y              # Cola último texto apagado
+ALT + D               # Apaga próxima palavra
+</div></section><section class="chapter"><h3 id="hist-rico-e-busca" data-toc="hist-rico-e-busca">Hist&oacute;rico e Busca</h3><div class="code-block" data-lang="bash">
+# Navegação no histórico
+CTRL + R              # Busca reversa no histórico
+CTRL + S              # Busca para frente no histórico
+CTRL + G              # Cancela busca
+!!                    # Repete último comando
+!$                    # Último argumento do comando anterior
+!*                    # Todos argumentos do comando anterior
+
+# Modificadores de histórico
+!!:p                  # Exibe último comando sem executar
+!-n                   # Executa comando n posições atrás
+!string               # Executa último comando começando com string
+^string1^string2^     # Substitui string1 por string2 no último comando
+</div></section></section><section class="chapter"><h2 id="atalhos-de-diret-rio" data-toc="atalhos-de-diret-rio">Atalhos de Diret&oacute;rio</h2><section class="chapter"><h3 id="jumping-directories" data-toc="jumping-directories">Jumping Directories</h3><div class="code-block" data-lang="bash">
+# Atalhos básicos
+cd -                  # Último diretório
+cd                    # Home
+cd ~user              # Home do usuário
+pushd +n              # Rotaciona n posições na pilha
+popd                  # Remove topo da pilha
+
+# Bookmarks personalizados
+export CDPATH=.:~/projetos:/var/www
+alias cdp='cd ~/projetos'
+alias cdd='cd ~/Downloads'
+alias cdw='cd ~/workspace'
+</div></section><section class="chapter"><h3 id="smart-directory-navigation" data-toc="smart-directory-navigation">Smart Directory Navigation</h3><div class="code-block" data-lang="bash">
+# Função de jump inteligente
+j() {
+    local dir
+    dir=$(find ~/projetos -type d -name &quot;*$1*&quot; | head -1)
+    if [ -d &quot;$dir&quot; ]; then
+        cd &quot;$dir&quot;
+    else
+        echo &quot;Diretório não encontrado&quot;
+    fi
+}
+
+# Auto-jumping baseado em frequência
+frecent() {
+    local dir
+    dir=$(sort -rn ~/.frecent | grep -i &quot;$1&quot; | head -1 | cut -f2)
+    [ -d &quot;$dir&quot; ] &amp;&amp; cd &quot;$dir&quot;
+}
+</div></section></section><section class="chapter"><h2 id="atalhos-de-comando" data-toc="atalhos-de-comando">Atalhos de Comando</h2><section class="chapter"><h3 id="command-line-editing" data-toc="command-line-editing">Command Line Editing</h3><div class="code-block" data-lang="bash">
+# Edição rápida
+fc                    # Edita último comando
+CTRL + X + E          # Edita comando atual no editor
+set -o vi             # Modo vi
+set -o emacs          # Modo emacs (padrão)
+
+# Substituições rápidas
+^foo^bar              # Substitui primeira ocorrência
+!!:gs/foo/bar/        # Substitui todas ocorrências
+</div></section><section class="chapter"><h3 id="command-completion" data-toc="command-completion">Command Completion</h3><div class="code-block" data-lang="bash">
+# Tab completion avançado
+complete -W &quot;$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v &quot;\[&quot;`;)&quot; ssh
+complete -F _command sudo
+</div></section></section><section class="chapter"><h2 id="customiza-o-avan-ada" data-toc="customiza-o-avan-ada">Customiza&ccedil;&atilde;o Avan&ccedil;ada</h2><section class="chapter"><h3 id="aliases-inteligentes" data-toc="aliases-inteligentes">Aliases Inteligentes</h3><div class="code-block" data-lang="bash">
+# Aliases condicionais
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias ls='ls --color=auto'
+
+# Aliases com funções
+mcd() { mkdir -p &quot;$1&quot; &amp;&amp; cd &quot;$1&quot;; }
+cls() { cd &quot;$1&quot; &amp;&amp; ls; }
+</div></section><section class="chapter"><h3 id="keyboard-shortcuts" data-toc="keyboard-shortcuts">Keyboard Shortcuts</h3><div class="code-block" data-lang="bash">
+# Bind customizado
+bind '&quot;\e[A&quot;: history-search-backward'
+bind '&quot;\e[B&quot;: history-search-forward'
+bind '&quot;\C-p&quot;: previous-history'
+bind '&quot;\C-n&quot;: next-history'
+</div></section></section><section class="chapter"><h2 id="produtividade-m-xima" data-toc="produtividade-m-xima">Produtividade M&aacute;xima</h2><section class="chapter"><h3 id="workflow-optimization" data-toc="workflow-optimization">Workflow Optimization</h3><div class="code-block" data-lang="bash">
+# Funções de produtividade
+function mkcd() { mkdir -p &quot;$@&quot; &amp;&amp; cd &quot;$_&quot;; }
+function up() { cd $(printf &quot;%0.s../&quot; $(seq 1 $1)); }
+function back() { cd &quot;$OLDPWD&quot;; }
+</div></section><section class="chapter"><h3 id="task-automation" data-toc="task-automation">Task Automation</h3><div class="code-block" data-lang="bash">
+# Scripts de automação
+alias update='sudo apt update &amp;&amp; sudo apt upgrade'
+alias serve='python -m http.server'
+alias ports='netstat -tulanp'
+</div></section></section><section class="chapter"><h2 id="exerc-cios-e-pr-ticas" data-toc="exerc-cios-e-pr-ticas">Exerc&iacute;cios e Pr&aacute;ticas</h2><section class="chapter"><h3 id="b-sicos" data-toc="b-sicos">B&aacute;sicos</h3><ol class="list _decimal" id="-g4z8k0_32" type="1"><li class="list__item" id="-g4z8k0_33"><p id="-g4z8k0_37">Configure aliases b&aacute;sicos</p></li><li class="list__item" id="-g4z8k0_34"><p id="-g4z8k0_38">Pratique atalhos de movimenta&ccedil;&atilde;o</p></li><li class="list__item" id="-g4z8k0_35"><p id="-g4z8k0_39">Use hist&oacute;rico eficientemente</p></li><li class="list__item" id="-g4z8k0_36"><p id="-g4z8k0_40">Implemente bookmarks simples</p></li></ol></section><section class="chapter"><h3 id="avan-ados" data-toc="avan-ados">Avan&ccedil;ados</h3><ol class="list _decimal" id="-g4z8k0_41" type="1"><li class="list__item" id="-g4z8k0_42"><p id="-g4z8k0_46">Crie fun&ccedil;&otilde;es de navega&ccedil;&atilde;o customizadas</p></li><li class="list__item" id="-g4z8k0_43"><p id="-g4z8k0_47">Configure completion avan&ccedil;ado</p></li><li class="list__item" id="-g4z8k0_44"><p id="-g4z8k0_48">Implemente sistema de aliases din&acirc;micos</p></li><li class="list__item" id="-g4z8k0_45"><p id="-g4z8k0_49">Desenvolva workflows automatizados</p></li></ol></section></section><section class="chapter"><h2 id="dicas-de-performance" data-toc="dicas-de-performance">Dicas de Performance</h2><ol class="list _decimal" id="-g4z8k0_50" type="1"><li class="list__item" id="-g4z8k0_53"><p id="-g4z8k0_58">Memorize atalhos mais usados</p></li><li class="list__item" id="-g4z8k0_54"><p id="-g4z8k0_59">Mantenha aliases organizados</p></li><li class="list__item" id="-g4z8k0_55"><p id="-g4z8k0_60">Use completion sempre que poss&iacute;vel</p></li><li class="list__item" id="-g4z8k0_56"><p id="-g4z8k0_61">Automatize tarefas repetitivas</p></li><li class="list__item" id="-g4z8k0_57"><p id="-g4z8k0_62">Mantenha hist&oacute;rico limpo e &uacute;til</p></li></ol><aside class="prompt" data-type="tip" data-title="" id="-g4z8k0_52"><p id="-g4z8k0_63">&quot;A velocidade vem da pr&aacute;tica, mas os atalhos s&atilde;o o caminho mais r&aacute;pido para l&aacute;.&quot;</p></aside></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="wildcards-globbing.html" class="navigation-links__prev">Wildcards e Globbing: Dominando Padr&otilde;es 🎯</a><a href="navigation-automation.html" class="navigation-links__next">Automa&ccedil;&atilde;o de Navega&ccedil;&atilde;o: Poder M&aacute;ximo 🤖</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

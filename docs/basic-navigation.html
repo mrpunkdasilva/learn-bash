@@ -1,0 +1,101 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T14:36:42.833163192"><title>Fundamentos da Navega&ccedil;&atilde;o 🎯 | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"conceitos-b-sicos","level":0,"title":"Conceitos Básicos","anchor":"#conceitos-b-sicos"},{"id":"truques-e-dicas","level":0,"title":"Truques e Dicas","anchor":"#truques-e-dicas"},{"id":"configura-es-teis","level":0,"title":"Configurações Úteis","anchor":"#configura-es-teis"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"troubleshooting-comum","level":0,"title":"Troubleshooting Comum","anchor":"#troubleshooting-comum"},{"id":"dicas-de-produtividade","level":0,"title":"Dicas de Produtividade","anchor":"#dicas-de-produtividade"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Fundamentos da Navega&ccedil;&atilde;o 🎯 | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/basic-navigation.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Fundamentos da Navega&ccedil;&atilde;o 🎯 | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/basic-navigation.html#webpage",
+    "url": "writerside-documentation/basic-navigation.html",
+    "name": "Fundamentos da Navega&ccedil;&atilde;o 🎯 | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="basic-navigation" data-main-title="Fundamentos da Navegação 🎯" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="essential-commands.md|Comandos Essenciais: Dominando as Ferramentas 🛠️///navigation-commands.md|Comandos de Navegação: Movendo-se como um Ninja 🥷"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="basic-navigation" id="basic-navigation.md">Fundamentos da Navegação 🎯</h1><section class="chapter"><h2 id="conceitos-b-sicos" data-toc="conceitos-b-sicos">Conceitos B&aacute;sicos</h2><section class="chapter"><h3 id="pwd-print-working-directory" data-toc="pwd-print-working-directory">PWD - Print Working Directory</h3><div class="code-block" data-lang="bash">
+pwd                     # Mostra diretório atual
+pwd -P                 # Mostra caminho físico (resolve links simbólicos)
+pwd -L                 # Mostra caminho lógico (padrão)
+echo $PWD              # Variável de ambiente do diretório atual
+</div></section><section class="chapter"><h3 id="ls-list-directory-contents" data-toc="ls-list-directory-contents">LS - List Directory Contents</h3><div class="code-block" data-lang="bash">
+# Listagens básicas
+ls                      # Lista simples
+ls -l                   # Formato longo
+ls -a                   # Mostra arquivos ocultos
+ls -h                   # Tamanhos legíveis (human-readable)
+ls -R                   # Lista recursiva
+ls -S                   # Ordena por tamanho
+ls -t                   # Ordena por data de modificação
+ls -X                   # Ordena por extensão
+
+# Combinações úteis
+ls -lah                 # Listagem completa e legível
+ls -ltr                 # Ordem reversa por data
+ls -ld */               # Lista apenas diretórios
+ls -1                   # Uma entrada por linha
+</div></section><section class="chapter"><h3 id="cd-change-directory" data-toc="cd-change-directory">CD - Change Directory</h3><div class="code-block" data-lang="bash">
+# Navegação básica
+cd /                    # Vai para raiz
+cd ~                    # Home do usuário
+cd                      # Também vai para home
+cd ..                   # Sobe um nível
+cd -                    # Último diretório
+
+# Navegação avançada
+cd ~/Documents          # Caminho relativo ao home
+cd &quot;Pasta Com Espaços&quot;  # Caminhos com espaços
+cd ../pasta_irmã        # Navegação relativa
+</div></section></section><section class="chapter"><h2 id="truques-e-dicas" data-toc="truques-e-dicas">Truques e Dicas</h2><section class="chapter"><h3 id="autocompletar" data-toc="autocompletar">Autocompletar</h3><div class="code-block" data-lang="bash">
+# Use TAB para:
+cd /e&lt;TAB&gt;             # Completa para /etc
+cd /u/l/b&lt;TAB&gt;         # Completa caminhos longos
+ls *.p&lt;TAB&gt;            # Completa arquivos por padrão
+</div></section><section class="chapter"><h3 id="hist-rico-de-navega-o" data-toc="hist-rico-de-navega-o">Hist&oacute;rico de Navega&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+history | grep cd      # Mostra comandos cd anteriores
+!!                     # Repete último comando
+!cd                    # Repete último comando cd
+</div></section><section class="chapter"><h3 id="atalhos-do-shell" data-toc="atalhos-do-shell">Atalhos do Shell</h3><div class="code-block" data-lang="bash">
+CTRL + L               # Limpa a tela
+CTRL + W               # Apaga última palavra
+CTRL + U               # Apaga linha inteira
+CTRL + A               # Início da linha
+CTRL + E               # Fim da linha
+</div></section></section><section class="chapter"><h2 id="configura-es-teis" data-toc="configura-es-teis">Configura&ccedil;&otilde;es &Uacute;teis</h2><section class="chapter"><h3 id="aliases-de-navega-o" data-toc="aliases-de-navega-o">Aliases de Navega&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+# Adicione ao seu .bashrc
+alias ll='ls -lah'
+alias la='ls -A'
+alias l='ls -CF'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+</div></section><section class="chapter"><h3 id="fun-es-de-navega-o" data-toc="fun-es-de-navega-o">Fun&ccedil;&otilde;es de Navega&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+# Função para criar e entrar em diretório
+mkcd() {
+    mkdir -p &quot;$1&quot; &amp;&amp; cd &quot;$1&quot;
+}
+
+# Função para voltar N diretórios
+up() {
+    local d=&quot;&quot;
+    limit=$1
+    for ((i=1 ; i &lt;= limit ; i++))
+        do
+            d=$d/..
+        done
+    d=$(echo $d | sed 's/^\///')
+    if [ -z &quot;$d&quot; ]; then
+        d=..
+    fi
+    cd $d
+}
+</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><section class="chapter"><h3 id="n-vel-iniciante" data-toc="n-vel-iniciante">N&iacute;vel Iniciante</h3><ol class="list _decimal" id="-tln24v_28" type="1"><li class="list__item" id="-tln24v_29"><p id="-tln24v_33">Liste todos os arquivos no seu diret&oacute;rio home, incluindo ocultos</p></li><li class="list__item" id="-tln24v_30"><p id="-tln24v_34">Navegue at&eacute; /etc e liste seu conte&uacute;do em formato longo</p></li><li class="list__item" id="-tln24v_31"><p id="-tln24v_35">Volte para seu diret&oacute;rio home usando diferentes m&eacute;todos</p></li><li class="list__item" id="-tln24v_32"><p id="-tln24v_36">Use pwd para verificar sua localiza&ccedil;&atilde;o ap&oacute;s cada movimento</p></li></ol></section><section class="chapter"><h3 id="n-vel-intermedi-rio" data-toc="n-vel-intermedi-rio">N&iacute;vel Intermedi&aacute;rio</h3><ol class="list _decimal" id="-tln24v_37" type="1"><li class="list__item" id="-tln24v_38"><p id="-tln24v_42">Crie uma estrutura de diret&oacute;rios aninhada e navegue por ela</p></li><li class="list__item" id="-tln24v_39"><p id="-tln24v_43">Use ls com diferentes combina&ccedil;&otilde;es de flags</p></li><li class="list__item" id="-tln24v_40"><p id="-tln24v_44">Pratique o uso de autocompletar em caminhos longos</p></li><li class="list__item" id="-tln24v_41"><p id="-tln24v_45">Experimente os atalhos do shell</p></li></ol></section><section class="chapter"><h3 id="n-vel-avan-ado" data-toc="n-vel-avan-ado">N&iacute;vel Avan&ccedil;ado</h3><ol class="list _decimal" id="-tln24v_46" type="1"><li class="list__item" id="-tln24v_47"><p id="-tln24v_51">Configure aliases personalizados para navega&ccedil;&atilde;o</p></li><li class="list__item" id="-tln24v_48"><p id="-tln24v_52">Crie fun&ccedil;&otilde;es de navega&ccedil;&atilde;o customizadas</p></li><li class="list__item" id="-tln24v_49"><p id="-tln24v_53">Implemente um sistema de bookmarks para diret&oacute;rios</p></li><li class="list__item" id="-tln24v_50"><p id="-tln24v_54">Pratique navega&ccedil;&atilde;o usando apenas atalhos do teclado</p></li></ol></section></section><section class="chapter"><h2 id="troubleshooting-comum" data-toc="troubleshooting-comum">Troubleshooting Comum</h2><section class="chapter"><h3 id="problemas-e-solu-es" data-toc="problemas-e-solu-es">Problemas e Solu&ccedil;&otilde;es</h3><div class="code-block" data-lang="bash">
+# Permissão negada
+ls -ld /caminho        # Verificar permissões
+sudo ls /caminho       # Acessar com privilégios
+
+# Diretório não encontrado
+pwd                    # Confirmar localização atual
+ls -la ..             # Verificar diretório pai
+find / -name &quot;dir&quot;    # Procurar diretório perdido
+</div></section></section><section class="chapter"><h2 id="dicas-de-produtividade" data-toc="dicas-de-produtividade">Dicas de Produtividade</h2><ol class="list _decimal" id="-tln24v_57" type="1"><li class="list__item" id="-tln24v_60"><p id="-tln24v_65">Use o hist&oacute;rico do shell sabiamente</p></li><li class="list__item" id="-tln24v_61"><p id="-tln24v_66">Aprenda os atalhos do teclado</p></li><li class="list__item" id="-tln24v_62"><p id="-tln24v_67">Configure aliases para comandos frequentes</p></li><li class="list__item" id="-tln24v_63"><p id="-tln24v_68">Mantenha uma estrutura de diret&oacute;rios organizada</p></li><li class="list__item" id="-tln24v_64"><p id="-tln24v_69">Use autocompletar sempre que poss&iacute;vel</p></li></ol><aside class="prompt" data-type="tip" data-title="" id="-tln24v_59"><p id="-tln24v_70">&quot;A navega&ccedil;&atilde;o eficiente no terminal &eacute; como um superpoder - quanto mais voc&ecirc; pratica, mais poderoso se torna.&quot;</p></aside></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="navigation-commands.html" class="navigation-links__prev">Comandos de Navega&ccedil;&atilde;o: Movendo-se como um Ninja 🥷</a><a href="advanced-navigation.html" class="navigation-links__next">Navega&ccedil;&atilde;o Avan&ccedil;ada 🚀</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

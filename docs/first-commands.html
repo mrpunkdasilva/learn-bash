@@ -1,0 +1,255 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T14:36:42.835904967"><title>Primeiros Comandos: Hackeando a Matrix 🚀 | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"comandos-b-sicos-de-sobreviv-ncia","level":0,"title":"Comandos Básicos de Sobrevivência","anchor":"#comandos-b-sicos-de-sobreviv-ncia"},{"id":"modo-tutorial-interativo-expandido","level":0,"title":"Modo Tutorial Interativo Expandido","anchor":"#modo-tutorial-interativo-expandido"},{"id":"comandos-de-informa-o-detalhados","level":0,"title":"Comandos de Informação Detalhados","anchor":"#comandos-de-informa-o-detalhados"},{"id":"primeiros-scripts-avan-ados","level":0,"title":"Primeiros Scripts Avançados","anchor":"#primeiros-scripts-avan-ados"},{"id":"combinando-comandos-t-cnicas-avan-adas","level":0,"title":"Combinando Comandos - Técnicas Avançadas","anchor":"#combinando-comandos-t-cnicas-avan-adas"},{"id":"exerc-cios-pr-ticos-avan-ados","level":0,"title":"Exercícios Práticos Avançados","anchor":"#exerc-cios-pr-ticos-avan-ados"},{"id":"troubleshooting-avan-ado","level":0,"title":"Troubleshooting Avançado","anchor":"#troubleshooting-avan-ado"},{"id":"power-ups-avan-ados-aliases-e-fun-es","level":0,"title":"Power-Ups Avançados (Aliases e Funções)","anchor":"#power-ups-avan-ados-aliases-e-fun-es"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Primeiros Comandos: Hackeando a Matrix 🚀 | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/first-commands.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Primeiros Comandos: Hackeando a Matrix 🚀 | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/first-commands.html#webpage",
+    "url": "writerside-documentation/first-commands.html",
+    "name": "Primeiros Comandos: Hackeando a Matrix 🚀 | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="first-commands" data-main-title="Primeiros Comandos: Hackeando a Matrix 🚀" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="basics.md|Fundamentos do Bash: Seu Primeiro Jack-In 🔌"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="first-commands" id="first-commands.md">Primeiros Comandos: Hackeando a Matrix 🚀</h1><aside class="prompt" data-type="note" data-title="" id="r92vwf_3"><p id="r92vwf_14">Confira o script de exemplo em <code class="code" id="r92vwf_15">code/module1/first-commands/basic_operations.sh</code> para ver uma demonstra&ccedil;&atilde;o pr&aacute;tica das opera&ccedil;&otilde;es b&aacute;sicas com arquivos e diret&oacute;rios.</p></aside><div class="code-block" data-lang="none">
+    INICIANDO SEQUÊNCIA DE COMANDOS...
+    ==================================
+    STATUS: PRONTO PARA HACKEAR
+    NÍVEL DE ACESSO: INICIANTE
+    PERIGO: BAIXO (por enquanto)
+    ==================================
+</div><section class="chapter"><h2 id="comandos-b-sicos-de-sobreviv-ncia" data-toc="comandos-b-sicos-de-sobreviv-ncia">Comandos B&aacute;sicos de Sobreviv&ecirc;ncia</h2><section class="chapter"><h3 id="reconhecimento-do-terreno" data-toc="reconhecimento-do-terreno">🔍 Reconhecimento do Terreno</h3><section class="chapter"><h4 id="pwd-print-working-directory" data-toc="pwd-print-working-directory">PWD (Print Working Directory)</h4><div class="code-block" data-lang="bash">
+pwd     # Mostra o caminho completo do diretório atual
+pwd -P  # Mostra o caminho físico (resolve links simbólicos)
+pwd -L  # Mostra o caminho lógico (padrão)
+</div></section><section class="chapter"><h4 id="ls-list" data-toc="ls-list">LS (List)</h4><div class="code-block" data-lang="bash">
+ls              # Lista arquivos e diretórios
+ls -l           # Formato longo com detalhes
+ls -a           # Mostra arquivos ocultos
+ls -h           # Tamanhos legíveis (1K, 234M, 2G)
+ls -R           # Lista recursiva
+ls -lart        # Combinação: long, hidden, reverse, time
+</div></section><section class="chapter"><h4 id="cd-change-directory" data-toc="cd-change-directory">CD (Change Directory)</h4><div class="code-block" data-lang="bash">
+cd              # Vai para o diretório home
+cd -            # Volta para o último diretório
+cd ..           # Sobe um nível
+cd ../../       # Sobe dois níveis
+cd ~/Documents  # Caminho absoluto
+cd ./pasta      # Caminho relativo
+</div></section><section class="chapter"><h4 id="clear" data-toc="clear">CLEAR</h4><div class="code-block" data-lang="bash">
+clear           # Limpa a tela
+Ctrl + L        # Atalho para limpar
+reset           # Reinicia o terminal completamente
+</div></section></section><section class="chapter"><h3 id="opera-es-de-arquivo-avan-adas" data-toc="opera-es-de-arquivo-avan-adas">📂 Opera&ccedil;&otilde;es de Arquivo Avan&ccedil;adas</h3><section class="chapter"><h4 id="touch" data-toc="touch">TOUCH</h4><div class="code-block" data-lang="bash">
+touch arquivo.txt          # Cria arquivo ou atualiza timestamp
+touch -t 202312311200     # Define data/hora específica
+touch -r ref.txt novo.txt # Copia timestamp de outro arquivo
+</div></section><section class="chapter"><h4 id="cat-concatenate" data-toc="cat-concatenate">CAT (Concatenate)</h4><div class="code-block" data-lang="bash">
+cat arquivo.txt           # Mostra conteúdo
+cat -n arquivo.txt       # Mostra números das linhas
+cat -b arquivo.txt       # Numera apenas linhas não vazias
+cat arq1.txt arq2.txt    # Concatena arquivos
+cat &gt; arquivo.txt        # Cria arquivo e aguarda input
+</div></section><section class="chapter"><h4 id="cp-copy" data-toc="cp-copy">CP (Copy)</h4><div class="code-block" data-lang="bash">
+cp origem.txt destino.txt     # Copia arquivo
+cp -r pasta1 pasta2          # Copia diretório recursivamente
+cp -i arquivo.txt backup/    # Modo interativo
+cp -u *.txt destino/         # Copia apenas arquivos mais novos
+cp -v arquivo.txt ~/backup/  # Modo verbose
+</div></section><section class="chapter"><h4 id="mv-move" data-toc="mv-move">MV (Move)</h4><div class="code-block" data-lang="bash">
+mv arquivo.txt ~/Documents/   # Move arquivo
+mv arquivo.txt novo_nome.txt # Renomeia arquivo
+mv -i *.txt destino/         # Modo interativo
+mv -u *.txt destino/         # Move apenas arquivos mais novos
+mv -v arquivo.txt ~/backup/  # Modo verbose
+</div></section></section></section><section class="chapter"><h2 id="modo-tutorial-interativo-expandido" data-toc="modo-tutorial-interativo-expandido">Modo Tutorial Interativo Expandido</h2><section class="chapter"><h3 id="mini-game-dominando-o-terminal" data-toc="mini-game-dominando-o-terminal">🎮 Mini-Game: Dominando o Terminal</h3><section class="chapter"><h4 id="n-vel-1-reconhecimento-b-sico" data-toc="n-vel-1-reconhecimento-b-sico">N&iacute;vel 1: Reconhecimento B&aacute;sico</h4><div class="code-block" data-lang="bash">
+# Missão: Explorar o Território
+pwd                         # Identifique sua localização
+ls -la                     # Analise o ambiente detalhadamente
+cd ~                       # Retorne à base (home)
+clear                      # Limpe seus rastros
+
+# Checkpoint 1: Navegação Avançada
+cd /                       # Vá para a raiz do sistema
+ls -lh                     # Analise com tamanhos legíveis
+cd /etc                    # Entre no diretório de configurações
+cd -                       # Volte ao último diretório
+</div></section><section class="chapter"><h4 id="n-vel-2-manipula-o-de-arquivos" data-toc="n-vel-2-manipula-o-de-arquivos">N&iacute;vel 2: Manipula&ccedil;&atilde;o de Arquivos</h4><div class="code-block" data-lang="bash">
+# Missão: Criar sua Base de Operações
+mkdir operacao_alpha       # Crie sua base secreta
+cd operacao_alpha         # Entre na base
+touch log.txt config.txt   # Crie arquivos de missão
+ls -la                    # Verifique a criação
+
+# Checkpoint 2: Modificação de Arquivos
+echo &quot;Início da missão&quot; &gt; log.txt     # Adicione conteúdo
+echo &quot;Status: Ativo&quot; &gt;&gt; log.txt       # Append conteúdo
+cat log.txt                           # Verifique o conteúdo
+cp log.txt backup_log.txt            # Crie backup
+</div></section><section class="chapter"><h4 id="n-vel-3-opera-es-combinadas" data-toc="n-vel-3-opera-es-combinadas">N&iacute;vel 3: Opera&ccedil;&otilde;es Combinadas</h4><div class="code-block" data-lang="bash">
+# Missão: Manipulação Avançada
+mkdir -p projetos/{alfa,beta,gamma}   # Crie estrutura complexa
+touch projetos/{alfa,beta,gamma}/readme.txt  # Múltiplos arquivos
+ls -R projetos                        # Verifique estrutura
+find projetos -name &quot;*.txt&quot;          # Localize arquivos
+</div></section></section></section><section class="chapter"><h2 id="comandos-de-informa-o-detalhados" data-toc="comandos-de-informa-o-detalhados">Comandos de Informa&ccedil;&atilde;o Detalhados</h2><section class="chapter"><h3 id="status-e-ajuda-avan-ada" data-toc="status-e-ajuda-avan-ada">📊 Status e Ajuda Avan&ccedil;ada</h3><section class="chapter"><h4 id="informa-es-do-sistema" data-toc="informa-es-do-sistema">Informa&ccedil;&otilde;es do Sistema</h4><div class="code-block" data-lang="bash">
+date                  # Data e hora atual
+date +&quot;%Y-%m-%d&quot;     # Formato personalizado
+whoami               # Usuário atual
+id                   # Informações de ID do usuário
+uname -a             # Todas as informações do sistema
+hostname             # Nome do computador
+</div></section><section class="chapter"><h4 id="ajuda-e-documenta-o" data-toc="ajuda-e-documenta-o">Ajuda e Documenta&ccedil;&atilde;o</h4><div class="code-block" data-lang="bash">
+man comando          # Manual completo
+comando --help       # Ajuda rápida
+info comando         # Documentação detalhada
+whatis comando       # Descrição curta
+whereis comando      # Localiza binário, fonte e manual
+</div></section></section><section class="chapter"><h3 id="dicas-r-pidas-avan-adas" data-toc="dicas-r-pidas-avan-adas">💡 Dicas R&aacute;pidas Avan&ccedil;adas</h3><div class="table-wrapper"><table class="wide" id="r92vwf_47"><thead><tr class="ijRowHead" id="r92vwf_48"><th id="r92vwf_55"><p>Comando</p></th><th id="r92vwf_56"><p>Descri&ccedil;&atilde;o</p></th><th id="r92vwf_57"><p>N&iacute;vel de Poder</p></th><th id="r92vwf_58"><p>Exemplo</p></th></tr></thead><tbody><tr id="r92vwf_49"><td id="r92vwf_59"><p><code class="code" id="r92vwf_63">!!</code></p></td><td id="r92vwf_60"><p>Repete &uacute;ltimo comando</p></td><td id="r92vwf_61"><p>⚡⚡</p></td><td id="r92vwf_62"><p><code class="code" id="r92vwf_64">sudo !!</code></p></td></tr><tr id="r92vwf_50"><td id="r92vwf_65"><p><code class="code" id="r92vwf_69">!$</code></p></td><td id="r92vwf_66"><p>&Uacute;ltimo argumento</p></td><td id="r92vwf_67"><p>⚡⚡⚡</p></td><td id="r92vwf_68"><p><code class="code" id="r92vwf_70">mkdir pasta &amp;&amp; cd !$</code></p></td></tr><tr id="r92vwf_51"><td id="r92vwf_71"><p><code class="code" id="r92vwf_75">!*</code></p></td><td id="r92vwf_72"><p>Todos argumentos</p></td><td id="r92vwf_73"><p>⚡⚡⚡</p></td><td id="r92vwf_74"><p><code class="code" id="r92vwf_76">echo !*</code></p></td></tr><tr id="r92vwf_52"><td id="r92vwf_77"><p><code class="code" id="r92vwf_81">!:n</code></p></td><td id="r92vwf_78"><p>n-&eacute;simo argumento</p></td><td id="r92vwf_79"><p>⚡⚡⚡⚡</p></td><td id="r92vwf_80"><p><code class="code" id="r92vwf_82">!:2</code></p></td></tr><tr id="r92vwf_53"><td id="r92vwf_83"><p><code class="code" id="r92vwf_87">^old^new</code></p></td><td id="r92vwf_84"><p>Substitui no &uacute;ltimo comando</p></td><td id="r92vwf_85"><p>⚡⚡⚡⚡</p></td><td id="r92vwf_86"><p><code class="code" id="r92vwf_88">^foo^bar</code></p></td></tr><tr id="r92vwf_54"><td id="r92vwf_89"><p><code class="code" id="r92vwf_93">history</code></p></td><td id="r92vwf_90"><p>Hist&oacute;rico de comandos</p></td><td id="r92vwf_91"><p>⚡⚡⚡⚡</p></td><td id="r92vwf_92"><p><code class="code" id="r92vwf_94">history \| grep git</code></p></td></tr></tbody></table></div></section></section><section class="chapter"><h2 id="primeiros-scripts-avan-ados" data-toc="primeiros-scripts-avan-ados">Primeiros Scripts Avan&ccedil;ados</h2><section class="chapter"><h3 id="scripts-de-poder" data-toc="scripts-de-poder">🛠️ Scripts de Poder</h3><section class="chapter"><h4 id="script-de-backup-b-sico" data-toc="script-de-backup-b-sico">Script de Backup B&aacute;sico</h4><div class="code-block" data-lang="bash">
+#!/bin/bash
+# backup_script.sh
+echo &quot;Iniciando backup...&quot;
+
+# Variáveis
+SOURCE_DIR=&quot;$HOME/Documents&quot;
+BACKUP_DIR=&quot;$HOME/Backups&quot;
+DATE=$(date +%Y%m%d)
+
+# Criar diretório de backup
+mkdir -p &quot;$BACKUP_DIR&quot;
+
+# Realizar backup
+tar -czf &quot;$BACKUP_DIR/backup_$DATE.tar.gz&quot; &quot;$SOURCE_DIR&quot;
+
+echo &quot;Backup completo: backup_$DATE.tar.gz&quot;
+</div></section><section class="chapter"><h4 id="script-de-monitoramento" data-toc="script-de-monitoramento">Script de Monitoramento</h4><div class="code-block" data-lang="bash">
+#!/bin/bash
+# monitor.sh
+echo &quot;Monitorando sistema...&quot;
+
+# Informações do sistema
+echo &quot;CPU Usage:&quot;
+top -bn1 | head -n 3
+
+echo &quot;Memory Usage:&quot;
+free -h
+
+echo &quot;Disk Usage:&quot;
+df -h
+</div></section></section></section><section class="chapter"><h2 id="combinando-comandos-t-cnicas-avan-adas" data-toc="combinando-comandos-t-cnicas-avan-adas">Combinando Comandos - T&eacute;cnicas Avan&ccedil;adas</h2><section class="chapter"><h3 id="operadores-e-redirecionamento" data-toc="operadores-e-redirecionamento">🔗 Operadores e Redirecionamento</h3><section class="chapter"><h4 id="operadores-l-gicos" data-toc="operadores-l-gicos">Operadores L&oacute;gicos</h4><div class="code-block" data-lang="bash">
+# AND (&amp;&amp;) - Execução condicional
+mkdir projeto &amp;&amp; cd projeto &amp;&amp; touch readme.md
+
+# OR (||) - Fallback
+ping -c 1 google.com || echo &quot;Sem conexão&quot;
+
+# Semicolon (;) - Execução sequencial
+echo &quot;Início&quot; ; sleep 2 ; echo &quot;Fim&quot;
+</div></section><section class="chapter"><h4 id="redirecionamento" data-toc="redirecionamento">Redirecionamento</h4><div class="code-block" data-lang="bash">
+# Output redirection
+echo &quot;log entry&quot; &gt; log.txt      # Sobrescreve
+echo &quot;new entry&quot; &gt;&gt; log.txt     # Append
+ls /naoexiste 2&gt; erro.log      # Redireciona erro
+
+# Pipe
+ps aux | grep bash             # Filtra processos
+ls -la | sort -k5 -n          # Ordena por tamanho
+cat arquivo.txt | wc -l       # Conta linhas
+</div></section></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos-avan-ados" data-toc="exerc-cios-pr-ticos-avan-ados">Exerc&iacute;cios Pr&aacute;ticos Avan&ccedil;ados</h2><section class="chapter"><h3 id="miss-es-de-elite" data-toc="miss-es-de-elite">🎯 Miss&otilde;es de Elite</h3><section class="chapter"><h4 id="miss-o-1-reconhecimento-avan-ado" data-toc="miss-o-1-reconhecimento-avan-ado">Miss&atilde;o #1: Reconhecimento Avan&ccedil;ado</h4><div class="code-block" data-lang="bash">
+# Objetivo: Mapeamento completo do sistema
+pwd
+ls -laR | grep &quot;^d&quot;           # Lista todos diretórios
+find . -type f -mtime -1      # Arquivos modificados hoje
+du -sh * | sort -hr          # Uso de disco ordenado
+</div></section><section class="chapter"><h4 id="miss-o-2-manipula-o-avan-ada" data-toc="miss-o-2-manipula-o-avan-ada">Miss&atilde;o #2: Manipula&ccedil;&atilde;o Avan&ccedil;ada</h4><div class="code-block" data-lang="bash">
+# Objetivo: Gerenciamento de arquivos
+mkdir -p projeto/{src,docs,tests}
+touch projeto/src/{main,util,helper}.sh
+chmod +x projeto/src/*.sh
+find projeto -type f -name &quot;*.sh&quot; -exec ls -l {} \;
+</div></section><section class="chapter"><h4 id="miss-o-3-automa-o-b-sica" data-toc="miss-o-3-automa-o-b-sica">Miss&atilde;o #3: Automa&ccedil;&atilde;o B&aacute;sica</h4><div class="code-block" data-lang="bash">
+# Objetivo: Criar script de automação
+cat &lt;&lt; 'EOF' &gt; auto_task.sh
+#!/bin/bash
+echo &quot;Iniciando automação...&quot;
+for file in *.txt; do
+    echo &quot;Processando $file...&quot;
+    cp &quot;$file&quot; &quot;backup_$file&quot;
+done
+echo &quot;Automação concluída!&quot;
+EOF
+chmod +x auto_task.sh
+</div></section></section></section><section class="chapter"><h2 id="troubleshooting-avan-ado" data-toc="troubleshooting-avan-ado">Troubleshooting Avan&ccedil;ado</h2><section class="chapter"><h3 id="resolu-o-de-problemas-comuns" data-toc="resolu-o-de-problemas-comuns">🔧 Resolu&ccedil;&atilde;o de Problemas Comuns</h3><section class="chapter"><h4 id="problemas-de-permiss-o" data-toc="problemas-de-permiss-o">Problemas de Permiss&atilde;o</h4><div class="code-block" data-lang="bash">
+# Verificar permissões
+ls -la arquivo.txt
+# Modificar permissões
+chmod u+x script.sh
+# Mudar proprietário
+sudo chown user:group arquivo.txt
+</div></section><section class="chapter"><h4 id="problemas-de-comando" data-toc="problemas-de-comando">Problemas de Comando</h4><div class="code-block" data-lang="bash">
+# Verificar existência do comando
+which comando
+# Verificar PATH
+echo $PATH
+# Atualizar PATH
+export PATH=$PATH:/novo/caminho
+</div></section><section class="chapter"><h4 id="problemas-de-processo" data-toc="problemas-de-processo">Problemas de Processo</h4><div class="code-block" data-lang="bash">
+# Listar processos
+ps aux | grep processo
+# Matar processo
+kill -9 PID
+# Verificar uso de recursos
+top
+</div></section></section></section><section class="chapter"><h2 id="power-ups-avan-ados-aliases-e-fun-es" data-toc="power-ups-avan-ados-aliases-e-fun-es">Power-Ups Avan&ccedil;ados (Aliases e Fun&ccedil;&otilde;es)</h2><section class="chapter"><h3 id="configura-es-de-poder" data-toc="configura-es-de-poder">⚡ Configura&ccedil;&otilde;es de Poder</h3><section class="chapter"><h4 id="aliases-avan-ados" data-toc="aliases-avan-ados">Aliases Avan&ccedil;ados</h4><div class="code-block" data-lang="bash">
+# Adicione ao .bashrc
+alias ll='ls -la'
+alias mkdir='mkdir -p'
+alias ports='netstat -tulanp'
+alias update='sudo apt update &amp;&amp; sudo apt upgrade'
+alias gh='history | grep'
+</div></section><section class="chapter"><h4 id="fun-es-teis" data-toc="fun-es-teis">Fun&ccedil;&otilde;es &Uacute;teis</h4><div class="code-block" data-lang="bash">
+# Função para criar e entrar em diretório
+mkcd() {
+    mkdir -p &quot;$1&quot; &amp;&amp; cd &quot;$1&quot;
+}
+
+# Função para backup rápido
+bkp() {
+    cp &quot;$1&quot; &quot;$1.bak&quot;
+}
+
+# Função para extrair arquivos
+extract() {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)   tar xjf $1     ;;
+            *.tar.gz)    tar xzf $1     ;;
+            *.bz2)       bunzip2 $1     ;;
+            *.rar)       unrar e $1     ;;
+            *.gz)        gunzip $1      ;;
+            *.tar)       tar xf $1      ;;
+            *.tbz2)      tar xjf $1     ;;
+            *.tgz)       tar xzf $1     ;;
+            *.zip)       unzip $1       ;;
+            *.Z)         uncompress $1  ;;
+            *.7z)        7z x $1        ;;
+            *)          echo &quot;'$1' não pode ser extraído via extract()&quot; ;;
+        esac
+    else
+        echo &quot;'$1' não é um arquivo válido&quot;
+    fi
+}
+</div></section></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><p id="r92vwf_124">Agora que voc&ecirc; domina os comandos b&aacute;sicos e avan&ccedil;ados:</p><ol class="list _decimal" id="r92vwf_125" type="1"><li class="list__item" id="r92vwf_129"><p id="r92vwf_133"><a href="file-system.html" id="r92vwf_135" data-tooltip="Experimente o script interativo em code/module1/file-system/file_explorer.sh para uma exploração prática do sistema de arquivos e suas operações.">Explore o Sistema de Arquivos</a></p><ul class="list _bullet" id="r92vwf_134"><li class="list__item" id="r92vwf_136"><p id="r92vwf_139">Estrutura de diret&oacute;rios</p></li><li class="list__item" id="r92vwf_137"><p id="r92vwf_140">Links simb&oacute;licos</p></li><li class="list__item" id="r92vwf_138"><p id="r92vwf_141">Gerenciamento de espa&ccedil;o</p></li></ul></li><li class="list__item" id="r92vwf_130"><p id="r92vwf_142"><span id="r92vwf_144">Aprenda sobre Permiss&otilde;es</span></p><ul class="list _bullet" id="r92vwf_143"><li class="list__item" id="r92vwf_145"><p id="r92vwf_148">Permiss&otilde;es b&aacute;sicas e avan&ccedil;adas</p></li><li class="list__item" id="r92vwf_146"><p id="r92vwf_149">ACLs</p></li><li class="list__item" id="r92vwf_147"><p id="r92vwf_150">Sticky bits</p></li></ul></li><li class="list__item" id="r92vwf_131"><p id="r92vwf_151"><span id="r92vwf_153">Domine o Processamento de Texto</span></p><ul class="list _bullet" id="r92vwf_152"><li class="list__item" id="r92vwf_154"><p id="r92vwf_157">sed</p></li><li class="list__item" id="r92vwf_155"><p id="r92vwf_158">awk</p></li><li class="list__item" id="r92vwf_156"><p id="r92vwf_159">grep avan&ccedil;ado</p></li></ul></li><li class="list__item" id="r92vwf_132"><p id="r92vwf_160"><span id="r92vwf_162">Automa&ccedil;&atilde;o com Scripts</span></p><ul class="list _bullet" id="r92vwf_161"><li class="list__item" id="r92vwf_163"><p id="r92vwf_166">Loops</p></li><li class="list__item" id="r92vwf_164"><p id="r92vwf_167">Condicionais</p></li><li class="list__item" id="r92vwf_165"><p id="r92vwf_168">Fun&ccedil;&otilde;es</p></li></ul></li></ol><aside class="prompt" data-type="tip" data-title="" id="r92vwf_127"><p id="r92vwf_169">&quot;O terminal &eacute; como um lightsaber: uma arma elegante, de tempos mais civilizados.&quot;</p><ul class="list _bullet" id="r92vwf_170"><li class="list__item" id="r92vwf_171"><p id="r92vwf_172">Obi-Wan KenTerminal</p></li></ul></aside><div class="code-block" data-lang="none">
+    PROGRESSO DE TREINAMENTO...
+    [██████████████████] 90%
+    STATUS: HACKER EM FORMAÇÃO
+    PRÓXIMO NÍVEL: MESTRE DO TERMINAL
+    
+    CARREGANDO MÓDULOS AVANÇADOS...
+    ==============================
+    PODER: AUMENTANDO
+    CONHECIMENTO: EXPANDINDO
+    TERMINAL: DOMINADO
+</div></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="terminal-basics.html" class="navigation-links__prev">B&aacute;sico do Terminal: Sua Interface com a Matrix 🖥️</a><a href="file-system.html" class="navigation-links__next">Sistema de Arquivos: Navegando na Matrix 📁</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>
