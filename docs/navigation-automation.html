@@ -1,0 +1,206 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T14:18:24.686635645"><title>Automa&ccedil;&atilde;o de Navega&ccedil;&atilde;o: Poder M&aacute;ximo 🤖 | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"scripts-de-navega-o","level":0,"title":"Scripts de Navegação","anchor":"#scripts-de-navega-o"},{"id":"automa-o-de-workspace","level":0,"title":"Automação de Workspace","anchor":"#automa-o-de-workspace"},{"id":"automa-o-de-tarefas","level":0,"title":"Automação de Tarefas","anchor":"#automa-o-de-tarefas"},{"id":"integra-o-com-sistema","level":0,"title":"Integração com Sistema","anchor":"#integra-o-com-sistema"},{"id":"exemplos-pr-ticos","level":0,"title":"Exemplos Práticos","anchor":"#exemplos-pr-ticos"},{"id":"dicas-e-boas-pr-ticas","level":0,"title":"Dicas e Boas Práticas","anchor":"#dicas-e-boas-pr-ticas"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Automa&ccedil;&atilde;o de Navega&ccedil;&atilde;o: Poder M&aacute;ximo 🤖 | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/navigation-automation.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Automa&ccedil;&atilde;o de Navega&ccedil;&atilde;o: Poder M&aacute;ximo 🤖 | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/navigation-automation.html#webpage",
+    "url": "writerside-documentation/navigation-automation.html",
+    "name": "Automa&ccedil;&atilde;o de Navega&ccedil;&atilde;o: Poder M&aacute;ximo 🤖 | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="navigation-automation" data-main-title="Automação de Navegação: Poder Máximo 🤖" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="essential-commands.md|Comandos Essenciais: Dominando as Ferramentas 🛠️///navigation-commands.md|Comandos de Navegação: Movendo-se como um Ninja 🥷"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="navigation-automation" id="navigation-automation.md">Automação de Navegação: Poder Máximo 🤖</h1><section class="chapter"><h2 id="scripts-de-navega-o" data-toc="scripts-de-navega-o">Scripts de Navega&ccedil;&atilde;o</h2><section class="chapter"><h3 id="navegador-inteligente" data-toc="navegador-inteligente">Navegador Inteligente</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# smart_nav.sh
+# Navegador inteligente com histórico e frequência
+
+# Configuração
+HISTORY_FILE=&quot;$HOME/.nav_history&quot;
+BOOKMARKS_FILE=&quot;$HOME/.nav_bookmarks&quot;
+touch &quot;$HISTORY_FILE&quot; &quot;$BOOKMARKS_FILE&quot;
+
+# Função principal de navegação
+smart_nav() {
+    local target=&quot;$1&quot;
+    
+    # Verifica bookmarks primeiro
+    if grep -q &quot;^$target:&quot; &quot;$BOOKMARKS_FILE&quot;; then
+        cd &quot;$(grep &quot;^$target:&quot; &quot;$BOOKMARKS_FILE&quot; | cut -d: -f2)&quot;
+        return
+    fi
+    
+    # Busca no histórico
+    local dir=$(grep -i &quot;$target&quot; &quot;$HISTORY_FILE&quot; | sort -r | head -1)
+    if [ -n &quot;$dir&quot; ] &amp;&amp; [ -d &quot;$dir&quot; ]; then
+        cd &quot;$dir&quot;
+        return
+    fi
+    
+    # Busca fuzzy em diretórios comuns
+    local found=$(find ~/projetos ~/documentos -type d -iname &quot;*$target*&quot; 2&gt;/dev/null | head -1)
+    if [ -n &quot;$found&quot; ]; then
+        cd &quot;$found&quot;
+        return
+    fi
+    
+    echo &quot;Destino não encontrado: $target&quot;
+}
+</div></section><section class="chapter"><h3 id="sistema-de-bookmarks" data-toc="sistema-de-bookmarks">Sistema de Bookmarks</h3><div class="code-block" data-lang="bash">
+# Gerenciador de bookmarks
+bookmark() {
+    case &quot;$1&quot; in
+        add)
+            echo &quot;$2:$(pwd)&quot; &gt;&gt; &quot;$BOOKMARKS_FILE&quot;
+            echo &quot;Bookmark '$2' adicionado&quot;
+            ;;
+        remove)
+            sed -i &quot;/^$2:/d&quot; &quot;$BOOKMARKS_FILE&quot;
+            echo &quot;Bookmark '$2' removido&quot;
+            ;;
+        list)
+            cat &quot;$BOOKMARKS_FILE&quot;
+            ;;
+        *)
+            echo &quot;Uso: bookmark [add|remove|list] [nome]&quot;
+            ;;
+    esac
+}
+</div></section></section><section class="chapter"><h2 id="automa-o-de-workspace" data-toc="automa-o-de-workspace">Automa&ccedil;&atilde;o de Workspace</h2><section class="chapter"><h3 id="projeto-autom-tico" data-toc="projeto-autom-tico">Projeto Autom&aacute;tico</h3><div class="code-block" data-lang="bash">
+# Configuração de workspace automática
+setup_workspace() {
+    local project=&quot;$1&quot;
+    local template=&quot;$2&quot;
+    
+    # Cria estrutura base
+    mkdir -p &quot;$project&quot;/{src,docs,tests,resources}
+    
+    # Aplica template se especificado
+    if [ -n &quot;$template&quot; ] &amp;&amp; [ -d &quot;$HOME/.templates/$template&quot; ]; then
+        cp -r &quot;$HOME/.templates/$template&quot;/* &quot;$project/&quot;
+    fi
+    
+    # Inicializa git
+    cd &quot;$project&quot;
+    git init
+    
+    # Cria arquivo de configuração
+    cat &gt; .workspace-config &lt;&lt;EOF
+PROJECT_NAME=$project
+CREATED_AT=$(date +%Y-%m-%d)
+TEMPLATE=$template
+EOF
+    
+    echo &quot;Workspace $project configurado com sucesso!&quot;
+}
+</div></section><section class="chapter"><h3 id="monitor-de-diret-rio" data-toc="monitor-de-diret-rio">Monitor de Diret&oacute;rio</h3><div class="code-block" data-lang="bash">
+# Monitora mudanças e executa ações
+watch_dir() {
+    local dir=&quot;${1:-.}&quot;
+    local action=&quot;$2&quot;
+    
+    inotifywait -m -e create,modify,delete &quot;$dir&quot; |
+    while read -r directory events filename; do
+        echo &quot;Evento: $events em $filename&quot;
+        if [ -n &quot;$action&quot; ]; then
+            eval &quot;$action \&quot;$filename\&quot;&quot;
+        fi
+    done
+}
+</div></section></section><section class="chapter"><h2 id="automa-o-de-tarefas" data-toc="automa-o-de-tarefas">Automa&ccedil;&atilde;o de Tarefas</h2><section class="chapter"><h3 id="sincroniza-o-autom-tica" data-toc="sincroniza-o-autom-tica">Sincroniza&ccedil;&atilde;o Autom&aacute;tica</h3><div class="code-block" data-lang="bash">
+# Sincroniza diretórios automaticamente
+auto_sync() {
+    local source=&quot;$1&quot;
+    local target=&quot;$2&quot;
+    local interval=&quot;${3:-300}&quot; # 5 minutos padrão
+    
+    while true; do
+        rsync -av --delete &quot;$source/&quot; &quot;$target/&quot;
+        echo &quot;Sincronizado em $(date)&quot;
+        sleep &quot;$interval&quot;
+    done
+}
+</div></section><section class="chapter"><h3 id="limpeza-autom-tica" data-toc="limpeza-autom-tica">Limpeza Autom&aacute;tica</h3><div class="code-block" data-lang="bash">
+# Mantém diretórios organizados
+auto_clean() {
+    local dir=&quot;${1:-.}&quot;
+    local days=&quot;${2:-7}&quot;
+    
+    # Remove arquivos antigos
+    find &quot;$dir&quot; -type f -mtime +&quot;$days&quot; -delete
+    
+    # Organiza por extensão
+    for file in &quot;$dir&quot;/*.*; do
+        if [ -f &quot;$file&quot; ]; then
+            ext=&quot;${file##*.}&quot;
+            mkdir -p &quot;$dir/$ext&quot;
+            mv &quot;$file&quot; &quot;$dir/$ext/&quot;
+        fi
+    done
+}
+</div></section></section><section class="chapter"><h2 id="integra-o-com-sistema" data-toc="integra-o-com-sistema">Integra&ccedil;&atilde;o com Sistema</h2><section class="chapter"><h3 id="auto-mounting" data-toc="auto-mounting">Auto-mounting</h3><div class="code-block" data-lang="bash">
+# Monta dispositivos automaticamente
+auto_mount() {
+    local device=&quot;$1&quot;
+    local mountpoint=&quot;$2&quot;
+    
+    if [ ! -d &quot;$mountpoint&quot; ]; then
+        sudo mkdir -p &quot;$mountpoint&quot;
+    fi
+    
+    sudo mount &quot;$device&quot; &quot;$mountpoint&quot;
+    echo &quot;Montado $device em $mountpoint&quot;
+}
+</div></section><section class="chapter"><h3 id="backup-autom-tico" data-toc="backup-autom-tico">Backup Autom&aacute;tico</h3><div class="code-block" data-lang="bash">
+# Sistema de backup incremental
+auto_backup() {
+    local source=&quot;$1&quot;
+    local dest=&quot;$2&quot;
+    local date=$(date +%Y%m%d)
+    
+    # Cria backup incremental
+    rsync -av --link-dest=&quot;../latest&quot; &quot;$source/&quot; &quot;$dest/$date/&quot;
+    
+    # Atualiza link do último backup
+    ln -nsf &quot;$date&quot; &quot;$dest/latest&quot;
+}
+</div></section></section><section class="chapter"><h2 id="exemplos-pr-ticos" data-toc="exemplos-pr-ticos">Exemplos Pr&aacute;ticos</h2><section class="chapter"><h3 id="workflow-desenvolvimento" data-toc="workflow-desenvolvimento">Workflow Desenvolvimento</h3><div class="code-block" data-lang="bash">
+# Configura ambiente de desenvolvimento
+dev_env() {
+    local project=&quot;$1&quot;
+    
+    # Terminal 1: Editor
+    tmux new-session -d -s &quot;$project&quot;
+    tmux send-keys &quot;cd $project &amp;&amp; vim&quot; C-m
+    
+    # Terminal 2: Servidor
+    tmux split-window -h
+    tmux send-keys &quot;cd $project &amp;&amp; npm start&quot; C-m
+    
+    # Terminal 3: Git
+    tmux split-window -v
+    tmux send-keys &quot;cd $project &amp;&amp; git status&quot; C-m
+    
+    # Anexa à sessão
+    tmux attach-session -t &quot;$project&quot;
+}
+</div></section><section class="chapter"><h3 id="monitor-de-recursos" data-toc="monitor-de-recursos">Monitor de Recursos</h3><div class="code-block" data-lang="bash">
+# Monitora recursos do sistema
+monitor_resources() {
+    while true; do
+        clear
+        echo &quot;=== Sistema ===&quot;
+        date
+        echo &quot;=== CPU ===&quot;
+        top -bn1 | head -n 3
+        echo &quot;=== Memória ===&quot;
+        free -h
+        echo &quot;=== Disco ===&quot;
+        df -h /
+        sleep 5
+    done
+}
+</div></section></section><section class="chapter"><h2 id="dicas-e-boas-pr-ticas" data-toc="dicas-e-boas-pr-ticas">Dicas e Boas Pr&aacute;ticas</h2><ol class="list _decimal" id="xtzehi_29" type="1"><li class="list__item" id="xtzehi_32"><p id="xtzehi_37">Mantenha logs de todas automa&ccedil;&otilde;es</p></li><li class="list__item" id="xtzehi_33"><p id="xtzehi_38">Implemente tratamento de erros</p></li><li class="list__item" id="xtzehi_34"><p id="xtzehi_39">Use vari&aacute;veis de configura&ccedil;&atilde;o</p></li><li class="list__item" id="xtzehi_35"><p id="xtzehi_40">Documente todas as fun&ccedil;&otilde;es</p></li><li class="list__item" id="xtzehi_36"><p id="xtzehi_41">Fa&ccedil;a backup antes de automa&ccedil;&otilde;es cr&iacute;ticas</p></li></ol><aside class="prompt" data-type="tip" data-title="" id="xtzehi_31"><p id="xtzehi_42">&quot;Automatize tudo que fizer mais de duas vezes.&quot;</p></aside></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="navigation-shortcuts.html" class="navigation-links__prev">Atalhos de Navega&ccedil;&atilde;o: Velocidade M&aacute;xima ⚡</a><a href="navigation-troubleshooting.html" class="navigation-links__next">Troubleshooting de Navega&ccedil;&atilde;o: Resolvendo Problemas 🔧</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

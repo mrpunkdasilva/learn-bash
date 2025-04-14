@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="lb"
+                 name="Learn Bash"
+                 start-page="welcome.md">
+
+    <toc-element topic="welcome.md"/>
+    
+    <!-- Módulo 1: Básico -->
+    <toc-element topic="basics.md">
+        <toc-element topic="what-is-bash.md"/>
+        <toc-element topic="terminal-basics.md"/>
+        <toc-element topic="first-commands.md"/>
+        <toc-element topic="file-system.md"/>
+    </toc-element>
+
+    <!-- Módulo 2: Comandos Essenciais -->
+    <toc-element topic="essential-commands.md">
+        <toc-element topic="navigation-commands.md">
+            <toc-element topic="basic-navigation.md"/>
+            <toc-element topic="advanced-navigation.md"/>
+            <toc-element topic="directory-stack.md"/>
+            <toc-element topic="find-locate.md"/>
+            <toc-element topic="wildcards-globbing.md"/>
+            <toc-element topic="navigation-shortcuts.md"/>
+            <toc-element topic="navigation-automation.md"/>
+            <toc-element topic="navigation-troubleshooting.md"/>
+        </toc-element>
+        <toc-element topic="file-operations.md"/>
+        <toc-element topic="text-processing.md"/>
+        <toc-element topic="system-info.md"/>
+    </toc-element>
+
+    <!-- Módulo 3: Scripts e Automação -->
+    <toc-element topic="scripting.md">
+        <toc-element topic="script-basics.md"/>
+        <toc-element topic="variables-and-types.md"/>
+        <toc-element topic="control-structures.md"/>
+        <toc-element topic="functions.md"/>
+    </toc-element>
+
+    <!-- Módulo 4: Administração do Sistema -->
+    <toc-element topic="system-admin.md">
+        <toc-element topic="user-management.md"/>
+        <toc-element topic="process-control.md"/>
+        <toc-element topic="system-monitoring.md"/>
+        <toc-element topic="network-admin.md"/>
+    </toc-element>
+
+    <!-- Referências e Recursos -->
+    <toc-element topic="references.md">
+        <toc-element topic="command-reference.md"/>
+        <toc-element topic="script-templates.md"/>
+        <toc-element topic="best-practices.md"/>
+    </toc-element>
+
+    <!-- Apêndices -->
+    <toc-element topic="appendix.md">
+        <toc-element topic="installation.md"/>
+        <toc-element topic="configuration.md"/>
+        <toc-element topic="troubleshooting.md"/>
+        <toc-element topic="glossary.md"/>
+    </toc-element>
+
+    <!-- Exercícios e Projetos -->
+    <toc-element topic="exercises.md">
+        <toc-element topic="basic-exercises.md"/>
+        <toc-element topic="intermediate-exercises.md"/>
+        <toc-element topic="advanced-exercises.md"/>
+        <toc-element topic="projects.md"/>
+    </toc-element>
+
+</instance-profile>
