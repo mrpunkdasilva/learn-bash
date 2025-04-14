@@ -1,4 +1,4 @@
-# Estruturas de Controle: Dominando o Fluxo 🔄
+# Estruturas de Controle: Dominando o Fluxo 
 
 ## Condicionais
 

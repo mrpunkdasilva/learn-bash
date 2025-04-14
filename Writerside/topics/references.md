@@ -1,4 +1,4 @@
-# Referências e Recursos 📚
+# Referências e Recursos 
 
 ```ascii
     CARREGANDO BIBLIOTECA DE CONHECIMENTO...

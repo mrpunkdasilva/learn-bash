@@ -1,4 +1,4 @@
-# Operações Básicas com Arquivos 📄
+# Operações Básicas com Arquivos 
 
 > Experimente o script interativo em `code/module2/file-ops/basic_ops.sh` para praticar estas operações.
 > {style="note"}

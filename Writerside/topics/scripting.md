@@ -1,4 +1,4 @@
-# Scripts e Automação: Dominando o Poder do Shell 🚀
+# Scripts e Automação: Dominando o Poder do Shell 
 
 ```ascii
     INICIANDO MÓDULO DE SCRIPTING...
@@ -105,7 +105,7 @@ processar_arquivos() {
 
 1. [Automação Avançada](advanced-automation.md)
 2. [Integração com Sistema](system-integration.md)
-3. [Projetos Práticos](scripting-projects.md)
+3. [Projetos Práticos](scripting.md)
 
 ---
 

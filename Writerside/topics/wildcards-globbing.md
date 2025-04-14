@@ -1,4 +1,4 @@
-# Wildcards e Globbing: Dominando Padrões 🎯
+# Wildcards e Globbing: Dominando Padrões 
 
 ## Wildcards Básicos
 

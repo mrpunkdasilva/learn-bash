@@ -1,4 +1,4 @@
-# Gerenciamento de Usuários 👥
+# Gerenciamento de Usuários 
 
 ## Comandos Básicos
 

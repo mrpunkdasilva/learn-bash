@@ -1,4 +1,4 @@
-# Templates de Scripts 📝
+# Templates de Scripts 
 
 ## Templates Básicos
 

@@ -3,7 +3,7 @@
 > Consulte `code/module2/system/system_info.sh` para uma coleção completa de comandos para monitoramento e análise do sistema.
 > {style="note"}
 
-```ascii
+```text
     SCANNER DE SISTEMA ATIVADO...
     ===========================
     STATUS: MONITORANDO

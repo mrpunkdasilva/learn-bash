@@ -1,4 +1,4 @@
-# Referência de Comandos 📖
+# Referência de Comandos 
 
 ## Comandos Essenciais
 

@@ -1,4 +1,4 @@
-# Automatização DevOps 🔄
+# Automatização DevOps 
 
 ## Visão Geral
 Suite de scripts para automação de CI/CD, gestão de ambientes e deploy.

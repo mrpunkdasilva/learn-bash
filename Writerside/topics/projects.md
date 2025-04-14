@@ -1,8 +1,8 @@
-# Projetos Práticos 🛠️
+# Projetos Práticos
 
 ## Projeto 1: Sistema de Backup
 
-### Descrição
+### Descrição {id="descri-o_1"}
 Desenvolva um sistema completo de backup com:
 - Interface de linha de comando
 - Backup incremental

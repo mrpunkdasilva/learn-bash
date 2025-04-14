@@ -1,4 +1,4 @@
-# Exercícios Intermediários 🚀
+# Exercícios Intermediários 
 
 ## Scripts e Automação
 

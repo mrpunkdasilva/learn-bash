@@ -1,4 +1,4 @@
-# Monitoramento de Sistema: Vigilância Contínua 🔍
+# Monitoramento de Sistema: Vigilância Contínua 
 
 ## Ferramentas Essenciais
 

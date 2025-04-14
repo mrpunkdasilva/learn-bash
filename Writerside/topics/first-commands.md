@@ -1,4 +1,4 @@
-# Primeiros Comandos: Hackeando a Matrix 🚀
+# Primeiros Comandos: Hackeando a Matrix 
 
 > Confira o script de exemplo em `code/module1/first-commands/basic_operations.sh` para ver uma demonstração prática das operações básicas com arquivos e diretórios.
 > {style="note"}

@@ -1,4 +1,4 @@
-# Exercícios Básicos 🎯
+# Exercícios Básicos
 
 ## Navegação no Sistema de Arquivos
 

@@ -1,4 +1,4 @@
-# Sistema de Backup 💾
+# Sistema de Backup
 
 ## Visão Geral
 Sistema completo de backup com interface CLI, suporte a backup incremental, compressão, criptografia e notificações.

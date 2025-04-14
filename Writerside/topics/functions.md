@@ -1,4 +1,4 @@
-# Funções: Modularizando seu Código 🧩
+# Funções: Modularizando seu Código 
 
 ## Fundamentos
 

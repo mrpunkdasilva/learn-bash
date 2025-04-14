@@ -1,4 +1,4 @@
-# Pilha de Diretórios 📚
+# Pilha de Diretórios 
 
 ## Comandos da Pilha
 

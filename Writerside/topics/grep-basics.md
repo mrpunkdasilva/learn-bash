@@ -1,4 +1,4 @@
-# Fundamentos do Grep 🔍
+# Fundamentos do Grep 
 
 > O grep é uma ferramenta poderosa para busca de padrões em texto. Seu nome vem de "Global Regular Expression Print".
 > {style="note"}

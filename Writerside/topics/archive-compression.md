@@ -63,6 +63,7 @@ tar -uf arquivo.tar alterado/ # Atualiza arquivos
 ## Backup e Arquivamento
 
 ### 💾 Backup Incremental
+
 ```bash
 # Backup com data
 DATE=$(date +%Y%m%d)

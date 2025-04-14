@@ -1,4 +1,4 @@
-# Fundamentos de Scripts: Primeiros Passos 📝
+# Fundamentos de Scripts: Primeiros Passos 
 
 ## Estrutura Básica
 

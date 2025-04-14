@@ -1,4 +1,4 @@
-# Expressões Regulares 🎯
+# Expressões Regulares 
 
 > Expressões Regulares (regex) são padrões de busca poderosos que permitem encontrar e manipular texto de forma precisa.
 > {style="note"}

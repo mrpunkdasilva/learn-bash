@@ -1,4 +1,4 @@
-# Configuração do Bash ⚙️
+# Configuração do Bash 
 
 ## Arquivos de Configuração
 

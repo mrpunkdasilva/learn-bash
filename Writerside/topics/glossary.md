@@ -1,4 +1,4 @@
-# Glossário 📖
+# Glossário 
 
 ## A
 

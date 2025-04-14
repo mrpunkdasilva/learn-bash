@@ -1,4 +1,4 @@
-# Sistema de Arquivos: Navegando na Matrix 📁
+# Sistema de Arquivos: Navegando na Matrix 
 
 > Experimente o script interativo em `code/module1/file-system/file_explorer.sh` para uma exploração prática do sistema de arquivos e suas operações.
 > {style="note"}

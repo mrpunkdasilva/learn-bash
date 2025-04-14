@@ -1,4 +1,4 @@
-# Fundamentos da Navegação 🎯
+# Fundamentos da Navegação 
 
 ## Conceitos Básicos
 

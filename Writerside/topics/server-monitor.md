@@ -1,4 +1,4 @@
-# Monitor de Servidor 📊
+# Monitor de Servidor 
 
 ## Visão Geral
 Dashboard de monitoramento com métricas em tempo real, alertas configuráveis e interface web.

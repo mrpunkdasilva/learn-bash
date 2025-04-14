@@ -1,4 +1,4 @@
-# Filtros de Texto 🔍
+# Filtros de Texto 
 
 > Domine os filtros essenciais para manipulação e transformação de texto no terminal.
 > {style="note"}

@@ -1,0 +1,132 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T18:12:16.484027901"><title>Automa&ccedil;&atilde;o Avan&ccedil;ada | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"automa-o-de-deploy","level":0,"title":"Automação de Deploy","anchor":"#automa-o-de-deploy"},{"id":"automa-o-de-tarefas","level":0,"title":"Automação de Tarefas","anchor":"#automa-o-de-tarefas"},{"id":"automa-o-de-desenvolvimento","level":0,"title":"Automação de Desenvolvimento","anchor":"#automa-o-de-desenvolvimento"},{"id":"boas-pr-ticas","level":0,"title":"Boas Práticas","anchor":"#boas-pr-ticas"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Automa&ccedil;&atilde;o Avan&ccedil;ada | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/advanced-automation.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Automa&ccedil;&atilde;o Avan&ccedil;ada | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/advanced-automation.html#webpage",
+    "url": "writerside-documentation/advanced-automation.html",
+    "name": "Automa&ccedil;&atilde;o Avan&ccedil;ada | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="advanced-automation" data-main-title="Automação Avançada" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="scripting.md|Scripts e Automação: Dominando o Poder do Shell"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="advanced-automation" id="advanced-automation.md">Automação Avançada</h1><aside class="prompt" data-type="note" data-title="" id="-qo2zoc_3"><p id="-qo2zoc_9">Aprenda t&eacute;cnicas avan&ccedil;adas de automa&ccedil;&atilde;o para maximizar sua produtividade.</p></aside><section class="chapter"><h2 id="automa-o-de-deploy" data-toc="automa-o-de-deploy">Automa&ccedil;&atilde;o de Deploy</h2><section class="chapter"><h3 id="pipeline-ci-cd" data-toc="pipeline-ci-cd">🚀 Pipeline CI/CD</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# pipeline.sh
+set -e
+
+# Configurações
+source .env
+VERSION=$(git describe --tags)
+
+# Etapas do pipeline
+run_tests() {
+    echo &quot;Executando testes...&quot;
+    make test
+}
+
+build_app() {
+    echo &quot;Construindo aplicação...&quot;
+    docker build -t app:${VERSION} .
+}
+
+deploy() {
+    echo &quot;Realizando deploy...&quot;
+    kubectl apply -f k8s/
+}
+
+main() {
+    run_tests
+    build_app
+    deploy
+}
+
+main &quot;$@&quot;
+</div></section><section class="chapter"><h3 id="monitoramento" data-toc="monitoramento">📊 Monitoramento</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# monitor.sh
+THRESHOLD=90
+
+check_resources() {
+    cpu_usage=$(top -bn1 | grep &quot;Cpu(s)&quot; | awk '{print $2}' | cut -d. -f1)
+    mem_usage=$(free | grep Mem | awk '{print $3/$2 * 100.0}')
+    disk_usage=$(df -h / | awk 'NR==2 {print $5}' | cut -d% -f1)
+
+    if [ &quot;$cpu_usage&quot; -gt &quot;$THRESHOLD&quot; ] || 
+       [ &quot;${mem_usage%.*}&quot; -gt &quot;$THRESHOLD&quot; ] || 
+       [ &quot;$disk_usage&quot; -gt &quot;$THRESHOLD&quot; ]; then
+        send_alert
+    fi
+}
+
+send_alert() {
+    curl -X POST &quot;${WEBHOOK_URL}&quot; \
+         -H &quot;Content-Type: application/json&quot; \
+         -d &quot;{\&quot;text\&quot;:\&quot;Alerta: Uso de recursos alto!\&quot;}&quot;
+}
+</div></section></section><section class="chapter"><h2 id="automa-o-de-tarefas" data-toc="automa-o-de-tarefas">Automa&ccedil;&atilde;o de Tarefas</h2><section class="chapter"><h3 id="agendamento" data-toc="agendamento">⏰ Agendamento</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# scheduler.sh
+BACKUP_DIR=&quot;/backups&quot;
+LOG_FILE=&quot;/var/log/backup.log&quot;
+
+backup_database() {
+    timestamp=$(date +%Y%m%d_%H%M%S)
+    pg_dump -U postgres db_name &gt; &quot;${BACKUP_DIR}/backup_${timestamp}.sql&quot;
+    
+    # Manter apenas últimos 7 backups
+    find &quot;${BACKUP_DIR}&quot; -name &quot;backup_*.sql&quot; -mtime +7 -delete
+}
+
+rotate_logs() {
+    find /var/log -name &quot;*.log&quot; -size +100M | while read log; do
+        gzip -9 &quot;${log}&quot;
+    done
+}
+</div></section><section class="chapter"><h3 id="sincroniza-o" data-toc="sincroniza-o">🔄 Sincroniza&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# sync.sh
+DIRS=(&quot;config&quot; &quot;data&quot; &quot;logs&quot;)
+REMOTE=&quot;user@server:/path&quot;
+
+for dir in &quot;${DIRS[@]}&quot;; do
+    rsync -avz --delete &quot;${dir}/&quot; &quot;${REMOTE}/${dir}/&quot;
+done
+</div></section></section><section class="chapter"><h2 id="automa-o-de-desenvolvimento" data-toc="automa-o-de-desenvolvimento">Automa&ccedil;&atilde;o de Desenvolvimento</h2><section class="chapter"><h3 id="setup-de-ambiente" data-toc="setup-de-ambiente">🛠️ Setup de Ambiente</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# setup_dev.sh
+setup_env() {
+    # Instalar dependências
+    if command -v apt-get &amp;&gt; /dev/null; then
+        sudo apt-get update
+        sudo apt-get install -y docker docker-compose git
+    elif command -v brew &amp;&gt; /dev/null; then
+        brew install docker docker-compose git
+    fi
+
+    # Configurar git
+    git config --global user.name &quot;${GIT_NAME}&quot;
+    git config --global user.email &quot;${GIT_EMAIL}&quot;
+}
+</div></section><section class="chapter"><h3 id="gest-o-de-depend-ncias" data-toc="gest-o-de-depend-ncias">📦 Gest&atilde;o de Depend&ecirc;ncias</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# deps_check.sh
+check_deps() {
+    local deps=(&quot;docker&quot; &quot;git&quot; &quot;kubectl&quot; &quot;helm&quot;)
+    
+    for dep in &quot;${deps[@]}&quot;; do
+        if ! command -v &quot;$dep&quot; &amp;&gt; /dev/null; then
+            echo &quot;Erro: $dep não encontrado&quot;
+            exit 1
+        fi
+    done
+}
+</div></section></section><section class="chapter"><h2 id="boas-pr-ticas" data-toc="boas-pr-ticas">Boas Pr&aacute;ticas</h2><section class="chapter"><h3 id="recomenda-es" data-toc="recomenda-es">✅ Recomenda&ccedil;&otilde;es</h3><ol class="list _decimal" id="-qo2zoc_24" type="1"><li class="list__item" id="-qo2zoc_25"><p id="-qo2zoc_30">Use controle de vers&atilde;o</p></li><li class="list__item" id="-qo2zoc_26"><p id="-qo2zoc_31">Implemente logging adequado</p></li><li class="list__item" id="-qo2zoc_27"><p id="-qo2zoc_32">Trate erros apropriadamente</p></li><li class="list__item" id="-qo2zoc_28"><p id="-qo2zoc_33">Documente suas automa&ccedil;&otilde;es</p></li><li class="list__item" id="-qo2zoc_29"><p id="-qo2zoc_34">Fa&ccedil;a backup antes de altera&ccedil;&otilde;es</p></li></ol></section><section class="chapter"><h3 id="pontos-de-aten-o" data-toc="pontos-de-aten-o">⚠️ Pontos de Aten&ccedil;&atilde;o</h3><ol class="list _decimal" id="-qo2zoc_35" type="1"><li class="list__item" id="-qo2zoc_36"><p id="-qo2zoc_41">Teste em ambiente seguro</p></li><li class="list__item" id="-qo2zoc_37"><p id="-qo2zoc_42">Valide inputs</p></li><li class="list__item" id="-qo2zoc_38"><p id="-qo2zoc_43">Monitore execu&ccedil;&otilde;es</p></li><li class="list__item" id="-qo2zoc_39"><p id="-qo2zoc_44">Implemente rollback</p></li><li class="list__item" id="-qo2zoc_40"><p id="-qo2zoc_45">Mantenha logs de auditoria</p></li></ol></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="-qo2zoc_46" type="1"><li class="list__item" id="-qo2zoc_50"><p id="-qo2zoc_53"><span id="-qo2zoc_54">Orquestra&ccedil;&atilde;o de Containers</span></p></li><li class="list__item" id="-qo2zoc_51"><p id="-qo2zoc_55"><span id="-qo2zoc_56">Monitoramento Avan&ccedil;ado</span></p></li><li class="list__item" id="-qo2zoc_52"><p id="-qo2zoc_57"><span id="-qo2zoc_58">Infraestrutura como C&oacute;digo</span></p></li></ol><aside class="prompt" data-type="tip" data-title="" id="-qo2zoc_48"><p id="-qo2zoc_59">&quot;A automa&ccedil;&atilde;o &eacute; a arte de fazer m&aacute;quinas trabalharem para voc&ecirc;.&quot;</p></aside><div class="code-block" data-lang="none">
+    AUTOMATION MASTER
+    [🤖🤖🤖🤖🤖] 100%
+    STATUS: AUTOMAÇÃO DOMINADA
+    PRÓXIMO: ORQUESTRAÇÃO
+</div></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="functions.html" class="navigation-links__prev">Fun&ccedil;&otilde;es: Modularizando seu C&oacute;digo</a><a href="system-integration.html" class="navigation-links__next">Integra&ccedil;&atilde;o com Sistema</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

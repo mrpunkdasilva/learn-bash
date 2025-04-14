@@ -1,4 +1,4 @@
-# Exercícios e Projetos 💪
+# Exercícios e Projetos
 
 Bem-vindo à seção prática do Learn Bash! Aqui você encontrará exercícios e projetos para consolidar seu aprendizado.
 

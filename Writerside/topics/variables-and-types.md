@@ -1,4 +1,4 @@
-# Variáveis e Tipos: Dominando os Dados 📊
+# Variáveis e Tipos: Dominando os Dados 
 
 ## Variáveis Básicas
 

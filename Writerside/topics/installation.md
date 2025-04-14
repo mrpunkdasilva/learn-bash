@@ -1,4 +1,4 @@
-# Instalação do Bash 🛠️
+# Instalação do Bash
 
 ## Windows
 

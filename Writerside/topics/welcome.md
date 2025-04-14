@@ -1,4 +1,4 @@
-# Bem-vindo ao Terminal Matrix 🤖
+# Bem-vindo ao Terminal Matrix 
 
 ```ascii
     /\___/\   BASH CYBERPUNK LEARNING MATRIX v1.0

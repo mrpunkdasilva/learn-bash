@@ -1,4 +1,4 @@
-# Find e Locate: Buscas Avançadas 🔍
+# Find e Locate: Buscas Avançadas 
 
 ## Find - O Rastreador Supremo
 

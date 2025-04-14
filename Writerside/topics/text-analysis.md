@@ -1,4 +1,4 @@
-# Análise de Texto 📊
+# Análise de Texto 
 
 > Aprenda técnicas avançadas para analisar e extrair insights de dados textuais.
 > {style="note"}

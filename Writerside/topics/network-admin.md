@@ -1,4 +1,4 @@
-# Administração de Rede 🌐
+# Administração de Rede 
 
 ## Configuração Básica
 

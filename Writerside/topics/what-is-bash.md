@@ -1,4 +1,4 @@
-# O que é Bash: Sua Primeira Pílula Vermelha 💊
+# O que é Bash: Sua Primeira Pílula Vermelha
 
 > O código de exemplo para este tópico está disponível em `code/module1/what-is-bash/version.sh`. Execute-o para ver uma demonstração prática dos conceitos apresentados aqui.
 > {style="note"}

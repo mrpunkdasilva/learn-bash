@@ -1,4 +1,4 @@
-# Operações Avançadas com Arquivos 🚀
+# Operações Avançadas com Arquivos 
 
 > Este módulo requer conhecimento das operações básicas com arquivos.
 > {style="warning"}
@@ -98,7 +98,7 @@ rsync -av --link-dest="../latest" \
     "$SOURCE_DIR/" "$BACKUP_DIR/$DATE/"
 
 # Atualiza link do último backup
-ln -nsf "$DATE" "$BACKUP_DIR/latest"
+ln -nsf "${DATE}" "${BACKUP_DIR}/latest"
 ```
 
 ### Script de Processamento em Lote
@@ -159,9 +159,9 @@ photorec backup.img          # Recupera arquivos
 
 ## Próximos Passos
 
-1. [Permissões Avançadas](file-permissions.md)
-2. [Sistemas de Arquivos](filesystems.md)
-3. [Otimização de I/O](io-optimization.md)
+1. [Operações Básicas com Arquivos](basic-file-ops.md)
+2. [Gerenciamento de Permissões](file-permissions.md)
+3. [Monitoramento de Arquivos](file-monitoring.md)
 
 ---
 

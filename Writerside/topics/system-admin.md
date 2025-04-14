@@ -1,4 +1,4 @@
-# Administração do Sistema Linux 🖥️
+# Administração do Sistema Linux
 
 > Este módulo aborda as principais tarefas e responsabilidades na administração de sistemas Linux.
 > {style="note"}

@@ -1,4 +1,4 @@
-# Exercícios Avançados 🔥
+# Exercícios Avançados
 
 ## Automação Avançada
 

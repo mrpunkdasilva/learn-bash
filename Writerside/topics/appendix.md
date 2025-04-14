@@ -1,4 +1,4 @@
-# Apêndices 📚
+# Apêndices 
 
 Bem-vindo à seção de apêndices do Learn Bash! Aqui você encontrará informações complementares e recursos essenciais para sua jornada no mundo do Bash.
 

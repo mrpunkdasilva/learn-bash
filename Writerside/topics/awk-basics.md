@@ -1,4 +1,4 @@
-# Fundamentos do AWK 📊
+# Fundamentos do AWK 
 
 > AWK é uma linguagem de programação projetada para processamento de texto, especialmente poderosa para trabalhar com dados tabulares.
 > {style="note"}

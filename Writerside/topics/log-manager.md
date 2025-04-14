@@ -1,4 +1,4 @@
-# Gerenciador de Logs 📝
+# Gerenciador de Logs 
 
 ## Visão Geral
 Sistema de análise de logs com coleta centralizada, parsing inteligente e alertas.

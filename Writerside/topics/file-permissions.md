@@ -1,4 +1,4 @@
-# Permissões de Arquivos 🔒
+# Permissões de Arquivos 
 
 > Gerenciamento avançado de permissões e controle de acesso.
 > {style="warning"}
