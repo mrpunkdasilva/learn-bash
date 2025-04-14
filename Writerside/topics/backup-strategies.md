@@ -228,12 +228,6 @@ EOF
 4. Custos de armazenamento
 5. Compliance e regulações
 
-## Próximos Passos
-
-1. [Disaster Recovery](disaster-recovery.md)
-2. [Storage Management](storage-management.md)
-3. [Security Best Practices](security-practices.md)
-
 ---
 
 > "Backup não é sobre salvar dados, é sobre restaurar negócios."

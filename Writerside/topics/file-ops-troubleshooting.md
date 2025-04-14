@@ -1,4 +1,4 @@
-# Troubleshooting de Operações com Arquivos 🔧
+# Troubleshooting de Operações com Arquivos 
 
 ## Diagnóstico Sistemático
 

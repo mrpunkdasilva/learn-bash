@@ -145,11 +145,6 @@ api_client() {
 }
 ```
 
-## Próximos Passos
-
-1. [GraphQL Integration](graphql-integration.md)
-2. [API Security](api-security.md)
-3. [Microservices](microservices.md)
 
 ---
 

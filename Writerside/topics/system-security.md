@@ -235,12 +235,6 @@ generate_report() {
 # 4. Respostas automáticas
 ```
 
-## Próximos Passos
-
-1. [Segurança Avançada](advanced-security.md)
-2. [Resposta a Incidentes](incident-response.md)
-3. [Compliance e Regulações](compliance.md)
-
 ---
 
 > "A segurança não é um produto, é um processo."

@@ -118,7 +118,5 @@
             <toc-element topic="log-manager.md"/>
         </toc-element>
     </toc-element>
-    <toc-element topic="monitoring-advanced.md"/>
-    <toc-element topic="system-analysis.md"/>
 
 </instance-profile>

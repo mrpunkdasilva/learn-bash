@@ -168,11 +168,6 @@ etl_workflow() {
 }
 ```
 
-## Próximos Passos
-
-1. [Workflows Distribuídos](distributed-workflows.md)
-2. [Containers e Orquestração](container-orchestration.md)
-3. [CI/CD Avançado](advanced-cicd.md)
 
 ---
 

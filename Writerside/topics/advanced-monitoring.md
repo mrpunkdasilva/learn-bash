@@ -207,8 +207,7 @@ handle_disk_space() {
 ## Próximos Passos
 
 1. [Otimização de Performance](performance-tuning.md)
-2. [Gestão de Logs](log-management.md)
-3. [Automação Avançada](advanced-automation.md)
+2. [Automação Avançada](advanced-automation.md)
 
 ---
 

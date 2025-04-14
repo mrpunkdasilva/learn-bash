@@ -1,4 +1,4 @@
-# AWK Avançado 🚀
+# AWK Avançado 
 
 > Domine técnicas avançadas de processamento de texto com AWK.
 > {style="note"}
