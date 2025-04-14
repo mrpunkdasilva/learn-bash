@@ -118,7 +118,7 @@ Escolha seu destino:
 
 * [Scripts e Automação](scripting.html) - Para hackers em ascensão
 
-* [Projetos Práticos](null) - Para quem gosta de ação
+* [Projetos Práticos](projects.html) - Para quem gosta de ação
 
 Lembre-se: No terminal, ninguém pode ouvir você gritar... mas podem ver seus logs.
 
@@ -9640,6 +9640,482 @@ Caractere especial para matching de padrões.
 ```BASH
 *.txt  # match qualquer arquivo .txt
 ```
+
+
+
+# Exercícios e Projetos 💪
+
+Bem-vindo à seção prática do Learn Bash! Aqui você encontrará exercícios e projetos para consolidar seu aprendizado.
+
+## Estrutura dos Exercícios
+
+### 
+
+[Exercícios Básicos](basic-exercises.html)
+
+* Fundamentos do Bash
+
+* Comandos essenciais
+
+* Navegação básica
+
+* Manipulação de arquivos
+
+### 
+
+[Exercícios Intermediários](intermediate-exercises.html)
+
+* Scripts simples
+
+* Processamento de texto
+
+* Automação básica
+
+* Controle de fluxo
+
+### 
+
+[Exercícios Avançados](advanced-exercises.html)
+
+* Scripts complexos
+
+* Automação avançada
+
+* Integração de sistemas
+
+* Debugging
+
+### 
+
+[Projetos Práticos](projects.html)
+
+* Projetos do mundo real
+
+* Aplicações práticas
+
+* Desafios completos
+
+## Como Praticar
+
+1. Comece pelos exercícios básicos
+
+2. Avance gradualmente
+
+3. Tente resolver sozinho primeiro
+
+4. Consulte as soluções apenas após tentar
+
+5. Pratique regularmente
+
+Tip:
+
+"A prática leva à perfeição. Continue codando!" 🚀
+
+
+
+# Exercícios Básicos 🎯
+
+## Navegação no Sistema de Arquivos
+
+### Exercício 1: Exploração Básica
+
+1. Crie uma pasta chamada `pratica_bash`
+
+2. Navegue até ela
+
+3. Crie três subpastas: `docs`, `scripts`, `backup`
+
+4. Liste o conteúdo do diretório
+
+5. Volte para o diretório pai
+
+### Exercício 2: Manipulação de Arquivos
+
+1. Crie um arquivo `notas.txt`
+
+2. Adicione algumas linhas de texto
+
+3. Copie para `backup/notas_backup.txt`
+
+4. Compare os dois arquivos
+
+## Comandos Básicos
+
+### Exercício 3: Trabalho com Texto
+
+1. Use `echo` para criar um arquivo
+
+2. Conte as linhas com `wc`
+
+3. Visualize com `cat` e `less`
+
+4. Busque palavras com `grep`
+
+### Exercício 4: Permissões
+
+1. Crie um script simples
+
+2. Torne-o executável
+
+3. Execute o script
+
+4. Verifique as permissões
+
+## Soluções
+
+### Exercício 1
+
+```BASH
+mkdir pratica_bash
+cd pratica_bash
+mkdir docs scripts backup
+ls
+cd ..
+```
+
+### Exercício 2
+
+```BASH
+echo "Linha 1" > notas.txt
+echo "Linha 2" >> notas.txt
+cp notas.txt backup/notas_backup.txt
+diff notas.txt backup/notas_backup.txt
+```
+
+### Exercício 3
+
+```BASH
+echo "Testando" > teste.txt
+echo "Mais uma linha" >> teste.txt
+wc -l teste.txt
+cat teste.txt
+grep "linha" teste.txt
+```
+
+### Exercício 4
+
+```BASH
+echo '#!/bin/bash' > script.sh
+echo 'echo "Olá, Mundo!"' >> script.sh
+chmod +x script.sh
+./script.sh
+ls -l script.sh
+```
+
+
+
+# Exercícios Intermediários 🚀
+
+## Scripts e Automação
+
+### Exercício 1: Backup Automatizado
+
+Crie um script que:
+
+1. Aceite um diretório como argumento
+
+2. Crie um backup com data/hora
+
+3. Comprima o backup
+
+4. Liste os backups existentes
+
+```BASH
+#!/bin/bash
+# backup.sh
+dir=$1
+date=$(date +%Y%m%d_%H%M%S)
+tar -czf "backup_${date}.tar.gz" "$dir"
+ls -l backup_*.tar.gz
+```
+
+### Exercício 2: Monitor de Sistema
+
+Crie um script que mostre:
+
+1. Uso de CPU
+
+2. Memória disponível
+
+3. Espaço em disco
+
+4. Processos ativos
+
+```BASH
+#!/bin/bash
+# monitor.sh
+echo "=== Sistema ==="
+top -bn1 | head -n 3
+echo "=== Memória ==="
+free -h
+echo "=== Disco ==="
+df -h
+echo "=== Processos ==="
+ps aux | head -n 5
+```
+
+## Processamento de Texto
+
+### Exercício 3: Análise de Logs
+
+1. Processe um arquivo de log
+
+2. Conte ocorrências de erros
+
+3. Extraia timestamps
+
+4. Gere relatório
+
+### Exercício 4: Manipulação de CSV
+
+1. Leia um arquivo CSV
+
+2. Filtre colunas específicas
+
+3. Calcule totais
+
+4. Gere novo CSV
+
+## Soluções Disponíveis no Repositório
+
+Tip:
+
+Tente resolver os exercícios antes de consultar as soluções!
+Para soluções completas, visite: `github.com/learn-bash/solutions`
+
+
+
+# Exercícios Avançados 🔥
+
+## Automação Avançada
+
+### Exercício 1: Deploy Automatizado
+
+Crie um script que:
+
+1. Clone um repositório Git
+
+2. Execute testes
+
+3. Faça build
+
+4. Deploy para servidor
+
+```BASH
+#!/bin/bash
+# deploy.sh
+repo=$1
+branch=$2
+
+git clone "$repo"
+cd "$(basename "$repo" .git)"
+git checkout "$branch"
+
+# Executar testes
+if ! make test; then
+    echo "Testes falharam!"
+    exit 1
+fi
+
+# Build e deploy
+make build
+rsync -avz dist/ user@server:/var/www/
+```
+
+### Exercício 2: Monitor de Rede
+
+Desenvolva um script que:
+
+1. Monitore conexões de rede
+
+2. Alerte sobre problemas
+
+3. Registre estatísticas
+
+4. Gere relatórios
+
+## Integração de Sistemas
+
+### Exercício 3: API Integration
+
+Crie um script que:
+
+1. Faça requisições REST
+
+2. Processe JSON
+
+3. Armazene resultados
+
+4. Gere relatórios
+
+```BASH
+#!/bin/bash
+# api_monitor.sh
+api_url="https://api.exemplo.com"
+token="seu_token"
+
+response=$(curl -s -H "Authorization: Bearer $token" "$api_url/status")
+echo "$response" | jq '.status'
+```
+
+### Exercício 4: Cluster Management
+
+Desenvolva scripts para:
+
+1. Gerenciar múltiplos servidores
+
+2. Sincronizar configurações
+
+3. Monitorar recursos
+
+4. Balancear carga
+
+## Desafios Extra
+
+### Challenge 1: Security Audit
+
+Crie uma ferramenta que:
+
+* Analise logs de segurança
+
+* Detecte padrões suspeitos
+
+* Gere alertas
+
+* Tome ações automáticas
+
+### Challenge 2: Database Backup
+
+Implemente um sistema que:
+
+* Faça backup de diferentes DBs
+
+* Valide integridade
+
+* Rotacione backups antigos
+
+* Notifique status
+
+Tip:
+
+Estes exercícios requerem conhecimento avançado de Bash e sistemas Unix.
+Consulte a documentação e pratique em ambiente de teste!
+
+
+
+# Projetos Práticos 🛠️
+
+## Projeto 1: Sistema de Backup
+
+### Descrição
+
+Desenvolva um sistema completo de backup com:
+
+* Interface de linha de comando
+
+* Backup incremental
+
+* Compressão e criptografia
+
+* Logs e notificações
+
+### Requisitos
+
+1. Configuração via arquivo YAML
+
+2. Suporte a múltiplos destinos
+
+3. Rotação de backups
+
+4. Relatórios de status
+
+## Projeto 2: Monitor de Servidor
+
+### Descrição
+
+Crie um dashboard para monitoramento com:
+
+* Métricas em tempo real
+
+* Alertas configuráveis
+
+* Interface web simples
+
+* Histórico de eventos
+
+### Componentes
+
+1. Script de coleta de dados
+
+2. Sistema de alertas
+
+3. API REST simples
+
+4. Frontend básico
+
+## Projeto 3: Automatização DevOps
+
+### Descrição
+
+Desenvolva um conjunto de scripts para:
+
+* CI/CD pipeline
+
+* Gestão de ambientes
+
+* Deploy automatizado
+
+* Testes de integração
+
+### Funcionalidades
+
+1. Integração com Git
+
+2. Testes automatizados
+
+3. Deploy em múltiplos ambientes
+
+4. Rollback automático
+
+## Projeto 4: Gerenciador de Logs
+
+### Descrição
+
+Crie um sistema de análise de logs:
+
+* Coleta centralizada
+
+* Parsing inteligente
+
+* Alertas de eventos
+
+* Dashboard de análise
+
+### Features
+
+1. Coleta distribuída
+
+2. Análise em tempo real
+
+3. Armazenamento eficiente
+
+4. Relatórios personalizados
+
+## Como Desenvolver
+
+1. Planeje a arquitetura
+
+2. Desenvolva incrementalmente
+
+3. Teste cada componente
+
+4. Documente o projeto
+
+5. Compartilhe no GitHub
+
+Tip:
+
+Dica: Use estes projetos para construir seu portfólio!
 
 
 
