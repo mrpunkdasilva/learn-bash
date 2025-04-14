@@ -1,0 +1,155 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T20:32:30.283722303"><title>Performance Tuning | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"otimiza-o-de-recursos","level":0,"title":"Otimização de Recursos","anchor":"#otimiza-o-de-recursos"},{"id":"t-cnicas-de-otimiza-o","level":0,"title":"Técnicas de Otimização","anchor":"#t-cnicas-de-otimiza-o"},{"id":"monitoramento","level":0,"title":"Monitoramento","anchor":"#monitoramento"},{"id":"otimiza-es-espec-ficas","level":0,"title":"Otimizações Específicas","anchor":"#otimiza-es-espec-ficas"},{"id":"ferramentas-de-diagn-stico","level":0,"title":"Ferramentas de Diagnóstico","anchor":"#ferramentas-de-diagn-stico"},{"id":"boas-pr-ticas","level":0,"title":"Boas Práticas","anchor":"#boas-pr-ticas"},{"id":"exemplos-pr-ticos","level":0,"title":"Exemplos Práticos","anchor":"#exemplos-pr-ticos"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Performance Tuning | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/performance-tuning.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Performance Tuning | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/performance-tuning.html#webpage",
+    "url": "writerside-documentation/performance-tuning.html",
+    "name": "Performance Tuning | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="performance-tuning" data-main-title="Performance Tuning" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="system-admin.md|Administração do Sistema Linux///system-monitoring.md|Monitoramento de Sistema: Vigilância Contínua"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="performance-tuning" id="performance-tuning.md">Performance Tuning</h1><aside class="prompt" data-type="note" data-title="" id="c6pgmq_3"><p id="c6pgmq_12">Aprenda t&eacute;cnicas avan&ccedil;adas para otimizar o desempenho de scripts e opera&ccedil;&otilde;es em lote.</p></aside><section class="chapter"><h2 id="otimiza-o-de-recursos" data-toc="otimiza-o-de-recursos">Otimiza&ccedil;&atilde;o de Recursos</h2><section class="chapter"><h3 id="gerenciamento-de-mem-ria" data-toc="gerenciamento-de-mem-ria">🔄 Gerenciamento de Mem&oacute;ria</h3><div class="code-block" data-lang="bash">
+# Monitoramento de uso
+free -h
+vmstat 1
+ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head
+
+# Limpeza de cache
+sync &amp;&amp; echo 3 &gt; /proc/sys/vm/drop_caches
+</div></section><section class="chapter"><h3 id="controle-de-cpu" data-toc="controle-de-cpu">⚡ Controle de CPU</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# cpu_control.sh
+
+optimize_cpu_usage() {
+    local pid=&quot;$1&quot;
+    local cpu_limit=&quot;$2&quot;
+    
+    # Define afinidade CPU
+    taskset -pc 0-1 &quot;$pid&quot;
+    
+    # Limita uso CPU
+    cpulimit -p &quot;$pid&quot; -l &quot;$cpu_limit&quot;
+}
+</div></section></section><section class="chapter"><h2 id="t-cnicas-de-otimiza-o" data-toc="t-cnicas-de-otimiza-o">T&eacute;cnicas de Otimiza&ccedil;&atilde;o</h2><section class="chapter"><h3 id="processamento-paralelo" data-toc="processamento-paralelo">📊 Processamento Paralelo</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# parallel_processor.sh
+
+process_data() {
+    local input_dir=&quot;$1&quot;
+    local num_threads=&quot;${2:-$(nproc)}&quot;
+    
+    find &quot;$input_dir&quot; -type f | \
+    parallel --jobs &quot;$num_threads&quot; \
+             --load 80% \
+             --progress \
+             './process_file.sh {}'
+}
+</div></section><section class="chapter"><h3 id="i-o-otimizado" data-toc="i-o-otimizado">💾 I/O Otimizado</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# io_optimizer.sh
+
+optimize_io() {
+    local file=&quot;$1&quot;
+    
+    # Buffer otimizado
+    dd if=&quot;$file&quot; of=&quot;$file.tmp&quot; bs=1M
+    
+    # I/O scheduling
+    ionice -c 2 -n 7 -p $$
+    
+    # Async I/O
+    aio-stress -s 1G -r 4
+}
+</div></section></section><section class="chapter"><h2 id="monitoramento" data-toc="monitoramento">Monitoramento</h2><section class="chapter"><h3 id="m-tricas-de-performance" data-toc="m-tricas-de-performance">📈 M&eacute;tricas de Performance</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# performance_metrics.sh
+
+collect_metrics() {
+    local pid=&quot;$1&quot;
+    local interval=&quot;$2&quot;
+    
+    while true; do
+        ps -p &quot;$pid&quot; -o %cpu,%mem,rss,vsz
+        sleep &quot;$interval&quot;
+    done
+}
+</div></section><section class="chapter"><h3 id="an-lise-de-gargalos" data-toc="an-lise-de-gargalos">🔍 An&aacute;lise de Gargalos</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# bottleneck_analyzer.sh
+
+analyze_bottlenecks() {
+    # CPU
+    mpstat 1 5
+    
+    # Memória
+    vmstat 1 5
+    
+    # I/O
+    iostat -xz 1 5
+    
+    # Rede
+    sar -n DEV 1 5
+}
+</div></section></section><section class="chapter"><h2 id="otimiza-es-espec-ficas" data-toc="otimiza-es-espec-ficas">Otimiza&ccedil;&otilde;es Espec&iacute;ficas</h2><section class="chapter"><h3 id="banco-de-dados" data-toc="banco-de-dados">🗄️ Banco de Dados</h3><div class="code-block" data-lang="bash">
+# Otimização de queries
+EXPLAIN ANALYZE SELECT * FROM tabela;
+
+# Índices
+CREATE INDEX idx_campo ON tabela(campo);
+
+# Vacuum
+VACUUM ANALYZE tabela;
+</div></section><section class="chapter"><h3 id="rede" data-toc="rede">🌐 Rede</h3><div class="code-block" data-lang="bash">
+# Tuning de rede
+sysctl -w net.ipv4.tcp_window_scaling=1
+sysctl -w net.core.rmem_max=16777216
+sysctl -w net.core.wmem_max=16777216
+</div></section></section><section class="chapter"><h2 id="ferramentas-de-diagn-stico" data-toc="ferramentas-de-diagn-stico">Ferramentas de Diagn&oacute;stico</h2><section class="chapter"><h3 id="profiling" data-toc="profiling">🔧 Profiling</h3><div class="code-block" data-lang="bash">
+# Análise de CPU
+perf record -F 99 -p &quot;$pid&quot; -g -- sleep 30
+perf report
+
+# Análise de memória
+valgrind --tool=massif ./programa
+ms_print massif.out.*
+</div></section><section class="chapter"><h3 id="benchmarking" data-toc="benchmarking">📊 Benchmarking</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# benchmark.sh
+
+run_benchmark() {
+    local cmd=&quot;$1&quot;
+    local iterations=&quot;$2&quot;
+    
+    time for ((i=0; i&lt;iterations; i++)); do
+        eval &quot;$cmd&quot; &gt;/dev/null 2&gt;&amp;1
+    done
+}
+</div></section></section><section class="chapter"><h2 id="boas-pr-ticas" data-toc="boas-pr-ticas">Boas Pr&aacute;ticas</h2><section class="chapter"><h3 id="recomenda-es" data-toc="recomenda-es">💡 Recomenda&ccedil;&otilde;es</h3><ol class="list _decimal" id="c6pgmq_35" type="1"><li class="list__item" id="c6pgmq_36"><p id="c6pgmq_41">Profile antes de otimizar</p></li><li class="list__item" id="c6pgmq_37"><p id="c6pgmq_42">Estabele&ccedil;a m&eacute;tricas base</p></li><li class="list__item" id="c6pgmq_38"><p id="c6pgmq_43">Otimize gargalos principais</p></li><li class="list__item" id="c6pgmq_39"><p id="c6pgmq_44">Monitore continuamente</p></li><li class="list__item" id="c6pgmq_40"><p id="c6pgmq_45">Documente mudan&ccedil;as</p></li></ol></section><section class="chapter"><h3 id="pontos-de-aten-o" data-toc="pontos-de-aten-o">⚠️ Pontos de Aten&ccedil;&atilde;o</h3><ol class="list _decimal" id="c6pgmq_46" type="1"><li class="list__item" id="c6pgmq_47"><p id="c6pgmq_52">Complexidade vs. Performance</p></li><li class="list__item" id="c6pgmq_48"><p id="c6pgmq_53">Uso de recursos</p></li><li class="list__item" id="c6pgmq_49"><p id="c6pgmq_54">Escalabilidade</p></li><li class="list__item" id="c6pgmq_50"><p id="c6pgmq_55">Manutenibilidade</p></li><li class="list__item" id="c6pgmq_51"><p id="c6pgmq_56">Trade-offs</p></li></ol></section></section><section class="chapter"><h2 id="exemplos-pr-ticos" data-toc="exemplos-pr-ticos">Exemplos Pr&aacute;ticos</h2><section class="chapter"><h3 id="otimiza-o-de-script" data-toc="otimiza-o-de-script">📈 Otimiza&ccedil;&atilde;o de Script</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# optimized_processor.sh
+
+process_large_file() {
+    local input=&quot;$1&quot;
+    local output=&quot;$2&quot;
+    
+    # Uso de buffer otimizado
+    buffer_size=&quot;64k&quot;
+    
+    # Processamento paralelo
+    parallel --pipe \
+             --block &quot;$buffer_size&quot; \
+             --jobs &quot;$(nproc)&quot; \
+             &quot;sort | uniq&quot; \
+             &lt; &quot;$input&quot; &gt; &quot;$output&quot;
+}
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="c6pgmq_59" type="1"><li class="list__item" id="c6pgmq_63"><p id="c6pgmq_66"><span id="c6pgmq_67">Monitoramento Avan&ccedil;ado</span></p></li><li class="list__item" id="c6pgmq_64"><p id="c6pgmq_68"><span id="c6pgmq_69">An&aacute;lise de Sistema</span></p></li><li class="list__item" id="c6pgmq_65"><p id="c6pgmq_70"><a href="performance-automation.html" id="c6pgmq_71" data-tooltip="Aprenda a automatizar a otimização de performance do seu sistema.">Automa&ccedil;&atilde;o de Performance</a></p></li></ol><aside class="prompt" data-type="tip" data-title="" id="c6pgmq_61"><p id="c6pgmq_72">&quot;Performance n&atilde;o &eacute; um acidente. &Eacute; o resultado de planejamento inteligente e execu&ccedil;&atilde;o focada.&quot;</p></aside><div class="code-block" data-lang="none">
+    PERFORMANCE TUNING
+    [⚡⚡⚡⚡⚡] 100%
+    STATUS: OTIMIZADO
+    EFICIÊNCIA: MÁXIMA
+</div></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="system-monitoring.html" class="navigation-links__prev">Monitoramento de Sistema: Vigil&acirc;ncia Cont&iacute;nua</a><a href="capacity-planning.html" class="navigation-links__next">Planejamento de Capacidade</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

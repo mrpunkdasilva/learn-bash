@@ -1,0 +1,134 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T20:32:30.329176201"><title>Integra&ccedil;&atilde;o com APIs | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"requisi-es-b-sicas","level":0,"title":"Requisições Básicas","anchor":"#requisi-es-b-sicas"},{"id":"integra-o-avan-ada","level":0,"title":"Integração Avançada","anchor":"#integra-o-avan-ada"},{"id":"processamento-de-dados","level":0,"title":"Processamento de Dados","anchor":"#processamento-de-dados"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Integra&ccedil;&atilde;o com APIs | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/api-integration.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Integra&ccedil;&atilde;o com APIs | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/api-integration.html#webpage",
+    "url": "writerside-documentation/api-integration.html",
+    "name": "Integra&ccedil;&atilde;o com APIs | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="api-integration" data-main-title="Integração com APIs" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="scripting.md|Scripts e Automação: Dominando o Poder do Shell///advanced-automation.md|Automação Avançada"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="api-integration" id="api-integration.md">Integração com APIs</h1><aside class="prompt" data-type="note" data-title="" id="-hmearf_3"><p id="-hmearf_9">Aprenda a integrar seus scripts com APIs RESTful e criar automa&ccedil;&otilde;es poderosas.</p></aside><section class="chapter"><h2 id="requisi-es-b-sicas" data-toc="requisi-es-b-sicas">Requisi&ccedil;&otilde;es B&aacute;sicas</h2><section class="chapter"><h3 id="http-requests" data-toc="http-requests">🌐 HTTP Requests</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Funções básicas de API
+api_get() {
+    local url=$1
+    local token=$2
+    
+    curl -s -H &quot;Authorization: Bearer $token&quot; \
+         -H &quot;Content-Type: application/json&quot; \
+         &quot;$url&quot;
+}
+
+api_post() {
+    local url=$1
+    local data=$2
+    local token=$3
+    
+    curl -s -X POST \
+         -H &quot;Authorization: Bearer $token&quot; \
+         -H &quot;Content-Type: application/json&quot; \
+         -d &quot;$data&quot; \
+         &quot;$url&quot;
+}
+</div></section><section class="chapter"><h3 id="autentica-o" data-toc="autentica-o">🔐 Autentica&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Gerenciamento de tokens
+get_token() {
+    local api_key=$1
+    local api_secret=$2
+    local auth_url=$3
+    
+    local response=$(curl -s -X POST \
+        -H &quot;Content-Type: application/json&quot; \
+        -d &quot;{\&quot;key\&quot;:\&quot;$api_key\&quot;,\&quot;secret\&quot;:\&quot;$api_secret\&quot;}&quot; \
+        &quot;$auth_url&quot;)
+    
+    echo &quot;$response&quot; | jq -r '.token'
+}
+</div></section></section><section class="chapter"><h2 id="integra-o-avan-ada" data-toc="integra-o-avan-ada">Integra&ccedil;&atilde;o Avan&ccedil;ada</h2><section class="chapter"><h3 id="webhooks" data-toc="webhooks">📡 Webhooks</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Servidor webhook básico
+start_webhook() {
+    local port=${1:-8080}
+    
+    while true; do
+        echo -e &quot;HTTP/1.1 200 OK\n\n$(date)&quot; | \
+        nc -l -p $port -q 1 | \
+        while read line; do
+            echo &quot;$line&quot; &gt;&gt; webhook.log
+            # Processa webhook
+            process_webhook &quot;$line&quot;
+        done
+    done
+}
+</div></section><section class="chapter"><h3 id="polling" data-toc="polling">🔄 Polling</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Monitora API por mudanças
+poll_api() {
+    local url=$1
+    local interval=${2:-60}
+    local token=$3
+    
+    while true; do
+        response=$(api_get &quot;$url&quot; &quot;$token&quot;)
+        process_updates &quot;$response&quot;
+        sleep &quot;$interval&quot;
+    done
+}
+</div></section></section><section class="chapter"><h2 id="processamento-de-dados" data-toc="processamento-de-dados">Processamento de Dados</h2><section class="chapter"><h3 id="manipula-o-json" data-toc="manipula-o-json">📊 Manipula&ccedil;&atilde;o JSON</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Processamento de respostas JSON
+process_json() {
+    local json=$1
+    
+    # Extrai campos específicos
+    local items=$(echo &quot;$json&quot; | jq -r '.items[]')
+    
+    # Processa cada item
+    echo &quot;$items&quot; | while read -r item; do
+        local id=$(echo &quot;$item&quot; | jq -r '.id')
+        local status=$(echo &quot;$item&quot; | jq -r '.status')
+        
+        # Atualiza status
+        if [ &quot;$status&quot; = &quot;pending&quot; ]; then
+            process_item &quot;$id&quot;
+        fi
+    done
+}
+</div></section><section class="chapter"><h3 id="rate-limiting" data-toc="rate-limiting">📈 Rate Limiting</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Controle de taxa de requisições
+rate_limit() {
+    local requests=${1:-60}  # requisições
+    local period=${2:-60}    # segundos
+    local delay=$(bc &lt;&lt;&lt; &quot;scale=2; $period/$requests&quot;)
+    
+    sleep &quot;$delay&quot;
+}
+</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><section class="chapter"><h3 id="miss-o-1-cliente-api" data-toc="miss-o-1-cliente-api">🎯 Miss&atilde;o 1: Cliente API</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Objetivos:
+# 1. Implementar cliente REST
+# 2. Gerenciar autenticação
+# 3. Processar respostas
+# 4. Implementar retry
+
+# Exemplo de implementação
+api_client() {
+    local base_url=$1
+    local token=$(get_token &quot;$API_KEY&quot; &quot;$API_SECRET&quot; &quot;$AUTH_URL&quot;)
+    
+    # Implementar lógica do cliente
+}
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="-hmearf_24" type="1"><li class="list__item" id="-hmearf_28"><p id="-hmearf_31"><span id="-hmearf_32">GraphQL Integration</span></p></li><li class="list__item" id="-hmearf_29"><p id="-hmearf_33"><span id="-hmearf_34">API Security</span></p></li><li class="list__item" id="-hmearf_30"><p id="-hmearf_35"><span id="-hmearf_36">Microservices</span></p></li></ol><aside class="prompt" data-type="tip" data-title="" id="-hmearf_26"><p id="-hmearf_37">&quot;APIs s&atilde;o as pontes que conectam sistemas isolados em uma rede de possibilidades.&quot;</p></aside><div class="code-block" data-lang="none">
+    API INTEGRATION
+    [🌐🌐🌐🌐🌐] 100%
+    STATUS: INTEGRADOR MESTRE
+    PRÓXIMO: ORQUESTRAÇÃO
+</div></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="performance-automation.html" class="navigation-links__prev">Automa&ccedil;&atilde;o de Performance</a><a href="workflow-orchestration.html" class="navigation-links__next">Orquestra&ccedil;&atilde;o de Workflows</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

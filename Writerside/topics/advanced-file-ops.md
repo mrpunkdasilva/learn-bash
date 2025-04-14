@@ -14,6 +14,7 @@
 ## Sincronização com Rsync
 
 ### Sincronização Básica
+
 ```bash
 # Sincronização local
 rsync -av fonte/ destino/           # Sincroniza diretórios
@@ -85,11 +86,12 @@ done
 ## Scripts Avançados
 
 ### Script de Backup Incremental
+
 ```bash
 #!/bin/bash
 # backup_incremental.sh
 
-BACKUP_DIR="/backup"
+BACKUP_DIR="/path/to/backup"
 SOURCE_DIR="/dados"
 DATE=$(date +%Y%m%d)
 

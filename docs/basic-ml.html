@@ -1,0 +1,281 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T20:32:30.338550328"><title>Machine Learning B&aacute;sico | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"fundamentos","level":0,"title":"Fundamentos","anchor":"#fundamentos"},{"id":"algoritmos-b-sicos","level":0,"title":"Algoritmos Básicos","anchor":"#algoritmos-b-sicos"},{"id":"avalia-o-de-modelos","level":0,"title":"Avaliação de Modelos","anchor":"#avalia-o-de-modelos"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Machine Learning B&aacute;sico | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/basic-ml.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Machine Learning B&aacute;sico | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/basic-ml.html#webpage",
+    "url": "writerside-documentation/basic-ml.html",
+    "name": "Machine Learning B&aacute;sico | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="basic-ml" data-main-title="Machine Learning Básico" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="processing.md"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="basic-ml" id="basic-ml.md">Machine Learning Básico</h1><aside class="prompt" data-type="note" data-title="" id="-21ilmi_3"><p id="-21ilmi_9">Introdu&ccedil;&atilde;o a conceitos b&aacute;sicos de Machine Learning usando ferramentas do terminal.</p></aside><section class="chapter"><h2 id="fundamentos" data-toc="fundamentos">Fundamentos</h2><section class="chapter"><h3 id="an-lise-estat-stica" data-toc="an-lise-estat-stica">🧮 An&aacute;lise Estat&iacute;stica</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# statistical_analysis.sh
+
+analyze_data() {
+    local data=&quot;$1&quot;
+    
+    awk '
+    BEGIN {
+        print &quot;=== Análise Estatística ===&quot;
+    }
+    {
+        sum += $1
+        sumsq += $1 * $1
+        values[NR] = $1
+    }
+    END {
+        # Média
+        mean = sum/NR
+        
+        # Variância
+        variance = sumsq/NR - mean^2
+        
+        # Desvio Padrão
+        stddev = sqrt(variance)
+        
+        # Mediana
+        asort(values)
+        if (NR % 2)
+            median = values[int(NR/2) + 1]
+        else
+            median = (values[NR/2] + values[NR/2 + 1])/2
+            
+        print &quot;Amostras:&quot;, NR
+        print &quot;Média:&quot;, mean
+        print &quot;Mediana:&quot;, median
+        print &quot;Desvio Padrão:&quot;, stddev
+    }' &lt;&lt;&lt; &quot;$data&quot;
+}
+</div></section><section class="chapter"><h3 id="normaliza-o-de-dados" data-toc="normaliza-o-de-dados">📊 Normaliza&ccedil;&atilde;o de Dados</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# data_normalization.sh
+
+normalize_data() {
+    local data=&quot;$1&quot;
+    local method=&quot;$2&quot;  # min-max ou z-score
+    
+    case &quot;$method&quot; in
+        &quot;min-max&quot;)
+            awk '
+            NR == 1 {
+                min = max = $1
+            }
+            {
+                if ($1 &lt; min) min = $1
+                if ($1 &gt; max) max = $1
+                values[NR] = $1
+            }
+            END {
+                for (i=1; i&lt;=NR; i++)
+                    print (values[i] - min)/(max - min)
+            }' &lt;&lt;&lt; &quot;$data&quot;
+            ;;
+        &quot;z-score&quot;)
+            awk '
+            {
+                sum += $1
+                sumsq += $1 * $1
+                values[NR] = $1
+            }
+            END {
+                mean = sum/NR
+                stddev = sqrt(sumsq/NR - mean^2)
+                for (i=1; i&lt;=NR; i++)
+                    print (values[i] - mean)/stddev
+            }' &lt;&lt;&lt; &quot;$data&quot;
+            ;;
+    esac
+}
+</div></section></section><section class="chapter"><h2 id="algoritmos-b-sicos" data-toc="algoritmos-b-sicos">Algoritmos B&aacute;sicos</h2><section class="chapter"><h3 id="k-means-simples" data-toc="k-means-simples">🎯 K-Means Simples</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# kmeans.sh
+
+kmeans_clustering() {
+    local data=&quot;$1&quot;
+    local k=&quot;$2&quot;
+    local max_iter=100
+    
+    awk -v k=&quot;$k&quot; -v max_iter=&quot;$max_iter&quot; '
+    function dist(x1, y1, x2, y2) {
+        return sqrt((x1-x2)^2 + (y1-y2)^2)
+    }
+    
+    BEGIN {
+        srand()
+    }
+    
+    # Carrega dados
+    {
+        x[NR] = $1
+        y[NR] = $2
+    }
+    
+    END {
+        # Inicializa centroides aleatoriamente
+        for (i=1; i&lt;=k; i++) {
+            c_x[i] = x[int(rand() * NR)]
+            c_y[i] = y[int(rand() * NR)]
+        }
+        
+        # Iterações
+        for (iter=1; iter&lt;=max_iter; iter++) {
+            # Associa pontos aos clusters
+            changed = 0
+            for (i=1; i&lt;=NR; i++) {
+                min_dist = dist(x[i], y[i], c_x[1], c_y[1])
+                cluster[i] = 1
+                for (j=2; j&lt;=k; j++) {
+                    d = dist(x[i], y[i], c_x[j], c_y[j])
+                    if (d &lt; min_dist) {
+                        min_dist = d
+                        cluster[i] = j
+                    }
+                }
+            }
+            
+            # Atualiza centroides
+            for (i=1; i&lt;=k; i++) {
+                new_x = new_y = count = 0
+                for (j=1; j&lt;=NR; j++) {
+                    if (cluster[j] == i) {
+                        new_x += x[j]
+                        new_y += y[j]
+                        count++
+                    }
+                }
+                if (count &gt; 0) {
+                    new_x /= count
+                    new_y /= count
+                    if (new_x != c_x[i] || new_y != c_y[i])
+                        changed = 1
+                    c_x[i] = new_x
+                    c_y[i] = new_y
+                }
+            }
+            
+            if (!changed) break
+        }
+        
+        # Imprime resultados
+        print &quot;Clusters encontrados:&quot;
+        for (i=1; i&lt;=NR; i++)
+            print x[i], y[i], cluster[i]
+    }' &lt;&lt;&lt; &quot;$data&quot;
+}
+</div></section><section class="chapter"><h3 id="regress-o-linear" data-toc="regress-o-linear">📈 Regress&atilde;o Linear</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# linear_regression.sh
+
+linear_regression() {
+    local data=&quot;$1&quot;
+    
+    awk '
+    {
+        x[NR] = $1
+        y[NR] = $2
+        sum_x += $1
+        sum_y += $2
+        sum_xy += $1 * $2
+        sum_xx += $1 * $1
+    }
+    END {
+        # Calcula coeficientes
+        n = NR
+        slope = (n * sum_xy - sum_x * sum_y)/(n * sum_xx - sum_x * sum_x)
+        intercept = (sum_y - slope * sum_x)/n
+        
+        # Calcula R²
+        mean_y = sum_y/n
+        ss_tot = ss_res = 0
+        for (i=1; i&lt;=n; i++) {
+            pred = slope * x[i] + intercept
+            ss_tot += (y[i] - mean_y)^2
+            ss_res += (y[i] - pred)^2
+        }
+        r2 = 1 - ss_res/ss_tot
+        
+        print &quot;Coeficiente Angular:&quot;, slope
+        print &quot;Intercepto:&quot;, intercept
+        print &quot;R²:&quot;, r2
+    }' &lt;&lt;&lt; &quot;$data&quot;
+}
+</div></section></section><section class="chapter"><h2 id="avalia-o-de-modelos" data-toc="avalia-o-de-modelos">Avalia&ccedil;&atilde;o de Modelos</h2><section class="chapter"><h3 id="m-tricas-de-avalia-o" data-toc="m-tricas-de-avalia-o">📊 M&eacute;tricas de Avalia&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# model_evaluation.sh
+
+evaluate_model() {
+    local actual=&quot;$1&quot;
+    local predicted=&quot;$2&quot;
+    
+    paste &lt;(echo &quot;$actual&quot;) &lt;(echo &quot;$predicted&quot;) | \
+    awk '
+    {
+        error = $1 - $2
+        abs_error += abs(error)
+        sq_error += error^2
+        if ($1 == $2) correct++
+    }
+    END {
+        print &quot;=== Métricas de Avaliação ===&quot;
+        print &quot;MAE:&quot;, abs_error/NR
+        print &quot;MSE:&quot;, sq_error/NR
+        print &quot;RMSE:&quot;, sqrt(sq_error/NR)
+        print &quot;Acurácia:&quot;, correct/NR * 100 &quot;%&quot;
+    }'
+}
+</div></section><section class="chapter"><h3 id="valida-o-cruzada" data-toc="valida-o-cruzada">🔄 Valida&ccedil;&atilde;o Cruzada</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# cross_validation.sh
+
+cross_validate() {
+    local data=&quot;$1&quot;
+    local k=5  # k-fold
+    
+    awk -v k=&quot;$k&quot; '
+    {
+        lines[NR] = $0
+    }
+    END {
+        # Embaralha dados
+        for (i=NR; i&gt;1; i--) {
+            j = int(rand() * i) + 1
+            temp = lines[i]
+            lines[i] = lines[j]
+            lines[j] = temp
+        }
+        
+        # K-fold CV
+        fold_size = int(NR/k)
+        for (fold=1; fold&lt;=k; fold++) {
+            start = (fold-1) * fold_size + 1
+            end = fold * fold_size
+            
+            print &quot;=== Fold&quot;, fold, &quot;===&quot;
+            print &quot;Test indices:&quot;, start, &quot;-&quot;, end
+        }
+    }' &lt;&lt;&lt; &quot;$data&quot;
+}
+</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><section class="chapter"><h3 id="miss-o-1-classifica-o" data-toc="miss-o-1-classifica-o">🎯 Miss&atilde;o 1: Classifica&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+# Implemente um classificador:
+# 1. Prepare os dados
+# 2. Treine o modelo
+# 3. Avalie performance
+# 4. Faça previsões
+</div></section><section class="chapter"><h3 id="miss-o-2-regress-o" data-toc="miss-o-2-regress-o">🎯 Miss&atilde;o 2: Regress&atilde;o</h3><div class="code-block" data-lang="bash">
+# Desenvolva análise preditiva:
+# 1. Analise correlações
+# 2. Construa modelo
+# 3. Valide resultados
+# 4. Otimize parâmetros
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="-21ilmi_26" type="1"><li class="list__item" id="-21ilmi_30"><p id="-21ilmi_32"><span id="-21ilmi_33">Data Visualization</span></p></li><li class="list__item" id="-21ilmi_31"><p id="-21ilmi_34"><a href="text-analysis.html" id="-21ilmi_35" data-tooltip="Aprenda técnicas avançadas para analisar e extrair insights de dados textuais.">Text Analysis</a></p></li></ol><aside class="prompt" data-type="tip" data-title="" id="-21ilmi_28"><p id="-21ilmi_36">&quot;Dados + Algoritmos = Conhecimento&quot;</p></aside><div class="code-block" data-lang="none">
+    MACHINE LEARNING
+    [🤖🤖🤖🤖🤖] 100%
+    STATUS: TREINADO
+    MODELO: OTIMIZADO
+</div></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="distributed-processing.html" class="navigation-links__prev">Processamento Distribu&iacute;do</a><a href="references.html" class="navigation-links__next">Refer&ecirc;ncias e Recursos</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

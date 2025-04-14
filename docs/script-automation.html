@@ -1,0 +1,151 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T20:32:30.221110729"><title>Automa&ccedil;&atilde;o de Scripts | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"fundamentos-da-automa-o","level":0,"title":"Fundamentos da Automação","anchor":"#fundamentos-da-automa-o"},{"id":"padr-es-de-automa-o","level":0,"title":"Padrões de Automação","anchor":"#padr-es-de-automa-o"},{"id":"t-cnicas-avan-adas","level":0,"title":"Técnicas Avançadas","anchor":"#t-cnicas-avan-adas"},{"id":"melhores-pr-ticas","level":0,"title":"Melhores Práticas","anchor":"#melhores-pr-ticas"},{"id":"exemplos-pr-ticos","level":0,"title":"Exemplos Práticos","anchor":"#exemplos-pr-ticos"},{"id":"dicas-e-truques","level":0,"title":"Dicas e Truques","anchor":"#dicas-e-truques"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Automa&ccedil;&atilde;o de Scripts | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/script-automation.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Automa&ccedil;&atilde;o de Scripts | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/script-automation.html#webpage",
+    "url": "writerside-documentation/script-automation.html",
+    "name": "Automa&ccedil;&atilde;o de Scripts | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="script-automation" data-main-title="Automação de Scripts" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="scripting.md|Scripts e Automação: Dominando o Poder do Shell"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="script-automation" id="script-automation.md">Automação de Scripts</h1><aside class="prompt" data-type="note" data-title="" id="-dvlvxv_3"><p id="-dvlvxv_10">Aprenda a criar scripts de automa&ccedil;&atilde;o eficientes e reutiliz&aacute;veis para tarefas repetitivas.</p></aside><section class="chapter"><h2 id="fundamentos-da-automa-o" data-toc="fundamentos-da-automa-o">Fundamentos da Automa&ccedil;&atilde;o</h2><section class="chapter"><h3 id="estrutura-b-sica" data-toc="estrutura-b-sica">🔄 Estrutura B&aacute;sica</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# automation_base.sh
+
+# Configurações
+set -e  # Encerra em caso de erro
+set -u  # Variáveis não definidas geram erro
+
+# Variáveis globais
+readonly LOG_FILE=&quot;/var/log/automation.log&quot;
+readonly CONFIG_FILE=&quot;/etc/automation/config.conf&quot;
+
+# Funções de utilidade
+log_message() {
+    local message=&quot;$1&quot;
+    echo &quot;[$(date '+%Y-%m-%d %H:%M:%S')] $message&quot; &gt;&gt; &quot;$LOG_FILE&quot;
+}
+
+check_dependencies() {
+    local deps=(&quot;docker&quot; &quot;git&quot; &quot;curl&quot;)
+    for dep in &quot;${deps[@]}&quot;; do
+        if ! command -v &quot;$dep&quot; &amp;&gt; /dev/null; then
+            log_message &quot;ERROR: Dependência não encontrada: $dep&quot;
+            exit 1
+        fi
+    done
+}
+</div></section></section><section class="chapter"><h2 id="padr-es-de-automa-o" data-toc="padr-es-de-automa-o">Padr&otilde;es de Automa&ccedil;&atilde;o</h2><section class="chapter"><h3 id="template-base" data-toc="template-base">📋 Template Base</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# template.sh
+
+# Configuração
+source &quot;$(dirname &quot;$0&quot;)/config.sh&quot;
+
+# Tratamento de erros
+trap 'echo &quot;Erro na linha $LINENO. Comando: $BASH_COMMAND&quot;' ERR
+
+# Funções principais
+setup() {
+    log_message &quot;Iniciando setup...&quot;
+    check_dependencies
+}
+
+cleanup() {
+    log_message &quot;Realizando limpeza...&quot;
+    # Adicione código de limpeza aqui
+}
+
+# Execução principal
+main() {
+    setup
+    trap cleanup EXIT
+    
+    # Lógica principal aqui
+}
+
+main &quot;$@&quot;
+</div></section></section><section class="chapter"><h2 id="t-cnicas-avan-adas" data-toc="t-cnicas-avan-adas">T&eacute;cnicas Avan&ccedil;adas</h2><section class="chapter"><h3 id="controle-de-execu-o" data-toc="controle-de-execu-o">🔒 Controle de Execu&ccedil;&atilde;o</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# process_control.sh
+
+LOCK_FILE=&quot;/var/run/automation.lock&quot;
+
+# Garante execução única
+if ! mkdir &quot;$LOCK_FILE&quot; 2&gt;/dev/null; then
+    echo &quot;Processo já em execução&quot;
+    exit 1
+fi
+
+trap 'rm -rf &quot;$LOCK_FILE&quot;' EXIT
+</div></section><section class="chapter"><h3 id="monitoramento" data-toc="monitoramento">📊 Monitoramento</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# monitoring.sh
+
+monitor_resources() {
+    while true; do
+        cpu_usage=$(top -bn1 | grep &quot;Cpu(s)&quot; | awk '{print $2}')
+        mem_usage=$(free -m | awk '/Mem:/ {print $3}')
+        
+        if (( $(echo &quot;$cpu_usage &gt; 80&quot; | bc -l) )); then
+            notify_admin &quot;Alto uso de CPU: $cpu_usage%&quot;
+        fi
+        
+        sleep 60
+    done
+}
+</div></section></section><section class="chapter"><h2 id="melhores-pr-ticas" data-toc="melhores-pr-ticas">Melhores Pr&aacute;ticas</h2><ol class="list _decimal" id="-dvlvxv_19" type="1"><li class="list__item" id="-dvlvxv_20"><p id="-dvlvxv_24"><span class="control" id="-dvlvxv_26">Modulariza&ccedil;&atilde;o</span></p><ul class="list _bullet" id="-dvlvxv_25"><li class="list__item" id="-dvlvxv_27"><p id="-dvlvxv_30">Divida scripts grandes em m&oacute;dulos menores</p></li><li class="list__item" id="-dvlvxv_28"><p id="-dvlvxv_31">Use fun&ccedil;&otilde;es para c&oacute;digo reutiliz&aacute;vel</p></li><li class="list__item" id="-dvlvxv_29"><p id="-dvlvxv_32">Mantenha uma estrutura organizada</p></li></ul></li><li class="list__item" id="-dvlvxv_21"><p id="-dvlvxv_33"><span class="control" id="-dvlvxv_35">Logging</span></p><ul class="list _bullet" id="-dvlvxv_34"><li class="list__item" id="-dvlvxv_36"><p id="-dvlvxv_39">Implemente logs detalhados</p></li><li class="list__item" id="-dvlvxv_37"><p id="-dvlvxv_40">Use n&iacute;veis de log (INFO, WARN, ERROR)</p></li><li class="list__item" id="-dvlvxv_38"><p id="-dvlvxv_41">Rotacione logs regularmente</p></li></ul></li><li class="list__item" id="-dvlvxv_22"><p id="-dvlvxv_42"><span class="control" id="-dvlvxv_44">Tratamento de Erros</span></p><ul class="list _bullet" id="-dvlvxv_43"><li class="list__item" id="-dvlvxv_45"><p id="-dvlvxv_48">Sempre valide entradas</p></li><li class="list__item" id="-dvlvxv_46"><p id="-dvlvxv_49">Use trap para cleanup</p></li><li class="list__item" id="-dvlvxv_47"><p id="-dvlvxv_50">Implemente retry em opera&ccedil;&otilde;es cr&iacute;ticas</p></li></ul></li><li class="list__item" id="-dvlvxv_23"><p id="-dvlvxv_51"><span class="control" id="-dvlvxv_53">Seguran&ccedil;a</span></p><ul class="list _bullet" id="-dvlvxv_52"><li class="list__item" id="-dvlvxv_54"><p id="-dvlvxv_57">Evite inje&ccedil;&atilde;o de comandos</p></li><li class="list__item" id="-dvlvxv_55"><p id="-dvlvxv_58">Proteja dados sens&iacute;veis</p></li><li class="list__item" id="-dvlvxv_56"><p id="-dvlvxv_59">Use permiss&otilde;es adequadas</p></li></ul></li></ol></section><section class="chapter"><h2 id="exemplos-pr-ticos" data-toc="exemplos-pr-ticos">Exemplos Pr&aacute;ticos</h2><section class="chapter"><h3 id="backup-automatizado" data-toc="backup-automatizado">🔄 Backup Automatizado</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# backup_automation.sh
+
+# Configurações
+BACKUP_DIR=&quot;/backups&quot;
+SOURCES=(&quot;/etc&quot; &quot;/var/www&quot; &quot;/home&quot;)
+DATE=$(date +%Y%m%d)
+
+# Função de backup
+create_backup() {
+    local source=&quot;$1&quot;
+    local basename=$(basename &quot;$source&quot;)
+    local backup_file=&quot;${BACKUP_DIR}/${basename}_${DATE}.tar.gz&quot;
+    
+    tar -czf &quot;$backup_file&quot; &quot;$source&quot; 2&gt;/dev/null || {
+        log_message &quot;ERROR: Falha no backup de $source&quot;
+        return 1
+    }
+    
+    log_message &quot;SUCCESS: Backup criado: $backup_file&quot;
+}
+
+# Execução
+for source in &quot;${SOURCES[@]}&quot;; do
+    create_backup &quot;$source&quot;
+done
+</div></section><section class="chapter"><h3 id="deploy-automatizado" data-toc="deploy-automatizado">🔄 Deploy Automatizado</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# deploy_automation.sh
+
+deploy_application() {
+    local version=&quot;$1&quot;
+    local env=&quot;$2&quot;
+    
+    log_message &quot;Iniciando deploy v${version} em ${env}&quot;
+    
+    # Pull da nova versão
+    docker pull &quot;app:${version}&quot;
+    
+    # Update do serviço
+    docker service update \
+        --image &quot;app:${version}&quot; \
+        --with-registry-auth \
+        &quot;app_${env}&quot;
+    
+    # Verificação
+    check_deployment_status
+}
+</div></section></section><section class="chapter"><h2 id="dicas-e-truques" data-toc="dicas-e-truques">Dicas e Truques</h2><ol class="list _decimal" id="-dvlvxv_64" type="1"><li class="list__item" id="-dvlvxv_65"><p id="-dvlvxv_69"><span class="control" id="-dvlvxv_71">Automa&ccedil;&atilde;o Inteligente</span></p><ul class="list _bullet" id="-dvlvxv_70"><li class="list__item" id="-dvlvxv_72"><p id="-dvlvxv_75">Use vari&aacute;veis de ambiente</p></li><li class="list__item" id="-dvlvxv_73"><p id="-dvlvxv_76">Implemente verifica&ccedil;&otilde;es de sanidade</p></li><li class="list__item" id="-dvlvxv_74"><p id="-dvlvxv_77">Adicione timeouts em opera&ccedil;&otilde;es</p></li></ul></li><li class="list__item" id="-dvlvxv_66"><p id="-dvlvxv_78"><span class="control" id="-dvlvxv_80">Debug</span></p><ul class="list _bullet" id="-dvlvxv_79"><li class="list__item" id="-dvlvxv_81"><p id="-dvlvxv_84">Use <code class="code" id="-dvlvxv_85">set -x</code> para debug</p></li><li class="list__item" id="-dvlvxv_82"><p id="-dvlvxv_86">Implemente modo verbose</p></li><li class="list__item" id="-dvlvxv_83"><p id="-dvlvxv_87">Mantenha logs detalhados</p></li></ul></li><li class="list__item" id="-dvlvxv_67"><p id="-dvlvxv_88"><span class="control" id="-dvlvxv_90">Performance</span></p><ul class="list _bullet" id="-dvlvxv_89"><li class="list__item" id="-dvlvxv_91"><p id="-dvlvxv_94">Otimize opera&ccedil;&otilde;es I/O</p></li><li class="list__item" id="-dvlvxv_92"><p id="-dvlvxv_95">Use paralelismo quando poss&iacute;vel</p></li><li class="list__item" id="-dvlvxv_93"><p id="-dvlvxv_96">Monitore uso de recursos</p></li></ul></li><li class="list__item" id="-dvlvxv_68"><p id="-dvlvxv_97"><span class="control" id="-dvlvxv_99">Manuten&ccedil;&atilde;o</span></p><ul class="list _bullet" id="-dvlvxv_98"><li class="list__item" id="-dvlvxv_100"><p id="-dvlvxv_103">Documente bem o c&oacute;digo</p></li><li class="list__item" id="-dvlvxv_101"><p id="-dvlvxv_104">Mantenha versionamento</p></li><li class="list__item" id="-dvlvxv_102"><p id="-dvlvxv_105">Fa&ccedil;a revis&otilde;es regulares</p></li></ul></li></ol></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="functions.html" class="navigation-links__prev">Fun&ccedil;&otilde;es: Modularizando seu C&oacute;digo</a><a href="advanced-automation.html" class="navigation-links__next">Automa&ccedil;&atilde;o Avan&ccedil;ada</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

@@ -154,12 +154,6 @@ check_deps() {
 4. Implemente rollback
 5. Mantenha logs de auditoria
 
-## Próximos Passos
-
-1. [Orquestração de Containers](container-orchestration.md)
-2. [Monitoramento Avançado](advanced-monitoring.md)
-3. [Infraestrutura como Código](infrastructure-as-code.md)
-
 ---
 
 > "A automação é a arte de fazer máquinas trabalharem para você."

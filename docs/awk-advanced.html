@@ -1,0 +1,235 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T20:32:30.353404693"><title>AWK Avan&ccedil;ado 🚀 | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"programa-o-avan-ada-em-awk","level":0,"title":"Programação Avançada em AWK","anchor":"#programa-o-avan-ada-em-awk"},{"id":"t-cnicas-avan-adas","level":0,"title":"Técnicas Avançadas","anchor":"#t-cnicas-avan-adas"},{"id":"integra-o-com-sistema","level":0,"title":"Integração com Sistema","anchor":"#integra-o-com-sistema"},{"id":"otimiza-o-e-performance","level":0,"title":"Otimização e Performance","anchor":"#otimiza-o-e-performance"},{"id":"exerc-cios-pr-ticos","level":0,"title":"Exercícios Práticos","anchor":"#exerc-cios-pr-ticos"},{"id":"troubleshooting","level":0,"title":"Troubleshooting","anchor":"#troubleshooting"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="AWK Avan&ccedil;ado 🚀 | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/awk-advanced.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="AWK Avan&ccedil;ado 🚀 | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/awk-advanced.html#webpage",
+    "url": "writerside-documentation/awk-advanced.html",
+    "name": "AWK Avan&ccedil;ado 🚀 | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="awk-advanced" data-main-title="AWK Avançado 🚀" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="essential-commands.md|Comandos Essenciais///text-processing.md|Processamento de Texto"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="awk-advanced" id="awk-advanced.md">AWK Avançado 🚀</h1><aside class="prompt" data-type="note" data-title="" id="-6als9i_3"><p id="-6als9i_11">Domine t&eacute;cnicas avan&ccedil;adas de processamento de texto com AWK.</p></aside><section class="chapter"><h2 id="programa-o-avan-ada-em-awk" data-toc="programa-o-avan-ada-em-awk">Programa&ccedil;&atilde;o Avan&ccedil;ada em AWK</h2><section class="chapter"><h3 id="arrays-associativos" data-toc="arrays-associativos">🔧 Arrays Associativos</h3><div class="code-block" data-lang="awk">
+# Contagem de ocorrências
+{
+    count[$1]++
+}
+END {
+    for (item in count) {
+        printf &quot;%-20s %d\n&quot;, item, count[item]
+    }
+}
+
+# Arrays multidimensionais
+{
+    data[$1][$2] = $3
+}
+END {
+    for (i in data) {
+        for (j in data[i]) {
+            print i, j, data[i][j]
+        }
+    }
+}
+</div></section><section class="chapter"><h3 id="fun-es-customizadas" data-toc="fun-es-customizadas">🎯 Fun&ccedil;&otilde;es Customizadas</h3><div class="code-block" data-lang="awk">
+# Função de formatação
+function format_bytes(bytes) {
+    units[&quot;B&quot;] = 1
+    units[&quot;KB&quot;] = 1024
+    units[&quot;MB&quot;] = 1024**2
+    units[&quot;GB&quot;] = 1024**3
+    
+    for (unit in units) {
+        if (bytes &lt; units[unit] * 1024 || unit == &quot;GB&quot;) {
+            return sprintf(&quot;%.2f %s&quot;, bytes/units[unit], unit)
+        }
+    }
+}
+
+# Uso da função
+{
+    print $1, format_bytes($2)
+}
+</div></section></section><section class="chapter"><h2 id="t-cnicas-avan-adas" data-toc="t-cnicas-avan-adas">T&eacute;cnicas Avan&ccedil;adas</h2><section class="chapter"><h3 id="processamento-de-dados" data-toc="processamento-de-dados">📊 Processamento de Dados</h3><div class="code-block" data-lang="awk">
+# Estatísticas descritivas
+{
+    sum += $1
+    sumsq += $1 * $1
+    count++
+}
+END {
+    mean = sum/count
+    variance = (sumsq - sum*sum/count)/count
+    stddev = sqrt(variance)
+    print &quot;Média:&quot;, mean
+    print &quot;Desvio Padrão:&quot;, stddev
+}
+
+# Agregações complexas
+{
+    by_group[$1][&quot;sum&quot;] += $2
+    by_group[$1][&quot;count&quot;]++
+}
+END {
+    for (group in by_group) {
+        avg = by_group[group][&quot;sum&quot;] / by_group[group][&quot;count&quot;]
+        print group, avg
+    }
+}
+</div></section><section class="chapter"><h3 id="processamento-de-texto" data-toc="processamento-de-texto">🔄 Processamento de Texto</h3><div class="code-block" data-lang="awk">
+# Parser CSV avançado
+BEGIN { FS = &quot;,&quot; }
+{
+    gsub(/&quot;([^&quot;]+)&quot;/, &quot;\\1&quot;)    # Remove aspas
+    gsub(/^\s+|\s+$/, &quot;&quot;, $0)   # Trim
+    
+    for (i=1; i&lt;=NF; i++) {
+        gsub(/^\s+|\s+$/, &quot;&quot;, $i)
+        print &quot;Campo &quot; i &quot;:&quot;, $i
+    }
+}
+
+# Transformação de formato
+{
+    split($0, fields, &quot;,&quot;)    # CSV para array
+    json = &quot;{&quot;
+    for (i=1; i&lt;=NF; i++) {
+        json = json sprintf(&quot;\&quot;%s\&quot;:\&quot;%s\&quot;%s&quot;, 
+                          headers[i], 
+                          fields[i], 
+                          (i==NF ? &quot;&quot; : &quot;,&quot;))
+    }
+    json = json &quot;}&quot;
+    print json
+}
+</div></section></section><section class="chapter"><h2 id="integra-o-com-sistema" data-toc="integra-o-com-sistema">Integra&ccedil;&atilde;o com Sistema</h2><section class="chapter"><h3 id="comandos-do-sistema" data-toc="comandos-do-sistema">🛠️ Comandos do Sistema</h3><div class="code-block" data-lang="awk">
+# Execução de comandos
+{
+    cmd = sprintf(&quot;curl -s %s&quot;, $1)
+    while ((cmd | getline result) &gt; 0) {
+        process_data(result)
+    }
+    close(cmd)
+}
+
+# Logging avançado
+function log(level, message) {
+    cmd = sprintf(&quot;logger -p user.%s \&quot;[AWK] %s\&quot;&quot;, 
+                 level, 
+                 message)
+    system(cmd)
+}
+</div></section><section class="chapter"><h3 id="manipula-o-de-arquivos" data-toc="manipula-o-de-arquivos">📁 Manipula&ccedil;&atilde;o de Arquivos</h3><div class="code-block" data-lang="awk">
+# Processamento multi-arquivo
+BEGINFILE {
+    print &quot;Processando:&quot;, FILENAME
+}
+{
+    # Processamento por arquivo
+    file_stats[FILENAME][&quot;lines&quot;]++
+    file_stats[FILENAME][&quot;bytes&quot;] += length($0)
+}
+ENDFILE {
+    print &quot;Finalizado:&quot;, FILENAME
+}
+END {
+    for (file in file_stats) {
+        print file, file_stats[file][&quot;lines&quot;], &quot;linhas&quot;
+    }
+}
+</div></section></section><section class="chapter"><h2 id="otimiza-o-e-performance" data-toc="otimiza-o-e-performance">Otimiza&ccedil;&atilde;o e Performance</h2><section class="chapter"><h3 id="t-cnicas-de-otimiza-o" data-toc="t-cnicas-de-otimiza-o">⚡ T&eacute;cnicas de Otimiza&ccedil;&atilde;o</h3><div class="code-block" data-lang="awk">
+# Cache de resultados
+{
+    key = $1 SUBSEP $2
+    if (!(key in cache)) {
+        cache[key] = expensive_calculation($1, $2)
+    }
+    print cache[key]
+}
+
+# Processamento em lote
+{
+    buffer[NR] = $0
+    if (NR % 1000 == 0) {
+        process_batch()
+        delete buffer
+    }
+}
+END {
+    process_batch()
+}
+</div></section></section><section class="chapter"><h2 id="exerc-cios-pr-ticos" data-toc="exerc-cios-pr-ticos">Exerc&iacute;cios Pr&aacute;ticos</h2><section class="chapter"><h3 id="miss-o-1-an-lise-de-logs" data-toc="miss-o-1-an-lise-de-logs">🎯 Miss&atilde;o 1: An&aacute;lise de Logs</h3><div class="code-block" data-lang="awk">
+#!/usr/bin/awk -f
+# Análise avançada de logs
+
+BEGIN {
+    FS = &quot;\\|&quot;
+    print &quot;Iniciando análise...&quot;
+}
+
+{
+    # Agregação por tipo
+    types[$1]++
+    
+    # Análise temporal
+    split($2, time, &quot;:&quot;)
+    hour = time[1]
+    hourly[hour]++
+    
+    # Métricas
+    if ($3 &gt; max_value) max_value = $3
+}
+
+END {
+    report()
+}
+
+function report() {
+    print &quot;\nDistribuição por tipo:&quot;
+    for (t in types) print t &quot;:&quot;, types[t]
+    
+    print &quot;\nDistribuição horária:&quot;
+    for (h in hourly) print h &quot;h:&quot;, hourly[h]
+}
+</div></section><section class="chapter"><h3 id="miss-o-2-etl" data-toc="miss-o-2-etl">🎯 Miss&atilde;o 2: ETL</h3><div class="code-block" data-lang="awk">
+#!/usr/bin/awk -f
+# Transformação de dados
+
+BEGIN {
+    FS = &quot;,&quot;
+    OFS = &quot;\t&quot;
+    
+    # Configuração
+    load_config()
+}
+
+function load_config() {
+    while ((getline &lt; &quot;config.txt&quot;) &gt; 0) {
+        config[$1] = $2
+    }
+}
+
+{
+    # Transformação
+    for (i=1; i&lt;=NF; i++) {
+        $i = transform_field(i, $i)
+    }
+    print
+}
+
+function transform_field(col, val) {
+    if (col in config) {
+        return apply_rules(val, config[col])
+    }
+    return val
+}
+</div></section></section><section class="chapter"><h2 id="troubleshooting" data-toc="troubleshooting">Troubleshooting</h2><section class="chapter"><h3 id="problemas-comuns" data-toc="problemas-comuns">🔧 Problemas Comuns</h3><ol class="list _decimal" id="-6als9i_32" type="1"><li class="list__item" id="-6als9i_33"><p id="-6als9i_37">Gerenciamento de Mem&oacute;ria</p></li><li class="list__item" id="-6als9i_34"><p id="-6als9i_38">Performance com Grandes Arquivos</p></li><li class="list__item" id="-6als9i_35"><p id="-6als9i_39">Encoding e Caracteres Especiais</p></li><li class="list__item" id="-6als9i_36"><p id="-6als9i_40">Integra&ccedil;&atilde;o com Sistema</p></li></ol></section><section class="chapter"><h3 id="solu-es" data-toc="solu-es">💡 Solu&ccedil;&otilde;es</h3><ol class="list _decimal" id="-6als9i_41" type="1"><li class="list__item" id="-6als9i_42"><p id="-6als9i_46">Use processamento em lote</p></li><li class="list__item" id="-6als9i_43"><p id="-6als9i_47">Evite arrays desnecess&aacute;rios</p></li><li class="list__item" id="-6als9i_44"><p id="-6als9i_48">Configure LOCALE apropriadamente</p></li><li class="list__item" id="-6als9i_45"><p id="-6als9i_49">Gerencie recursos do sistema</p></li></ol></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ol class="list _decimal" id="-6als9i_50" type="1"><li class="list__item" id="-6als9i_54"><p id="-6als9i_57"><a href="sed-advanced.html" id="-6als9i_58" data-tooltip="Domine técnicas avançadas do Sed para manipulação de texto profissional.">Sed Avan&ccedil;ado</a></p></li><li class="list__item" id="-6als9i_55"><p id="-6als9i_59"><a href="text-automation.html" id="-6als9i_60" data-tooltip="Transforme processamento manual em fluxos automatizados eficientes.">Automa&ccedil;&atilde;o de Texto</a></p></li><li class="list__item" id="-6als9i_56"><p id="-6als9i_61"><span id="-6als9i_62">Shell Scripting</span></p></li></ol><aside class="prompt" data-type="tip" data-title="" id="-6als9i_52"><p id="-6als9i_63">&quot;AWK &eacute; como uma faca su&iacute;&ccedil;a para processamento de texto - vers&aacute;til e poderosa.&quot;</p></aside><div class="code-block" data-lang="none">
+    AWK MASTERY
+    [🔧🔧🔧🔧🔧] 100%
+    STATUS: PROCESSAMENTO DOMINADO
+    PRÓXIMO: AUTOMAÇÃO TOTAL
+</div></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="text-processing-automation.html" class="navigation-links__prev">Automa&ccedil;&atilde;o de Processamento de Texto</a><a href="sed-advanced.html" class="navigation-links__next">Sed Avan&ccedil;ado</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

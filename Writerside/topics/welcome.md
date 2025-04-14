@@ -1,6 +1,6 @@
 # Bem-vindo ao Terminal Matrix 
 
-```ascii
+```
     /\___/\   BASH CYBERPUNK LEARNING MATRIX v1.0
    (=^.^=)   ================================
     (")_(")   Onde os hackers nascem...
@@ -74,8 +74,7 @@ INICIANTE -> SOBREVIVENTE -> GUERREIRO -> MESTRE DO BASH
 ## Começando sua Jornada
 
 ```bash
-$ echo "Hello, brave terminal warrior!"
-$ ./start_journey.sh
+echo "Hello World"
 ```
 
 > "Com grandes poderes em Bash vêm grandes possibilidades de quebrar tudo"

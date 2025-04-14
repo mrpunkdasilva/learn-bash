@@ -98,8 +98,7 @@ INICIANTE -> SOBREVIVENTE -> GUERREIRO -> MESTRE DO BASH
 ## Começando sua Jornada
 
 ```BASH
-$ echo "Hello, brave terminal warrior!"
-$ ./start_journey.sh
+echo "Hello World"
 ```
 
 Tip:
@@ -3445,7 +3444,7 @@ done
 #!/bin/bash
 # backup_incremental.sh
 
-BACKUP_DIR="/backup"
+BACKUP_DIR="/path/to/backup"
 SOURCE_DIR="/dados"
 DATE=$(date +%Y%m%d)
 
@@ -4557,7 +4556,7 @@ ulimit -a           # Limites do sistema
 
 2. [System Monitoring](system-monitoring.html)
 
-3. [Performance Tuning](null)
+3. [Performance Tuning](performance-tuning.html)
 
 Tip:
 
@@ -5569,7 +5568,7 @@ awk 'BEGIN {
 
 1. [Expressões Regulares Avançadas](null)
 
-2. [AWK Scripts Complexos](null)
+2. [AWK Scripts Complexos](awk-advanced.html)
 
 3. [Integração com Sed](null)
 
@@ -5785,9 +5784,9 @@ cat dados.csv | \
 
 1. [Expressões Regulares](regular-expressions.html)
 
-2. [AWK Avançado](null)
+2. [AWK Avançado](awk-advanced.html)
 
-3. [Sed Avançado](null)
+3. [Sed Avançado](sed-advanced.html)
 
 Tip:
 
@@ -6434,7 +6433,7 @@ analyze_data() {
 
 2. [Visualização Avançada](null)
 
-3. [Machine Learning Básico](null)
+3. [Machine Learning Básico](basic-ml.html)
 
 Tip:
 
@@ -6736,11 +6735,11 @@ etl_pipeline() {
 
 ## Próximos Passos
 
-1. [Processamento Distribuído](null)
+1. [Processamento Distribuído](distributed-processing.html)
 
-2. [Integração com APIs](null)
+2. [Integração com APIs](api-integration.html)
 
-3. [Orquestração de Workflows](null)
+3. [Orquestração de Workflows](workflow-orchestration.html)
 
 Tip:
 
@@ -6751,6 +6750,542 @@ AUTOMATION MASTER
 [🤖🤖🤖🤖🤖] 100%
 STATUS: AUTOMAÇÃO DOMINADA
 PRÓXIMO: PROCESSAMENTO DISTRIBUÍDO
+```
+
+
+
+# AWK Avançado 🚀
+
+Note:
+
+Domine técnicas avançadas de processamento de texto com AWK.
+
+## Programação Avançada em AWK
+
+### 🔧 Arrays Associativos
+
+```AWK
+# Contagem de ocorrências
+{
+    count[$1]++
+}
+END {
+    for (item in count) {
+        printf "%-20s %d\n", item, count[item]
+    }
+}
+
+# Arrays multidimensionais
+{
+    data[$1][$2] = $3
+}
+END {
+    for (i in data) {
+        for (j in data[i]) {
+            print i, j, data[i][j]
+        }
+    }
+}
+```
+
+### 🎯 Funções Customizadas
+
+```AWK
+# Função de formatação
+function format_bytes(bytes) {
+    units["B"] = 1
+    units["KB"] = 1024
+    units["MB"] = 1024**2
+    units["GB"] = 1024**3
+    
+    for (unit in units) {
+        if (bytes < units[unit] * 1024 || unit == "GB") {
+            return sprintf("%.2f %s", bytes/units[unit], unit)
+        }
+    }
+}
+
+# Uso da função
+{
+    print $1, format_bytes($2)
+}
+```
+
+## Técnicas Avançadas
+
+### 📊 Processamento de Dados
+
+```AWK
+# Estatísticas descritivas
+{
+    sum += $1
+    sumsq += $1 * $1
+    count++
+}
+END {
+    mean = sum/count
+    variance = (sumsq - sum*sum/count)/count
+    stddev = sqrt(variance)
+    print "Média:", mean
+    print "Desvio Padrão:", stddev
+}
+
+# Agregações complexas
+{
+    by_group[$1]["sum"] += $2
+    by_group[$1]["count"]++
+}
+END {
+    for (group in by_group) {
+        avg = by_group[group]["sum"] / by_group[group]["count"]
+        print group, avg
+    }
+}
+```
+
+### 🔄 Processamento de Texto
+
+```AWK
+# Parser CSV avançado
+BEGIN { FS = "," }
+{
+    gsub(/"([^"]+)"/, "\\1")    # Remove aspas
+    gsub(/^\s+|\s+$/, "", $0)   # Trim
+    
+    for (i=1; i<=NF; i++) {
+        gsub(/^\s+|\s+$/, "", $i)
+        print "Campo " i ":", $i
+    }
+}
+
+# Transformação de formato
+{
+    split($0, fields, ",")    # CSV para array
+    json = "{"
+    for (i=1; i<=NF; i++) {
+        json = json sprintf("\"%s\":\"%s\"%s", 
+                          headers[i], 
+                          fields[i], 
+                          (i==NF ? "" : ","))
+    }
+    json = json "}"
+    print json
+}
+```
+
+## Integração com Sistema
+
+### 🛠️ Comandos do Sistema
+
+```AWK
+# Execução de comandos
+{
+    cmd = sprintf("curl -s %s", $1)
+    while ((cmd | getline result) > 0) {
+        process_data(result)
+    }
+    close(cmd)
+}
+
+# Logging avançado
+function log(level, message) {
+    cmd = sprintf("logger -p user.%s \"[AWK] %s\"", 
+                 level, 
+                 message)
+    system(cmd)
+}
+```
+
+### 📁 Manipulação de Arquivos
+
+```AWK
+# Processamento multi-arquivo
+BEGINFILE {
+    print "Processando:", FILENAME
+}
+{
+    # Processamento por arquivo
+    file_stats[FILENAME]["lines"]++
+    file_stats[FILENAME]["bytes"] += length($0)
+}
+ENDFILE {
+    print "Finalizado:", FILENAME
+}
+END {
+    for (file in file_stats) {
+        print file, file_stats[file]["lines"], "linhas"
+    }
+}
+```
+
+## Otimização e Performance
+
+### ⚡ Técnicas de Otimização
+
+```AWK
+# Cache de resultados
+{
+    key = $1 SUBSEP $2
+    if (!(key in cache)) {
+        cache[key] = expensive_calculation($1, $2)
+    }
+    print cache[key]
+}
+
+# Processamento em lote
+{
+    buffer[NR] = $0
+    if (NR % 1000 == 0) {
+        process_batch()
+        delete buffer
+    }
+}
+END {
+    process_batch()
+}
+```
+
+## Exercícios Práticos
+
+### 🎯 Missão 1: Análise de Logs
+
+```AWK
+#!/usr/bin/awk -f
+# Análise avançada de logs
+
+BEGIN {
+    FS = "\\|"
+    print "Iniciando análise..."
+}
+
+{
+    # Agregação por tipo
+    types[$1]++
+    
+    # Análise temporal
+    split($2, time, ":")
+    hour = time[1]
+    hourly[hour]++
+    
+    # Métricas
+    if ($3 > max_value) max_value = $3
+}
+
+END {
+    report()
+}
+
+function report() {
+    print "\nDistribuição por tipo:"
+    for (t in types) print t ":", types[t]
+    
+    print "\nDistribuição horária:"
+    for (h in hourly) print h "h:", hourly[h]
+}
+```
+
+### 🎯 Missão 2: ETL
+
+```AWK
+#!/usr/bin/awk -f
+# Transformação de dados
+
+BEGIN {
+    FS = ","
+    OFS = "\t"
+    
+    # Configuração
+    load_config()
+}
+
+function load_config() {
+    while ((getline < "config.txt") > 0) {
+        config[$1] = $2
+    }
+}
+
+{
+    # Transformação
+    for (i=1; i<=NF; i++) {
+        $i = transform_field(i, $i)
+    }
+    print
+}
+
+function transform_field(col, val) {
+    if (col in config) {
+        return apply_rules(val, config[col])
+    }
+    return val
+}
+```
+
+## Troubleshooting
+
+### 🔧 Problemas Comuns
+
+1. Gerenciamento de Memória
+
+2. Performance com Grandes Arquivos
+
+3. Encoding e Caracteres Especiais
+
+4. Integração com Sistema
+
+### 💡 Soluções
+
+1. Use processamento em lote
+
+2. Evite arrays desnecessários
+
+3. Configure LOCALE apropriadamente
+
+4. Gerencie recursos do sistema
+
+## Próximos Passos
+
+1. [Sed Avançado](sed-advanced.html)
+
+2. [Automação de Texto](text-automation.html)
+
+3. [Shell Scripting](null)
+
+Tip:
+
+"AWK é como uma faca suíça para processamento de texto - versátil e poderosa."
+
+```
+AWK MASTERY
+[🔧🔧🔧🔧🔧] 100%
+STATUS: PROCESSAMENTO DOMINADO
+PRÓXIMO: AUTOMAÇÃO TOTAL
+```
+
+
+
+# Sed Avançado
+
+Note:
+
+Domine técnicas avançadas do Sed para manipulação de texto profissional.
+
+## Técnicas Avançadas
+
+### 🔄 Buffers e Hold Space
+
+```BASH
+# Usando hold space
+sed 'H;1h;$!d;x;s/\n/,/g' arquivo.txt  # Junta linhas com vírgula
+sed '1!G;h;$!d' arquivo.txt            # Inverte arquivo
+sed '/padrão/{h;d};H;$!d;x' arquivo.txt # Move linhas com padrão para o topo
+```
+
+### 🎯 Branches e Testes
+
+```BASH
+# Branches condicionais
+sed '/padrão/{s/foo/bar/;b}; s/baz/qux/' arquivo.txt
+
+# Testes com t
+sed '/regex/{s/old/new/;t repete};:repete s/mais/outro/' arquivo.txt
+
+# Labels e loops
+sed ':inicio s/[0-9]/&0/;t inicio' numeros.txt
+```
+
+## Padrões Avançados
+
+### 📊 Processamento Multi-linha
+
+```BASH
+# Junta linhas quebradas
+sed ':a;N;$!ba;s/\\\n//g' codigo.txt
+
+# Processa blocos
+sed '/<start>/,/<end>/{
+    /start/n
+    /end/!{
+        s/foo/bar/g
+        p
+    }
+}' arquivo.txt
+```
+
+### 🔍 Expressões Complexas
+
+```BASH
+# Substituições aninhadas
+sed '
+    s/\([^,]*\),\([^,]*\),\([^,]*\)/\3,\1,\2/;
+    s/^\([^:]*\):\([^:]*\)$/\2:\1/
+' dados.txt
+
+# Processamento condicional
+sed '
+    /^#/b comentario
+    s/padrão/novo/g
+    b fim
+    :comentario
+    s/^#//
+    :fim
+' config.txt
+```
+
+## Otimização e Performance
+
+### ⚡ Técnicas de Otimização
+
+```BASH
+# Uso eficiente de grupos
+sed 's/\([0-9]\+\)/[\1]/g'           # Básico
+sed 's/[0-9]\+/[&]/g'                # Otimizado
+
+# Minimizando operações
+sed '
+    /^$/d;                           # Remove vazias primeiro
+    s/[[:space:]]\+/ /g;            # Depois normaliza espaços
+    s/^ //;s/ $//                   # Por fim, trim
+' arquivo.txt
+```
+
+### 🚀 Scripts Otimizados
+
+```BASH
+#!/bin/bash
+# transform.sed
+:start
+/\\$/ {
+    N
+    s/\\\n//
+    b start
+}
+s/foo/bar/g
+s/baz/qux/g
+
+# Uso: sed -f transform.sed arquivo.txt
+```
+
+## Integração com Sistema
+
+### 🔄 Automação Avançada
+
+```BASH
+# Processamento em lote
+find . -type f -name "*.txt" -exec sed -i '
+    s/erro/warning/g
+    s/falha/error/g
+    s/sucesso/success/g
+' {} +
+
+# Pipeline complexo
+sed -e '/^$/d' \
+    -e 's/^[[:space:]]\+//' \
+    -e 's/[[:space:]]\+$//' \
+    -e 's/[[:space:]]\+/ /g' \
+    arquivo.txt | \
+    sed -f transform.sed | \
+    sed -f format.sed > resultado.txt
+```
+
+### 🛠️ Ferramentas Customizadas
+
+```BASH
+# Função de processamento
+sed_process() {
+    local arquivo="$1"
+    local temp=$(mktemp)
+    
+    sed -e 's/^/>> /' \
+        -e 's/$/ <</' \
+        -e '/^>>/!d' \
+        "$arquivo" > "$temp" && mv "$temp" "$arquivo"
+}
+```
+
+## Depuração e Troubleshooting
+
+### 🔍 Técnicas de Debug
+
+```BASH
+# Debug verbose
+sed --debug 's/padrão/novo/g' arquivo.txt
+
+# Visualização de mudanças
+sed -n '
+    p
+    s/padrão/novo/gp
+' arquivo.txt
+
+# Teste de padrões
+sed --debug '/regex/{s/old/new/;T;h;d};p' arquivo.txt
+```
+
+### ⚠️ Problemas Comuns e Soluções
+
+1. Escape incorreto de caracteres
+
+```BASH
+sed 's/[/]/\//g'        # Errado
+sed 's|[/]|/|g'         # Correto
+```
+
+2. Processamento de UTF-8
+
+```BASH
+LC_ALL=C sed ...        # Para performance
+sed -e $'s/\r//' ...    # Remove CRLF
+```
+
+## Exemplos Práticos
+
+### 📝 Processador de Logs
+
+```BASH
+#!/bin/bash
+# process_logs.sh
+
+sed -e 's/^\[[0-9:]\+\]/[TIME]/' \
+    -e '/^$/d' \
+    -e 's/ERROR/*** ERROR ***/' \
+    -e 's/\(WARNING\)/*** \1 ***/' \
+    -e '/^DEBUG/d' \
+    -e 's/\([0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\)/IP: \1/g' \
+    logs/*.log > processed_logs.txt
+```
+
+### 📊 Formatador de Dados
+
+```BASH
+#!/bin/bash
+# format_data.sh
+
+sed -e '1i\
+Nome,Idade,Email,Status' \
+    -e 's/|/,/g' \
+    -e 's/^ *//' \
+    -e 's/ *$//' \
+    -e '/^[[:space:]]*$/d' \
+    -e 's/\([^,]*\),\([^,]*\),\([^,]*\),\([^,]*\)/\U\1\E,\2,\L\3\E,\4/' \
+    dados.txt > formatado.csv
+```
+
+## Próximos Passos
+
+1. [AWK Avançado](awk-advanced.html)
+
+2. [Expressões Regulares Avançadas](null)
+
+3. [Automação de Scripts](script-automation.html)
+
+Tip:
+
+"Sed avançado é como xadrez - fácil de aprender as regras, mas leva uma vida para dominar."
+
+```
+SED MASTERY
+[⚙️⚙️⚙️⚙️⚙️] 100%
+STATUS: DOMÍNIO AVANÇADO
+PRÓXIMO: AUTOMAÇÃO TOTAL
 ```
 
 
@@ -6995,7 +7530,7 @@ monitor_all() {
 
 ## Próximos Passos
 
-1. [Performance Tuning](null)
+1. [Performance Tuning](performance-tuning.html)
 
 2. [System Monitoring](system-monitoring.html)
 
@@ -7820,6 +8355,249 @@ get_info() {
 
 
 
+# Automação de Scripts
+
+Note:
+
+Aprenda a criar scripts de automação eficientes e reutilizáveis para tarefas repetitivas.
+
+## Fundamentos da Automação
+
+### 🔄 Estrutura Básica
+
+```BASH
+#!/bin/bash
+# automation_base.sh
+
+# Configurações
+set -e  # Encerra em caso de erro
+set -u  # Variáveis não definidas geram erro
+
+# Variáveis globais
+readonly LOG_FILE="/var/log/automation.log"
+readonly CONFIG_FILE="/etc/automation/config.conf"
+
+# Funções de utilidade
+log_message() {
+    local message="$1"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $message" >> "$LOG_FILE"
+}
+
+check_dependencies() {
+    local deps=("docker" "git" "curl")
+    for dep in "${deps[@]}"; do
+        if ! command -v "$dep" &> /dev/null; then
+            log_message "ERROR: Dependência não encontrada: $dep"
+            exit 1
+        fi
+    done
+}
+```
+
+## Padrões de Automação
+
+### 📋 Template Base
+
+```BASH
+#!/bin/bash
+# template.sh
+
+# Configuração
+source "$(dirname "$0")/config.sh"
+
+# Tratamento de erros
+trap 'echo "Erro na linha $LINENO. Comando: $BASH_COMMAND"' ERR
+
+# Funções principais
+setup() {
+    log_message "Iniciando setup..."
+    check_dependencies
+}
+
+cleanup() {
+    log_message "Realizando limpeza..."
+    # Adicione código de limpeza aqui
+}
+
+# Execução principal
+main() {
+    setup
+    trap cleanup EXIT
+    
+    # Lógica principal aqui
+}
+
+main "$@"
+```
+
+## Técnicas Avançadas
+
+### 🔒 Controle de Execução
+
+```BASH
+#!/bin/bash
+# process_control.sh
+
+LOCK_FILE="/var/run/automation.lock"
+
+# Garante execução única
+if ! mkdir "$LOCK_FILE" 2>/dev/null; then
+    echo "Processo já em execução"
+    exit 1
+fi
+
+trap 'rm -rf "$LOCK_FILE"' EXIT
+```
+
+### 📊 Monitoramento
+
+```BASH
+#!/bin/bash
+# monitoring.sh
+
+monitor_resources() {
+    while true; do
+        cpu_usage=$(top -bn1 | grep "Cpu(s)" | awk '{print $2}')
+        mem_usage=$(free -m | awk '/Mem:/ {print $3}')
+        
+        if (( $(echo "$cpu_usage > 80" | bc -l) )); then
+            notify_admin "Alto uso de CPU: $cpu_usage%"
+        fi
+        
+        sleep 60
+    done
+}
+```
+
+## Melhores Práticas
+
+1. Modularização
+
+* Divida scripts grandes em módulos menores
+
+* Use funções para código reutilizável
+
+* Mantenha uma estrutura organizada
+
+2. Logging
+
+* Implemente logs detalhados
+
+* Use níveis de log (INFO, WARN, ERROR)
+
+* Rotacione logs regularmente
+
+3. Tratamento de Erros
+
+* Sempre valide entradas
+
+* Use trap para cleanup
+
+* Implemente retry em operações críticas
+
+4. Segurança
+
+* Evite injeção de comandos
+
+* Proteja dados sensíveis
+
+* Use permissões adequadas
+
+## Exemplos Práticos
+
+### 🔄 Backup Automatizado
+
+```BASH
+#!/bin/bash
+# backup_automation.sh
+
+# Configurações
+BACKUP_DIR="/backups"
+SOURCES=("/etc" "/var/www" "/home")
+DATE=$(date +%Y%m%d)
+
+# Função de backup
+create_backup() {
+    local source="$1"
+    local basename=$(basename "$source")
+    local backup_file="${BACKUP_DIR}/${basename}_${DATE}.tar.gz"
+    
+    tar -czf "$backup_file" "$source" 2>/dev/null || {
+        log_message "ERROR: Falha no backup de $source"
+        return 1
+    }
+    
+    log_message "SUCCESS: Backup criado: $backup_file"
+}
+
+# Execução
+for source in "${SOURCES[@]}"; do
+    create_backup "$source"
+done
+```
+
+### 🔄 Deploy Automatizado
+
+```BASH
+#!/bin/bash
+# deploy_automation.sh
+
+deploy_application() {
+    local version="$1"
+    local env="$2"
+    
+    log_message "Iniciando deploy v${version} em ${env}"
+    
+    # Pull da nova versão
+    docker pull "app:${version}"
+    
+    # Update do serviço
+    docker service update \
+        --image "app:${version}" \
+        --with-registry-auth \
+        "app_${env}"
+    
+    # Verificação
+    check_deployment_status
+}
+```
+
+## Dicas e Truques
+
+1. Automação Inteligente
+
+* Use variáveis de ambiente
+
+* Implemente verificações de sanidade
+
+* Adicione timeouts em operações
+
+2. Debug
+
+* Use `set -x` para debug
+
+* Implemente modo verbose
+
+* Mantenha logs detalhados
+
+3. Performance
+
+* Otimize operações I/O
+
+* Use paralelismo quando possível
+
+* Monitore uso de recursos
+
+4. Manutenção
+
+* Documente bem o código
+
+* Mantenha versionamento
+
+* Faça revisões regulares
+
+
+
 # Automação Avançada
 
 Note:
@@ -7992,14 +8770,6 @@ check_deps() {
 4. Implemente rollback
 
 5. Mantenha logs de auditoria
-
-## Próximos Passos
-
-1. [Orquestração de Containers](null)
-
-2. [Monitoramento Avançado](null)
-
-3. [Infraestrutura como Código](null)
 
 Tip:
 
@@ -8248,9 +9018,9 @@ rotate_logs() {
 
 ## Próximos Passos
 
-1. [Monitoramento Avançado](null)
+1. [Monitoramento Avançado](advanced-monitoring.html)
 
-2. [Segurança do Sistema](null)
+2. [Segurança do Sistema](system-security.html)
 
 3. [Automação Avançada](advanced-automation.html)
 
@@ -8263,6 +9033,848 @@ SYSTEM INTEGRATION
 [🔄🔄🔄🔄🔄] 100%
 STATUS: INTEGRAÇÃO DOMINADA
 PRÓXIMO: MONITORAMENTO AVANÇADO
+```
+
+
+
+# Automação de Texto 🤖
+
+Note:
+
+Transforme processamento manual em fluxos automatizados eficientes.
+
+## Pipelines de Processamento
+
+### 🔄 Fluxos Básicos
+
+```BASH
+# Pipeline de transformação
+cat input.txt | \
+    grep -v '^#' | \
+    sort -u | \
+    sed 's/old/new/g' > output.txt
+
+# Processamento paralelo
+parallel --pipe grep 'pattern' < huge_file.txt
+
+# Transformação em lote
+find . -type f -name "*.txt" | \
+    xargs -I {} sh -c 'process_file "{}"'
+```
+
+### 🎯 Transformações Complexas
+
+```BASH
+# Multi-estágio
+process_data() {
+    local input="$1"
+    cat "$input" | \
+        pre_process | \
+        main_transform | \
+        post_process | \
+        format_output
+}
+
+# Validação integrada
+transform_with_validation() {
+    local input="$1"
+    local temp=$(mktemp)
+    
+    if ! validate_input "$input"; then
+        return 1
+    fi
+    
+    transform_data "$input" > "$temp" && \
+    validate_output "$temp" && \
+    mv "$temp" "$input.processed"
+}
+```
+
+## Ferramentas de Automação
+
+### 🛠️ Scripts Utilitários
+
+```BASH
+#!/bin/bash
+# batch_processor.sh
+
+process_directory() {
+    local dir="$1"
+    local pattern="$2"
+    local processor="$3"
+    
+    find "$dir" -type f -name "$pattern" | \
+    while read -r file; do
+        echo "Processando: $file"
+        $processor "$file"
+    done
+}
+
+# Uso:
+# ./batch_processor.sh ./data "*.txt" ./transform.sh
+```
+
+### 📊 Monitoramento
+
+```BASH
+# Monitor de mudanças
+watch_and_process() {
+    local dir="$1"
+    local processor="$2"
+    
+    inotifywait -m "$dir" -e create -e modify |
+    while read -r directory events filename; do
+        echo "Mudança detectada: $filename"
+        $processor "$directory/$filename"
+    done
+}
+```
+
+## Casos de Uso
+
+### 📝 Processamento de Logs
+
+```BASH
+#!/bin/bash
+# log_processor.sh
+
+process_logs() {
+    # Extração
+    grep -E '^ERROR|^WARN' | \
+    
+    # Transformação
+    sed -E 's/\[(.*)\]/\1/' | \
+    
+    # Agregação
+    awk '{
+        count[$1]++
+    } END {
+        for (type in count) 
+            print type, count[type]
+    }'
+}
+
+# Rotação e arquivamento
+rotate_logs() {
+    local log="$1"
+    local max_size=$((10*1024*1024)) # 10MB
+    
+    if [ $(stat -f%z "$log") -gt $max_size ]; then
+        mv "$log" "$log.$(date +%Y%m%d)"
+        gzip "$log.$(date +%Y%m%d)"
+    fi
+}
+```
+
+### 📈 Relatórios Automatizados
+
+```BASH
+#!/bin/bash
+# report_generator.sh
+
+generate_report() {
+    local data="$1"
+    local output="$2"
+    
+    {
+        echo "# Relatório Automático"
+        echo "Data: $(date)"
+        echo
+        echo "## Estatísticas"
+        analyze_data "$data"
+        echo
+        echo "## Gráficos"
+        generate_graphs "$data"
+    } > "$output"
+}
+
+# Agendamento
+# 0 6 * * * /path/to/report_generator.sh
+```
+
+## Melhores Práticas
+
+### ✅ Recomendações
+
+1. Use controle de versão
+
+2. Implemente logging
+
+3. Valide entrada/saída
+
+4. Trate erros adequadamente
+
+5. Documente transformações
+
+### ⚠️ Armadilhas Comuns
+
+1. Race conditions
+
+2. Memória insuficiente
+
+3. Deadlocks
+
+4. Arquivos temporários órfãos
+
+5. Processamento incompleto
+
+## Otimização
+
+### ⚡ Performance
+
+```BASH
+# Processamento em lote
+split -l 1000 input.txt temp_
+for f in temp_*; do
+    process_chunk "$f" &
+done
+wait
+cat temp_* > output.txt
+rm temp_*
+
+# Cache de resultados
+declare -A cache
+process_with_cache() {
+    local key="$1"
+    if [ -z "${cache[$key]}" ]; then
+        cache[$key]=$(expensive_operation "$key")
+    fi
+    echo "${cache[$key]}"
+}
+```
+
+### 🔍 Debugging
+
+```BASH
+# Debug mode
+set -x  # Ativa trace
+trap 'echo "Erro na linha $LINENO"' ERR
+
+# Logging avançado
+log() {
+    local level="$1"
+    shift
+    echo "$(date '+%Y-%m-%d %H:%M:%S') [$level] $*" >&2
+}
+```
+
+## Exercícios Práticos
+
+### 🎯 Desafio 1: Processador de CSV
+
+Crie um script que:
+
+1. Valide estrutura CSV
+
+2. Transforme dados
+
+3. Gere relatório
+
+4. Archive resultados
+
+### 🎯 Desafio 2: Monitor de Sistema
+
+Desenvolva um sistema que:
+
+1. Monitore recursos
+
+2. Processe logs em tempo real
+
+3. Gere alertas
+
+4. Mantenha histórico
+
+## Próximos Passos
+
+1. [Shell Scripting](null)
+
+2. [Integração com Sistema](system-integration.html)
+
+3. [Automação DevOps](devops-automation.html)
+
+Tip:
+
+"Automatize o tedioso, foque no criativo."
+
+```
+AUTOMATION MASTER
+[🤖🤖🤖🤖🤖] 100%
+STATUS: FLUXO AUTOMATIZADO
+PRÓXIMO: SHELL SCRIPTING
+```
+
+
+
+# Automação de Performance
+
+Note:
+
+Aprenda a automatizar a otimização de performance do seu sistema.
+
+## Otimização Automática
+
+### 🚀 Auto-tuning
+
+```BASH
+#!/bin/bash
+# auto_tuning.sh
+
+# Configurações de Sistema
+optimize_system() {
+    # Otimizar kernel parameters
+    sysctl -w vm.swappiness=10
+    sysctl -w vm.vfs_cache_pressure=50
+    sysctl -w net.core.somaxconn=65535
+    
+    # Ajustar limites do sistema
+    ulimit -n 65535
+    
+    # Otimizar I/O scheduler
+    for disk in /sys/block/sd*/queue/scheduler; do
+        echo "deadline" > "$disk"
+    done
+}
+
+# Otimização de Processos
+optimize_processes() {
+    # Ajustar nice level de processos não críticos
+    for pid in $(ps aux | awk '$3>50.0 {print $2}'); do
+        renice +10 "$pid"
+    done
+    
+    # Limitar recursos de processos intensivos
+    for pid in $(ps aux | awk '$3>80.0 {print $2}'); do
+        cpulimit -p "$pid" -l 50
+    done
+}
+```
+
+## Performance Monitoring
+
+### 📊 Coleta Automatizada
+
+```PYTHON
+import psutil
+import time
+from influxdb_client import InfluxDBClient
+
+def collect_metrics():
+    metrics = {
+        'cpu_percent': psutil.cpu_percent(interval=1),
+        'memory_percent': psutil.virtual_memory().percent,
+        'disk_usage': psutil.disk_usage('/').percent,
+        'network_io': psutil.net_io_counters()
+    }
+    
+    # Armazenar métricas
+    with InfluxDBClient(url="http://localhost:8086", token="your-token") as client:
+        write_api = client.write_api()
+        write_api.write(
+            bucket="performance_metrics",
+            record=metrics
+        )
+    
+    return metrics
+
+def analyze_performance(metrics_history):
+    # Análise de tendências
+    trends = {
+        'cpu_trend': calculate_trend(metrics_history['cpu_percent']),
+        'memory_trend': calculate_trend(metrics_history['memory_percent']),
+        'disk_trend': calculate_trend(metrics_history['disk_usage'])
+    }
+    
+    # Detecção de anomalias
+    anomalies = detect_anomalies(metrics_history)
+    
+    return trends, anomalies
+```
+
+## Otimização Automática
+
+### 🔧 Performance Tuning
+
+```BASH
+#!/bin/bash
+# performance_tuner.sh
+
+# Configurações
+THRESHOLD_CPU=80
+THRESHOLD_MEM=90
+THRESHOLD_DISK_IO=70
+
+tune_system() {
+    # Monitorar recursos
+    while true; do
+        cpu_usage=$(top -bn1 | grep "Cpu(s)" | awk '{print $2}')
+        mem_usage=$(free | grep Mem | awk '{print $3/$2 * 100.0}')
+        disk_io=$(iostat -x 1 1 | awk '/sda/ {print $NF}')
+        
+        # Ajustes baseados em uso
+        if [ "${cpu_usage%.*}" -gt "$THRESHOLD_CPU" ]; then
+            optimize_cpu
+        fi
+        
+        if [ "${mem_usage%.*}" -gt "$THRESHOLD_MEM" ]; then
+            optimize_memory
+        fi
+        
+        if [ "${disk_io%.*}" -gt "$THRESHOLD_DISK_IO" ]; then
+            optimize_io
+        fi
+        
+        sleep 60
+    done
+}
+
+optimize_cpu() {
+    # Identificar processos intensivos
+    top_processes=$(ps aux --sort=-%cpu | head -n 5)
+    
+    # Ajustar prioridades
+    while read -r process; do
+        pid=$(echo "$process" | awk '{print $2}')
+        renice +10 "$pid"
+    done <<< "$top_processes"
+    
+    # Ajustar CPU governor
+    for cpu in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do
+        echo "performance" > "$cpu"
+    done
+}
+
+optimize_memory() {
+    # Limpar caches
+    sync && echo 3 > /proc/sys/vm/drop_caches
+    
+    # Ajustar swappiness
+    sysctl -w vm.swappiness=10
+    
+    # Limitar processos com alto uso de memória
+    while read -r process; do
+        pid=$(echo "$process" | awk '{print $2}')
+        memory_limit=$(($(free -m | awk '/Mem:/ {print $2}') / 4))
+        cgcreate -g memory:/limited
+        cgset -r memory.limit_in_bytes="${memory_limit}M" limited
+        cgclassify -g memory:/limited "$pid"
+    done <<< "$(ps aux --sort=-%mem | head -n 3)"
+}
+
+optimize_io() {
+    # Ajustar I/O scheduler
+    for disk in /sys/block/sd*/queue/scheduler; do
+        echo "deadline" > "$disk"
+    done
+    
+    # Ajustar read ahead
+    blockdev --setra 4096 /dev/sda
+    
+    # Limitar I/O de processos intensivos
+    for pid in $(iotop -b -n 1 | awk '$NF>50 {print $1}'); do
+        ionice -c 2 -n 7 -p "$pid"
+    done
+}
+```
+
+## Automação de Testes
+
+### 🔬 Performance Testing
+
+```PYTHON
+import locust
+from locust import HttpUser, task, between
+
+class PerformanceTest(HttpUser):
+    wait_time = between(1, 3)
+    
+    @task
+    def test_endpoint(self):
+        self.client.get("/api/endpoint")
+        
+    @task
+    def test_heavy_operation(self):
+        self.client.post("/api/heavy", json={
+            "operation": "complex_calculation",
+            "data": "large_dataset"
+        })
+    
+    def on_start(self):
+        # Setup antes dos testes
+```
+
+
+
+# Integração com APIs
+
+Note:
+
+Aprenda a integrar seus scripts com APIs RESTful e criar automações poderosas.
+
+## Requisições Básicas
+
+### 🌐 HTTP Requests
+
+```BASH
+#!/bin/bash
+# Funções básicas de API
+api_get() {
+    local url=$1
+    local token=$2
+    
+    curl -s -H "Authorization: Bearer $token" \
+         -H "Content-Type: application/json" \
+         "$url"
+}
+
+api_post() {
+    local url=$1
+    local data=$2
+    local token=$3
+    
+    curl -s -X POST \
+         -H "Authorization: Bearer $token" \
+         -H "Content-Type: application/json" \
+         -d "$data" \
+         "$url"
+}
+```
+
+### 🔐 Autenticação
+
+```BASH
+#!/bin/bash
+# Gerenciamento de tokens
+get_token() {
+    local api_key=$1
+    local api_secret=$2
+    local auth_url=$3
+    
+    local response=$(curl -s -X POST \
+        -H "Content-Type: application/json" \
+        -d "{\"key\":\"$api_key\",\"secret\":\"$api_secret\"}" \
+        "$auth_url")
+    
+    echo "$response" | jq -r '.token'
+}
+```
+
+## Integração Avançada
+
+### 📡 Webhooks
+
+```BASH
+#!/bin/bash
+# Servidor webhook básico
+start_webhook() {
+    local port=${1:-8080}
+    
+    while true; do
+        echo -e "HTTP/1.1 200 OK\n\n$(date)" | \
+        nc -l -p $port -q 1 | \
+        while read line; do
+            echo "$line" >> webhook.log
+            # Processa webhook
+            process_webhook "$line"
+        done
+    done
+}
+```
+
+### 🔄 Polling
+
+```BASH
+#!/bin/bash
+# Monitora API por mudanças
+poll_api() {
+    local url=$1
+    local interval=${2:-60}
+    local token=$3
+    
+    while true; do
+        response=$(api_get "$url" "$token")
+        process_updates "$response"
+        sleep "$interval"
+    done
+}
+```
+
+## Processamento de Dados
+
+### 📊 Manipulação JSON
+
+```BASH
+#!/bin/bash
+# Processamento de respostas JSON
+process_json() {
+    local json=$1
+    
+    # Extrai campos específicos
+    local items=$(echo "$json" | jq -r '.items[]')
+    
+    # Processa cada item
+    echo "$items" | while read -r item; do
+        local id=$(echo "$item" | jq -r '.id')
+        local status=$(echo "$item" | jq -r '.status')
+        
+        # Atualiza status
+        if [ "$status" = "pending" ]; then
+            process_item "$id"
+        fi
+    done
+}
+```
+
+### 📈 Rate Limiting
+
+```BASH
+#!/bin/bash
+# Controle de taxa de requisições
+rate_limit() {
+    local requests=${1:-60}  # requisições
+    local period=${2:-60}    # segundos
+    local delay=$(bc <<< "scale=2; $period/$requests")
+    
+    sleep "$delay"
+}
+```
+
+## Exercícios Práticos
+
+### 🎯 Missão 1: Cliente API
+
+```BASH
+#!/bin/bash
+# Objetivos:
+# 1. Implementar cliente REST
+# 2. Gerenciar autenticação
+# 3. Processar respostas
+# 4. Implementar retry
+
+# Exemplo de implementação
+api_client() {
+    local base_url=$1
+    local token=$(get_token "$API_KEY" "$API_SECRET" "$AUTH_URL")
+    
+    # Implementar lógica do cliente
+}
+```
+
+## Próximos Passos
+
+1. [GraphQL Integration](null)
+
+2. [API Security](null)
+
+3. [Microservices](null)
+
+Tip:
+
+"APIs são as pontes que conectam sistemas isolados em uma rede de possibilidades."
+
+```
+API INTEGRATION
+[🌐🌐🌐🌐🌐] 100%
+STATUS: INTEGRADOR MESTRE
+PRÓXIMO: ORQUESTRAÇÃO
+```
+
+
+
+# Orquestração de Workflows
+
+Note:
+
+Aprenda a criar e gerenciar workflows complexos de automação com controle e monitoramento eficientes.
+
+## Fundamentos
+
+### 🎯 Definição de Workflows
+
+```BASH
+#!/bin/bash
+# Estrutura básica de workflow
+declare -A workflow
+workflow=(
+    ["start"]="validate_input"
+    ["validate_input"]="process_data"
+    ["process_data"]="generate_report"
+    ["generate_report"]="notify_completion"
+    ["notify_completion"]="end"
+)
+```
+
+### 🔄 Execução de Steps
+
+```BASH
+#!/bin/bash
+# Executor de workflow
+execute_workflow() {
+    local current="start"
+    local data=$1
+    
+    while [ "$current" != "end" ]; do
+        echo "Executando: $current"
+        
+        # Executa step atual
+        $current "$data"
+        
+        # Move para próximo step
+        current=${workflow[$current]}
+    done
+}
+```
+
+## Implementação
+
+### 📋 Gerenciamento de Estado
+
+```BASH
+#!/bin/bash
+# Controle de estado do workflow
+save_state() {
+    local workflow_id=$1
+    local step=$2
+    local data=$3
+    
+    echo "{\"step\":\"$step\",\"data\":$data}" > \
+        "state_${workflow_id}.json"
+}
+
+restore_state() {
+    local workflow_id=$1
+    
+    if [ -f "state_${workflow_id}.json" ]; then
+        cat "state_${workflow_id}.json"
+    fi
+}
+```
+
+### ⏱️ Agendamento
+
+```BASH
+#!/bin/bash
+# Agendador de workflows
+schedule_workflow() {
+    local workflow_id=$1
+    local cron_expr=$2
+    local command=$3
+    
+    # Adiciona ao crontab
+    (crontab -l 2>/dev/null; \
+     echo "$cron_expr $command # workflow_$workflow_id") | \
+    crontab -
+}
+```
+
+## Monitoramento
+
+### 📊 Métricas e Logs
+
+```BASH
+#!/bin/bash
+# Sistema de logging
+log_workflow() {
+    local workflow_id=$1
+    local step=$2
+    local status=$3
+    local message=$4
+    
+    echo "$(date +%Y-%m-%d\ %H:%M:%S),${workflow_id},${step},${status},\"${message}\"" >> \
+        workflow_logs.csv
+}
+
+# Coleta de métricas
+collect_metrics() {
+    local workflow_id=$1
+    
+    # Tempo de execução
+    local start_time=$(date +%s)
+    
+    # Executa workflow
+    execute_workflow "$workflow_id"
+    
+    # Calcula duração
+    local end_time=$(date +%s)
+    local duration=$((end_time - start_time))
+    
+    # Registra métricas
+    echo "duration_seconds{workflow=\"$workflow_id\"} $duration" >> \
+        metrics.txt
+}
+```
+
+### 🚨 Alertas
+
+```BASH
+#!/bin/bash
+# Sistema de alertas
+alert() {
+    local workflow_id=$1
+    local severity=$2
+    local message=$3
+    
+    case $severity in
+        "critical")
+            send_sms "$message"
+            send_email "$message"
+            ;;
+        "warning")
+            send_email "$message"
+            ;;
+        "info")
+            log_workflow "$workflow_id" "ALERT" "INFO" "$message"
+            ;;
+    esac
+}
+```
+
+## Exercícios Práticos
+
+### 🎯 Missão 1: Pipeline ETL
+
+```BASH
+#!/bin/bash
+# Objetivos:
+# 1. Criar workflow ETL
+# 2. Implementar checkpoints
+# 3. Adicionar recuperação
+# 4. Monitorar execução
+
+# Exemplo de implementação
+etl_workflow() {
+    local workflow_id="etl_$(date +%s)"
+    
+    # Define steps
+    workflow=(
+        ["start"]="extract_data"
+        ["extract_data"]="transform_data"
+        ["transform_data"]="load_data"
+        ["load_data"]="validate_data"
+        ["validate_data"]="end"
+    )
+    
+    # Executa workflow
+    execute_workflow "$workflow_id"
+}
+```
+
+## Próximos Passos
+
+1. [Workflows Distribuídos](null)
+
+2. [Containers e Orquestração](null)
+
+3. [CI/CD Avançado](null)
+
+Tip:
+
+"Orquestração é a arte de transformar caos em sinfonia."
+
+```
+WORKFLOW MASTER
+[🎯🎯🎯🎯🎯] 100%
+STATUS: ORQUESTRADOR SUPREMO
+PRÓXIMO: DISTRIBUTED WORKFLOWS
 ```
 
 
@@ -8832,11 +10444,11 @@ EOF
 
 ## Próximos Passos
 
-1. [Performance Tuning](null)
+1. [Performance Tuning](performance-tuning.html)
 
-2. [Capacity Planning](null)
+2. [Capacity Planning](capacity-planning.html)
 
-3. [Automation Strategies](null)
+3. [Automation Strategies](automation-strategies.html)
 
 Tip:
 
@@ -8847,6 +10459,854 @@ MONITORAMENTO
 [📊📊📊📊📊] 100%
 STATUS: ATIVO
 SISTEMA: MONITORADO
+```
+
+
+
+# Performance Tuning
+
+Note:
+
+Aprenda técnicas avançadas para otimizar o desempenho de scripts e operações em lote.
+
+## Otimização de Recursos
+
+### 🔄 Gerenciamento de Memória
+
+```BASH
+# Monitoramento de uso
+free -h
+vmstat 1
+ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head
+
+# Limpeza de cache
+sync && echo 3 > /proc/sys/vm/drop_caches
+```
+
+### ⚡ Controle de CPU
+
+```BASH
+#!/bin/bash
+# cpu_control.sh
+
+optimize_cpu_usage() {
+    local pid="$1"
+    local cpu_limit="$2"
+    
+    # Define afinidade CPU
+    taskset -pc 0-1 "$pid"
+    
+    # Limita uso CPU
+    cpulimit -p "$pid" -l "$cpu_limit"
+}
+```
+
+## Técnicas de Otimização
+
+### 📊 Processamento Paralelo
+
+```BASH
+#!/bin/bash
+# parallel_processor.sh
+
+process_data() {
+    local input_dir="$1"
+    local num_threads="${2:-$(nproc)}"
+    
+    find "$input_dir" -type f | \
+    parallel --jobs "$num_threads" \
+             --load 80% \
+             --progress \
+             './process_file.sh {}'
+}
+```
+
+### 💾 I/O Otimizado
+
+```BASH
+#!/bin/bash
+# io_optimizer.sh
+
+optimize_io() {
+    local file="$1"
+    
+    # Buffer otimizado
+    dd if="$file" of="$file.tmp" bs=1M
+    
+    # I/O scheduling
+    ionice -c 2 -n 7 -p $$
+    
+    # Async I/O
+    aio-stress -s 1G -r 4
+}
+```
+
+## Monitoramento
+
+### 📈 Métricas de Performance
+
+```BASH
+#!/bin/bash
+# performance_metrics.sh
+
+collect_metrics() {
+    local pid="$1"
+    local interval="$2"
+    
+    while true; do
+        ps -p "$pid" -o %cpu,%mem,rss,vsz
+        sleep "$interval"
+    done
+}
+```
+
+### 🔍 Análise de Gargalos
+
+```BASH
+#!/bin/bash
+# bottleneck_analyzer.sh
+
+analyze_bottlenecks() {
+    # CPU
+    mpstat 1 5
+    
+    # Memória
+    vmstat 1 5
+    
+    # I/O
+    iostat -xz 1 5
+    
+    # Rede
+    sar -n DEV 1 5
+}
+```
+
+## Otimizações Específicas
+
+### 🗄️ Banco de Dados
+
+```BASH
+# Otimização de queries
+EXPLAIN ANALYZE SELECT * FROM tabela;
+
+# Índices
+CREATE INDEX idx_campo ON tabela(campo);
+
+# Vacuum
+VACUUM ANALYZE tabela;
+```
+
+### 🌐 Rede
+
+```BASH
+# Tuning de rede
+sysctl -w net.ipv4.tcp_window_scaling=1
+sysctl -w net.core.rmem_max=16777216
+sysctl -w net.core.wmem_max=16777216
+```
+
+## Ferramentas de Diagnóstico
+
+### 🔧 Profiling
+
+```BASH
+# Análise de CPU
+perf record -F 99 -p "$pid" -g -- sleep 30
+perf report
+
+# Análise de memória
+valgrind --tool=massif ./programa
+ms_print massif.out.*
+```
+
+### 📊 Benchmarking
+
+```BASH
+#!/bin/bash
+# benchmark.sh
+
+run_benchmark() {
+    local cmd="$1"
+    local iterations="$2"
+    
+    time for ((i=0; i<iterations; i++)); do
+        eval "$cmd" >/dev/null 2>&1
+    done
+}
+```
+
+## Boas Práticas
+
+### 💡 Recomendações
+
+1. Profile antes de otimizar
+
+2. Estabeleça métricas base
+
+3. Otimize gargalos principais
+
+4. Monitore continuamente
+
+5. Documente mudanças
+
+### ⚠️ Pontos de Atenção
+
+1. Complexidade vs. Performance
+
+2. Uso de recursos
+
+3. Escalabilidade
+
+4. Manutenibilidade
+
+5. Trade-offs
+
+## Exemplos Práticos
+
+### 📈 Otimização de Script
+
+```BASH
+#!/bin/bash
+# optimized_processor.sh
+
+process_large_file() {
+    local input="$1"
+    local output="$2"
+    
+    # Uso de buffer otimizado
+    buffer_size="64k"
+    
+    # Processamento paralelo
+    parallel --pipe \
+             --block "$buffer_size" \
+             --jobs "$(nproc)" \
+             "sort | uniq" \
+             < "$input" > "$output"
+}
+```
+
+## Próximos Passos
+
+1. [Monitoramento Avançado](null)
+
+2. [Análise de Sistema](null)
+
+3. [Automação de Performance](performance-automation.html)
+
+Tip:
+
+"Performance não é um acidente. É o resultado de planejamento inteligente e execução focada."
+
+```
+PERFORMANCE TUNING
+[⚡⚡⚡⚡⚡] 100%
+STATUS: OTIMIZADO
+EFICIÊNCIA: MÁXIMA
+```
+
+
+
+# Planejamento de Capacidade
+
+Note:
+
+Aprenda a planejar e dimensionar recursos do sistema de forma eficiente para garantir performance e disponibilidade.
+
+## Análise de Recursos
+
+### 📊 Métricas Essenciais
+
+```BASH
+#!/bin/bash
+# capacity_metrics.sh
+
+collect_metrics() {
+    # CPU
+    echo "=== CPU Usage ==="
+    mpstat -P ALL 1 1
+    
+    # Memory
+    echo -e "\n=== Memory Usage ==="
+    free -h
+    
+    # Disk
+    echo -e "\n=== Disk Usage ==="
+    df -h
+    
+    # I/O
+    echo -e "\n=== I/O Statistics ==="
+    iostat -x 1 1
+}
+```
+
+### 📈 Projeção de Crescimento
+
+```BASH
+#!/bin/bash
+# growth_projection.sh
+
+analyze_growth() {
+    local log_file="$1"
+    local days="$2"
+    
+    # Análise de tendências
+    echo "Tendência de crescimento (últimos $days dias):"
+    awk -v days="$days" '
+        BEGIN { 
+            split("Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec", month)
+            for (i=1; i<=12; i++) months[month[i]]=i
+        }
+        /Disk Usage:/ {
+            gsub(/%/,"",$3)
+            usage[$1]=$3
+        }
+        END {
+            for (date in usage) {
+                print date, usage[date]
+            }
+        }' "$log_file" | sort -k1
+}
+```
+
+## Ferramentas de Planejamento
+
+### 🔍 Análise de Carga
+
+```BASH
+#!/bin/bash
+# load_analysis.sh
+
+monitor_load() {
+    local threshold="$1"
+    local interval="$2"
+    
+    while true; do
+        load=$(uptime | awk -F'load average:' '{print $2}' | cut -d, -f1)
+        if (( $(echo "$load > $threshold" | bc -l) )); then
+            echo "[ALERTA] Carga alta detectada: $load"
+            collect_diagnostics
+        fi
+        sleep "$interval"
+    done
+}
+
+collect_diagnostics() {
+    ps aux --sort=-%cpu | head -n 10
+    netstat -tuln
+    iostat -x 1 5
+}
+```
+
+### 📋 Recomendações Automáticas
+
+```BASH
+#!/bin/bash
+# recommendations.sh
+
+generate_recommendations() {
+    local cpu_threshold=80
+    local mem_threshold=90
+    local disk_threshold=85
+    
+    # CPU Check
+    cpu_usage=$(top -bn1 | grep "Cpu(s)" | awk '{print $2}')
+    if (( $(echo "$cpu_usage > $cpu_threshold" | bc -l) )); then
+        echo "⚠️ Considere upgrade de CPU ou otimização de processos"
+    fi
+    
+    # Memory Check
+    mem_usage=$(free | grep Mem | awk '{print $3/$2 * 100.0}')
+    if (( $(echo "$mem_usage > $mem_threshold" | bc -l) )); then
+        echo "⚠️ Aumente a memória RAM ou implemente swap"
+    fi
+    
+    # Disk Check
+    disk_usage=$(df -h / | tail -1 | awk '{print $5}' | tr -d '%')
+    if (( disk_usage > disk_threshold )); then
+        echo "⚠️ Planeje expansão de disco ou limpeza"
+    fi
+}
+```
+
+## Exercícios Práticos
+
+### 🎯 Missão 1: Análise de Capacidade
+
+```BASH
+# Objetivos:
+# 1. Implementar coleta de métricas
+# 2. Criar projeções de crescimento
+# 3. Estabelecer alertas preventivos
+# 4. Documentar recomendações
+```
+
+### 🎯 Missão 2: Planejamento Estratégico
+
+```BASH
+# Desenvolva um plano que:
+# 1. Identifique gargalos
+# 2. Projete necessidades futuras
+# 3. Recomende upgrades
+# 4. Otimize recursos existentes
+```
+
+## Próximos Passos
+
+1. [Performance Tuning](performance-tuning.html)
+
+2. [Automation Strategies](automation-strategies.html)
+
+Tip:
+
+"Planeje o futuro hoje para evitar problemas amanhã."
+
+```
+CAPACITY PLANNING
+[📈📈📈📈📈] 100%
+STATUS: OTIMIZADO
+SISTEMA: DIMENSIONADO
+```
+
+
+
+# Estratégias de Automação
+
+Note:
+
+Aprenda a desenvolver e implementar estratégias eficientes de automação para otimizar operações do sistema.
+
+## Fundamentos da Automação
+
+### 🤖 Automação Inteligente
+
+```BASH
+#!/bin/bash
+# smart_automation.sh
+
+# Configuração de variáveis
+declare -A TASKS
+TASKS=(
+    ["backup"]="0 1 * * *"
+    ["cleanup"]="0 4 * * *"
+    ["monitor"]="*/15 * * * *"
+)
+
+setup_automation() {
+    local task="$1"
+    local schedule="${TASKS[$task]}"
+    
+    if [[ -n "$schedule" ]]; then
+        (crontab -l 2>/dev/null; echo "$schedule /scripts/$task.sh") | crontab -
+        echo "Tarefa $task configurada com sucesso"
+    fi
+}
+```
+
+### 📋 Templates de Automação
+
+```BASH
+#!/bin/bash
+# automation_template.sh
+
+create_template() {
+    local name="$1"
+    local type="$2"
+    
+    cat > "$name.sh" <<EOF
+#!/bin/bash
+# $name - $type automation script
+# Created: $(date)
+
+set -e
+
+# Configuração
+source /etc/automation/config.sh
+
+# Logging
+exec 1> >(logger -s -t \$(basename \$0)) 2>&1
+
+# Funções principais
+main() {
+    echo "Iniciando $name"
+    # Adicione sua lógica aqui
+}
+
+# Execução
+main "\$@"
+EOF
+
+    chmod +x "$name.sh"
+}
+```
+
+## Implementação
+
+### 🔄 Workflows Automáticos
+
+```BASH
+#!/bin/bash
+# workflow_automation.sh
+
+workflow_manager() {
+    local workflow="$1"
+    local status_file="/var/run/workflow_${workflow}.status"
+    
+    # Registro de início
+    echo "START:$(date +%s)" > "$status_file"
+    
+    # Execução das etapas
+    for step in "${WORKFLOW_STEPS[@]}"; do
+        echo "Executando: $step"
+        if ! "$step"; then
+            echo "FAILED:$(date +%s):$step" >> "$status_file"
+            notify_failure "$workflow" "$step"
+            return 1
+        fi
+    done
+    
+    # Registro de sucesso
+    echo "SUCCESS:$(date +%s)" >> "$status_file"
+}
+```
+
+### 📊 Monitoramento de Automação
+
+```BASH
+#!/bin/bash
+# automation_monitor.sh
+
+monitor_automations() {
+    local log_dir="/var/log/automation"
+    
+    # Verifica status das automações
+    find "$log_dir" -type f -name "*.log" -mtime -1 | while read -r log; do
+        task=$(basename "$log" .log)
+        if grep -q "ERROR" "$log"; then
+            notify_admin "Falha na automação: $task"
+        fi
+    done
+    
+    # Gera relatório
+    generate_automation_report
+}
+```
+
+## Melhores Práticas
+
+### ✅ Checklist de Automação
+
+1. Documentação clara
+
+2. Tratamento de erros
+
+3. Logging adequado
+
+4. Notificações
+
+5. Idempotência
+
+6. Versionamento
+
+### 🛠️ Ferramentas Recomendadas
+
+```BASH
+#!/bin/bash
+# automation_tools.sh
+
+check_tools() {
+    local tools=(
+        "ansible"
+        "puppet"
+        "terraform"
+        "jenkins"
+    )
+    
+    for tool in "${tools[@]}"; do
+        if ! command -v "$tool" &> /dev/null; then
+            echo "⚠️ $tool não encontrado"
+        else
+            echo "✅ $tool instalado"
+        fi
+    done
+}
+```
+
+## Exercícios Práticos
+
+### 🎯 Missão 1: Automação Básica
+
+```BASH
+# Objetivos:
+# 1. Criar template de automação
+# 2. Implementar logging
+# 3. Adicionar tratamento de erros
+# 4. Configurar notificações
+```
+
+### 🎯 Missão 2: Workflow Complexo
+
+```BASH
+# Desenvolva um workflow que:
+# 1. Integre múltiplos sistemas
+# 2. Implemente checkpoints
+# 3. Permita rollback
+# 4. Gere relatórios
+```
+
+## Próximos Passos
+
+1. [Performance Tuning](performance-tuning.html)
+
+2. [Capacity Planning](capacity-planning.html)
+
+Tip:
+
+"Automatize o repetitivo, foque no criativo."
+
+```
+AUTOMATION STRATEGIES
+[🤖🤖🤖🤖🤖] 100%
+STATUS: AUTOMATIZADO
+SISTEMA: OTIMIZADO
+```
+
+
+
+# Monitoramento Avançado
+
+Note:
+
+Aprenda técnicas avançadas de monitoramento para manter seu sistema sob controle total.
+
+## Ferramentas Especializadas
+
+### 🔍 Monitoramento Profundo
+
+```BASH
+# Análise detalhada de CPU
+pidstat -u -p ALL 1    # Estatísticas por processo
+perf top              # Análise de performance em tempo real
+perf record -a        # Gravação de eventos
+perf report          # Análise dos dados gravados
+
+# Monitoramento de Memória
+vmstat -w 1          # Estatísticas de memória virtual
+slabtop             # Uso do kernel slab
+valgrind --tool=massif ./programa  # Análise de heap
+```
+
+### 📊 Métricas Avançadas
+
+```BASH
+# Coleta de métricas customizadas
+#!/bin/bash
+collect_metrics() {
+    while true; do
+        # CPU por core
+        mpstat -P ALL 1 1
+        
+        # IO detalhado
+        iostat -xz 1
+        
+        # Conexões de rede
+        ss -s
+        
+        sleep 60
+    done
+}
+```
+
+## Sistemas de Monitoramento
+
+### 🎯 Prometheus Integration
+
+```BASH
+# node_exporter configuration
+NODE_EXPORTER_VERSION="1.3.1"
+wget "https://github.com/prometheus/node_exporter/releases/download/v${NODE_EXPORTER_VERSION}/node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz"
+tar xvfz "node_exporter-${NODE_EXPORTER_VERSION}.linux-amd64.tar.gz"
+```
+
+### 📈 Grafana Dashboard
+
+```YAML
+# dashboard.yaml
+apiVersion: 1
+providers:
+- name: 'System Dashboard'
+  orgId: 1
+  folder: ''
+  type: file
+  options:
+    path: /var/lib/grafana/dashboards
+```
+
+## Alertas Inteligentes
+
+### 🚨 Sistema de Alertas
+
+```BASH
+#!/bin/bash
+# smart_alerts.sh
+
+THRESHOLD_CPU=90
+THRESHOLD_MEM=85
+THRESHOLD_DISK=90
+
+check_resources() {
+    # CPU Load
+    cpu_load=$(top -bn1 | grep "Cpu(s)" | awk '{print $2}' | cut -d. -f1)
+    if [ "$cpu_load" -gt "$THRESHOLD_CPU" ]; then
+        send_alert "CPU" "$cpu_load"
+    fi
+    
+    # Memory Usage
+    mem_used=$(free | grep Mem | awk '{print $3/$2 * 100.0}' | cut -d. -f1)
+    if [ "$mem_used" -gt "$THRESHOLD_MEM" ]; then
+        send_alert "Memory" "$mem_used"
+    fi
+    
+    # Disk Usage
+    disk_used=$(df -h / | awk 'NR==2 {print $5}' | cut -d% -f1)
+    if [ "$disk_used" -gt "$THRESHOLD_DISK" ]; then
+        send_alert "Disk" "$disk_used"
+    fi
+}
+
+send_alert() {
+    local resource=$1
+    local value=$2
+    curl -X POST "https://api.alerting.com/webhook" \
+         -H "Content-Type: application/json" \
+         -d "{\"resource\":\"$resource\",\"value\":$value}"
+}
+```
+
+### 📱 Notificações
+
+```BASH
+#!/bin/bash
+# notification_system.sh
+
+# Canais de notificação
+notify_slack() {
+    curl -X POST -H 'Content-type: application/json' \
+    --data "{\"text\":\"$1\"}" \
+    "$SLACK_WEBHOOK_URL"
+}
+
+notify_email() {
+    echo "$1" | mail -s "System Alert" admin@example.com
+}
+
+notify_telegram() {
+    curl -s "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+    -d "chat_id=${TELEGRAM_CHAT_ID}" \
+    -d "text=$1"
+}
+```
+
+## Análise Preditiva
+
+### 🔮 Previsão de Problemas
+
+```BASH
+#!/bin/bash
+# predictive_analysis.sh
+
+analyze_trends() {
+    # Análise de tendências de CPU
+    sar -u 1 60 > cpu_trends.log
+    
+    # Análise de crescimento de disco
+    df -h --output=source,used,size | awk '
+    NR>1 {
+        used=$2
+        size=$3
+        growth_rate=(used/size)*100
+        print $1, growth_rate
+    }' > disk_trends.log
+    
+    # Análise de conexões
+    netstat -an | awk '
+    /ESTABLISHED/ {count++}
+    END {print count}' > conn_trends.log
+}
+```
+
+## Automação de Respostas
+
+### 🤖 Ações Automáticas
+
+```BASH
+#!/bin/bash
+# auto_response.sh
+
+handle_high_load() {
+    # Identificar processos problemáticos
+    top_processes=$(ps aux --sort=-%cpu | head -n 5)
+    
+    # Ajustar nice de processos não críticos
+    for pid in $(ps aux | awk '$3>50.0 {print $2}'); do
+        renice +10 "$pid"
+    done
+    
+    # Limpar caches se necessário
+    sync && echo 3 > /proc/sys/vm/drop_caches
+}
+
+handle_disk_space() {
+    # Limpar logs antigos
+    find /var/log -type f -mtime +30 -delete
+    
+    # Limpar diretório /tmp
+    find /tmp -type f -atime +10 -delete
+    
+    # Rotacionar logs
+    logrotate -f /etc/logrotate.conf
+}
+```
+
+## Exercícios Práticos
+
+### 🎯 Missão 1: Sistema Completo
+
+```BASH
+# Implemente um sistema que:
+# 1. Colete métricas avançadas
+# 2. Analise tendências
+# 3. Gere alertas inteligentes
+# 4. Execute ações automáticas
+```
+
+### 🎯 Missão 2: Dashboard
+
+```BASH
+# Crie um dashboard que:
+# 1. Mostre métricas em tempo real
+# 2. Exiba tendências históricas
+# 3. Integre múltiplas fontes
+# 4. Permita análise detalhada
+```
+
+## Próximos Passos
+
+1. [Otimização de Performance](performance-tuning.html)
+
+2. [Gestão de Logs](null)
+
+3. [Automação Avançada](advanced-automation.html)
+
+Tip:
+
+"Monitoramento efetivo é a chave para prevenir problemas antes que eles ocorram."
+
+```
+MONITORING STATUS
+[📊📊📊📊📊] 100%
+SISTEMA: MONITORADO
+ALERTAS: ATIVOS
+ANÁLISE: PREDITIVA
 ```
 
 
@@ -8988,6 +11448,772 @@ secure_ports() {
 Tip:
 
 "A rede é confiável até provar o contrário."
+
+
+
+# Segurança do Sistema
+
+Warning:
+
+Proteja seu sistema com práticas avançadas de segurança.
+
+## Hardening Básico
+
+### 🔒 Configuração Inicial
+
+```BASH
+# Atualizar sistema
+apt update && apt upgrade -y
+
+# Configurar firewall básico
+ufw default deny incoming
+ufw default allow outgoing
+ufw allow ssh
+ufw enable
+
+# Configurar SSH seguro
+sed -i 's/#PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
+sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+systemctl restart sshd
+```
+
+### 🛡️ Políticas de Senha
+
+```BASH
+# Configurar políticas de senha
+cat > /etc/security/pwquality.conf << EOF
+minlen = 12
+minclass = 4
+maxrepeat = 3
+gecoscheck = 1
+EOF
+
+# Configurar expiração de senha
+chage -M 90 -m 7 -W 14 usuario
+```
+
+## Monitoramento de Segurança
+
+### 👁️ Detecção de Intrusão
+
+```BASH
+# Instalar e configurar AIDE
+apt install aide
+aide --init
+mv /var/lib/aide/aide.db.new /var/lib/aide/aide.db
+
+# Script de verificação
+#!/bin/bash
+check_system_integrity() {
+    aide --check | grep -v 'found valid'
+}
+```
+
+### 🔍 Análise de Logs
+
+```BASH
+# Monitor de autenticação
+#!/bin/bash
+watch_auth() {
+    tail -f /var/log/auth.log | while read line; do
+        case "$line" in
+            *"Failed password"*)
+                handle_failed_login "$line"
+                ;;
+            *"Invalid user"*)
+                handle_invalid_user "$line"
+                ;;
+        esac
+    done
+}
+```
+
+## Controle de Acesso
+
+### 👥 Gestão de Usuários
+
+```BASH
+# Script de auditoria de usuários
+#!/bin/bash
+audit_users() {
+    # Listar usuários com UID 0
+    awk -F: '$3 == 0 {print $1}' /etc/passwd
+    
+    # Contas sem senha
+    awk -F: '($2 == "" || $2 == " ") {print $1}' /etc/shadow
+    
+    # Usuários com shell de login
+    grep -v '/nologin\|/false' /etc/passwd
+}
+```
+
+### 🔐 Controle de Sudo
+
+```BASH
+# Configuração segura do sudo
+visudo -f /etc/sudoers.d/secure_config
+
+# Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+# Defaults logfile="/var/log/sudo.log"
+# Defaults requiretty
+# Defaults !visiblepw
+```
+
+## Proteção de Rede
+
+### 🌐 Firewall Avançado
+
+```BASH
+#!/bin/bash
+# setup_firewall.sh
+
+# Limpar regras existentes
+iptables -F
+iptables -X
+
+# Políticas padrão
+iptables -P INPUT DROP
+iptables -P FORWARD DROP
+iptables -P OUTPUT ACCEPT
+
+# Regras básicas
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+```
+
+### 📡 Monitoramento de Rede
+
+```BASH
+#!/bin/bash
+# network_monitor.sh
+
+monitor_connections() {
+    # Conexões ativas
+    netstat -tuln
+    
+    # Conexões por IP
+    netstat -ntu | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n
+    
+    # Portas abertas
+    lsof -i -P -n
+}
+```
+
+## Criptografia
+
+### 🔑 Gestão de Chaves
+
+```BASH
+# Gerar par de chaves
+ssh-keygen -t ed25519 -a 100
+
+# Rotacionar chaves
+#!/bin/bash
+rotate_keys() {
+    local key_file="$1"
+    local backup_dir="/etc/ssh/keys_backup"
+    
+    mkdir -p "$backup_dir"
+    cp "$key_file" "$backup_dir/$(date +%Y%m%d)_$(basename "$key_file")"
+    ssh-keygen -t ed25519 -f "$key_file" -N ""
+}
+```
+
+### 🔐 Criptografia de Dados
+
+```BASH
+# Criptografar arquivo
+openssl enc -aes-256-cbc -salt -in arquivo.txt -out arquivo.enc
+
+# Criptografar diretório
+tar cz diretorio | openssl enc -aes-256-cbc -out diretorio.tar.gz.enc
+```
+
+## Auditoria de Segurança
+
+### 📋 Verificações Regulares
+
+```BASH
+#!/bin/bash
+# security_audit.sh
+
+perform_audit() {
+    # Verificar permissões
+    find / -type f -perm /4000 -ls
+    
+    # Verificar portas abertas
+    ss -tuln
+    
+    # Verificar processos suspeitos
+    ps aux --sort=-%cpu | head -n 20
+    
+    # Verificar últimos logins
+    last | head -n 20
+}
+```
+
+### 📊 Relatórios de Segurança
+
+```BASH
+#!/bin/bash
+# security_report.sh
+
+generate_report() {
+    {
+        echo "=== Relatório de Segurança ==="
+        date
+        
+        echo -e "\n=== Usuários Ativos ==="
+        who
+        
+        echo -e "\n=== Tentativas de Login Falhas ==="
+        grep "Failed password" /var/log/auth.log | tail -n 10
+        
+        echo -e "\n=== Portas Abertas ==="
+        netstat -tuln
+        
+        echo -e "\n=== Processos Suspeitos ==="
+        ps aux --sort=-%cpu | head -n 10
+    } > "security_report_$(date +%Y%m%d).txt"
+}
+```
+
+## Exercícios Práticos
+
+### 🎯 Missão 1: Hardening
+
+```BASH
+# Implemente:
+# 1. Configuração segura de SSH
+# 2. Firewall robusto
+# 3. Políticas de senha
+# 4. Monitoramento de logs
+```
+
+### 🎯 Missão 2: Auditoria
+
+```BASH
+# Desenvolva:
+# 1. Sistema de auditoria
+# 2. Relatórios automáticos
+# 3. Alertas de segurança
+# 4. Respostas automáticas
+```
+
+## Próximos Passos
+
+1. [Segurança Avançada](null)
+
+2. [Resposta a Incidentes](null)
+
+3. [Compliance e Regulações](null)
+
+Tip:
+
+"A segurança não é um produto, é um processo."
+
+```
+SECURITY STATUS
+[🔒🔒🔒🔒🔒] 100%
+SISTEMA: PROTEGIDO
+MONITORAMENTO: ATIVO
+ALERTAS: CONFIGURADOS
+```
+
+
+
+# Processamento Distribuído
+
+Note:
+
+Aprenda a implementar processamento distribuído para lidar com grandes volumes de dados de forma eficiente.
+
+## Conceitos Básicos
+
+### 🌐 Arquitetura Distribuída
+
+```BASH
+#!/bin/bash
+# Configuração básica de nós
+setup_nodes() {
+    local nodes=($@)
+    for node in "${nodes[@]}"; do
+        echo "Configurando nó: $node"
+        ssh "$node" "mkdir -p ~/processing"
+        scp ./worker.sh "$node:~/processing/"
+    done
+}
+```
+
+### 📦 Divisão de Trabalho
+
+```BASH
+#!/bin/bash
+# Divide dados entre nós
+split_workload() {
+    local input=$1
+    local chunks=$2
+    
+    # Calcula tamanho de cada chunk
+    local total_lines=$(wc -l < "$input")
+    local chunk_size=$((total_lines / chunks))
+    
+    # Divide arquivo em chunks
+    split -l "$chunk_size" "$input" chunk_
+}
+```
+
+## Implementação
+
+### 🚀 Processamento Paralelo
+
+```BASH
+#!/bin/bash
+# Executa processamento em múltiplos nós
+distribute_process() {
+    local input=$1
+    local nodes=("${@:2}")
+    
+    # Divide trabalho
+    split_workload "$input" "${#nodes[@]}"
+    
+    # Distribui para nós
+    local i=0
+    for chunk in chunk_*; do
+        node="${nodes[i]}"
+        echo "Enviando $chunk para $node"
+        scp "$chunk" "$node:~/processing/data.txt"
+        ssh "$node" "cd ~/processing && ./worker.sh data.txt" &
+        ((i++))
+    done
+    
+    # Aguarda conclusão
+    wait
+    
+    # Combina resultados
+    for node in "${nodes[@]}"; do
+        scp "$node:~/processing/result.txt" "result_${node}.txt"
+    done
+    cat result_*.txt > final_result.txt
+}
+```
+
+### 🔄 Sincronização
+
+```BASH
+#!/bin/bash
+# Gerencia sincronização entre nós
+sync_nodes() {
+    local master=$1
+    local nodes=("${@:2}")
+    
+    # Configura diretório compartilhado
+    for node in "${nodes[@]}"; do
+        rsync -avz "$master/" "$node:~/shared/"
+        ssh "$node" "echo $(date) > ~/shared/sync_status"
+    done
+}
+```
+
+## Monitoramento
+
+### 📊 Status dos Nós
+
+```BASH
+#!/bin/bash
+# Monitora status de cada nó
+check_nodes() {
+    local nodes=($@)
+    for node in "${nodes[@]}"; do
+        echo "=== Status de $node ==="
+        ssh "$node" "uptime && df -h && free -m"
+    done
+}
+```
+
+### 📈 Métricas de Performance
+
+```BASH
+#!/bin/bash
+# Coleta métricas de processamento
+collect_metrics() {
+    local nodes=($@)
+    echo "timestamp,node,cpu,memory,io" > metrics.csv
+    
+    for node in "${nodes[@]}"; do
+        ssh "$node" "sar 1 1" | \
+            awk 'NR==4 {printf "%s,%s,%.2f,%.2f,%.2f\n",
+                strftime("%Y-%m-%d %H:%M:%S"),"'$node'",$3,$4,$6
+            }' >> metrics.csv
+    done
+}
+```
+
+## Exercícios Práticos
+
+### 🎯 Missão 1: Cluster Básico
+
+```BASH
+#!/bin/bash
+# Objetivos:
+# 1. Configurar 3 nós
+# 2. Implementar processamento distribuído
+# 3. Monitorar performance
+# 4. Coletar resultados
+
+# Exemplo de uso
+nodes=("node1" "node2" "node3")
+setup_nodes "${nodes[@]}"
+distribute_process "big_data.txt" "${nodes[@]}"
+collect_metrics "${nodes[@]}"
+```
+
+## Próximos Passos
+
+1. [Balanceamento de Carga](null)
+
+2. [Tolerância a Falhas](null)
+
+3. [Otimização de Performance](null)
+
+Tip:
+
+"Divida para conquistar: a essência do processamento distribuído."
+
+```
+DISTRIBUTED PROCESSING
+[⚡⚡⚡⚡⚡] 100%
+STATUS: CLUSTER DOMINADO
+PRÓXIMO: INTEGRAÇÃO COM APIS
+```
+
+
+
+# Machine Learning Básico
+
+Note:
+
+Introdução a conceitos básicos de Machine Learning usando ferramentas do terminal.
+
+## Fundamentos
+
+### 🧮 Análise Estatística
+
+```BASH
+#!/bin/bash
+# statistical_analysis.sh
+
+analyze_data() {
+    local data="$1"
+    
+    awk '
+    BEGIN {
+        print "=== Análise Estatística ==="
+    }
+    {
+        sum += $1
+        sumsq += $1 * $1
+        values[NR] = $1
+    }
+    END {
+        # Média
+        mean = sum/NR
+        
+        # Variância
+        variance = sumsq/NR - mean^2
+        
+        # Desvio Padrão
+        stddev = sqrt(variance)
+        
+        # Mediana
+        asort(values)
+        if (NR % 2)
+            median = values[int(NR/2) + 1]
+        else
+            median = (values[NR/2] + values[NR/2 + 1])/2
+            
+        print "Amostras:", NR
+        print "Média:", mean
+        print "Mediana:", median
+        print "Desvio Padrão:", stddev
+    }' <<< "$data"
+}
+```
+
+### 📊 Normalização de Dados
+
+```BASH
+#!/bin/bash
+# data_normalization.sh
+
+normalize_data() {
+    local data="$1"
+    local method="$2"  # min-max ou z-score
+    
+    case "$method" in
+        "min-max")
+            awk '
+            NR == 1 {
+                min = max = $1
+            }
+            {
+                if ($1 < min) min = $1
+                if ($1 > max) max = $1
+                values[NR] = $1
+            }
+            END {
+                for (i=1; i<=NR; i++)
+                    print (values[i] - min)/(max - min)
+            }' <<< "$data"
+            ;;
+        "z-score")
+            awk '
+            {
+                sum += $1
+                sumsq += $1 * $1
+                values[NR] = $1
+            }
+            END {
+                mean = sum/NR
+                stddev = sqrt(sumsq/NR - mean^2)
+                for (i=1; i<=NR; i++)
+                    print (values[i] - mean)/stddev
+            }' <<< "$data"
+            ;;
+    esac
+}
+```
+
+## Algoritmos Básicos
+
+### 🎯 K-Means Simples
+
+```BASH
+#!/bin/bash
+# kmeans.sh
+
+kmeans_clustering() {
+    local data="$1"
+    local k="$2"
+    local max_iter=100
+    
+    awk -v k="$k" -v max_iter="$max_iter" '
+    function dist(x1, y1, x2, y2) {
+        return sqrt((x1-x2)^2 + (y1-y2)^2)
+    }
+    
+    BEGIN {
+        srand()
+    }
+    
+    # Carrega dados
+    {
+        x[NR] = $1
+        y[NR] = $2
+    }
+    
+    END {
+        # Inicializa centroides aleatoriamente
+        for (i=1; i<=k; i++) {
+            c_x[i] = x[int(rand() * NR)]
+            c_y[i] = y[int(rand() * NR)]
+        }
+        
+        # Iterações
+        for (iter=1; iter<=max_iter; iter++) {
+            # Associa pontos aos clusters
+            changed = 0
+            for (i=1; i<=NR; i++) {
+                min_dist = dist(x[i], y[i], c_x[1], c_y[1])
+                cluster[i] = 1
+                for (j=2; j<=k; j++) {
+                    d = dist(x[i], y[i], c_x[j], c_y[j])
+                    if (d < min_dist) {
+                        min_dist = d
+                        cluster[i] = j
+                    }
+                }
+            }
+            
+            # Atualiza centroides
+            for (i=1; i<=k; i++) {
+                new_x = new_y = count = 0
+                for (j=1; j<=NR; j++) {
+                    if (cluster[j] == i) {
+                        new_x += x[j]
+                        new_y += y[j]
+                        count++
+                    }
+                }
+                if (count > 0) {
+                    new_x /= count
+                    new_y /= count
+                    if (new_x != c_x[i] || new_y != c_y[i])
+                        changed = 1
+                    c_x[i] = new_x
+                    c_y[i] = new_y
+                }
+            }
+            
+            if (!changed) break
+        }
+        
+        # Imprime resultados
+        print "Clusters encontrados:"
+        for (i=1; i<=NR; i++)
+            print x[i], y[i], cluster[i]
+    }' <<< "$data"
+}
+```
+
+### 📈 Regressão Linear
+
+```BASH
+#!/bin/bash
+# linear_regression.sh
+
+linear_regression() {
+    local data="$1"
+    
+    awk '
+    {
+        x[NR] = $1
+        y[NR] = $2
+        sum_x += $1
+        sum_y += $2
+        sum_xy += $1 * $2
+        sum_xx += $1 * $1
+    }
+    END {
+        # Calcula coeficientes
+        n = NR
+        slope = (n * sum_xy - sum_x * sum_y)/(n * sum_xx - sum_x * sum_x)
+        intercept = (sum_y - slope * sum_x)/n
+        
+        # Calcula R²
+        mean_y = sum_y/n
+        ss_tot = ss_res = 0
+        for (i=1; i<=n; i++) {
+            pred = slope * x[i] + intercept
+            ss_tot += (y[i] - mean_y)^2
+            ss_res += (y[i] - pred)^2
+        }
+        r2 = 1 - ss_res/ss_tot
+        
+        print "Coeficiente Angular:", slope
+        print "Intercepto:", intercept
+        print "R²:", r2
+    }' <<< "$data"
+}
+```
+
+## Avaliação de Modelos
+
+### 📊 Métricas de Avaliação
+
+```BASH
+#!/bin/bash
+# model_evaluation.sh
+
+evaluate_model() {
+    local actual="$1"
+    local predicted="$2"
+    
+    paste <(echo "$actual") <(echo "$predicted") | \
+    awk '
+    {
+        error = $1 - $2
+        abs_error += abs(error)
+        sq_error += error^2
+        if ($1 == $2) correct++
+    }
+    END {
+        print "=== Métricas de Avaliação ==="
+        print "MAE:", abs_error/NR
+        print "MSE:", sq_error/NR
+        print "RMSE:", sqrt(sq_error/NR)
+        print "Acurácia:", correct/NR * 100 "%"
+    }'
+}
+```
+
+### 🔄 Validação Cruzada
+
+```BASH
+#!/bin/bash
+# cross_validation.sh
+
+cross_validate() {
+    local data="$1"
+    local k=5  # k-fold
+    
+    awk -v k="$k" '
+    {
+        lines[NR] = $0
+    }
+    END {
+        # Embaralha dados
+        for (i=NR; i>1; i--) {
+            j = int(rand() * i) + 1
+            temp = lines[i]
+            lines[i] = lines[j]
+            lines[j] = temp
+        }
+        
+        # K-fold CV
+        fold_size = int(NR/k)
+        for (fold=1; fold<=k; fold++) {
+            start = (fold-1) * fold_size + 1
+            end = fold * fold_size
+            
+            print "=== Fold", fold, "==="
+            print "Test indices:", start, "-", end
+        }
+    }' <<< "$data"
+}
+```
+
+## Exercícios Práticos
+
+### 🎯 Missão 1: Classificação
+
+```BASH
+# Implemente um classificador:
+# 1. Prepare os dados
+# 2. Treine o modelo
+# 3. Avalie performance
+# 4. Faça previsões
+```
+
+### 🎯 Missão 2: Regressão
+
+```BASH
+# Desenvolva análise preditiva:
+# 1. Analise correlações
+# 2. Construa modelo
+# 3. Valide resultados
+# 4. Otimize parâmetros
+```
+
+## Próximos Passos
+
+1. [Data Visualization](null)
+
+2. [Text Analysis](text-analysis.html)
+
+Tip:
+
+"Dados + Algoritmos = Conhecimento"
+
+```
+MACHINE LEARNING
+[🤖🤖🤖🤖🤖] 100%
+STATUS: TREINADO
+MODELO: OTIMIZADO
+```
 
 
 

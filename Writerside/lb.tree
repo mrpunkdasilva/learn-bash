@@ -59,9 +59,13 @@
         <toc-element topic="variables-and-types.md"/>
         <toc-element topic="control-structures.md"/>
         <toc-element topic="functions.md"/>
-        <!-- Adicionando nova seção de automação -->
+        <toc-element topic="script-automation.md"/>
         <toc-element topic="advanced-automation.md">
             <toc-element topic="system-integration.md"/>
+            <toc-element topic="text-automation.md"/>
+            <toc-element topic="performance-automation.md"/>
+            <toc-element topic="api-integration.md"/>
+            <toc-element topic="workflow-orchestration.md"/>
         </toc-element>
     </toc-element>
 
@@ -73,8 +77,16 @@
             <toc-element topic="performance-tuning.md"/>
             <toc-element topic="capacity-planning.md"/>
             <toc-element topic="automation-strategies.md"/>
+            <toc-element topic="advanced-monitoring.md"/>
         </toc-element>
         <toc-element topic="network-admin.md"/>
+        <toc-element topic="system-security.md"/>
+    </toc-element>
+
+    <!-- Módulo 5: Processamento Avançado -->
+    <toc-element topic="processing.md">
+        <toc-element topic="distributed-processing.md"/>
+        <toc-element topic="basic-ml.md"/>
     </toc-element>
 
     <!-- Referências e Recursos -->
@@ -106,5 +118,7 @@
             <toc-element topic="log-manager.md"/>
         </toc-element>
     </toc-element>
+    <toc-element topic="monitoring-advanced.md"/>
+    <toc-element topic="system-analysis.md"/>
 
 </instance-profile>

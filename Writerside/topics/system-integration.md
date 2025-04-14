@@ -6,6 +6,7 @@
 ## Integração com Processos
 
 ### 🔄 Gerenciamento de Processos
+
 ```bash
 #!/bin/bash
 # process_manager.sh

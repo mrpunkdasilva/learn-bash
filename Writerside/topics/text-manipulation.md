@@ -177,7 +177,7 @@ cat access.log | \
 
 > "A arte da manipulação de texto está em transformar dados brutos em informação útil."
 
-```ascii
+```
     TEXT MANIPULATION
     [🔧🔧🔧🔧🔧] 100%
     STATUS: TRANSFORMADOR DE TEXTO
