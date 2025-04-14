@@ -1,14 +1,13 @@
-# Comandos de Navegação: Movendo-se como um Ninja 🥷
+# Comandos de Navegação
 
-> O código de exemplo para este tópico está disponível em `code/module2/navigation/nav_demo.sh`. Execute-o para praticar técnicas avançadas de navegação no terminal.
+> Os códigos de exemplo para esta seção estão disponíveis em `code/module2/navigation/basic_navigation.sh`. Execute e experimente cada comando para melhor compreensão.
 > {style="note"}
 
 ```ascii
-    CARREGANDO TÉCNICAS DE NAVEGAÇÃO...
+    CARREGANDO COMANDOS DE NAVEGAÇÃO...
     ==================================
-    STATUS: NINJA MODE ACTIVATED
-    NÍVEL: INTERMEDIÁRIO
-    PODER: MOBILIDADE TOTAL
+    STATUS: MAPEAMENTO ATIVO
+    NÍVEL: EXPLORADOR
     ==================================
 ```
 

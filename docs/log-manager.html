@@ -1,0 +1,144 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T17:13:50.021425242"><title>Gerenciador de Logs 📝 | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"vis-o-geral","level":0,"title":"Visão Geral","anchor":"#vis-o-geral"},{"id":"estrutura","level":0,"title":"Estrutura","anchor":"#estrutura"},{"id":"implementa-o","level":0,"title":"Implementação","anchor":"#implementa-o"},{"id":"como-usar","level":0,"title":"Como Usar","anchor":"#como-usar"},{"id":"recursos-avan-ados","level":0,"title":"Recursos Avançados","anchor":"#recursos-avan-ados"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Gerenciador de Logs 📝 | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/log-manager.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Gerenciador de Logs 📝 | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/log-manager.html#webpage",
+    "url": "writerside-documentation/log-manager.html",
+    "name": "Gerenciador de Logs 📝 | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="log-manager" data-main-title="Gerenciador de Logs 📝" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="exercises.md|Exercícios e Projetos 💪///projects.md|Projetos Práticos 🛠️"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="log-manager" id="log-manager.md">Gerenciador de Logs 📝</h1><section class="chapter"><h2 id="vis-o-geral" data-toc="vis-o-geral">Vis&atilde;o Geral</h2><p id="kpokde_8">Sistema de an&aacute;lise de logs com coleta centralizada, parsing inteligente e alertas.</p></section><section class="chapter"><h2 id="estrutura" data-toc="estrutura">Estrutura</h2><div class="code-block" data-lang="bash">
+log-manager/
+├── collector/
+│   ├── agent.sh
+│   └── parser.sh
+├── analyzer/
+│   ├── analyze.sh
+│   └── rules.yaml
+├── storage/
+│   └── database.sh
+└── web/
+    └── dashboard.php
+</div></section><section class="chapter"><h2 id="implementa-o" data-toc="implementa-o">Implementa&ccedil;&atilde;o</h2><section class="chapter"><h3 id="1-agente-coletor" data-toc="1-agente-coletor">1. Agente Coletor</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# collector/agent.sh
+
+# Configuração
+LOG_DIRS=(&quot;/var/log/nginx&quot; &quot;/var/log/apache2&quot; &quot;/var/log/mysql&quot;)
+CENTRAL_SERVER=&quot;logs.example.com&quot;
+
+collect_logs() {
+    for dir in &quot;${LOG_DIRS[@]}&quot;; do
+        find &quot;$dir&quot; -type f -name &quot;*.log&quot; -exec \
+            ./parser.sh {} \; | \
+            nc &quot;$CENTRAL_SERVER&quot; 514
+    done
+}
+
+watch_logs() {
+    inotifywait -m &quot;${LOG_DIRS[@]}&quot; -e modify |
+    while read -r directory events filename; do
+        if [[ &quot;$filename&quot; =~ \.log$ ]]; then
+            ./parser.sh &quot;$directory/$filename&quot;
+        fi
+    done
+}
+
+main() {
+    collect_logs
+    watch_logs
+}
+
+main &quot;$@&quot;
+</div></section><section class="chapter"><h3 id="2-parser-inteligente" data-toc="2-parser-inteligente">2. Parser Inteligente</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# collector/parser.sh
+
+parse_log_line() {
+    local line=&quot;$1&quot;
+    
+    # Detectar formato
+    if [[ &quot;$line&quot; =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2} ]]; then
+        parse_standard_format &quot;$line&quot;
+    elif [[ &quot;$line&quot; =~ ^\[[0-9]+\] ]]; then
+        parse_bracketed_format &quot;$line&quot;
+    else
+        parse_custom_format &quot;$line&quot;
+    fi
+}
+
+parse_standard_format() {
+    awk '{
+        timestamp=$1&quot; &quot;$2
+        level=$3
+        message=substr($0, index($0,$4))
+        printf &quot;{\&quot;timestamp\&quot;:\&quot;%s\&quot;,\&quot;level\&quot;:\&quot;%s\&quot;,\&quot;message\&quot;:\&quot;%s\&quot;}\n&quot;,
+            timestamp, level, message
+    }'
+}
+
+while IFS= read -r line; do
+    parse_log_line &quot;$line&quot;
+done &lt; &quot;$1&quot;
+</div></section><section class="chapter"><h3 id="3-an-lise-em-tempo-real" data-toc="3-an-lise-em-tempo-real">3. An&aacute;lise em Tempo Real</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# analyzer/analyze.sh
+
+# Carregar regras
+source &quot;$(dirname &quot;$0&quot;)/rules.yaml&quot;
+
+analyze_log() {
+    while read -r log_entry; do
+        # Parse JSON
+        level=$(echo &quot;$log_entry&quot; | jq -r .level)
+        message=$(echo &quot;$log_entry&quot; | jq -r .message)
+        
+        # Aplicar regras
+        for rule in &quot;${RULES[@]}&quot;; do
+            if [[ &quot;$message&quot; =~ ${rule[pattern]} ]]; then
+                trigger_alert &quot;${rule[name]}&quot; &quot;$message&quot;
+            fi
+        done
+    done
+}
+
+trigger_alert() {
+    local rule_name=&quot;$1&quot;
+    local message=&quot;$2&quot;
+    
+    # Enviar alerta
+    curl -X POST &quot;$ALERT_ENDPOINT&quot; \
+         -H &quot;Content-Type: application/json&quot; \
+         -d &quot;{
+             \&quot;rule\&quot;: \&quot;$rule_name\&quot;,
+             \&quot;message\&quot;: \&quot;$message\&quot;,
+             \&quot;timestamp\&quot;: \&quot;$(date -u +%FT%TZ)\&quot;
+         }&quot;
+}
+
+main() {
+    analyze_log
+}
+
+main &quot;$@&quot;
+</div></section></section><section class="chapter"><h2 id="como-usar" data-toc="como-usar">Como Usar</h2><ol class="list _decimal" id="kpokde_16" type="1"><li class="list__item" id="kpokde_22"><p id="kpokde_23">Instale os agentes:</p></li></ol><div class="code-block" data-lang="bash">
+./install_agent.sh
+</div><ol class="list _decimal" id="kpokde_18" type="1" start="2"><li class="list__item" id="kpokde_24"><p id="kpokde_25">Configure regras:</p></li></ol><div class="code-block" data-lang="yaml">
+# analyzer/rules.yaml
+rules:
+  - name: &quot;Error Detection&quot;
+    pattern: &quot;ERROR|FATAL|CRITICAL&quot;
+    action: &quot;email&quot;
+  - name: &quot;Security Alert&quot;
+    pattern: &quot;unauthorized|forbidden|invalid&quot;
+    action: &quot;slack&quot;
+</div><ol class="list _decimal" id="kpokde_20" type="1" start="3"><li class="list__item" id="kpokde_26"><p id="kpokde_27">Inicie o sistema:</p></li></ol><div class="code-block" data-lang="bash">
+./start_collector.sh
+./start_analyzer.sh
+</div></section><section class="chapter"><h2 id="recursos-avan-ados" data-toc="recursos-avan-ados">Recursos Avan&ccedil;ados</h2><ul class="list _bullet" id="kpokde_28"><li class="list__item" id="kpokde_29"><p id="kpokde_35">Coleta distribu&iacute;da</p></li><li class="list__item" id="kpokde_30"><p id="kpokde_36">Parsing inteligente</p></li><li class="list__item" id="kpokde_31"><p id="kpokde_37">An&aacute;lise em tempo real</p></li><li class="list__item" id="kpokde_32"><p id="kpokde_38">Alertas customiz&aacute;veis</p></li><li class="list__item" id="kpokde_33"><p id="kpokde_39">Dashboard web</p></li><li class="list__item" id="kpokde_34"><p id="kpokde_40">Armazenamento eficiente</p></li></ul></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="devops-automation.html" class="navigation-links__prev">Automatiza&ccedil;&atilde;o DevOps 🔄</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

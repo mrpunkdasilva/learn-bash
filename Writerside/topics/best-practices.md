@@ -1,4 +1,4 @@
-# Melhores Práticas 🎯
+# Melhores Práticas 
 
 ## Princípios Fundamentais
 

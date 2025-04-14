@@ -1,4 +1,7 @@
-# Troubleshooting de Navegação: Resolvendo Problemas 🔧
+# Resolução de Problemas de Navegação
+
+> Aprenda a identificar e resolver problemas comuns relacionados à navegação no sistema.
+> {style="note"}
 
 ## Problemas Comuns
 

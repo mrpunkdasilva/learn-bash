@@ -130,7 +130,7 @@ SISTEMA PRONTO. BOA SORTE.
 
 
 
-# Fundamentos do Bash: Seu Primeiro Jack-In 🔌
+# Fundamentos do Bash: Seu Primeiro Jack-In
 
 ```
 < INICIANDO SEQUÊNCIA DE TREINAMENTO >
@@ -435,11 +435,11 @@ CONHECIMENTO BASE ADQUIRIDO
 
 
 
-# Básico do Terminal: Sua Interface com a Matrix 🖥️
+# Fundamentos do Terminal
 
 Note:
 
-Explore o script de exemplo em `code/module1/terminal-basics/customize.sh` para ver demonstrações práticas de personalização do terminal e configurações avançadas.
+Aprenda os conceitos fundamentais para trabalhar eficientemente com o terminal.
 
 ```
 USER@MATRIX:~$ _
@@ -1381,7 +1381,7 @@ MATRIZ DE ARQUIVOS: DOMINADA
 
 
 
-# Comandos Essenciais: Dominando as Ferramentas 🛠️
+# Comandos Essenciais
 
 Note:
 
@@ -1570,18 +1570,17 @@ PRÓXIMA MISSÃO: AGUARDANDO...
 
 
 
-# Comandos de Navegação: Movendo-se como um Ninja 🥷
+# Comandos de Navegação
 
 Note:
 
-O código de exemplo para este tópico está disponível em `code/module2/navigation/nav_demo.sh`. Execute-o para praticar técnicas avançadas de navegação no terminal.
+Os códigos de exemplo para esta seção estão disponíveis em `code/module2/navigation/basic_navigation.sh`. Execute e experimente cada comando para melhor compreensão.
 
 ```
-CARREGANDO TÉCNICAS DE NAVEGAÇÃO...
+CARREGANDO COMANDOS DE NAVEGAÇÃO...
 ==================================
-STATUS: NINJA MODE ACTIVATED
-NÍVEL: INTERMEDIÁRIO
-PODER: MOBILIDADE TOTAL
+STATUS: MAPEAMENTO ATIVO
+NÍVEL: EXPLORADOR
 ==================================
 ```
 
@@ -1788,7 +1787,11 @@ Tip:
 
 
 
-# Navegação Avançada 🚀
+# Navegação Avançada
+
+Note:
+
+Técnicas avançadas e ferramentas para navegação eficiente no sistema de arquivos.
 
 ## Técnicas Avançadas de CD
 
@@ -2234,7 +2237,11 @@ Tip:
 
 
 
-# Atalhos de Navegação: Velocidade Máxima ⚡
+# Atalhos de Navegação
+
+Note:
+
+Domine os atalhos e técnicas para navegar rapidamente pelo sistema de arquivos.
 
 ## Atalhos do Terminal
 
@@ -2425,7 +2432,11 @@ Tip:
 
 
 
-# Automação de Navegação: Poder Máximo 🤖
+# Automação de Navegação
+
+Note:
+
+Aprenda a criar scripts e funções para automatizar tarefas de navegação no sistema de arquivos.
 
 ## Scripts de Navegação
 
@@ -2685,7 +2696,11 @@ Tip:
 
 
 
-# Troubleshooting de Navegação: Resolvendo Problemas 🔧
+# Resolução de Problemas de Navegação
+
+Note:
+
+Aprenda a identificar e resolver problemas comuns relacionados à navegação no sistema.
 
 ## Problemas Comuns
 
@@ -2932,18 +2947,18 @@ Tip:
 
 
 
-# Operações com Arquivos 📂
+# Operações com Arquivos
 
 Note:
 
-Este módulo cobre todas as operações essenciais com arquivos no Linux, desde o básico até técnicas avançadas.
+Encontre os exemplos práticos em `code/module2/file-ops/file_operations.sh`. Cada operação está documentada e pronta para uso.
 
 ```
-OPERAÇÕES COM ARQUIVOS
-=====================
-STATUS: ATIVO
-NÍVEL: ESSENCIAL
-OPERAÇÕES: COMPLETAS
+INICIANDO OPERAÇÕES COM ARQUIVOS...
+==================================
+STATUS: SISTEMA DE ARQUIVOS ATIVO
+PODER: MANIPULAÇÃO TOTAL
+==================================
 ```
 
 ## Visão Geral
@@ -3734,11 +3749,11 @@ Tip:
 
 
 
-# Compactação e Arquivamento 📦
+# Arquivamento e Compressão
 
 Note:
 
-Este módulo aborda técnicas e ferramentas para compactação e arquivamento de arquivos no Linux.
+Domine as técnicas de compactação e gerenciamento de arquivos para otimizar o armazenamento.
 
 ## Ferramentas de Compactação
 
@@ -4761,11 +4776,19 @@ SISTEMA: ESTÁVEL
 
 
 
-# Processamento de Texto no Bash 📝
+# Processamento de Texto
 
 Note:
 
-Domine as ferramentas essenciais para manipulação e análise de texto no terminal.
+Todos os exemplos de processamento de texto estão disponíveis em `code/module2/text-proc/text_processing.sh`. Pratique cada comando para dominar o processamento de texto.
+
+```
+PROCESSADOR DE TEXTO INICIADO...
+===============================
+STATUS: PRONTO PARA PROCESSAR
+MODO: TRANSFORMAÇÃO DE DADOS
+===============================
+```
 
 ## Ferramentas Fundamentais
 
@@ -5107,11 +5130,11 @@ PRÓXIMO: REGEX AVANÇADO
 
 
 
-# Fundamentos do Sed 📝
+# Fundamentos do Sed
 
 Note:
 
-O Sed (Stream Editor) é uma ferramenta poderosa para manipulação de texto em streams, permitindo transformações complexas com comandos simples.
+Aprenda os conceitos básicos e uso do comando sed para manipulação eficiente de texto.
 
 ## Sintaxe Básica
 
@@ -5977,11 +6000,11 @@ PRÓXIMO: SED AVANÇADO
 
 
 
-# Manipulação de Texto 📝
+# Manipulação de Texto
 
 Note:
 
-Aprenda técnicas avançadas para transformar e manipular texto no terminal.
+Aprenda técnicas avançadas para manipulação e transformação de texto no terminal.
 
 ## Transformações Básicas
 
@@ -6426,7 +6449,7 @@ PRÓXIMO: AUTOMAÇÃO AVANÇADA
 
 
 
-# Automação de Processamento de Texto 🤖
+# Automação de Processamento de Texto
 
 Note:
 
@@ -6732,11 +6755,19 @@ PRÓXIMO: PROCESSAMENTO DISTRIBUÍDO
 
 
 
-# Informações do Sistema: Conhecendo seu Ambiente 🖥️
+# Informações do Sistema
 
 Note:
 
-Aprenda a coletar, analisar e monitorar informações do seu sistema Linux.
+Consulte `code/module2/system/system_info.sh` para uma coleção completa de comandos para monitoramento e análise do sistema.
+
+```
+SCANNER DE SISTEMA ATIVADO...
+===========================
+STATUS: MONITORANDO
+ALCANCE: SISTEMA COMPLETO
+===========================
+```
 
 ## Informações Básicas do Sistema
 
@@ -7999,7 +8030,7 @@ Tip:
 
 
 
-# Controle de Processos 🔄
+# Controle de Processos
 
 Note:
 
@@ -9011,7 +9042,7 @@ Tip:
 
 
 
-# Melhores Práticas 🎯
+# Melhores Práticas
 
 ## Princípios Fundamentais
 
@@ -9459,7 +9490,11 @@ export VISUAL=code
 
 
 
-# Troubleshooting 🔧
+# Troubleshooting
+
+Note:
+
+Este módulo apresenta soluções para problemas comuns e técnicas de diagnóstico.
 
 ## Problemas Comuns
 
@@ -10116,6 +10151,556 @@ Crie um sistema de análise de logs:
 Tip:
 
 Dica: Use estes projetos para construir seu portfólio!
+
+
+
+# Sistema de Backup 💾
+
+## Visão Geral
+
+Sistema completo de backup com interface CLI, suporte a backup incremental, compressão, criptografia e notificações.
+
+## Estrutura do Projeto
+
+```BASH
+backup-system/
+├── src/
+│   ├── main.sh
+│   ├── backup.sh
+│   ├── compress.sh
+│   ├── encrypt.sh
+│   └── notify.sh
+├── config/
+│   └── backup.yaml
+├── logs/
+└── README.md
+```
+
+## Implementação
+
+### 1. Script Principal
+
+```BASH
+#!/bin/bash
+# src/main.sh
+
+source "$(dirname "$0")/backup.sh"
+source "$(dirname "$0")/compress.sh"
+source "$(dirname "$0")/encrypt.sh"
+source "$(dirname "$0")/notify.sh"
+
+main() {
+    local config_file="$1"
+    load_config "$config_file"
+    perform_backup
+    compress_files
+    encrypt_backup
+    send_notification
+}
+
+main "$@"
+```
+
+### 2. Configuração YAML
+
+```YAML
+# config/backup.yaml
+backup:
+  source_dirs:
+    - /path/to/source1
+    - /path/to/source2
+  destination: /backup/destination
+  retention: 7
+  compression: gzip
+  encryption: gpg
+  notify:
+    email: admin@example.com
+```
+
+## Como Usar
+
+1. Clone o repositório
+
+2. Configure `backup.yaml`
+
+3. Execute:
+
+```BASH
+./src/main.sh config/backup.yaml
+```
+
+## Recursos Avançados
+
+* Backup incremental usando `rsync`
+
+* Compressão com diferentes algoritmos
+
+* Criptografia GPG
+
+* Rotação automática de backups
+
+* Sistema de logs detalhado
+
+* Notificações por email/Slack
+
+
+
+# Monitor de Servidor 📊
+
+## Visão Geral
+
+Dashboard de monitoramento com métricas em tempo real, alertas configuráveis e interface web.
+
+## Arquitetura
+
+```BASH
+server-monitor/
+├── backend/
+│   ├── collector.sh
+│   ├── api.py
+│   └── alerts.sh
+├── frontend/
+│   ├── index.html
+│   ├── css/
+│   └── js/
+├── config/
+│   └── monitor.yaml
+└── data/
+```
+
+## Implementação
+
+### 1. Coletor de Métricas
+
+```BASH
+#!/bin/bash
+# backend/collector.sh
+
+collect_metrics() {
+    # CPU
+    cpu_usage=$(top -bn1 | grep "Cpu(s)" | awk '{print $2}')
+    
+    # Memory
+    mem_info=$(free -m | grep Mem)
+    mem_total=$(echo $mem_info | awk '{print $2}')
+    mem_used=$(echo $mem_info | awk '{print $3}')
+    
+    # Disk
+    disk_usage=$(df -h / | tail -1 | awk '{print $5}')
+    
+    # Save to JSON
+    cat > data/metrics.json << EOF
+{
+    "timestamp": "$(date +%s)",
+    "cpu": $cpu_usage,
+    "memory": {
+        "total": $mem_total,
+        "used": $mem_used
+    },
+    "disk": "${disk_usage}"
+}
+EOF
+}
+
+while true; do
+    collect_metrics
+    sleep 60
+done
+```
+
+### 2. API REST (Python/Flask)
+
+```PYTHON
+# backend/api.py
+from flask import Flask, jsonify
+import json
+
+app = Flask(__name__)
+
+@app.route('/api/metrics')
+def get_metrics():
+    with open('data/metrics.json') as f:
+        return jsonify(json.load(f))
+
+if __name__ == '__main__':
+    app.run(port=5000)
+```
+
+### 3. Frontend
+
+```HTML
+<!-- frontend/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Server Monitor</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="dashboard">
+        <div class="metric" id="cpu"></div>
+        <div class="metric" id="memory"></div>
+        <div class="metric" id="disk"></div>
+    </div>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
+```
+
+## Como Executar
+
+1. Inicie o coletor:
+
+```BASH
+./backend/collector.sh &
+```
+
+1. Inicie a API:
+
+```BASH
+python backend/api.py
+```
+
+1. Abra `frontend/index.html` no navegador
+
+## Recursos Adicionais
+
+* Gráficos em tempo real com Chart.js
+
+* Alertas configuráveis
+
+* Histórico de métricas
+
+* Exportação de relatórios
+
+
+
+# Automatização DevOps 🔄
+
+## Visão Geral
+
+Suite de scripts para automação de CI/CD, gestão de ambientes e deploy.
+
+## Estrutura
+
+```BASH
+devops-automation/
+├── ci/
+│   ├── pipeline.sh
+│   └── tests.sh
+├── cd/
+│   ├── deploy.sh
+│   └── rollback.sh
+├── environments/
+│   ├── dev.env
+│   ├── staging.env
+│   └── prod.env
+└── scripts/
+```
+
+## Implementação
+
+### 1. Pipeline CI
+
+```BASH
+#!/bin/bash
+# ci/pipeline.sh
+
+set -e
+
+# Configuração
+source "$(dirname "$0")/../environments/${ENV:-dev}.env"
+
+# Etapas do Pipeline
+run_tests() {
+    echo "Running tests..."
+    ./ci/tests.sh
+}
+
+build_app() {
+    echo "Building application..."
+    docker build -t myapp:${VERSION} .
+}
+
+push_image() {
+    echo "Pushing to registry..."
+    docker push myapp:${VERSION}
+}
+
+main() {
+    run_tests
+    build_app
+    push_image
+}
+
+main "$@"
+```
+
+### 2. Deploy Automatizado
+
+```BASH
+#!/bin/bash
+# cd/deploy.sh
+
+set -e
+
+# Configuração
+source "$(dirname "$0")/../environments/${ENV:-dev}.env"
+
+# Funções de Deploy
+deploy_app() {
+    echo "Deploying to ${ENV}..."
+    
+    # Backup atual
+    backup_current_version
+    
+    # Deploy nova versão
+    kubectl apply -f k8s/
+    
+    # Verificar health
+    check_deployment_health
+}
+
+backup_current_version() {
+    echo "Backing up current version..."
+    kubectl get deployment -o yaml > backup/deploy-$(date +%Y%m%d_%H%M%S).yaml
+}
+
+check_deployment_health() {
+    echo "Checking deployment health..."
+    kubectl rollout status deployment/myapp
+}
+
+main() {
+    deploy_app
+}
+
+main "$@"
+```
+
+## Configuração de Ambientes
+
+```BASH
+# environments/prod.env
+export ENV="prod"
+export VERSION="1.0.0"
+export REGISTRY="registry.example.com"
+export K8S_NAMESPACE="production"
+```
+
+## Como Usar
+
+1. Configure o ambiente:
+
+```BASH
+source environments/dev.env
+```
+
+1. Execute o pipeline:
+
+```BASH
+./ci/pipeline.sh
+```
+
+1. Deploy:
+
+```BASH
+./cd/deploy.sh
+```
+
+## Recursos Avançados
+
+* Integração com Git
+
+* Testes automatizados
+
+* Multi-ambiente
+
+* Rollback automático
+
+* Monitoramento de deploy
+
+
+
+# Gerenciador de Logs 📝
+
+## Visão Geral
+
+Sistema de análise de logs com coleta centralizada, parsing inteligente e alertas.
+
+## Estrutura
+
+```BASH
+log-manager/
+├── collector/
+│   ├── agent.sh
+│   └── parser.sh
+├── analyzer/
+│   ├── analyze.sh
+│   └── rules.yaml
+├── storage/
+│   └── database.sh
+└── web/
+    └── dashboard.php
+```
+
+## Implementação
+
+### 1. Agente Coletor
+
+```BASH
+#!/bin/bash
+# collector/agent.sh
+
+# Configuração
+LOG_DIRS=("/var/log/nginx" "/var/log/apache2" "/var/log/mysql")
+CENTRAL_SERVER="logs.example.com"
+
+collect_logs() {
+    for dir in "${LOG_DIRS[@]}"; do
+        find "$dir" -type f -name "*.log" -exec \
+            ./parser.sh {} \; | \
+            nc "$CENTRAL_SERVER" 514
+    done
+}
+
+watch_logs() {
+    inotifywait -m "${LOG_DIRS[@]}" -e modify |
+    while read -r directory events filename; do
+        if [[ "$filename" =~ \.log$ ]]; then
+            ./parser.sh "$directory/$filename"
+        fi
+    done
+}
+
+main() {
+    collect_logs
+    watch_logs
+}
+
+main "$@"
+```
+
+### 2. Parser Inteligente
+
+```BASH
+#!/bin/bash
+# collector/parser.sh
+
+parse_log_line() {
+    local line="$1"
+    
+    # Detectar formato
+    if [[ "$line" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2} ]]; then
+        parse_standard_format "$line"
+    elif [[ "$line" =~ ^\[[0-9]+\] ]]; then
+        parse_bracketed_format "$line"
+    else
+        parse_custom_format "$line"
+    fi
+}
+
+parse_standard_format() {
+    awk '{
+        timestamp=$1" "$2
+        level=$3
+        message=substr($0, index($0,$4))
+        printf "{\"timestamp\":\"%s\",\"level\":\"%s\",\"message\":\"%s\"}\n",
+            timestamp, level, message
+    }'
+}
+
+while IFS= read -r line; do
+    parse_log_line "$line"
+done < "$1"
+```
+
+### 3. Análise em Tempo Real
+
+```BASH
+#!/bin/bash
+# analyzer/analyze.sh
+
+# Carregar regras
+source "$(dirname "$0")/rules.yaml"
+
+analyze_log() {
+    while read -r log_entry; do
+        # Parse JSON
+        level=$(echo "$log_entry" | jq -r .level)
+        message=$(echo "$log_entry" | jq -r .message)
+        
+        # Aplicar regras
+        for rule in "${RULES[@]}"; do
+            if [[ "$message" =~ ${rule[pattern]} ]]; then
+                trigger_alert "${rule[name]}" "$message"
+            fi
+        done
+    done
+}
+
+trigger_alert() {
+    local rule_name="$1"
+    local message="$2"
+    
+    # Enviar alerta
+    curl -X POST "$ALERT_ENDPOINT" \
+         -H "Content-Type: application/json" \
+         -d "{
+             \"rule\": \"$rule_name\",
+             \"message\": \"$message\",
+             \"timestamp\": \"$(date -u +%FT%TZ)\"
+         }"
+}
+
+main() {
+    analyze_log
+}
+
+main "$@"
+```
+
+## Como Usar
+
+1. Instale os agentes:
+
+```BASH
+./install_agent.sh
+```
+
+1. Configure regras:
+
+```YAML
+# analyzer/rules.yaml
+rules:
+  - name: "Error Detection"
+    pattern: "ERROR|FATAL|CRITICAL"
+    action: "email"
+  - name: "Security Alert"
+    pattern: "unauthorized|forbidden|invalid"
+    action: "slack"
+```
+
+1. Inicie o sistema:
+
+```BASH
+./start_collector.sh
+./start_analyzer.sh
+```
+
+## Recursos Avançados
+
+* Coleta distribuída
+
+* Parsing inteligente
+
+* Análise em tempo real
+
+* Alertas customizáveis
+
+* Dashboard web
+
+* Armazenamento eficiente
 
 
 

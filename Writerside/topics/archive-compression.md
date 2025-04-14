@@ -1,6 +1,6 @@
-# Compactação e Arquivamento 📦
+# Arquivamento e Compressão
 
-> Este módulo aborda técnicas e ferramentas para compactação e arquivamento de arquivos no Linux.
+> Domine as técnicas de compactação e gerenciamento de arquivos para otimizar o armazenamento.
 > {style="note"}
 
 ## Ferramentas de Compactação

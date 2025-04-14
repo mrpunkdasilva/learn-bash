@@ -1,14 +1,14 @@
-# Operações com Arquivos 📂
+# Operações com Arquivos
 
-> Este módulo cobre todas as operações essenciais com arquivos no Linux, desde o básico até técnicas avançadas.
+> Encontre os exemplos práticos em `code/module2/file-ops/file_operations.sh`. Cada operação está documentada e pronta para uso.
 > {style="note"}
 
 ```ascii
-    OPERAÇÕES COM ARQUIVOS
-    =====================
-    STATUS: ATIVO
-    NÍVEL: ESSENCIAL
-    OPERAÇÕES: COMPLETAS
+    INICIANDO OPERAÇÕES COM ARQUIVOS...
+    ==================================
+    STATUS: SISTEMA DE ARQUIVOS ATIVO
+    PODER: MANIPULAÇÃO TOTAL
+    ==================================
 ```
 
 ## Visão Geral

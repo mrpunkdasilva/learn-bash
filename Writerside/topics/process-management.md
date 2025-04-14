@@ -1,4 +1,4 @@
-# Gerenciamento de Processos 🔄
+# Gerenciamento de Processos
 
 > Este módulo aborda o gerenciamento de processos no Linux, incluindo monitoramento, controle e otimização.
 > {style="note"}

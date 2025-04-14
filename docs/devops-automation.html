@@ -1,0 +1,111 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-14T17:13:50.015586285"><title>Automatiza&ccedil;&atilde;o DevOps 🔄 | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"vis-o-geral","level":0,"title":"Visão Geral","anchor":"#vis-o-geral"},{"id":"estrutura","level":0,"title":"Estrutura","anchor":"#estrutura"},{"id":"implementa-o","level":0,"title":"Implementação","anchor":"#implementa-o"},{"id":"configura-o-de-ambientes","level":0,"title":"Configuração de Ambientes","anchor":"#configura-o-de-ambientes"},{"id":"como-usar","level":0,"title":"Como Usar","anchor":"#como-usar"},{"id":"recursos-avan-ados","level":0,"title":"Recursos Avançados","anchor":"#recursos-avan-ados"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Automatiza&ccedil;&atilde;o DevOps 🔄 | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/devops-automation.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Automatiza&ccedil;&atilde;o DevOps 🔄 | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/devops-automation.html#webpage",
+    "url": "writerside-documentation/devops-automation.html",
+    "name": "Automatiza&ccedil;&atilde;o DevOps 🔄 | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="devops-automation" data-main-title="Automatização DevOps 🔄" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="exercises.md|Exercícios e Projetos 💪///projects.md|Projetos Práticos 🛠️"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="devops-automation" id="devops-automation.md">Automatização DevOps 🔄</h1><section class="chapter"><h2 id="vis-o-geral" data-toc="vis-o-geral">Vis&atilde;o Geral</h2><p id="vz1r27_9">Suite de scripts para automa&ccedil;&atilde;o de CI/CD, gest&atilde;o de ambientes e deploy.</p></section><section class="chapter"><h2 id="estrutura" data-toc="estrutura">Estrutura</h2><div class="code-block" data-lang="bash">
+devops-automation/
+├── ci/
+│   ├── pipeline.sh
+│   └── tests.sh
+├── cd/
+│   ├── deploy.sh
+│   └── rollback.sh
+├── environments/
+│   ├── dev.env
+│   ├── staging.env
+│   └── prod.env
+└── scripts/
+</div></section><section class="chapter"><h2 id="implementa-o" data-toc="implementa-o">Implementa&ccedil;&atilde;o</h2><section class="chapter"><h3 id="1-pipeline-ci" data-toc="1-pipeline-ci">1. Pipeline CI</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# ci/pipeline.sh
+
+set -e
+
+# Configuração
+source &quot;$(dirname &quot;$0&quot;)/../environments/${ENV:-dev}.env&quot;
+
+# Etapas do Pipeline
+run_tests() {
+    echo &quot;Running tests...&quot;
+    ./ci/tests.sh
+}
+
+build_app() {
+    echo &quot;Building application...&quot;
+    docker build -t myapp:${VERSION} .
+}
+
+push_image() {
+    echo &quot;Pushing to registry...&quot;
+    docker push myapp:${VERSION}
+}
+
+main() {
+    run_tests
+    build_app
+    push_image
+}
+
+main &quot;$@&quot;
+</div></section><section class="chapter"><h3 id="2-deploy-automatizado" data-toc="2-deploy-automatizado">2. Deploy Automatizado</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# cd/deploy.sh
+
+set -e
+
+# Configuração
+source &quot;$(dirname &quot;$0&quot;)/../environments/${ENV:-dev}.env&quot;
+
+# Funções de Deploy
+deploy_app() {
+    echo &quot;Deploying to ${ENV}...&quot;
+    
+    # Backup atual
+    backup_current_version
+    
+    # Deploy nova versão
+    kubectl apply -f k8s/
+    
+    # Verificar health
+    check_deployment_health
+}
+
+backup_current_version() {
+    echo &quot;Backing up current version...&quot;
+    kubectl get deployment -o yaml &gt; backup/deploy-$(date +%Y%m%d_%H%M%S).yaml
+}
+
+check_deployment_health() {
+    echo &quot;Checking deployment health...&quot;
+    kubectl rollout status deployment/myapp
+}
+
+main() {
+    deploy_app
+}
+
+main &quot;$@&quot;
+</div></section></section><section class="chapter"><h2 id="configura-o-de-ambientes" data-toc="configura-o-de-ambientes">Configura&ccedil;&atilde;o de Ambientes</h2><div class="code-block" data-lang="bash">
+# environments/prod.env
+export ENV=&quot;prod&quot;
+export VERSION=&quot;1.0.0&quot;
+export REGISTRY=&quot;registry.example.com&quot;
+export K8S_NAMESPACE=&quot;production&quot;
+</div></section><section class="chapter"><h2 id="como-usar" data-toc="como-usar">Como Usar</h2><ol class="list _decimal" id="vz1r27_16" type="1"><li class="list__item" id="vz1r27_22"><p id="vz1r27_23">Configure o ambiente:</p></li></ol><div class="code-block" data-lang="bash">
+source environments/dev.env
+</div><ol class="list _decimal" id="vz1r27_18" type="1" start="2"><li class="list__item" id="vz1r27_24"><p id="vz1r27_25">Execute o pipeline:</p></li></ol><div class="code-block" data-lang="bash">
+./ci/pipeline.sh
+</div><ol class="list _decimal" id="vz1r27_20" type="1" start="3"><li class="list__item" id="vz1r27_26"><p id="vz1r27_27">Deploy:</p></li></ol><div class="code-block" data-lang="bash">
+./cd/deploy.sh
+</div></section><section class="chapter"><h2 id="recursos-avan-ados" data-toc="recursos-avan-ados">Recursos Avan&ccedil;ados</h2><ul class="list _bullet" id="vz1r27_28"><li class="list__item" id="vz1r27_29"><p id="vz1r27_34">Integra&ccedil;&atilde;o com Git</p></li><li class="list__item" id="vz1r27_30"><p id="vz1r27_35">Testes automatizados</p></li><li class="list__item" id="vz1r27_31"><p id="vz1r27_36">Multi-ambiente</p></li><li class="list__item" id="vz1r27_32"><p id="vz1r27_37">Rollback autom&aacute;tico</p></li><li class="list__item" id="vz1r27_33"><p id="vz1r27_38">Monitoramento de deploy</p></li></ul></section><div class="last-modified">14 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="server-monitor.html" class="navigation-links__prev">Monitor de Servidor 📊</a><a href="log-manager.html" class="navigation-links__next">Gerenciador de Logs 📝</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

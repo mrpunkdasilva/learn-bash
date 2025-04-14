@@ -1,4 +1,7 @@
-# Troubleshooting 🔧
+# Troubleshooting
+
+> Este módulo apresenta soluções para problemas comuns e técnicas de diagnóstico.
+> {style="note"}
 
 ## Problemas Comuns
 

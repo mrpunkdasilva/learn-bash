@@ -1,7 +1,15 @@
-# Informações do Sistema: Conhecendo seu Ambiente 🖥️
+# Informações do Sistema
 
-> Aprenda a coletar, analisar e monitorar informações do seu sistema Linux.
+> Consulte `code/module2/system/system_info.sh` para uma coleção completa de comandos para monitoramento e análise do sistema.
 > {style="note"}
+
+```ascii
+    SCANNER DE SISTEMA ATIVADO...
+    ===========================
+    STATUS: MONITORANDO
+    ALCANCE: SISTEMA COMPLETO
+    ===========================
+```
 
 ## Informações Básicas do Sistema
 

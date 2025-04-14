@@ -1,4 +1,4 @@
-# Comandos Essenciais: Dominando as Ferramentas 🛠️
+# Comandos Essenciais
 
 > Os códigos de exemplo para este módulo estão disponíveis em `code/module2/`. Cada subdiretório contém scripts práticos para você experimentar.
 > {style="note"}

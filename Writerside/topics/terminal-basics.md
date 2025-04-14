@@ -1,6 +1,6 @@
-# Básico do Terminal: Sua Interface com a Matrix 🖥️
+# Fundamentos do Terminal
 
-> Explore o script de exemplo em `code/module1/terminal-basics/customize.sh` para ver demonstrações práticas de personalização do terminal e configurações avançadas.
+> Aprenda os conceitos fundamentais para trabalhar eficientemente com o terminal.
 > {style="note"}
 
 ```ascii

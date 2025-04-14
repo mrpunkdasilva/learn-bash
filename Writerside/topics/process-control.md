@@ -1,4 +1,4 @@
-# Controle de Processos 🔄
+# Controle de Processos
 
 > Este tópico aborda o gerenciamento e controle de processos no Linux, incluindo monitoramento, manipulação e otimização.
 > {style="note"}

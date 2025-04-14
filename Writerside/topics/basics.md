@@ -1,4 +1,4 @@
-# Fundamentos do Bash: Seu Primeiro Jack-In 🔌
+# Fundamentos do Bash: Seu Primeiro Jack-In 
 
 ```ascii
     < INICIANDO SEQUÊNCIA DE TREINAMENTO >

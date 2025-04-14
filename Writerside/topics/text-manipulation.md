@@ -1,6 +1,6 @@
-# Manipulação de Texto 📝
+# Manipulação de Texto
 
-> Aprenda técnicas avançadas para transformar e manipular texto no terminal.
+> Aprenda técnicas avançadas para manipulação e transformação de texto no terminal.
 > {style="note"}
 
 ## Transformações Básicas

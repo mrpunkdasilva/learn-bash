@@ -1,6 +1,6 @@
-# Fundamentos do Sed 📝
+# Fundamentos do Sed
 
-> O Sed (Stream Editor) é uma ferramenta poderosa para manipulação de texto em streams, permitindo transformações complexas com comandos simples.
+> Aprenda os conceitos básicos e uso do comando sed para manipulação eficiente de texto.
 > {style="note"}
 
 ## Sintaxe Básica

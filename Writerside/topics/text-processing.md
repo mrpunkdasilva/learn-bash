@@ -1,7 +1,15 @@
-# Processamento de Texto no Bash 📝
+# Processamento de Texto
 
-> Domine as ferramentas essenciais para manipulação e análise de texto no terminal.
+> Todos os exemplos de processamento de texto estão disponíveis em `code/module2/text-proc/text_processing.sh`. Pratique cada comando para dominar o processamento de texto.
 > {style="note"}
+
+```ascii
+    PROCESSADOR DE TEXTO INICIADO...
+    ===============================
+    STATUS: PRONTO PARA PROCESSAR
+    MODO: TRANSFORMAÇÃO DE DADOS
+    ===============================
+```
 
 ## Ferramentas Fundamentais
 

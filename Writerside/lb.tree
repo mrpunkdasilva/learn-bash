@@ -87,7 +87,12 @@
         <toc-element topic="basic-exercises.md"/>
         <toc-element topic="intermediate-exercises.md"/>
         <toc-element topic="advanced-exercises.md"/>
-        <toc-element topic="projects.md"/>
+        <toc-element topic="projects.md">
+            <toc-element topic="backup-system.md"/>
+            <toc-element topic="server-monitor.md"/>
+            <toc-element topic="devops-automation.md"/>
+            <toc-element topic="log-manager.md"/>
+        </toc-element>
     </toc-element>
 
 </instance-profile>

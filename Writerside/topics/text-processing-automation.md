@@ -1,4 +1,4 @@
-# Automação de Processamento de Texto 🤖
+# Automação de Processamento de Texto
 
 > Aprenda a automatizar tarefas repetitivas de processamento de texto com scripts e ferramentas eficientes.
 > {style="note"}

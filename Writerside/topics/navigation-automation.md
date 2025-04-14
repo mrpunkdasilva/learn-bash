@@ -1,4 +1,7 @@
-# Automação de Navegação: Poder Máximo 🤖
+# Automação de Navegação
+
+> Aprenda a criar scripts e funções para automatizar tarefas de navegação no sistema de arquivos.
+> {style="note"}
 
 ## Scripts de Navegação
 

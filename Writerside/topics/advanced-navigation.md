@@ -1,4 +1,7 @@
-# Navegação Avançada 🚀
+# Navegação Avançada
+
+> Técnicas avançadas e ferramentas para navegação eficiente no sistema de arquivos.
+> {style="note"}
 
 ## Técnicas Avançadas de CD
 

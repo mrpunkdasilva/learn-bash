@@ -1,4 +1,7 @@
-# Atalhos de Navegação: Velocidade Máxima ⚡
+# Atalhos de Navegação
+
+> Domine os atalhos e técnicas para navegar rapidamente pelo sistema de arquivos.
+> {style="note"}
 
 ## Atalhos do Terminal
 
