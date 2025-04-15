@@ -3,99 +3,80 @@
 
 # Configurações
 readonly PROCESS_LOG="/var/log/process_control.log"
-readonly RESOURCE_LIMITS="/etc/resource_limits.conf"
+readonly CGROUP_BASE="/sys/fs/cgroup"
+readonly MONITOR_INTERVAL=60
 
 # Logging
-log_process() {
-    local message=$1
-    echo "$(date '+%Y-%m-%d %H:%M:%S') - $message" >> "$PROCESS_LOG"
+log_action() {
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" >> "$PROCESS_LOG"
 }
 
-# Monitoramento de processos
-monitor_process() {
-    local process_name=$1
-    local max_cpu=${2:-80}
-    local max_mem=${3:-1024}
+# Gerenciamento de processos
+manage_process() {
+    local pid=$1
+    local action=$2
     
-    while true; do
-        # Obter PID e estatísticas
-        pid=$(pgrep -x "$process_name")
-        if [[ -n "$pid" ]]; then
-            cpu_usage=$(ps -p "$pid" -o %cpu | tail -1)
-            mem_usage=$(ps -p "$pid" -o rss | tail -1)
-            
-            # Verificar limites
-            if (( $(echo "$cpu_usage > $max_cpu" | bc -l) )); then
-                log_process "ALERTA: CPU alta ($cpu_usage%) para $process_name"
-                send_alert "CPU alta para $process_name"
-            fi
-            
-            if (( mem_usage > max_mem * 1024 )); then
-                log_process "ALERTA: Memória alta (${mem_usage}KB) para $process_name"
-                send_alert "Memória alta para $process_name"
-            fi
-        else
-            log_process "Processo $process_name não encontrado"
+    case "$action" in
+        "limit")
+            # Limitar recursos do processo
+            cpulimit -p "$pid" -l 50  # Limita CPU a 50%
+            ;;
+        "nice")
+            # Ajustar prioridade
+            renice -n 10 -p "$pid"
+            ;;
+        "isolate")
+            # Isolar processo em cgroup
+            local cgroup_name="isolated_$pid"
+            mkdir -p "$CGROUP_BASE/cpu/$cgroup_name"
+            echo "$pid" > "$CGROUP_BASE/cpu/$cgroup_name/tasks"
+            echo "50000" > "$CGROUP_BASE/cpu/$cgroup_name/cpu.cfs_quota_us"
+            ;;
+        *)
+            echo "Ação inválida: $action"
+            return 1
+            ;;
+    esac
+    
+    log_action "Processo $pid: $action aplicado"
+}
+
+# Monitoramento de processos críticos
+monitor_critical_processes() {
+    local process_list=("sshd" "nginx" "mysql" "postgresql")
+    
+    for proc in "${process_list[@]}"; do
+        if ! pgrep -x "$proc" >/dev/null; then
+            log_action "Processo crítico parado: $proc"
+            systemctl restart "$proc"
         fi
-        
-        sleep 60
     done
 }
 
-# Controle de recursos
-set_process_limits() {
-    local process_name=$1
-    local cpu_limit=$2
-    local mem_limit=$3
+# Análise de recursos por processo
+analyze_process_resources() {
+    local pid=$1
     
-    # Encontrar PID
-    pid=$(pgrep -x "$process_name")
-    if [[ -n "$pid" ]]; then
-        # Definir limites de CPU
-        cpulimit -p "$pid" -l "$cpu_limit" &
-        
-        # Definir limites de memória
-        systemctl set-property "$process_name.service" MemoryMax="${mem_limit}M"
-        
-        log_process "Limites definidos para $process_name"
+    echo "=== Análise de Recursos do PID $pid ==="
+    ps -p "$pid" -o pid,ppid,cmd,%cpu,%mem,state
+    
+    # Análise de I/O
+    if [ -f "/proc/$pid/io" ]; then
+        cat "/proc/$pid/io"
     fi
+    
+    # Análise de limites
+    prlimit --pid "$pid"
 }
 
-# Reinicialização automática
-auto_restart() {
-    local process_name=$1
-    local max_restarts=${2:-3}
-    local restart_interval=${3:-300}
+# Gerenciamento de processos zumbis
+cleanup_zombies() {
+    local zombies=$(ps aux | awk '$8=="Z" {print $2}')
     
-    local restarts=0
-    while true; do
-        if ! pgrep -x "$process_name" > /dev/null; then
-            ((restarts++))
-            
-            if (( restarts > max_restarts )); then
-                log_process "Máximo de reinicializações atingido para $process_name"
-                send_alert "Falha na reinicialização de $process_name"
-                break
-            fi
-            
-            systemctl restart "$process_name"
-            log_process "Processo $process_name reiniciado (tentativa $restarts)"
-        else
-            restarts=0
-        fi
-        
-        sleep "$restart_interval"
-    done
-}
-
-# Gerenciamento de prioridade
-adjust_priority() {
-    local process_name=$1
-    local nice_value=$2
-    
-    for pid in $(pgrep "$process_name"); do
-        renice "$nice_value" -p "$pid"
-        log_process "Prioridade ajustada para $process_name (PID: $pid)"
+    for pid in $zombies; do
+        local ppid=$(ps -o ppid= -p "$pid")
+        kill -9 "$ppid" 2>/dev/null
+        log_action "Processo zumbi eliminado: $pid (PPID: $ppid)"
     done
 }
 
@@ -103,39 +84,42 @@ adjust_priority() {
 main_menu() {
     while true; do
         echo -e "\n=== Controle de Processos ==="
-        echo "1. Monitorar processo"
-        echo "2. Definir limites"
-        echo "3. Configurar reinicialização automática"
-        echo "4. Ajustar prioridade"
-        echo "5. Sair"
+        echo "1. Listar processos críticos"
+        echo "2. Analisar processo específico"
+        echo "3. Limitar recursos de processo"
+        echo "4. Limpar processos zumbis"
+        echo "5. Iniciar monitoramento"
+        echo "6. Sair"
         
         read -p "Escolha uma opção: " option
         
         case $option in
             1)
-                read -p "Nome do processo: " process
-                read -p "Limite de CPU (%): " cpu
-                read -p "Limite de memória (MB): " mem
-                monitor_process "$process" "$cpu" "$mem" &
+                ps aux | head -1
+                for proc in sshd nginx mysql postgresql; do
+                    ps aux | grep "$proc" | grep -v grep
+                done
                 ;;
             2)
-                read -p "Nome do processo: " process
-                read -p "Limite de CPU (%): " cpu
-                read -p "Limite de memória (MB): " mem
-                set_process_limits "$process" "$cpu" "$mem"
+                read -p "PID do processo: " pid
+                analyze_process_resources "$pid"
                 ;;
             3)
-                read -p "Nome do processo: " process
-                read -p "Máximo de reinicializações: " max
-                read -p "Intervalo (segundos): " interval
-                auto_restart "$process" "$max" "$interval" &
+                read -p "PID do processo: " pid
+                read -p "Ação (limit/nice/isolate): " action
+                manage_process "$pid" "$action"
                 ;;
             4)
-                read -p "Nome do processo: " process
-                read -p "Valor nice (-20 a 19): " nice
-                adjust_priority "$process" "$nice"
+                cleanup_zombies
                 ;;
             5)
+                while true; do
+                    monitor_critical_processes
+                    sleep "$MONITOR_INTERVAL"
+                done &
+                echo "Monitoramento iniciado em background"
+                ;;
+            6)
                 exit 0
                 ;;
             *)
