@@ -1,0 +1,11 @@
+⚡️ Aumente sua produtividade com Bash!
+
+📈 Nossa doc ensina:
+• Aliases poderosos
+• Scripts úteis
+• Automação diária
+• Dicas de experts
+
+💻 github.com/mrpunkdasilva/learn-bash
+
+#Productivity #Development #Bash

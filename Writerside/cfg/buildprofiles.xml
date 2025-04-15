@@ -9,6 +9,9 @@
     <variables>
         <header-logo>logo-primary.svg</header-logo>
         <custom-favicons>logo-primary.svg</custom-favicons>
+          <download-title>GitHub</download-title>
+    <download-page>https://github.com/mrpunkdasilva/learn-bash</download-page>
+    <showDownloadButton>true</showDownloadButton>
     </variables>
     <build-profile instance="lb">
         <variables>

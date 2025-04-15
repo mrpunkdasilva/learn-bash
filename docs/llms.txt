@@ -456,11 +456,11 @@ PERIGO: MODERADO
 
 ```BASH
 usuario@maquina:~/pasta$ comando --opcao argumento
-^       ^        ^     ^       ^      ^
-|       |        |     |       |      |
-|       |        |     |       |      └─ Argumentos/Parâmetros
-|       |        |     |       └────────── Opções/Flags
-|       |        |     └─────────────────── Comando
+^       ^        ^           ^       ^      ^
+|       |        |           |       |      |
+|       |        |           |       |      └─ Argumentos/Parâmetros
+|       |        |           |       └────────── Opções/Flags
+|       |        |           └─────────────────── Comando
 |       |        └─────────────────────────── Diretório Atual
 |       └────────────────────────────────────── Nome da Máquina
 └──────────────────────────────────────────────── Seu Username

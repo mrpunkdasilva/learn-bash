@@ -1,0 +1,11 @@
+🌟 Iniciante em Bash? 
+
+Nossa doc tem tudo que você precisa:
+• Guia passo a passo
+• Exemplos comentados
+• Exercícios práticos
+• Dicas de experts
+
+🔥 github.com/mrpunkdasilva/learn-bash
+
+#BashScripting #Programming #LearnToCode

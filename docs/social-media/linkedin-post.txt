@@ -1,0 +1,22 @@
+🎉 Lançamos nossa nova documentação interativa para aprendizado de Bash!
+
+Nossa documentação foi desenvolvida pensando em desenvolvedores de todos os níveis que desejam dominar o Bash e automatizar suas tarefas diárias.
+
+✨ Destaques:
+• Guia completo do básico ao avançado
+• Exercícios práticos com exemplos do mundo real
+• Seções dedicadas à automação e integração de sistemas
+• Dicas de produtividade e melhores práticas
+• Totalmente em português
+
+🎯 Perfeito para:
+• Desenvolvedores que querem aumentar sua produtividade
+• Profissionais de DevOps
+• Administradores de sistemas
+• Entusiastas de automação
+
+📚 Acesse agora: github.com/mrpunkdasilva/learn-bash
+
+#bash #linux #programming #automation #devops #opensource #technology
+
+Compartilhe com sua rede para ajudar mais desenvolvedores a dominarem o Bash! 🚀
