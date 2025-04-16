@@ -11699,6 +11699,620 @@ ALERTAS: CONFIGURADOS
 
 
 
+# Access Control Lists (ACLs)
+
+Note:
+
+Aprenda a utilizar ACLs para controle de acesso avançado no Linux.
+
+## O que são ACLs?
+
+ACLs (Access Control Lists) são um mecanismo de controle de acesso mais flexível que as permissões tradicionais do Unix. Elas permitem definir permissões específicas para múltiplos usuários e grupos em um mesmo arquivo ou diretório.
+
+## Vantagens das ACLs
+
+* Controle de acesso mais granular
+
+* Suporte a múltiplos usuários e grupos
+
+* Compatibilidade com permissões tradicionais
+
+* Herança de permissões em diretórios
+
+## Comandos Básicos
+
+### Verificando Suporte a ACLs
+
+```BASH
+# Verificar se o sistema de arquivos suporta ACLs
+tune2fs -l /dev/sdXY | grep "Default mount options"
+mount | grep acl
+
+# Verificar se um arquivo tem ACLs
+getfacl arquivo.txt
+```
+
+### Gerenciamento Básico de ACLs
+
+```BASH
+# Definir ACL para usuário
+setfacl -m u:usuario:rw arquivo.txt
+
+# Definir ACL para grupo
+setfacl -m g:grupo:rx arquivo.txt
+
+# Remover ACL específica
+setfacl -x u:usuario arquivo.txt
+
+# Remover todas as ACLs
+setfacl -b arquivo.txt
+```
+
+## Próximos Passos
+
+* [ACLs Básicas](acl-basics.html)
+
+* [ACLs Avançadas](acl-advanced.html)
+
+* [Herança de ACLs](acl-inheritance.html)
+
+* [Troubleshooting de ACLs](acl-troubleshooting.html)
+
+
+
+# ACLs Básicas
+
+## Comandos Essenciais
+
+### Visualização de ACLs
+
+```BASH
+# Listar ACLs de um arquivo
+getfacl arquivo.txt
+
+# Listar ACLs de um diretório recursivamente
+getfacl -R diretorio/
+```
+
+### Configuração de ACLs
+
+```BASH
+# Permissão de leitura para usuário
+setfacl -m u:joao:r arquivo.txt
+
+# Permissão de escrita para grupo
+setfacl -m g:devs:w arquivo.txt
+
+# Múltiplas permissões
+setfacl -m u:maria:rw,g:admins:rx arquivo.txt
+```
+
+## Exercícios Práticos
+
+### 🎯 Missão 1: Configuração Básica
+
+1. Crie um arquivo de teste
+
+2. Adicione permissão de leitura para um usuário
+
+3. Adicione permissão de escrita para um grupo
+
+4. Verifique as ACLs configuradas
+
+### 🎯 Missão 2: Manipulação de ACLs
+
+1. Remova uma ACL específica
+
+2. Adicione múltiplas ACLs
+
+3. Faça backup das ACLs
+
+4. Restaure as ACLs
+
+## Troubleshooting Comum
+
+* Permissão negada: Verifique as ACLs com `getfacl`
+
+* ACLs não aplicam: Confirme suporte do sistema de arquivos
+
+* Conflito de permissões: Entenda a precedência de ACLs
+
+## Próximos Passos
+
+* [ACLs Avançadas](acl-advanced.html)
+
+* [Herança de ACLs](acl-inheritance.html)
+
+
+
+# ACLs Avançadas
+
+Note:
+
+Técnicas avançadas para gerenciamento de Access Control Lists no Linux.
+
+## ACLs Padrão (Default)
+
+### Configuração de ACLs Padrão
+
+```BASH
+# Definir ACL padrão para diretório
+setfacl -d -m u:usuario:rx diretorio/
+
+# Definir múltiplas ACLs padrão
+setfacl -d -m u:user1:rwx,g:grupo1:rx diretorio/
+
+# Verificar ACLs padrão
+getfacl diretorio/
+```
+
+## ACLs Recursivas
+
+### Aplicação em Árvore de Diretórios
+
+```BASH
+# Aplicar ACLs recursivamente
+setfacl -R -m u:usuario:rx diretorio/
+
+# Aplicar ACLs padrão recursivamente
+setfacl -R -d -m g:grupo:rwx diretorio/
+```
+
+## Backup e Restauração
+
+### Gerenciamento de ACLs
+
+```BASH
+# Backup de ACLs
+getfacl -R /path/to/dir > acls.backup
+
+# Restaurar ACLs
+setfacl --restore=acls.backup
+```
+
+## Casos de Uso Avançados
+
+### Cenário 1: Ambiente de Desenvolvimento
+
+```BASH
+# Setup para time de desenvolvimento
+setfacl -R -m g:devs:rwx projeto/
+setfacl -R -m g:qa:rx projeto/
+setfacl -R -d -m g:devs:rwx,g:qa:rx projeto/
+```
+
+### Cenário 2: Servidor Web
+
+```BASH
+# Configuração para web server
+setfacl -m u:www-data:rx,g:webadmin:rwx /var/www/
+setfacl -d -m u:www-data:rx,g:webadmin:rwx /var/www/
+```
+
+## Mascaramento e Permissões Efetivas
+
+### Entendendo Máscaras
+
+```BASH
+# Verificar máscara efetiva
+getfacl -e arquivo
+
+# Modificar máscara
+setfacl -m m::rx arquivo
+```
+
+## Troubleshooting Avançado
+
+### Diagnóstico de Problemas
+
+```BASH
+# Verificar suporte do sistema de arquivos
+tune2fs -l /dev/sdXY | grep "Default mount options"
+
+# Debug de permissões
+namei -l /path/to/file
+
+# Auditoria de acesso
+auditctl -w /path/to/file -p rwxa
+```
+
+## Exercícios Avançados
+
+### 🎯 Missão 1: Ambiente Multi-equipe
+
+1. Configure ACLs para diferentes níveis de acesso
+
+2. Implemente herança automática
+
+3. Configure backup automático de ACLs
+
+4. Implemente rotação de logs de acesso
+
+### 🎯 Missão 2: Segurança Avançada
+
+1. Implemente ACLs com máscaras restritivas
+
+2. Configure auditoria de acessos
+
+3. Crie script de monitoramento
+
+4. Desenvolva sistema de alertas
+
+## Boas Práticas
+
+1. Mantenha documentação atualizada
+
+2. Use grupos em vez de usuários individuais
+
+3. Implemente backup regular de ACLs
+
+4. Monitore mudanças nas ACLs
+
+5. Realize auditorias periódicas
+
+## Próximos Passos
+
+* [Herança de ACLs](acl-inheritance.html)
+
+* [Troubleshooting de ACLs](acl-troubleshooting.html)
+
+
+
+# Herança de ACLs
+
+Note:
+
+Aprenda a configurar e gerenciar herança de permissões usando ACLs no Linux.
+
+## Conceitos Básicos de Herança
+
+### O que é Herança de ACLs?
+
+A herança de ACLs permite que novos arquivos e subdiretórios herdem automaticamente as permissões do diretório pai.
+
+### Tipos de Herança
+
+* ACLs Padrão: Aplicadas apenas a diretórios
+
+* ACLs Herdadas: Permissões efetivamente aplicadas aos novos itens
+
+* ACLs Calculadas: Combinação de permissões herdadas e explícitas
+
+## Configuração de Herança
+
+### ACLs Padrão Básicas
+
+```BASH
+# Configurar ACL padrão para usuário
+setfacl -d -m u:usuario:rx diretorio/
+
+# Configurar ACL padrão para grupo
+setfacl -d -m g:grupo:rwx diretorio/
+
+# Verificar ACLs padrão
+getfacl diretorio/
+```
+
+### ACLs Padrão Múltiplas
+
+```BASH
+# Configurar múltiplas ACLs padrão
+setfacl -d -m u:user1:rx,u:user2:rwx,g:grupo1:rx diretorio/
+
+# Aplicar recursivamente em subdiretórios
+setfacl -R -d -m u:user1:rx,g:grupo1:rx diretorio/
+```
+
+## Cenários de Uso
+
+### Ambiente de Desenvolvimento
+
+```BASH
+# Setup para projeto de desenvolvimento
+setfacl -d -m g:developers:rwx projeto/
+setfacl -d -m g:testers:rx projeto/
+setfacl -R -m g:developers:rwx,g:testers:rx projeto/
+```
+
+### Compartilhamento de Arquivos
+
+```BASH
+# Configuração para pasta compartilhada
+setfacl -d -m g:shared:rwx /shared/
+setfacl -d -m o::- /shared/
+setfacl -R -m g:shared:rwx /shared/
+```
+
+## Gerenciamento de Herança
+
+### Modificação de Herança
+
+```BASH
+# Remover ACLs padrão específicas
+setfacl -d -x u:usuario diretorio/
+
+# Remover todas as ACLs padrão
+setfacl -k diretorio/
+
+# Atualizar ACLs padrão existentes
+setfacl -d -m u:usuario:rwx diretorio/
+```
+
+### Propagação de Mudanças
+
+```BASH
+# Propagar novas ACLs para conteúdo existente
+setfacl -R -m u:usuario:rx diretorio/
+
+# Atualizar ACLs padrão e propagar
+setfacl -R -d -m g:grupo:rx diretorio/
+```
+
+## Troubleshooting de Herança
+
+### Problemas Comuns
+
+1. ACLs não são herdadas
+
+* Verificar suporte do sistema de arquivos
+
+* Confirmar ACLs padrão
+
+* Checar permissões do diretório pai
+
+2. Conflitos de Herança
+
+* Verificar máscara efetiva
+
+* Analisar precedência de permissões
+
+* Revisar ACLs explícitas vs herdadas
+
+### Diagnóstico
+
+```BASH
+# Verificar herança efetiva
+getfacl -R diretorio/
+
+# Analisar máscara de permissões
+getfacl -e arquivo
+
+# Debug de permissões
+namei -l /caminho/completo/arquivo
+```
+
+## Exercícios Práticos
+
+### 🎯 Missão 1: Estrutura de Projeto
+
+1. Crie uma estrutura de diretórios para um projeto
+
+2. Configure herança para diferentes equipes
+
+3. Teste a criação de novos arquivos
+
+4. Verifique as permissões herdadas
+
+### 🎯 Missão 2: Migração de Permissões
+
+1. Exporte ACLs existentes
+
+2. Modifique a estrutura de herança
+
+3. Aplique as novas ACLs
+
+4. Valide as mudanças
+
+## Boas Práticas
+
+1. Planejamento
+
+* Documente a estrutura de permissões
+
+* Defina hierarquia clara de acesso
+
+* Considere futuras expansões
+
+2. Implementação
+
+* Use grupos em vez de usuários individuais
+
+* Mantenha ACLs simples e organizadas
+
+* Implemente backup das configurações
+
+3. Manutenção
+
+* Monitore mudanças nas ACLs
+
+* Realize auditorias periódicas
+
+* Mantenha documentação atualizada
+
+## Próximos Passos
+
+* [ACLs Avançadas](acl-advanced.html)
+
+* [Troubleshooting de ACLs](acl-troubleshooting.html)
+
+
+
+# Troubleshooting de ACLs
+
+Note:
+
+Guia completo para identificação e resolução de problemas com ACLs no Linux.
+
+## Problemas Comuns
+
+### 1. Permissão Negada
+
+```BASH
+# Diagnóstico
+getfacl arquivo                    # Verificar ACLs atuais
+ls -la arquivo                     # Verificar permissões básicas
+namei -l /caminho/completo/arquivo # Verificar caminho completo
+
+# Soluções
+setfacl -m u:usuario:rw arquivo    # Adicionar permissões específicas
+chmod +r arquivo                   # Ajustar permissões básicas
+chown usuario:grupo arquivo        # Alterar proprietário
+```
+
+### 2. ACLs Não Aplicadas
+
+```BASH
+# Verificar suporte do sistema de arquivos
+tune2fs -l /dev/sdXY | grep "Default mount options"
+mount | grep acl
+
+# Verificar montagem
+mount -o remount,acl /particao
+```
+
+### 3. Problemas de Herança
+
+```BASH
+# Verificar ACLs padrão
+getfacl -d diretorio/
+
+# Corrigir herança
+setfacl -d -m u:usuario:rx diretorio/   # Definir ACL padrão
+setfacl -R -m u:usuario:rx diretorio/   # Aplicar recursivamente
+```
+
+## Ferramentas de Diagnóstico
+
+### Análise de ACLs
+
+```BASH
+# Visualização detalhada
+getfacl -e arquivo    # Mostra entradas efetivas
+getfacl -R diretorio/ # Análise recursiva
+getfacl -c arquivo    # Omite comentários
+
+# Backup e comparação
+getfacl -R /dir1 > acls1.txt
+getfacl -R /dir2 > acls2.txt
+diff acls1.txt acls2.txt
+```
+
+### Monitoramento
+
+```BASH
+# Auditoria de acesso
+auditctl -w /path/to/file -p rwxa
+ausearch -f /path/to/file
+
+# Monitoramento em tempo real
+inotifywait -m -r /diretorio
+```
+
+## Cenários de Troubleshooting
+
+### Cenário 1: Conflito de Permissões
+
+```BASH
+# Problema: ACLs x Permissões Unix
+getfacl -e arquivo     # Verificar máscara efetiva
+setfacl -m m::rwx arquivo  # Ajustar máscara
+chmod 755 arquivo      # Ajustar permissões base
+```
+
+### Cenário 2: Migração de ACLs
+
+```BASH
+# Backup antes da migração
+getfacl -R /origem > acls_backup.txt
+
+# Restauração em caso de problemas
+setfacl --restore=acls_backup.txt
+```
+
+## Checklist de Verificação
+
+1. Verificação Básica
+
+* Sistema de arquivos suporta ACLs?
+
+* Partição montada com suporte a ACLs?
+
+* Permissões Unix básicas corretas?
+
+2. Análise de ACLs
+
+* ACLs configuradas corretamente?
+
+* Máscara efetiva adequada?
+
+* Herança funcionando?
+
+3. Auditoria
+
+* Logs de acesso verificados?
+
+* Histórico de modificações?
+
+* Backup das ACLs existe?
+
+## Scripts de Diagnóstico
+
+### Script de Verificação de ACLs
+
+```BASH
+#!/bin/bash
+echo "Verificando ACLs em $1"
+getfacl -R "$1" > /tmp/acls_atual.txt
+if [ -f /tmp/acls_backup.txt ]; then
+    diff /tmp/acls_backup.txt /tmp/acls_atual.txt
+fi
+```
+
+### Script de Correção Automática
+
+```BASH
+#!/bin/bash
+# Corrige permissões comuns
+setfacl -R -m u:www-data:rx,g:developers:rwx "$1"
+setfacl -R -d -m u:www-data:rx,g:developers:rwx "$1"
+```
+
+## Boas Práticas
+
+1. Prevenção
+
+* Mantenha backup das ACLs
+
+* Documente alterações
+
+* Use grupos em vez de usuários individuais
+
+2. Diagnóstico
+
+* Comece pelo mais simples
+
+* Verifique logs do sistema
+
+* Use ferramentas apropriadas
+
+3. Correção
+
+* Faça backup antes de alterações
+
+* Teste em ambiente seguro
+
+* Valide após mudanças
+
+## Próximos Passos
+
+* [ACLs Avançadas](acl-advanced.html)
+
+* [Herança de ACLs](acl-inheritance.html)
+
+* [Boas Práticas de Segurança](null)
+
+
+
 # Processamento Avançado
 
 Note:

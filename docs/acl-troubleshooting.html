@@ -1,0 +1,80 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-16T12:10:00.678460851"><title>Troubleshooting de ACLs | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"problemas-comuns","level":0,"title":"Problemas Comuns","anchor":"#problemas-comuns"},{"id":"ferramentas-de-diagn-stico","level":0,"title":"Ferramentas de Diagnóstico","anchor":"#ferramentas-de-diagn-stico"},{"id":"cen-rios-de-troubleshooting","level":0,"title":"Cenários de Troubleshooting","anchor":"#cen-rios-de-troubleshooting"},{"id":"checklist-de-verifica-o","level":0,"title":"Checklist de Verificação","anchor":"#checklist-de-verifica-o"},{"id":"scripts-de-diagn-stico","level":0,"title":"Scripts de Diagnóstico","anchor":"#scripts-de-diagn-stico"},{"id":"boas-pr-ticas","level":0,"title":"Boas Práticas","anchor":"#boas-pr-ticas"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Troubleshooting de ACLs | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/acl-troubleshooting.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Troubleshooting de ACLs | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/acl-troubleshooting.html#webpage",
+    "url": "writerside-documentation/acl-troubleshooting.html",
+    "name": "Troubleshooting de ACLs | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="acl-troubleshooting" data-main-title="Troubleshooting de ACLs" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="system-admin.md|Administração do Sistema Linux///acl-overview.md|Access Control Lists (ACLs)"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="acl-troubleshooting" id="acl-troubleshooting.md">Troubleshooting de ACLs</h1><aside class="prompt" data-type="note" data-title="" id="-n42wu3_3"><p id="-n42wu3_11">Guia completo para identifica&ccedil;&atilde;o e resolu&ccedil;&atilde;o de problemas com ACLs no Linux.</p></aside><section class="chapter"><h2 id="problemas-comuns" data-toc="problemas-comuns">Problemas Comuns</h2><section class="chapter"><h3 id="1-permiss-o-negada" data-toc="1-permiss-o-negada">1. Permiss&atilde;o Negada</h3><div class="code-block" data-lang="bash">
+# Diagnóstico
+getfacl arquivo                    # Verificar ACLs atuais
+ls -la arquivo                     # Verificar permissões básicas
+namei -l /caminho/completo/arquivo # Verificar caminho completo
+
+# Soluções
+setfacl -m u:usuario:rw arquivo    # Adicionar permissões específicas
+chmod +r arquivo                   # Ajustar permissões básicas
+chown usuario:grupo arquivo        # Alterar proprietário
+</div></section><section class="chapter"><h3 id="2-acls-n-o-aplicadas" data-toc="2-acls-n-o-aplicadas">2. ACLs N&atilde;o Aplicadas</h3><div class="code-block" data-lang="bash">
+# Verificar suporte do sistema de arquivos
+tune2fs -l /dev/sdXY | grep &quot;Default mount options&quot;
+mount | grep acl
+
+# Verificar montagem
+mount -o remount,acl /particao
+</div></section><section class="chapter"><h3 id="3-problemas-de-heran-a" data-toc="3-problemas-de-heran-a">3. Problemas de Heran&ccedil;a</h3><div class="code-block" data-lang="bash">
+# Verificar ACLs padrão
+getfacl -d diretorio/
+
+# Corrigir herança
+setfacl -d -m u:usuario:rx diretorio/   # Definir ACL padrão
+setfacl -R -m u:usuario:rx diretorio/   # Aplicar recursivamente
+</div></section></section><section class="chapter"><h2 id="ferramentas-de-diagn-stico" data-toc="ferramentas-de-diagn-stico">Ferramentas de Diagn&oacute;stico</h2><section class="chapter"><h3 id="an-lise-de-acls" data-toc="an-lise-de-acls">An&aacute;lise de ACLs</h3><div class="code-block" data-lang="bash">
+# Visualização detalhada
+getfacl -e arquivo    # Mostra entradas efetivas
+getfacl -R diretorio/ # Análise recursiva
+getfacl -c arquivo    # Omite comentários
+
+# Backup e comparação
+getfacl -R /dir1 &gt; acls1.txt
+getfacl -R /dir2 &gt; acls2.txt
+diff acls1.txt acls2.txt
+</div></section><section class="chapter"><h3 id="monitoramento" data-toc="monitoramento">Monitoramento</h3><div class="code-block" data-lang="bash">
+# Auditoria de acesso
+auditctl -w /path/to/file -p rwxa
+ausearch -f /path/to/file
+
+# Monitoramento em tempo real
+inotifywait -m -r /diretorio
+</div></section></section><section class="chapter"><h2 id="cen-rios-de-troubleshooting" data-toc="cen-rios-de-troubleshooting">Cen&aacute;rios de Troubleshooting</h2><section class="chapter"><h3 id="cen-rio-1-conflito-de-permiss-es" data-toc="cen-rio-1-conflito-de-permiss-es">Cen&aacute;rio 1: Conflito de Permiss&otilde;es</h3><div class="code-block" data-lang="bash">
+# Problema: ACLs x Permissões Unix
+getfacl -e arquivo     # Verificar máscara efetiva
+setfacl -m m::rwx arquivo  # Ajustar máscara
+chmod 755 arquivo      # Ajustar permissões base
+</div></section><section class="chapter"><h3 id="cen-rio-2-migra-o-de-acls" data-toc="cen-rio-2-migra-o-de-acls">Cen&aacute;rio 2: Migra&ccedil;&atilde;o de ACLs</h3><div class="code-block" data-lang="bash">
+# Backup antes da migração
+getfacl -R /origem &gt; acls_backup.txt
+
+# Restauração em caso de problemas
+setfacl --restore=acls_backup.txt
+</div></section></section><section class="chapter"><h2 id="checklist-de-verifica-o" data-toc="checklist-de-verifica-o">Checklist de Verifica&ccedil;&atilde;o</h2><ol class="list _decimal" id="-n42wu3_26" type="1"><li class="list__item" id="-n42wu3_27"><p id="-n42wu3_30"><span class="control" id="-n42wu3_32">Verifica&ccedil;&atilde;o B&aacute;sica</span></p><ul class="list _bullet" id="-n42wu3_31"><li class="list__item" id="-n42wu3_33"><p id="-n42wu3_36">Sistema de arquivos suporta ACLs?</p></li><li class="list__item" id="-n42wu3_34"><p id="-n42wu3_37">Parti&ccedil;&atilde;o montada com suporte a ACLs?</p></li><li class="list__item" id="-n42wu3_35"><p id="-n42wu3_38">Permiss&otilde;es Unix b&aacute;sicas corretas?</p></li></ul></li><li class="list__item" id="-n42wu3_28"><p id="-n42wu3_39"><span class="control" id="-n42wu3_41">An&aacute;lise de ACLs</span></p><ul class="list _bullet" id="-n42wu3_40"><li class="list__item" id="-n42wu3_42"><p id="-n42wu3_45">ACLs configuradas corretamente?</p></li><li class="list__item" id="-n42wu3_43"><p id="-n42wu3_46">M&aacute;scara efetiva adequada?</p></li><li class="list__item" id="-n42wu3_44"><p id="-n42wu3_47">Heran&ccedil;a funcionando?</p></li></ul></li><li class="list__item" id="-n42wu3_29"><p id="-n42wu3_48"><span class="control" id="-n42wu3_50">Auditoria</span></p><ul class="list _bullet" id="-n42wu3_49"><li class="list__item" id="-n42wu3_51"><p id="-n42wu3_54">Logs de acesso verificados?</p></li><li class="list__item" id="-n42wu3_52"><p id="-n42wu3_55">Hist&oacute;rico de modifica&ccedil;&otilde;es?</p></li><li class="list__item" id="-n42wu3_53"><p id="-n42wu3_56">Backup das ACLs existe?</p></li></ul></li></ol></section><section class="chapter"><h2 id="scripts-de-diagn-stico" data-toc="scripts-de-diagn-stico">Scripts de Diagn&oacute;stico</h2><section class="chapter"><h3 id="script-de-verifica-o-de-acls" data-toc="script-de-verifica-o-de-acls">Script de Verifica&ccedil;&atilde;o de ACLs</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+echo &quot;Verificando ACLs em $1&quot;
+getfacl -R &quot;$1&quot; &gt; /tmp/acls_atual.txt
+if [ -f /tmp/acls_backup.txt ]; then
+    diff /tmp/acls_backup.txt /tmp/acls_atual.txt
+fi
+</div></section><section class="chapter"><h3 id="script-de-corre-o-autom-tica" data-toc="script-de-corre-o-autom-tica">Script de Corre&ccedil;&atilde;o Autom&aacute;tica</h3><div class="code-block" data-lang="bash">
+#!/bin/bash
+# Corrige permissões comuns
+setfacl -R -m u:www-data:rx,g:developers:rwx &quot;$1&quot;
+setfacl -R -d -m u:www-data:rx,g:developers:rwx &quot;$1&quot;
+</div></section></section><section class="chapter"><h2 id="boas-pr-ticas" data-toc="boas-pr-ticas">Boas Pr&aacute;ticas</h2><ol class="list _decimal" id="-n42wu3_61" type="1"><li class="list__item" id="-n42wu3_62"><p id="-n42wu3_65"><span class="control" id="-n42wu3_67">Preven&ccedil;&atilde;o</span></p><ul class="list _bullet" id="-n42wu3_66"><li class="list__item" id="-n42wu3_68"><p id="-n42wu3_71">Mantenha backup das ACLs</p></li><li class="list__item" id="-n42wu3_69"><p id="-n42wu3_72">Documente altera&ccedil;&otilde;es</p></li><li class="list__item" id="-n42wu3_70"><p id="-n42wu3_73">Use grupos em vez de usu&aacute;rios individuais</p></li></ul></li><li class="list__item" id="-n42wu3_63"><p id="-n42wu3_74"><span class="control" id="-n42wu3_76">Diagn&oacute;stico</span></p><ul class="list _bullet" id="-n42wu3_75"><li class="list__item" id="-n42wu3_77"><p id="-n42wu3_80">Comece pelo mais simples</p></li><li class="list__item" id="-n42wu3_78"><p id="-n42wu3_81">Verifique logs do sistema</p></li><li class="list__item" id="-n42wu3_79"><p id="-n42wu3_82">Use ferramentas apropriadas</p></li></ul></li><li class="list__item" id="-n42wu3_64"><p id="-n42wu3_83"><span class="control" id="-n42wu3_85">Corre&ccedil;&atilde;o</span></p><ul class="list _bullet" id="-n42wu3_84"><li class="list__item" id="-n42wu3_86"><p id="-n42wu3_89">Fa&ccedil;a backup antes de altera&ccedil;&otilde;es</p></li><li class="list__item" id="-n42wu3_87"><p id="-n42wu3_90">Teste em ambiente seguro</p></li><li class="list__item" id="-n42wu3_88"><p id="-n42wu3_91">Valide ap&oacute;s mudan&ccedil;as</p></li></ul></li></ol></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ul class="list _bullet" id="-n42wu3_92"><li class="list__item" id="-n42wu3_93"><p id="-n42wu3_96"><a href="acl-advanced.html" id="-n42wu3_97" data-tooltip="Técnicas avançadas para gerenciamento de Access Control Lists no Linux.">ACLs Avan&ccedil;adas</a></p></li><li class="list__item" id="-n42wu3_94"><p id="-n42wu3_98"><a href="acl-inheritance.html" id="-n42wu3_99" data-tooltip="Aprenda a configurar e gerenciar herança de permissões usando ACLs no Linux.">Heran&ccedil;a de ACLs</a></p></li><li class="list__item" id="-n42wu3_95"><p id="-n42wu3_100"><span id="-n42wu3_101">Boas Pr&aacute;ticas de Seguran&ccedil;a</span></p></li></ul></section><div class="last-modified">16 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="acl-inheritance.html" class="navigation-links__prev">Heran&ccedil;a de ACLs</a><a href="processing.html" class="navigation-links__next">Processamento Avan&ccedil;ado</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

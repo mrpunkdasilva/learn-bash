@@ -1,0 +1,35 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#E8488B"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-04-16T12:10:00.413379983"><title>Access Control Lists (ACLs) | Learn Bash</title><script type="application/json" id="virtual-toc-data">[{"id":"o-que-s-o-acls","level":0,"title":"O que são ACLs?","anchor":"#o-que-s-o-acls"},{"id":"vantagens-das-acls","level":0,"title":"Vantagens das ACLs","anchor":"#vantagens-das-acls"},{"id":"comandos-b-sicos","level":0,"title":"Comandos Básicos","anchor":"#comandos-b-sicos"},{"id":"pr-ximos-passos","level":0,"title":"Próximos Passos","anchor":"#pr-ximos-passos"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><link rel="icon" type="image/svg" sizes="16x16" href="images/logo-primary.svg"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Access Control Lists (ACLs) | Learn Bash"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Learn Bash Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/acl-overview.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Access Control Lists (ACLs) | Learn Bash"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/acl-overview.html#webpage",
+    "url": "writerside-documentation/acl-overview.html",
+    "name": "Access Control Lists (ACLs) | Learn Bash",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Learn Bash Help"
+}</script><!-- End Schema.org --></head><body data-id="acl-overview" data-main-title="Access Control Lists (ACLs)" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="system-admin.md|Administração do Sistema Linux"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Learn Bash  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="acl-overview" id="acl-overview.md">Access Control Lists (ACLs)</h1><aside class="prompt" data-type="note" data-title="" id="-gklf72_3"><p id="-gklf72_8">Aprenda a utilizar ACLs para controle de acesso avan&ccedil;ado no Linux.</p></aside><section class="chapter"><h2 id="o-que-s-o-acls" data-toc="o-que-s-o-acls">O que s&atilde;o ACLs?</h2><p id="-gklf72_9">ACLs (Access Control Lists) s&atilde;o um mecanismo de controle de acesso mais flex&iacute;vel que as permiss&otilde;es tradicionais do Unix. Elas permitem definir permiss&otilde;es espec&iacute;ficas para m&uacute;ltiplos usu&aacute;rios e grupos em um mesmo arquivo ou diret&oacute;rio.</p></section><section class="chapter"><h2 id="vantagens-das-acls" data-toc="vantagens-das-acls">Vantagens das ACLs</h2><ul class="list _bullet" id="-gklf72_10"><li class="list__item" id="-gklf72_11"><p id="-gklf72_15">Controle de acesso mais granular</p></li><li class="list__item" id="-gklf72_12"><p id="-gklf72_16">Suporte a m&uacute;ltiplos usu&aacute;rios e grupos</p></li><li class="list__item" id="-gklf72_13"><p id="-gklf72_17">Compatibilidade com permiss&otilde;es tradicionais</p></li><li class="list__item" id="-gklf72_14"><p id="-gklf72_18">Heran&ccedil;a de permiss&otilde;es em diret&oacute;rios</p></li></ul></section><section class="chapter"><h2 id="comandos-b-sicos" data-toc="comandos-b-sicos">Comandos B&aacute;sicos</h2><section class="chapter"><h3 id="verificando-suporte-a-acls" data-toc="verificando-suporte-a-acls">Verificando Suporte a ACLs</h3><div class="code-block" data-lang="bash">
+# Verificar se o sistema de arquivos suporta ACLs
+tune2fs -l /dev/sdXY | grep &quot;Default mount options&quot;
+mount | grep acl
+
+# Verificar se um arquivo tem ACLs
+getfacl arquivo.txt
+</div></section><section class="chapter"><h3 id="gerenciamento-b-sico-de-acls" data-toc="gerenciamento-b-sico-de-acls">Gerenciamento B&aacute;sico de ACLs</h3><div class="code-block" data-lang="bash">
+# Definir ACL para usuário
+setfacl -m u:usuario:rw arquivo.txt
+
+# Definir ACL para grupo
+setfacl -m g:grupo:rx arquivo.txt
+
+# Remover ACL específica
+setfacl -x u:usuario arquivo.txt
+
+# Remover todas as ACLs
+setfacl -b arquivo.txt
+</div></section></section><section class="chapter"><h2 id="pr-ximos-passos" data-toc="pr-ximos-passos">Pr&oacute;ximos Passos</h2><ul class="list _bullet" id="-gklf72_23"><li class="list__item" id="-gklf72_24"><p id="-gklf72_28"><a href="acl-basics.html" id="-gklf72_29" data-tooltip="Crie um arquivo de teste">ACLs B&aacute;sicas</a></p></li><li class="list__item" id="-gklf72_25"><p id="-gklf72_30"><a href="acl-advanced.html" id="-gklf72_31" data-tooltip="Técnicas avançadas para gerenciamento de Access Control Lists no Linux.">ACLs Avan&ccedil;adas</a></p></li><li class="list__item" id="-gklf72_26"><p id="-gklf72_32"><a href="acl-inheritance.html" id="-gklf72_33" data-tooltip="Aprenda a configurar e gerenciar herança de permissões usando ACLs no Linux.">Heran&ccedil;a de ACLs</a></p></li><li class="list__item" id="-gklf72_27"><p id="-gklf72_34"><a href="acl-troubleshooting.html" id="-gklf72_35" data-tooltip="Guia completo para identificação e resolução de problemas com ACLs no Linux.">Troubleshooting de ACLs</a></p></li></ul></section><div class="last-modified">16 abril 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="system-security.html" class="navigation-links__prev">Seguran&ccedil;a do Sistema</a><a href="acl-basics.html" class="navigation-links__next">ACLs B&aacute;sicas</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>

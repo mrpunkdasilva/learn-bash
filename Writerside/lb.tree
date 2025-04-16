@@ -8,6 +8,8 @@
 
     <toc-element topic="welcome.md"/>
     
+
+    
     <!-- Módulo 1: Básico -->
     <toc-element topic="basics.md">
         <toc-element topic="what-is-bash.md"/>
@@ -81,6 +83,13 @@
         </toc-element>
         <toc-element topic="network-admin.md"/>
         <toc-element topic="system-security.md"/>
+    <!-- Módulo ACLs -->
+        <toc-element topic="acl-overview.md">
+            <toc-element topic="acl-basics.md"/>
+            <toc-element topic="acl-advanced.md"/>
+            <toc-element topic="acl-inheritance.md"/>
+            <toc-element topic="acl-troubleshooting.md"/>
+        </toc-element>
     </toc-element>
 
     <!-- Módulo 5: Processamento Avançado -->
