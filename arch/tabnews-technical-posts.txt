@@ -1,0 +1,251 @@
+# Post 1: Introdução ao Shell Scripting com Bash
+
+## Introdução
+O shell scripting é uma habilidade fundamental para administradores de sistemas, desenvolvedores e profissionais de TI que desejam automatizar tarefas repetitivas, melhorar a eficiência operacional e garantir consistência em processos. Bash, o shell padrão na maioria das distribuições Linux, oferece uma poderosa linguagem de script que permite controlar o sistema operacional de forma programática.
+
+Neste post, exploraremos desde os conceitos básicos até técnicas intermediárias para criar scripts robustos, reutilizáveis e fáceis de manter.
+
+## Conteúdo
+- O que é Bash e shell scripting: histórico, vantagens e aplicações práticas.
+- Estrutura básica de um script: shebang, permissões, execução.
+- Variáveis e tipos de dados: strings, inteiros, arrays, variáveis de ambiente.
+- Controle de fluxo: estruturas condicionais (if, case), loops (for, while, until).
+- Funções e modularização: definição, passagem de parâmetros, retorno de valores.
+- Tratamento de erros e depuração: uso de set -e, trap, debug com -x.
+- Boas práticas: comentários, organização, portabilidade.
+
+## Exemplo de Script Completo
+\`\`\`bash
+#!/bin/bash
+# Script para backup incremental com verificação e logging
+
+BACKUP_DIR="/home/user/backup"
+SOURCE_DIR="/home/user/dados"
+LOG_FILE="/var/log/backup_script.log"
+DATE=$(date +%F)
+
+mkdir -p "$BACKUP_DIR"
+
+echo "Iniciando backup em $DATE" >> "$LOG_FILE"
+
+tar -czf "$BACKUP_DIR/backup_$DATE.tar.gz" "$SOURCE_DIR" 2>> "$LOG_FILE"
+if [ $? -eq 0 ]; then
+  echo "Backup realizado com sucesso em $BACKUP_DIR/backup_$DATE.tar.gz" >> "$LOG_FILE"
+else
+  echo "Erro durante o backup em $DATE" >> "$LOG_FILE"
+  exit 1
+fi
+
+echo "Backup finalizado em $(date +%T)" >> "$LOG_FILE"
+\`\`\`
+
+## Dicas Avançadas
+- Use variáveis para facilitar manutenção e reutilização.
+- Sempre valide entradas e condições para evitar falhas silenciosas.
+- Utilize logging para auditoria e troubleshooting.
+- Modularize seu código com funções para melhor organização.
+
+## Conclusão
+Dominar o shell scripting com Bash é um passo essencial para automação eficiente e administração de sistemas Linux. Explore o repositório Learn Bash para scripts avançados, exemplos comentados e projetos reais que ajudarão a consolidar seu aprendizado.
+
+[Explore o Learn Bash no GitHub](https://github.com/mrpunkdasilva/learn-bash)
+
+---
+
+# Post 2: Automação de Pipelines CI/CD com Bash
+
+## Introdução
+A integração e entrega contínua (CI/CD) revolucionaram o desenvolvimento de software, permitindo entregas rápidas, confiáveis e frequentes. Bash é uma ferramenta poderosa para automatizar etapas do pipeline, desde a compilação até o deploy e monitoramento.
+
+Este post detalha como criar scripts Bash que se integram a ferramentas populares de CI/CD, garantindo flexibilidade e controle total sobre o processo.
+
+## Conteúdo
+- Fundamentos de CI/CD: conceitos, benefícios e desafios.
+- Ferramentas comuns: Jenkins, GitLab CI, GitHub Actions e como Bash se encaixa.
+- Estrutura de scripts para build, teste, deploy e rollback.
+- Gerenciamento de variáveis de ambiente e segredos.
+- Notificações e monitoramento de pipelines.
+
+## Exemplo de Script Avançado
+\`\`\`bash
+#!/bin/bash
+# Script de deploy com rollback e notificações
+
+set -e
+
+DEPLOY_DIR="/var/www/app"
+BACKUP_DIR="/var/www/backup"
+TIMESTAMP=$(date +%F_%T)
+LOG_FILE="/var/log/deploy.log"
+
+echo "Iniciando deploy em $TIMESTAMP" >> "$LOG_FILE"
+
+# Backup da versão atual
+cp -r "$DEPLOY_DIR" "$BACKUP_DIR/backup_$TIMESTAMP" >> "$LOG_FILE" 2>&1
+
+# Atualização do código
+git pull origin main >> "$LOG_FILE" 2>&1
+
+# Build do projeto
+./build.sh >> "$LOG_FILE" 2>&1
+
+# Reinício do serviço
+systemctl restart app.service >> "$LOG_FILE" 2>&1
+
+if [ $? -eq 0 ]; then
+  echo "Deploy concluído com sucesso em $TIMESTAMP" >> "$LOG_FILE"
+  # Enviar notificação (exemplo com curl para webhook)
+  curl -X POST -H 'Content-type: application/json' --data '{"text":"Deploy realizado com sucesso"}' https://hooks.exemplo.com/notify
+else
+  echo "Erro no deploy, iniciando rollback" >> "$LOG_FILE"
+  cp -r "$BACKUP_DIR/backup_$TIMESTAMP" "$DEPLOY_DIR"
+  systemctl restart app.service
+  curl -X POST -H 'Content-type: application/json' --data '{"text":"Rollback realizado após falha no deploy"}' https://hooks.exemplo.com/notify
+  exit 1
+fi
+\`\`\`
+
+## Boas Práticas
+- Use \`set -e\` para abortar o script em caso de erro.
+- Faça backups antes de alterações críticas.
+- Integre notificações para alertar a equipe.
+- Teste scripts em ambientes de staging antes de produção.
+
+## Conclusão
+Automatizar pipelines com Bash oferece controle granular e personalização, complementando ferramentas de CI/CD. Explore o Learn Bash para scripts práticos e integração com diversas plataformas.
+
+[Explore o Learn Bash no GitHub](https://github.com/mrpunkdasilva/learn-bash)
+
+---
+
+# Post 3: Monitoramento de Sistemas com Bash
+
+## Introdução
+Garantir a saúde e desempenho dos sistemas é vital para operações estáveis. Bash permite criar scripts personalizados para monitorar recursos, analisar logs e enviar alertas proativos.
+
+Este post apresenta técnicas para coletar métricas, interpretar dados e automatizar respostas a eventos críticos.
+
+## Conteúdo
+- Métricas essenciais: CPU, memória, disco, rede.
+- Ferramentas auxiliares: top, vmstat, iostat, sar.
+- Análise de logs e detecção de padrões.
+- Envio de alertas via email, Slack ou outras plataformas.
+- Agendamento com cron para monitoramento contínuo.
+
+## Exemplo de Script Completo
+\`\`\`bash
+#!/bin/bash
+# Monitoramento de uso de CPU e memória com alertas
+
+CPU_THRESHOLD=80
+MEM_THRESHOLD=75
+LOG_FILE="/var/log/monitoramento.log"
+EMAIL="admin@exemplo.com"
+
+CPU_USAGE=$(top -bn1 | grep "Cpu(s)" | awk '{print $2 + $4}')
+MEM_USAGE=$(free | grep Mem | awk '{print $3/$2 * 100.0}')
+
+echo "$(date): CPU $CPU_USAGE%, Memória $MEM_USAGE%" >> "$LOG_FILE"
+
+if (( $(echo "$CPU_USAGE > $CPU_THRESHOLD" | bc -l) )); then
+  echo "Alerta: Uso de CPU alto - $CPU_USAGE%" | mail -s "Alerta de CPU" "$EMAIL"
+fi
+
+if (( $(echo "$MEM_USAGE > $MEM_THRESHOLD" | bc -l) )); then
+  echo "Alerta: Uso de Memória alto - $MEM_USAGE%" | mail -s "Alerta de Memória" "$EMAIL"
+fi
+\`\`\`
+
+## Dicas Avançadas
+- Combine múltiplas métricas para alertas mais precisos.
+- Use logs para histórico e análise de tendências.
+- Automatize respostas, como reinício de serviços.
+- Documente e teste seus scripts regularmente.
+
+## Conclusão
+Monitorar sistemas com Bash é uma solução flexível e econômica para manter a infraestrutura saudável. O Learn Bash oferece exemplos avançados e projetos para aprimorar suas habilidades.
+
+[Explore o Learn Bash no GitHub](https://github.com/mrpunkdasilva/learn-bash)
+
+---
+
+# Post 4: Segurança em Scripts Bash
+
+## Introdução
+Scripts inseguros podem ser portas de entrada para ataques e falhas críticas. Este post detalha práticas essenciais para garantir a segurança e integridade dos seus scripts Bash.
+
+## Conteúdo
+- Validação rigorosa de entradas para evitar injeção.
+- Uso de variáveis seguras e escapes apropriados.
+- Gerenciamento correto de permissões de arquivos.
+- Implementação de logging seguro para auditoria.
+- Uso de ferramentas para análise estática e testes.
+
+## Exemplo de Validação Robusta
+\`\`\`bash
+#!/bin/bash
+# Validação de nome de arquivo para evitar injeção
+
+read -p "Digite o nome do arquivo: " filename
+
+if [[ ! "$filename" =~ ^[a-zA-Z0-9._-]+$ ]]; then
+  echo "Nome de arquivo inválido! Use apenas letras, números, pontos, traços e underscores."
+  exit 1
+fi
+
+cat "$filename"
+\`\`\`
+
+## Boas Práticas
+- Nunca execute comandos construídos a partir de entradas não confiáveis sem validação.
+- Use \`set -u\` para detectar variáveis não definidas.
+- Restrinja permissões de execução e leitura.
+- Mantenha seus scripts atualizados e revisados.
+
+## Conclusão
+A segurança em scripts Bash é crítica para proteger sistemas e dados. Aprimore suas práticas com os recursos do Learn Bash.
+
+[Explore o Learn Bash no GitHub](https://github.com/mrpunkdasilva/learn-bash)
+
+---
+
+# Post 5: Integração de Bash com APIs REST
+
+## Introdução
+A integração com APIs REST expande as capacidades dos seus scripts, permitindo comunicação com serviços web, automação de fluxos e coleta de dados externos.
+
+Este post explica como consumir APIs REST usando Bash, processar respostas JSON e tratar erros.
+
+## Conteúdo
+- Fundamentos de APIs REST e métodos HTTP.
+- Uso do curl para requisições GET, POST, PUT, DELETE.
+- Processamento de JSON com jq para extrair dados.
+- Tratamento de erros e códigos de status HTTP.
+- Exemplos práticos de integração com APIs públicas e privadas.
+
+## Exemplo Avançado
+\`\`\`bash
+#!/bin/bash
+# Consulta e processamento de API REST com tratamento de erros
+
+API_URL="https://api.exemplo.com/dados"
+RESPONSE=$(curl -s -w "%{http_code}" -o response.json "$API_URL")
+HTTP_CODE=$(tail -c 3 <<< "$RESPONSE")
+
+if [ "$HTTP_CODE" -ne 200 ]; then
+  echo "Erro na requisição: código HTTP $HTTP_CODE"
+  exit 1
+fi
+
+cat response.json | jq '.resultados[] | {id, nome, status}'
+\`\`\`
+
+## Dicas
+- Sempre verifique o código HTTP para garantir sucesso.
+- Use autenticação quando necessário (tokens, chaves).
+- Automatize chamadas para integração contínua.
+
+## Conclusão
+Integrar Bash com APIs REST torna seus scripts mais poderosos e conectados. Explore exemplos avançados no Learn Bash.
+
+[Explore o Learn Bash no GitHub](https://github.com/mrpunkdasilva/learn-bash)

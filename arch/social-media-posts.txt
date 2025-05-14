@@ -1,0 +1,146 @@
+=== POSTS PARA X/TWITTER ===
+
+📱 POST 1 (Foco em Automação)
+---
+🤖 Automatize como um cyberhacker!
+
+Learn Bash: Seu guia definitivo para dominar automação no terminal.
+
+• Scripts prontos
+• Projetos reais
+• Visual cyberpunk
+• 100% gratuito
+
+Entre na matrix: https://github.com/mrpunkdasilva/learn-bash
+#DevOps #Automation #Linux
+
+📱 POST 2 (Foco em Projetos)
+---
+🎯 Aprenda Bash construindo projetos reais:
+
+• Sistema de Backup Inteligente
+• Dashboard de Monitoramento
+• Pipeline CI/CD
+• Análise de Logs
+
+Tudo com um toque cyberpunk único!
+
+👉 https://github.com/mrpunkdasilva/learn-bash
+#Programming #DevOps #OpenSource
+
+📱 POST 3 (Foco em Iniciantes)
+---
+🔰 Novo no mundo do terminal?
+
+Learn Bash é seu portal de entrada:
+• Comandos básicos explicados
+• Exemplos práticos
+• Progressão gradual
+• Visual incrível
+
+Comece sua jornada: https://github.com/mrpunkdasilva/learn-bash
+#LearnToCode #Linux
+
+=== POSTS PARA LINKEDIN ===
+
+💼 POST 1 (Profissional)
+---
+🚀 Emocionado em compartilhar o lançamento do Learn Bash!
+
+Um curso completo de shell scripting com uma abordagem única e cyberpunk, projetado para transformar iniciantes em mestres do terminal.
+
+✨ Principais destaques:
+• Curso completo e gratuito
+• Documentação profissional com JetBrains Writerside
+• Projetos práticos do mundo real
+• Foco em automação e DevOps
+
+🎯 Perfeito para:
+• Desenvolvedores
+• DevOps Engineers
+• Administradores de Sistema
+• Entusiastas de Linux
+
+👉 Acesse agora: https://github.com/mrpunkdasilva/learn-bash
+
+#BashScripting #Linux #DevOps #OpenSource #Programming
+
+💼 POST 2 (Educacional)
+---
+📚 Revolucionando o Aprendizado de Bash!
+
+Apresento o Learn Bash: uma nova abordagem para ensinar shell scripting, combinando:
+
+🔹 Teoria sólida
+🔹 Prática intensiva
+🔹 Visual cyberpunk envolvente
+🔹 Projetos do mundo real
+
+💡 O que você vai aprender:
+• Fundamentos do Bash
+• Automação avançada
+• Integração com APIs
+• DevOps na prática
+• Monitoramento de sistemas
+
+🌟 Diferenciais:
+• 100% gratuito e open source
+• Documentação profissional
+• Exemplos práticos
+• Comunidade ativa
+
+Acesse: https://github.com/mrpunkdasilva/learn-bash
+
+#Education #Programming #Linux #OpenSource
+
+💼 POST 3 (Técnico)
+---
+🛠️ Domine Automação com Learn Bash!
+
+Um novo recurso para profissionais de TI que combina:
+
+📊 Conteúdo Técnico:
+• Shell scripting avançado
+• Integração de sistemas
+• Automação DevOps
+• Monitoramento em tempo real
+
+🎯 Projetos Práticos:
+1. Sistema de Backup Empresarial
+2. Dashboard de Monitoramento
+3. Pipeline CI/CD Completo
+4. Sistema de Análise de Logs
+
+⚡ Características:
+• Documentação detalhada
+• Código comentado
+• Exemplos reais
+• Melhores práticas
+
+Explore agora: https://github.com/mrpunkdasilva/learn-bash
+
+#DevOps #SysAdmin #Programming #Linux
+
+💼 POST 4 (Comunidade)
+---
+🌟 Contribua com o Learn Bash!
+
+Estamos construindo mais que um curso - estamos criando uma comunidade de entusiastas do terminal!
+
+🤝 Como contribuir:
+• Adicione novos exemplos
+• Melhore a documentação
+• Reporte bugs
+• Sugira melhorias
+• Compartilhe conhecimento
+
+🎯 Áreas de foco:
+• Automação
+• DevOps
+• Segurança
+• Performance
+• Integração
+
+Junte-se a nós: https://github.com/mrpunkdasilva/learn-bash
+
+#OpenSource #Community #Programming #Linux

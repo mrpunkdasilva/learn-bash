@@ -1,0 +1,186 @@
+=== POSTS PARA X/TWITTER ===
+
+📱 POST 4 (Foco em DevOps)
+---
+⚡ DevOps + Cyberpunk = Learn Bash
+
+Domine pipelines CI/CD com estilo:
+• Automação inteligente
+• Integração contínua
+• Deploy automatizado
+• Monitoramento em tempo real
+
+Seja um cyber-DevOps: https://github.com/mrpunkdasilva/learn-bash
+#DevOps #Automation #CI/CD
+
+📱 POST 5 (Foco em Performance)
+---
+🚄 Otimize como um pro!
+
+Learn Bash ensina:
+• Paralelização
+• Cache inteligente
+• Processamento distribuído
+• Técnicas avançadas
+
+Acelere seus scripts: https://github.com/mrpunkdasilva/learn-bash
+#Performance #Linux #Optimization
+
+📱 POST 6 (Série de Tips - Thread)
+---
+💡 Dica #1 de Bash:
+Sabia que pode usar 'ctrl+r' para buscar comandos antigos?
+
+Learn Bash tem dezenas de shortcuts como esse!
+
+Mais em: https://github.com/mrpunkdasilva/learn-bash
+#BashTips #Linux 
+🧵👇
+
+1/5 💻 Dica #2:
+Use '!!:gs/antigo/novo' para substituir todas as ocorrências da última linha!
+#BashMagic
+
+2/5 🔧 Dica #3:
+'ctrl+x ctrl+e' abre seu editor para comandos longos!
+#ProductivityHacks
+
+[continuar thread...]
+
+=== POSTS PARA LINKEDIN ===
+
+💼 POST 5 (Foco em Segurança)
+---
+🔒 Segurança no Terminal: Um Guia Cyberpunk
+
+Learn Bash agora inclui um módulo completo sobre segurança em scripts!
+
+🛡️ Aprenda:
+• Práticas seguras de scripting
+• Criptografia de dados
+• Gerenciamento de permissões
+• Proteção contra injeção
+• Logging seguro
+
+⚔️ Recursos inclusos:
+• Templates seguros
+• Checklist de segurança
+• Ferramentas de auditoria
+• Exemplos práticos
+
+🎯 Ideal para:
+• Security Engineers
+• SysAdmins
+• DevSecOps
+• Desenvolvedores
+
+Explore: https://github.com/mrpunkdasilva/learn-bash
+
+#CyberSecurity #DevSecOps #Linux #Security
+
+💼 POST 6 (Case Study)
+---
+📊 Case Study: Automatização com Learn Bash
+
+Veja como uma equipe DevOps reduziu 80% do tempo em tarefas repetitivas usando nossos scripts!
+
+🎯 Desafio:
+• 100+ servidores para gerenciar
+• Deploy manual e propenso a erros
+• Monitoramento inconsistente
+
+✨ Solução (Learn Bash):
+• Scripts de automação
+• Pipeline CI/CD
+• Monitoramento centralizado
+• Logs inteligentes
+
+📈 Resultados:
+• -80% tempo em tarefas manuais
+• +95% confiabilidade
+• -60% incidentes
+• +100% visibilidade
+
+Aprenda como: https://github.com/mrpunkdasilva/learn-bash
+
+#DevOps #CaseStudy #Automation
+
+💼 POST 7 (Série Tutorial)
+---
+🎓 Tutorial: Construindo um Sistema de Monitoramento
+
+Parte 1: Fundamentos
+
+Learn Bash te ensina a construir ferramentas profissionais do zero!
+
+📊 Neste tutorial:
+• Coleta de métricas
+• Processamento de dados
+• Alertas inteligentes
+• Dashboard em tempo real
+
+💻 Código incluído:
+• Scripts prontos
+• Documentação detalhada
+• Melhores práticas
+• Exemplos de uso
+
+Comece agora: https://github.com/mrpunkdasilva/learn-bash
+
+#Tutorial #Monitoring #DevOps
+
+💼 POST 8 (Cultura DevOps)
+---
+🤖 Cultura DevOps e Automação: Uma Perspectiva Cyberpunk
+
+Learn Bash não é apenas sobre códigos - é sobre transformação cultural!
+
+🎯 Nossa abordagem:
+• Mentalidade de automação
+• Colaboração efetiva
+• Melhoria contínua
+• Feedback rápido
+
+🌟 Aprenda a:
+• Identificar oportunidades de automação
+• Criar soluções escaláveis
+• Implementar práticas DevOps
+• Medir resultados
+
+💡 Recursos:
+• Guias práticos
+• Estudos de caso
+• Templates
+• Frameworks
+
+Entre para o futuro: https://github.com/mrpunkdasilva/learn-bash
+
+#DevOpsCulture #Automation #Future
+
+=== POSTS PARA INSTAGRAM ===
+
+📸 POST 1 (Carrossel Visual)
+---
+[Imagem 1: Logo cyberpunk do Learn Bash]
+[Imagem 2: Screenshot de terminal com código neon]
+[Imagem 3: Diagrama de arquitetura]
+[Imagem 4: Resultados visuais]
+
+📱 Descrição:
+🚀 Mergulhe no mundo cyberpunk do terminal!
+
+Learn Bash: O curso que transforma iniciantes em mestres da automação.
+
+👉 Link na bio
+#LearnBash #Terminal #Cyberpunk #Programming
+
+📸 POST 2 (Reel/Video curto)
+---
+[Video mostrando time-lapse de automação em ação]
+
+📱 Descrição:
+⚡ Veja o poder da automação em ação!
+Learn Bash: Transforme horas de trabalho em segundos.
+
+Aprenda como: Link na bio
+#Automation #DevOps #Programming

@@ -1,0 +1,41 @@
+🚀 Apresentando Learn Bash: O curso cyberpunk de terminal que você sempre quis!
+
+Transforme-se de iniciante em mestre do terminal com uma abordagem única e imersiva. 
+#BashScripting #Linux #OpenSource
+🧵👇
+
+1/5 💻 O que você vai encontrar:
+• Fundamentos do Bash com visual cyberpunk
+• Comandos essenciais explicados de forma clara
+• Scripts e automação para hackers em ascensão
+• Projetos práticos hands-on
+#Programming #DevOps
+
+2/5 🔧 Projetos inclusos:
+• Sistema de Backup
+• Monitor de Servidor
+• Automação DevOps
+• Gerenciador de Logs
+Tudo com exemplos práticos e código pronto para usar!
+#Automation #Linux
+
+3/5 📚 Conteúdo organizado em:
+• Módulos progressivos
+• Exercícios práticos
+• Exemplos do mundo real
+• Documentação detalhada
+Feito com @JetBrains Writerside para máxima qualidade!
+#TechEducation
+
+4/5 ⚡ Características:
+• Interface cyberpunk única
+• Exemplos práticos e diretos
+• Foco em automação
+• 100% gratuito e open source
+#OpenSource #Cyberpunk
+
+5/5 🌟 Pronto para entrar na matrix do terminal?
+👉 https://github.com/mrpunkdasilva/learn-bash
+
+RT se você conhece alguém que precisa aprender Bash! 🤖
+#LearnToCode #BashScript
